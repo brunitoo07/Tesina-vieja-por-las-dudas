@@ -145,7 +145,7 @@
 
 <div class="container">
     <h1>Consumo de Energía en Tiempo Real</h1>
- <!-- hola -->
+ <!-- hola todo bien -->
     <!-- Mostrar los datos más recientes -->
     <div class="realtime-data">
         <div class="realtime-card">
@@ -220,7 +220,7 @@
     <div style="background-color: #ff4d4d; color: white; padding: 20px; text-align: center; border-radius: 10px; font-size: 18px;">
         <?= $advertencia ?>
     </div>
-<?php endif; ?>
+<?php endif; ?> 
 
 <!-- Formulario para actualizar límite de consumo -->
 <h3>Establecer Límite de Consumo</h3>
