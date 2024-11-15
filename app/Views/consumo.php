@@ -145,7 +145,7 @@
 
 <div class="container">
     <h1>Consumo de Energía en Tiempo Real</h1>
-
+ <!-- hola -->
     <!-- Mostrar los datos más recientes -->
     <div class="realtime-data">
         <div class="realtime-card">
