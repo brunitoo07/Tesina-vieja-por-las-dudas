@@ -1,0 +1,278 @@
+CRITICAL - 2024-11-08 17:41:51 --> TypeError: date(): Argument #2 ($timestamp) must be of type ?int, string given
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 28.
+ 1 APPPATH\Views\consumo.php(28): date('d-m-Y H:i:s', '0000-00-00 00:00:00')
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 17:41:52 --> TypeError: date(): Argument #2 ($timestamp) must be of type ?int, string given
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 28.
+ 1 APPPATH\Views\consumo.php(28): date('d-m-Y H:i:s', '0000-00-00 00:00:00')
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 17:59:03 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 17:59:05 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:06:10 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:06:11 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:06:13 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:06:14 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:06:15 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 59.
+ 1 APPPATH\Views\consumo.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:15:32 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 56.
+ 1 APPPATH\Views\consumo.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 56)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(13): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:15:45 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 56.
+ 1 APPPATH\Views\consumo.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 56)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(13): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 18:16:00 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 56.
+ 1 APPPATH\Views\consumo.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 56)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(13): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 22:45:11 --> ErrorException: Undefined variable $registros
+[Method: GET, Route: energia]
+in APPPATH\Views\consumo.php on line 22.
+ 1 APPPATH\Views\consumo.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $registros', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php', 22)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\consumo.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo', [], true)
+ 5 APPPATH\Controllers\Energia.php(24): view('consumo', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:29 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:29 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:42 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:44 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:45 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:45 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:09:45 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-08 23:10:29 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: energia/verDatos]
+in APPPATH\Controllers\Energia.php on line 31.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\Energia.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Energia')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Energia')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Energia', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

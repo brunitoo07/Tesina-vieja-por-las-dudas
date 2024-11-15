@@ -1,0 +1,1183 @@
+ERROR - 2024-09-24 19:26:16 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:16 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:16 --> 
+ERROR - 2024-09-24 19:26:16 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:16 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:14 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f312561728b9.20141767@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:35 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:36 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:36 --> 
+ERROR - 2024-09-24 19:26:36 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:36 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:33 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31269e8fbb3.49695699@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:38 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:38 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:38 --> 
+ERROR - 2024-09-24 19:26:38 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:38 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:36 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3126c1d19d4.25035272@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:40 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:40 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:40 --> 
+ERROR - 2024-09-24 19:26:40 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:40 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:38 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3126e3fb118.29115774@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:42 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:42 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:42 --> 
+ERROR - 2024-09-24 19:26:42 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:42 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:40 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31270698808.57769648@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:44 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:44 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:44 --> 
+ERROR - 2024-09-24 19:26:44 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:44 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:42 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3127290f2d6.84158234@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:46 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:46 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:46 --> 
+ERROR - 2024-09-24 19:26:46 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:46 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:44 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31274b86dc2.47038281@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:48 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:48 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:48 --> 
+ERROR - 2024-09-24 19:26:48 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:48 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:46 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31276d701b8.26512240@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:51 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:51 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:51 --> 
+ERROR - 2024-09-24 19:26:51 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:51 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:49 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31279058ca4.14796634@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:53 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:53 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:53 --> 
+ERROR - 2024-09-24 19:26:53 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:53 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:51 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3127b2612d9.88386052@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:55 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:55 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:55 --> 
+ERROR - 2024-09-24 19:26:55 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:55 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:53 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3127d51bd59.21001248@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:57 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:57 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:57 --> 
+ERROR - 2024-09-24 19:26:57 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:57 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:55 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3127f912f26.16234315@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:26:59 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:26:59 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:26:59 --> 
+ERROR - 2024-09-24 19:26:59 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:26:59 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:26:57 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31281b397e5.08064563@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:27:02 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:27:02 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:27:02 --> 
+ERROR - 2024-09-24 19:27:02 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:27:02 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:27:00 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f312849f2106.91167162@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:27:05 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:27:05 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:27:05 --> 
+ERROR - 2024-09-24 19:27:05 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:27:05 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:27:03 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f312870de2a7.59271880@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:27:07 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:27:07 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:27:07 --> 
+ERROR - 2024-09-24 19:27:07 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:27:07 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:27:05 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31289305d77.12135459@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:29:11 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:29:11 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:29:11 --> 
+ERROR - 2024-09-24 19:29:11 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:29:11 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:29:09 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31305c01312.90992207@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:37:53 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:37:53 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:37:53 --> 
+ERROR - 2024-09-24 19:37:53 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:37:53 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:37:50 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3150ef0c752.04688318@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:39:08 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:39:08 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:39:08 --> 
+ERROR - 2024-09-24 19:39:08 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:39:08 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:39:06 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3155ac87876.98075443@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:42:23 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:42:23 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:42:23 --> 
+ERROR - 2024-09-24 19:42:23 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:42:23 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:42:21 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3161d08f9e8.57623643@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:44:57 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:44:57 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:44:57 --> 
+ERROR - 2024-09-24 19:44:57 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:44:57 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:44:55 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f316b7e45410.31979875@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:49:15 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:49:15 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:49:15 --> 
+ERROR - 2024-09-24 19:49:15 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:49:15 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:49:13 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f317b9165ec7.53176781@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:51:16 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:51:16 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:51:16 --> 
+ERROR - 2024-09-24 19:51:16 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:51:16 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:51:14 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f318322643e4.82021271@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:55:36 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:55:36 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:55:36 --> 
+ERROR - 2024-09-24 19:55:36 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:55:36 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:55:34 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f319361dd079.61769691@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:55:47 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:55:47 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:55:47 --> 
+ERROR - 2024-09-24 19:55:47 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:55:47 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:55:44 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f31940efe746.65771921@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 19:57:07 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php:1762
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1762)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1762): mail('moni@gmail.com', '=?UTF-8?Q?C=C3=...', 'Use el siguient...', 'Date: Tue, 24 S...', '-f tu_correo_el...')
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1694): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Email\Email.php(1589): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CCorreo.php(46): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2024-09-24 19:57:07 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2024-09-24 19:57:07 --> 
+ERROR - 2024-09-24 19:57:07 --> Error al enviar el correo de restablecimiento de contraseña. Email: moni@gmail.com
+ERROR - 2024-09-24 19:57:07 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 24 Sep 2024 19:57:05 +0000
+From: &quot;Tu Nombre&quot; &lt;tu_correo_electronico@example.com&gt;
+Return-Path: &lt;tu_correo_electronico@example.com&gt;
+Reply-To: &lt;tu_correo_electronico@example.com&gt;
+User-Agent: CodeIgniter
+X-Sender: tu_correo_electronico@example.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;66f3199144a897.00615395@example.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+</pre>
+ERROR - 2024-09-24 20:29:03 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-24 20:29:13 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-24 20:29:22 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+CRITICAL - 2024-09-24 20:46:58 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:01 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:20 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:21 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:21 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:21 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:22 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:23 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:23 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:51:24 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:10 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:11 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:11 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:11 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:12 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:12 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:12 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:52:15 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:53:47 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 83.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:54:26 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva-contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva-contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva-contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(25): view('autenticacion/nueva-contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 20:57:55 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva-contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva-contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva-contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(25): view('autenticacion/nueva-contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:08:26 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva-contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva-contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva-contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(25): view('autenticacion/nueva-contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:53:34 --> ParseError: Unclosed '{' on line 64
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 68.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:54:15 --> ParseError: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$"
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 67.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:54:31 --> ParseError: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$"
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 67.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:55:19 --> ParseError: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$"
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 67.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 21:55:49 --> ParseError: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$"
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 67.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CNuevacontrasena')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CNuevacontrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CNuevacontrasena', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:12:47 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva_contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(19): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:23:16 --> ErrorException: Undefined array key "contraseña"
+[Method: POST, Route: actualizar-contrasena]
+in APPPATH\Controllers\CNuevacontrasena.php on line 42.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(42): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "contraseña"', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CNuevacontrasena.php', 42)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:24:00 --> BadMethodCallException: Call to undefined method App\Models\UsuarioModel::actualizarcontraseña
+[Method: POST, Route: actualizar-contrasena]
+in SYSTEMPATH\Model.php on line 932.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(63): CodeIgniter\Model->__call('actualizarcontraseña', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:24:24 --> BadMethodCallException: Call to undefined method App\Models\UsuarioModel::actualizarcontraseña
+[Method: POST, Route: actualizar-contrasena]
+in SYSTEMPATH\Model.php on line 932.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(63): CodeIgniter\Model->__call('actualizarcontraseña', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:33:04 --> BadMethodCallException: Call to undefined method App\Models\UsuarioModel::actualizarcontraseña
+[Method: POST, Route: actualizar-contrasena]
+in SYSTEMPATH\Model.php on line 932.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(63): CodeIgniter\Model->__call('actualizarcontraseña', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:33:43 --> BadMethodCallException: Call to undefined method App\Models\UsuarioModel::actualizarcontraseña
+[Method: POST, Route: actualizar-contrasena]
+in SYSTEMPATH\Model.php on line 932.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(63): CodeIgniter\Model->__call('actualizarcontraseña', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-24 22:33:57 --> BadMethodCallException: Call to undefined method App\Models\UsuarioModel::actualizarcontraseña
+[Method: POST, Route: actualizar-contrasena]
+in SYSTEMPATH\Model.php on line 932.
+ 1 APPPATH\Controllers\CNuevacontrasena.php(63): CodeIgniter\Model->__call('actualizarcontraseña', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->actualizar()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-24 22:38:31 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-24 22:48:18 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-24 22:50:14 --> Intento de inicio de sesión fallido. Email: dadad@kjda.com
+ERROR - 2024-09-24 23:24:51 --> Intento de inicio de sesión fallido. Email: dadad@gmial.ocm

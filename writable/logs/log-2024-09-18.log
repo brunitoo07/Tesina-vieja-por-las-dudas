@@ -1,0 +1,359 @@
+CRITICAL - 2024-09-18 00:11:42 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: obtenervalidacion]
+in APPPATH\Controllers\CCorreo.php on line 65.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CCorreo.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CCorreo')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CCorreo')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CCorreo', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:11:46 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: obtenervalidacion]
+in APPPATH\Controllers\CCorreo.php on line 65.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CCorreo.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CCorreo')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CCorreo')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CCorreo', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:14:25 --> Error: Class "App\Models\CodigoModel" not found
+[Method: GET, Route: obtenervalidacion]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->obtenervalidacion()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:14:28 --> Error: Class "App\Models\CodigoModel" not found
+[Method: GET, Route: obtenervalidacion]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->obtenervalidacion()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:18:57 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:19:29 --> Error: Class "App\Controllers\UsuarioModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 22.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:19:43 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:19:47 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:45:45 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:46:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:46:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-18 00:48:03 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: leonelsanchez@alumnos.itr3.edu.ar
+ERROR - 2024-09-18 00:48:24 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: leonelsanchez@alumnos.itr3.edu.ar
+CRITICAL - 2024-09-18 00:49:07 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:52:55 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:53:00 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:53:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 00:54:21 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-18 18:55:14 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 18:55:47 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 18:56:12 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 18:56:32 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 18:57:07 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-09-18 18:58:20 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-09-18 18:58:33 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-09-18 18:58:47 --> Intento de inicio de sesión fallido: contraseña incorrecta. Email: moni@gmail.com
+ERROR - 2024-09-18 18:58:59 --> Intento de inicio de sesión fallido: contraseña incorrecta. Email: moni@gmail.com
+ERROR - 2024-09-18 19:01:13 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:01:27 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:02:36 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:05:11 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:05:14 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+CRITICAL - 2024-09-18 19:25:07 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "home/bienvenida.php"
+[Method: GET, Route: home/bienvenida]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('home/bienvenida.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('home/bienvenida', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('home/bienvenida')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 19:25:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "home/bienvenida.php"
+[Method: GET, Route: home/bienvenida]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('home/bienvenida.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('home/bienvenida', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('home/bienvenida')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 19:25:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "home/bienvenida.php"
+[Method: GET, Route: home/bienvenida]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('home/bienvenida.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('home/bienvenida', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('home/bienvenida')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 19:25:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "home/bienvenida.php"
+[Method: GET, Route: home/bienvenida]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('home/bienvenida.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('home/bienvenida', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('home/bienvenida')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 19:25:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "home/bienvenida.php"
+[Method: GET, Route: home/bienvenida]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('home/bienvenida.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('home/bienvenida', [], true)
+ 3 APPPATH\Controllers\Home.php(14): view('home/bienvenida')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-18 19:26:44 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: ddadadadad@gmaiil.cok
+ERROR - 2024-09-18 19:27:18 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:27:55 --> Intento de inicio de sesión fallido: usuario no encontrado. Email: leonelsanchez@alumnos.itr3.edu.ar
+ERROR - 2024-09-18 19:52:23 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 19:52:30 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+ERROR - 2024-09-18 20:24:01 --> Intento de inicio de sesión fallido. Email: moni@gmail.com
+CRITICAL - 2024-09-18 20:24:13 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/nueva_contrasena.php"
+[Method: GET, Route: autenticacion/nueva-contrasena]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/nueva_contrasena.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/nueva_contrasena', [], true)
+ 3 APPPATH\Controllers\CNuevacontrasena.php(11): view('autenticacion/nueva_contrasena')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CNuevacontrasena->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CNuevacontrasena))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:36:03 --> ParseError: syntax error, unexpected variable "$routes"
+[Method: GET, Route: /]
+in APPPATH\Config\Routes.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(823): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 2 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(null)
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:36:05 --> ParseError: syntax error, unexpected variable "$routes"
+[Method: GET, Route: /]
+in APPPATH\Config\Routes.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(823): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 2 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(null)
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:37:47 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:37:53 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:38:08 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:38:51 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:38:53 --> Error: Class "App\Models\CodigoModel" not found
+[Method: GET, Route: autenticacion/correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:38:56 --> Error: Class "App\Models\CodigoModel" not found
+[Method: GET, Route: autenticacion/correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-18 20:40:34 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-18 20:45:53 --> Intento de inicio de sesión fallido. Email: enzoguerreiro76@gmail.com
+CRITICAL - 2024-09-18 20:46:26 --> Error: Class "App\Models\CodigoModel" not found
+[Method: POST, Route: correo]
+in APPPATH\Controllers\CCorreo.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->correo()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

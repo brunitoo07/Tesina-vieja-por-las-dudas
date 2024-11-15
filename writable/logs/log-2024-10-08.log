@@ -1,0 +1,42 @@
+ERROR - 2024-10-08 19:38:00 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-10-08 19:38:10 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+CRITICAL - 2024-10-08 20:22:19 --> ParseError: syntax error, unexpected token "public", expecting end of file
+[Method: GET, Route: autenticacion/correo]
+in APPPATH\Controllers\CCorreo.php on line 63.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Controllers\\CCorreo.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CCorreo')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CCorreo')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CCorreo', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-10-08 20:27:31 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-10-08 20:27:39 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+ERROR - 2024-10-08 21:12:46 --> Intento de inicio de sesión fallido. Email: moni@gmail.com
+ERROR - 2024-10-08 21:12:54 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+CRITICAL - 2024-10-08 22:06:11 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "consumo/consumo.php"
+[Method: GET, Route: consumo/consumo]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('consumo/consumo.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo/consumo', [], true)
+ 3 APPPATH\Controllers\Cconsumo.php(14): view('consumo/consumo')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Cconsumo->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cconsumo))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-08 22:06:12 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "consumo/consumo.php"
+[Method: GET, Route: consumo/consumo]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('consumo/consumo.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('consumo/consumo', [], true)
+ 3 APPPATH\Controllers\Cconsumo.php(14): view('consumo/consumo')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Cconsumo->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cconsumo))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

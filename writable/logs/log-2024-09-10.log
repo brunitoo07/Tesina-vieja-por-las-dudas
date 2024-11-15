@@ -1,0 +1,1054 @@
+CRITICAL - 2024-09-10 22:09:34 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 22:09:35 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 22:09:35 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 22:19:31 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "common/header.php"
+[Method: GET, Route: autenticacion/register]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('common/header.php')
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 22:19:34 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "common/header.php"
+[Method: GET, Route: autenticacion/correo]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('common/header.php')
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\correo.php(11): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\correo.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/correo', [], true)
+ 7 APPPATH\Controllers\CCorreo.php(19): view('autenticacion/correo')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-09-10 22:39:58 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Models\UsuarioModel.php(25): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CAutenticacion.php(83): App\Models\UsuarioModel->obtenerUsuarioEmail('enzoguerreiro76...')
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CAutenticacion->iniciarSesion()
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\CODEIGNITERNUEVO\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Models\UsuarioModel.php(25): CodeIgniter\BaseModel->first()
+#6 C:\xampp\htdocs\CODEIGNITERNUEVO\app\Controllers\CAutenticacion.php(83): App\Models\UsuarioModel->obtenerUsuarioEmail('enzoguerreiro76...')
+#7 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(933): App\Controllers\CAutenticacion->iniciarSesion()
+#8 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+#9 C:\xampp\htdocs\CODEIGNITERNUEVO\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\CODEIGNITERNUEVO\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\CODEIGNITERNUEVO\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2024-09-10 22:39:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: iniciarSesion]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `usuario`
+WHERE `Email` = :Email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UsuarioModel.php(25): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\CAutenticacion.php(83): App\Models\UsuarioModel->obtenerUsuarioEmail('enzoguerreiro76@gmail.com')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->iniciarSesion()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 22:40:03 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "common/header.php"
+[Method: GET, Route: autenticacion/register]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('common/header.php')
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:10:26 --> ErrorException: preg_match(): Compilation failed: missing closing parenthesis at offset 21
+[Method: GET, Route: autenticacion/register]
+in SYSTEMPATH\Router\Router.php on line 432.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match(): Compilation failed: missing closing parenthesis at offset 21', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\system\\Router\\Router.php', 432)
+ 2 SYSTEMPATH\Router\Router.php(432): preg_match('#^autenticacion(login$#u', 'autenticacion/register', [])
+ 3 SYSTEMPATH\Router\Router.php(210): CodeIgniter\Router\Router->checkRoutes('autenticacion/register')
+ 4 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('autenticacion/register')
+ 5 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:10:29 --> ErrorException: preg_match(): Compilation failed: missing closing parenthesis at offset 21
+[Method: GET, Route: imagenes/login.png]
+in SYSTEMPATH\Router\Router.php on line 432.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match(): Compilation failed: missing closing parenthesis at offset 21', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\system\\Router\\Router.php', 432)
+ 2 SYSTEMPATH\Router\Router.php(432): preg_match('#^autenticacion(login$#u', 'imagenes/login.png', [])
+ 3 SYSTEMPATH\Router\Router.php(210): CodeIgniter\Router\Router->checkRoutes('imagenes/login.png')
+ 4 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('imagenes/login.png')
+ 5 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:10:31 --> ErrorException: preg_match(): Compilation failed: missing closing parenthesis at offset 21
+[Method: GET, Route: autenticacion/register]
+in SYSTEMPATH\Router\Router.php on line 432.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match(): Compilation failed: missing closing parenthesis at offset 21', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\system\\Router\\Router.php', 432)
+ 2 SYSTEMPATH\Router\Router.php(432): preg_match('#^autenticacion(login$#u', 'autenticacion/register', [])
+ 3 SYSTEMPATH\Router\Router.php(210): CodeIgniter\Router\Router->checkRoutes('autenticacion/register')
+ 4 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('autenticacion/register')
+ 5 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:10:33 --> ErrorException: preg_match(): Compilation failed: missing closing parenthesis at offset 21
+[Method: GET, Route: autenticacion/correo]
+in SYSTEMPATH\Router\Router.php on line 432.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match(): Compilation failed: missing closing parenthesis at offset 21', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\system\\Router\\Router.php', 432)
+ 2 SYSTEMPATH\Router\Router.php(432): preg_match('#^autenticacion(login$#u', 'autenticacion/correo', [])
+ 3 SYSTEMPATH\Router\Router.php(210): CodeIgniter\Router\Router->checkRoutes('autenticacion/correo')
+ 4 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('autenticacion/correo')
+ 5 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:10:36 --> ErrorException: preg_match(): Compilation failed: missing closing parenthesis at offset 21
+[Method: GET, Route: autenticacion/login]
+in SYSTEMPATH\Router\Router.php on line 432.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'preg_match(): Compilation failed: missing closing parenthesis at offset 21', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\system\\Router\\Router.php', 432)
+ 2 SYSTEMPATH\Router\Router.php(432): preg_match('#^autenticacion(login$#u', 'autenticacion/login', [])
+ 3 SYSTEMPATH\Router\Router.php(210): CodeIgniter\Router\Router->checkRoutes('autenticacion/login')
+ 4 SYSTEMPATH\CodeIgniter.php(834): CodeIgniter\Router\Router->handle('autenticacion/login')
+ 5 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:11:11 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:11:15 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:11:41 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:12:06 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:12:06 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:12:06 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:14:49 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(29): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:14:57 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(29): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:14:59 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/correo]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\correo.php(11): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\correo.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/correo', [], true)
+ 7 APPPATH\Controllers\CCorreo.php(19): view('autenticacion/correo')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:16:44 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:17:03 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:17:03 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:17:03 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:17:03 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:08 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:08 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:47 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "inicio.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('inicio.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('inicio')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:53 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:18:54 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('login', [], true)
+ 3 APPPATH\Controllers\Home.php(9): view('login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:19:18 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:19:56 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:08 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:09 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:15 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:15 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:15 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:15 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:16 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:29 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:20:47 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:21:06 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:21:10 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:26:45 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:26:46 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:26:47 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:26:47 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:28 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:31 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:31 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:33 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:34 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:35 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:27:36 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: /]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\inicio.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\inicio.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('inicio', [], true)
+ 7 APPPATH\Controllers\Home.php(9): view('inicio')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:29:03 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:35:57 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:35:58 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:36:08 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:36:34 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/correo]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\correo.php(11): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\correo.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/correo', [], true)
+ 7 APPPATH\Controllers\CCorreo.php(19): view('autenticacion/correo')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CCorreo->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CCorreo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:45:31 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-10 23:46:32 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-10 23:54:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:54:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:54:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:54:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-10 23:54:57 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-10 23:55:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-10 23:55:14 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: autenticacion/register]
+in APPPATH\Views\common\header.php on line 23.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('common/header', null, true)
+ 3 APPPATH\Views\autenticacion\register.php(12): CodeIgniter\View\View->include('common/header')
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Views\\autenticacion\\register.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/register', [], true)
+ 7 APPPATH\Controllers\CAutenticacion.php(28): view('autenticacion/register')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->register()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-10 23:55:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:56:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:56:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-10 23:57:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-10 23:58:09 --> CodeIgniter\Database\Exceptions\DataException: There is no data to insert.
+[Method: POST, Route: registrarse]
+in SYSTEMPATH\BaseModel.php on line 826.
+ 1 SYSTEMPATH\BaseModel.php(826): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('insert')
+ 2 SYSTEMPATH\Model.php(802): CodeIgniter\BaseModel->insert([], true)
+ 3 APPPATH\Models\UsuarioModel.php(15): CodeIgniter\Model->insert([...])
+ 4 APPPATH\Controllers\CAutenticacion.php(70): App\Models\UsuarioModel->insertarUsuario([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->registrarse()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
