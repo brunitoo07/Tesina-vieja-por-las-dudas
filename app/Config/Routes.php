@@ -38,4 +38,3 @@ $routes->get('/', 'Energia::index');  // Ruta para la vista principal
 $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');  // Ruta para recibir los datos del ESP32
 $routes->get('energia/getLatestData', 'Energia::getLatestData');
 $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
-

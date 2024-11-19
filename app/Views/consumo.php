@@ -215,21 +215,20 @@
         </tbody>
     </table>
 
-  <!-- Mostrar advertencia llamativa si se supera el límite -->
+<!-- Mostrar advertencia llamativa si se supera el límite -->
 <?php if (isset($advertencia)): ?>
     <div style="background-color: #ff4d4d; color: white; padding: 20px; text-align: center; border-radius: 10px; font-size: 18px;">
         <?= $advertencia ?>
     </div>
 <?php endif; ?> 
 
-<!-- Formulario para actualizar límite de consumo -->
+<!--   Formulario para actualizar límite de consumo 
 <h3>Establecer Límite de Consumo</h3>
-<form method="POST" action="<?= base_url('energia/actualizarLimite'); ?>">
+<form method="POST" action="     <?= base_url('energia/actualizarLimite'); ?>">
     <label for="nuevo_limite">Límite de Consumo (kWh):</label>
-    <input type="number" name="nuevo_limite" step="0.1" value="<?= $limite_consumo ?>" required>
+    <input type="number" name="nuevo_limite" step="0.0001" value="<?= $limite_consumo ?>" required>
     <button type="submit" style="background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Actualizar</button>
-</form>
-
+</form>    -->
 <a href="<?= base_url('home/bienvenida') ?>" class="volver-btn">Volver</a>
 <footer>
     <p>© 2024 Sistema de Medición de Energía. Todos los derechos reservados.</p>
