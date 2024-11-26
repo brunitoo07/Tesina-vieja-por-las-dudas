@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="<?= base_url('estilo/nueva-contrasena.css'); ?>">
     <link rel="shortcut icon" href="<?= base_url('imagenes/rayito.png'); ?>">
+    
     <title>Cambiar Contraseña</title>
     <style>
         /* Encabezado */
@@ -228,6 +231,22 @@
                 content: '\2630';
                 font-size: 1.5rem;
             }
+            /* Estilo del ojito */
+ .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+/* Cuando el input tiene focus */
+input[type="password"]:focus + .eye-icon,
+input[type="text"]:focus + .eye-icon {
+    color: #4a90e2; /* Cambiar color cuando el input está en foco */
+}
         
           }
     </style>
@@ -255,21 +274,49 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nueva_contrasena">Nueva Contraseña</label>
-                    <input type="password" name="nueva_contrasena" required placeholder="Ingrese una nueva contraseña">
-                </div>
+    <label for="nueva_contrasena">Nueva Contraseña</label>
+    <input type="password" id="nueva_contrasena" name="nueva_contrasena" required placeholder="Ingrese una nueva contraseña">
+    <i class="fa fa-eye eye-icon" id="togglePassword"></i>
+</div>
 
-                <div class="form-group">
-                    <label for="confirmar_contrasena">Confirmar Contraseña</label>
-                    <input type="password" name="confirmar_contrasena" required placeholder="Confirme su nueva contraseña">
-                </div>
+<div class="form-group">
+    <label for="confirmar_contrasena">Confirmar Contraseña</label>
+    <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" required placeholder="Confirme su nueva contraseña">
+    <i class="fa fa-eye eye-icon" id="toggleConfirmPassword"></i>
+</div>
 
-                <div class="form-group">
-                    <button type="submit">Actualizar Contraseña</button>
-                </div>
+<div class="form-group">
+    <button type="submit">Actualizar Contraseña</button>
+</div>
+
             </form>
         </div>
     </main>
+    <script>
+    // Toggle para "Nueva Contraseña"
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("nueva_contrasena");
+
+    togglePassword.addEventListener("click", function () {
+        const type = passwordField.type === "password" ? "text" : "password";
+        passwordField.type = type;
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+
+    // Toggle para "Confirmar Contraseña"
+    const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+    const confirmPasswordField = document.getElementById("confirmar_contrasena");
+
+    toggleConfirmPassword.addEventListener("click", function () {
+        const type = confirmPasswordField.type === "password" ? "text" : "password";
+        confirmPasswordField.type = type;
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+
+
 </body>
 
 </html>

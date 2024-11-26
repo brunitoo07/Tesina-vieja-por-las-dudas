@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="<?= base_url('imagenes/rayito.png'); ?>">
     <title>Consumo de Energía</title>
     <style>
         /* Fuentes e iconos */
@@ -259,4 +260,3 @@
 </body>
 </html>
 
-hola enzito

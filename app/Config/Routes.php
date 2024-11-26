@@ -32,7 +32,7 @@ $routes->get('energia/verDatos', 'Energia::verDatos');  // Ruta para obtener los
 // Perfil del usuario
 $routes->get('perfil/perfil', 'CUsuario::perfil');
 
-// Rutas de la API de energía
+
 
 $routes->get('/', 'Energia::index');  // Ruta para la vista principal
 $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');  // Ruta para recibir los datos del ESP32

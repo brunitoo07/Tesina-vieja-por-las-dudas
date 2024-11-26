@@ -18,7 +18,7 @@ class CAutenticacion extends BaseController
     public function register()
     {
         if (session()->get('userData')) {
-            return redirect()->to('home/bienvenida');
+            return redirect()->to('autenticacion/login');
         }
         return view('autenticacion/register');
     }

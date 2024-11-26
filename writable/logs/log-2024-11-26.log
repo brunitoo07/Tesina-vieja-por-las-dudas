@@ -1,0 +1,190 @@
+ERROR - 2024-11-26 16:31:19 --> Intento de inicio de sesión fallido. Email: brunocameille@alumnos.itr3.edu.ar
+CRITICAL - 2024-11-26 16:41:23 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:24 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:25 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:26 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:27 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:28 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:29 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:30 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:31 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:32 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:33 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:34 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:35 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:36 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:37 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:38 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-11-26 16:41:39 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: energia]
+in APPPATH\Models\EnergiaModel.php on line 16.
+ 1 APPPATH\Models\EnergiaModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\CODEIGNITERNUEVO\\app\\Models\\EnergiaModel.php', 16)
+ 2 APPPATH\Controllers\Energia.php(68): App\Models\EnergiaModel->getLimiteConsumo()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Energia->index()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Energia))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-11-26 20:25:45 --> Intento de inicio de sesión fallido. Email: juanho@gmail.com
+ERROR - 2024-11-26 20:29:26 --> Intento de inicio de sesión fallido. Email: moni@gmail.com
