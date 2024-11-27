@@ -9,18 +9,32 @@ class EnergiaModel extends Model
     protected $table = 'energia';
     protected $primaryKey = 'id';
     protected $allowedFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'fecha'];
-    protected $useTimestamps = false; // Si deseas usar timestamps, cámbialo a true
+    protected $useTimestamps = false; // Cambia a true si necesitas timestamps
 
+    // Método para obtener el límite de consumo (debes asegurarte de tener un campo o tabla para esto)
     public function getLimiteConsumo()
     {
-        return $this->db->table($this->table)->select('limite_consumo')->orderBy('id', 'DESC')->get()->getRowArray()['limite_consumo'];
+        $resultado = $this->db->table($this->table)
+            ->select('limite_consumo')
+            ->orderBy('id', 'DESC')
+            ->limit(1)
+            ->get()
+            ->getRowArray();
+
+        return $resultado['limite_consumo'] ?? null; // Devuelve el valor o null si no existe
     }
 
     public function updateLimiteConsumo($nuevoLimite)
     {
-        $this->db->table($this->table)->update(['limite_consumo' => $nuevoLimite]);
+        // Aquí deberías tener un campo "limite_consumo" en la tabla "energia"
+        return $this->db->table($this->table)
+            ->set('limite_consumo', $nuevoLimite)
+            ->orderBy('id', 'DESC')
+            ->limit(1)
+            ->update();
     }
 
+    // Otros métodos de tu modelo
     public function getConsumoDiario()
     {
         $inicioHoy = date('Y-m-d 00:00:00');
@@ -35,40 +49,18 @@ class EnergiaModel extends Model
         return $query->getRowArray()['kwh'] ?? 0;
     }
 
-
-    // Método para obtener todos los datos en orden descendente por id
     public function getAllDataDesc()
     {
         return $this->orderBy('id', 'DESC')->findAll();
     }
 
-    // Método para obtener el último dato registrado
     public function getLatestData()
     {
         return $this->orderBy('id', 'DESC')->limit(1)->findAll();
     }
 
-    // Método para insertar datos en la base de datos
     public function insertData($data)
     {
         return $this->insert($data);
-    }
-
-  
-  
-
-    // Método para actualizar el límite de consumo
-    public function actualizarLimiteConsumo($nuevo_limite)
-    {
-        // Este método se puede ajustar si deseas almacenar el límite en la base de datos
-        // Aquí simplemente estamos actualizando el límite en una variable, pero puedes implementarlo en tu base de datos
-        // Por ejemplo, si tuvieras una tabla de configuración que almacene el límite de consumo
-
-        // Para ahora, actualizamos un campo de configuración (esto debe ser ajustado según tu base de datos)
-        // Por ejemplo, insertar o actualizar el límite de consumo
-        // Si tienes un campo fijo, deberías actualizarlo en la tabla
-
-        // Para este ejemplo, dejaremos este método simple y devolveremos el nuevo límite
-        return $nuevo_limite;
     }
 }

@@ -26,7 +26,7 @@ $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
 // Página de bienvenida
 $routes->get('home/bienvenida', 'Home::index');
 $routes->get('energia', 'Energia::index'); // Ruta para acceder a la vista de consumo
-$routes->get('energia/verDatos', 'Energia::verDatos');  // Ruta para obtener los datos en formato JSON
+$routes->get('energia/verDatos', 'Energia::verDatos');  // Ruta para obtener los datos en formato JSON(esta es innecesaria,hacer prueba)
 
 
 // Perfil del usuario

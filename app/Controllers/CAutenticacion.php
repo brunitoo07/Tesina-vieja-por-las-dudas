@@ -52,7 +52,7 @@ class CAutenticacion extends BaseController
         // Validar que la contraseña tenga al menos 6 caracteres, una mayúscula y un símbolo
         if (strlen($contrasena) < 6 || !preg_match('/[A-Z]/', $contrasena) || !preg_match('/[!@#$%]/', $contrasena)) {
             session()->set('password_error', 'La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo (!@#$%).');
-            return redirect()->to('autenticacion/register'); // Corregido
+            return redirect()->to('autenticacion/register'); 
         }
         
         $array = [

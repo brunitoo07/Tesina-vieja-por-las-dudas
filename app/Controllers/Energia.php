@@ -50,7 +50,7 @@ class Energia extends BaseController
         date_default_timezone_set('America/Argentina/Buenos_Aires');
     
         // Obtener fecha y hora actual
-        $fechaActual = date('Y-m-d H:i:s'); // Formato: Año-Mes-Día Hora:Minuto:Segundo
+        $fechaActual = date('Y-m-d H:i:s'); 
 
         // Obtener el parámetro de orden y la dirección de la URL, con valores predeterminados
         $direction = $this->request->getGet('direction') ?? 'DESC';
