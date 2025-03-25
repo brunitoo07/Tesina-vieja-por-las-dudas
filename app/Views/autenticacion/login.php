@@ -14,6 +14,7 @@ body {
     background-size: cover;
     height: 100vh;
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 main {
@@ -21,30 +22,45 @@ main {
     justify-content: center;
     align-items: center;
     padding: 1.5%;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .container-login {
     padding: 2.6rem;
-    border-radius: 0.8rem;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 20rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 22rem;
     text-align: center;
+    backdrop-filter: blur(10px);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.container-login:hover {
+    transform: translateY(-5px);
 }
 
 .container-login img {
-    width: 5rem;
-    margin-bottom: 0.5rem;
+    width: 5.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.container-login img:hover {
+    transform: scale(1.1);
 }
 
 .container-login h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 600;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -52,101 +68,132 @@ main {
 
 .form-group label {
     margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: #333;
+    font-size: 0.95rem;
+    color: #34495e;
+    font-weight: 500;
 }
 
 .form-control {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.5rem;
     font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .btn {
-    background: hsl(234, 95%, 43%);
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
     border: none;
-    padding: 0.6rem;
-    font-size: 1.05rem;
-    border-radius: 0.25rem;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
     cursor: pointer;
-    width: 106%;
-    margin-top: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn:hover {
-    background: hsl(0, 0%, 0%);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
 }
 
 .container-login a {
-    font-size: 1rem;
-    color: #007bff;
+    font-size: 0.95rem;
+    color: #3498db;
     text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
 }
 
 .container-login a:hover {
-    text-decoration: underline;
+    color: #2980b9;
+    text-decoration: none;
 }
 
 .alert {
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    text-align: left;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .alert-exito {
     color: #155724;
     background-color: #d4edda;
-    border-color: #c3e6cb;
-    width: 95%;
-    text-align: center;
+    border-left: 4px solid #28a745;
 }
 
 .alert-danger {
     color: #721c24;
     background-color: #f8d7da;
-    border-color: #f5c6cb;
-    width: 95%;
-    text-align: center;
+    border-left: 4px solid #dc3545;
 }
 
 .input-group {
     display: flex;
     align-items: center;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .input-group .form-control {
-    flex: 1;
-    margin-right: 0;
+    border: none;
+    border-radius: 0;
 }
 
 .input-group .input-group-text {
     cursor: pointer;
     background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    padding: 0.5rem;
-}
-
-.btn {
-    background: hsl(234, 95%, 43%);
-    color: white;
     border: none;
-    padding: 0.6rem;
-    font-size: 1.05rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 0.5rem;
+    padding: 0.8rem;
+    color: #7f8c8d;
+    transition: color 0.3s ease;
 }
 
+.input-group .input-group-text:hover {
+    color: #3498db;
+}
 
-
-
+p {
+    margin: 1rem 0;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
 </style>
 </head>
 <body>
