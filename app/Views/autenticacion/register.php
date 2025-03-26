@@ -3,162 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <link rel="shortcut icon" href="<?= base_url('imagenes/rayito.png'); ?>">
-    <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Registro - EcoMonitor</title>
     <style>
-        /* Estilos generales */
         body {
-            background: url('<?= base_url('imagenes/bombilla.jpg'); ?>') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/assets/img/energy-bg.jpg') no-repeat center center;
             background-size: cover;
             height: 100vh;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Contenedor principal del formulario */
-        .login-container {
-            max-width: 400px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: hsl(251, 80%, 40%);
-        }
-
-        p {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .input-group {
+        main {
             display: flex;
+            justify-content: center;
             align-items: center;
-            position: relative;
+            padding: 1.5%;
+            min-height: 100vh;
         }
 
-        .input-group input {
-            flex: 1;
+        .container-register {
+            padding: 2.6rem;
+            border-radius: 1.2rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 22rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
         }
 
-        .input-group-text {
-        
-            background: none;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            top: 37%;
-            transform: translateY(-50%);
-            color: hsl(251, 80%, 40%);
+        .container-register:hover {
+            transform: translateY(-5px);
         }
 
-        button {
+        .container-register h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-control {
             width: 100%;
-            padding: 0.75rem;
-            background: hsl(251, 80%, 40%);
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
             font-size: 1rem;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        button:hover {
-            background: hsl(251, 100%, 32%);
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-2px);
         }
 
         .alert {
-            padding: 1rem;
-            border-radius: 5px;
             margin-bottom: 1rem;
-            text-align: center;
+            border-radius: 0.5rem;
         }
 
-        .alert-exito {
-            background-color: #d4edda;
-            color: #155724;
+        .login-link {
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
 
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .admin-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
     <main>
-        <div class="login-container">
-            <h1>Registro</h1>
-            <form action="<?= base_url('registrarse'); ?>" method="post">
-                <?php if (session()->get('error')) : ?>
-                    <div class="alert alert-danger"><?= session()->get('error'); ?></div>
-                    <?php session()->remove('error'); ?>
-                <?php endif ?>
-                <?php if (session()->get('password_error')) : ?>
-                    <div class="alert alert-danger"><?= session()->get('password_error'); ?></div>
-                    <?php session()->remove('password_error'); ?>
-                <?php endif ?>
+        <div class="container-register">
+            <h2>Registro</h2>
+            
+            <?php if (isset($purchase) && $purchase): ?>
+                <div class="admin-badge">
+                    <i class="fas fa-crown me-1"></i>Registro como Administrador
+                </div>
+            <?php endif; ?>
 
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" placeholder="Ingresa tu nombre" required>
+            <?php if (session()->get('error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->get('error') ?>
+                </div>
+            <?php endif; ?>
 
-                <label for="apellido">Apellido</label>
-                <input type="text" name="apellido" placeholder="Ingresa tu apellido" required>
+            <?php if (session()->get('password_error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->get('password_error') ?>
+                </div>
+            <?php endif; ?>
 
-                <label for="email">Correo electrónico</label>
-                <input type="email" name="email" placeholder="Ingresa tu correo electrónico" required>
-
-                <label for="contrasena">Contraseña</label>
-                <div class="input-group">
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Ingresa tu contraseña" required>
-                    <span class="input-group-text" onclick="togglePasswordVisibility()">
-                        <i id="eyeIcon" class="fas fa-eye"></i>
-                    </span>
+            <form action="<?= base_url('registrarse') . (isset($purchase) && $purchase ? '?purchase=true' : '') ?>" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                 </div>
 
-                <button type="submit">Registrarse</button>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                    <small class="text-muted">Debe contener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Registrarse
+                </button>
             </form>
-            <p>¿Ya tienes cuenta? <a href="<?= base_url('autenticacion/login'); ?>">Inicia sesión.</a></p>
+
+            <div class="login-link">
+                ¿Ya tienes una cuenta? <a href="<?= base_url('autenticacion/login') ?>">Inicia sesión aquí</a>
+            </div>
         </div>
     </main>
 
-    <script>
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById("contrasena");
-            var eyeIcon = document.getElementById("eyeIcon");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text"; // Mostrar la contraseña
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash"); // Cambiar el icono al de ojo tachado
-            } else {
-                passwordField.type = "password"; // Ocultar la contraseña
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye"); // Cambiar el icono al de ojo abierto
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -20,7 +20,10 @@ class CAutenticacion extends BaseController
         if (session()->get('userData')) {
             return redirect()->to('autenticacion/login');
         }
-        return view('autenticacion/register');
+
+        // Verificar si viene de una compra exitosa
+        $purchase = $this->request->getGet('purchase') === 'true';
+        return view('autenticacion/register', ['purchase' => $purchase]);
     }
 
     public function registrarse()
@@ -31,6 +34,7 @@ class CAutenticacion extends BaseController
         $apellido = $this->request->getPost('apellido');
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
+        $purchase = $this->request->getGet('purchase') === 'true';
     
         // Validación de nombre completo (solo letras)
         if (!preg_match('/^[a-zA-Z\s]+$/', $nombre)) {
@@ -60,10 +64,16 @@ class CAutenticacion extends BaseController
             'apellido' => $apellido,
             'email' => $email,
             'contrasena' => password_hash($contrasena, PASSWORD_BCRYPT),
+            'rol' => $purchase ? 'admin' : 'usuario', // Si viene de una compra, es admin
+            'estado' => 'activo'
         ];
     
         if ($usuarioModel->insertarUsuario($array)) {
-            session()->set('exito', 'Usuario registrado.');     
+            if ($purchase) {
+                session()->set('exito', '¡Usuario registrado como administrador! Por favor, inicia sesión para configurar tu cuenta.');     
+            } else {
+                session()->set('exito', 'Usuario registrado exitosamente. Por favor, inicia sesión.');     
+            }
             return redirect()->to('autenticacion/login');   
         } else {
             session()->set('error', 'Error al registrar el usuario. Inténtalo de nuevo.');

@@ -5,8 +5,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// Vista principal (login)
-$routes->get('/', 'CAutenticacion::login');
+// Rutas públicas (sin autenticación)
+$routes->get('/', 'Home::index');
+$routes->get('/manual', 'Home::manual');
 
 // Vistas de autenticación
 $routes->get('autenticacion/login', 'CAutenticacion::login');
@@ -23,18 +24,19 @@ $routes->post('registrarse', 'CAutenticacion::registrarse');
 $routes->post('iniciarSesion', 'CAutenticacion::iniciarSesion');
 $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
 
-// Página de bienvenida
-$routes->get('home/bienvenida', 'Home::index');
-$routes->get('energia', 'Energia::index'); // Ruta para acceder a la vista de consumo
-$routes->get('energia/verDatos', 'Energia::verDatos');  // Ruta para obtener los datos en formato JSON(esta es innecesaria,hacer prueba)
+// Rutas protegidas (requieren autenticación)
+$routes->group('', ['filter' => 'auth'], function($routes) {
+    $routes->get('home/bienvenida', 'Home::index');
+    $routes->get('energia', 'Energia::index');
+    $routes->get('energia/verDatos', 'Energia::verDatos');
+    $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
+    $routes->get('energia/getLatestData', 'Energia::getLatestData');
+    $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
+    $routes->get('perfil/perfil', 'CUsuario::perfil');
+    $routes->get('compra/completada', 'Compra::completada');
 
+});
 
-// Perfil del usuario
-$routes->get('perfil/perfil', 'CUsuario::perfil');
-
-
-
-$routes->get('/', 'Energia::index');  // Ruta para la vista principal
-$routes->post('/energia/recibirDatos', 'Energia::recibirDatos');  // Ruta para recibir los datos del ESP32
-$routes->get('energia/getLatestData', 'Energia::getLatestData');
-$routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
+// Rutas de compra
+$routes->get('compra', 'Compra::index');
+$routes->get('compra/completada', 'Compra::completada');

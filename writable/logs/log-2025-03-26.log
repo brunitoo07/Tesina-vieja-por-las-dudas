@@ -1,0 +1,49 @@
+ERROR - 2025-03-26 09:31:10 --> Intento de inicio de sesión fallido. Email: moni@gmail.com
+CRITICAL - 2025-03-26 10:28:04 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "compra/index.php"
+[Method: GET, Route: compra]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('compra/index.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('compra/index', [], true)
+ 3 APPPATH\Controllers\compra.php(9): view('compra/index')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Compra->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compra))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-26 10:28:09 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "compra/index.php"
+[Method: GET, Route: compra]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('compra/index.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('compra/index', [], true)
+ 3 APPPATH\Controllers\compra.php(9): view('compra/index')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Compra->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compra))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-26 10:30:24 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "compra/index.php"
+[Method: GET, Route: compra]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('compra/index.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('compra/index', [], true)
+ 3 APPPATH\Controllers\compra.php(9): view('compra/index')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Compra->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compra))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-26 10:30:27 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "compra/index.php"
+[Method: GET, Route: compra]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('compra/index.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('compra/index', [], true)
+ 3 APPPATH\Controllers\compra.php(9): view('compra/index')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Compra->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compra))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
