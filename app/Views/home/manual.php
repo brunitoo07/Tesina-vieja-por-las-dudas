@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="<?= base_url('/') ?>">Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -62,7 +62,9 @@
                     <h3>Registro de Cuenta</h3>
                     <p>Para comenzar a usar el sistema, sigue estos pasos:</p>
                     <ol>
-                        <li>Ingresa a la página principal y haz clic en "Registrarse"</li>
+                        <li>Ingresa a la página principal y haz clic en "iniciar sesion",si no tienes cuenta 
+                            registrate.
+                        </li>
                         <li>Completa el formulario con tus datos personales</li>
                         <li>Verifica tu correo electrónico</li>
                         <li>Inicia sesión con tus credenciales</li>

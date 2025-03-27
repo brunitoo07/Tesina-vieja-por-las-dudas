@@ -143,8 +143,15 @@
             <div class="mt-3">
                 <a href="<?= base_url('autenticacion/correo') ?>" class="text-muted">¿Olvidaste tu contraseña?</a>
             </div>
+            <div class="mt-3 text-center">
+        <a href="<?= base_url('/') ?>" class="btn btn-secondary">
+            <i class="fas fa-home me-2"></i>Volver a Página Principal
+        </a>
+    </div>
         </div>
     </main>
+    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

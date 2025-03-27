@@ -56,7 +56,7 @@
                         <a class="nav-link" href="#comprar">Comprar</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-light" href="/autenticacion/login">Iniciar Sesión</a>
+                        <a class="btn btn-outline-light" href="autenticacion/login">Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -160,7 +160,7 @@
                                 <li>Configuración del dispositivo</li>
                                 <li>Asignación de roles</li>
                             </ol>
-                            <a href="/manual" class="btn btn-primary">Ver Manual Completo</a>
+                            <a href="home/manual" class="btn btn-primary">Ver Manual Completo</a>
                         </div>
                     </div>
                 </div>
