@@ -88,7 +88,7 @@ class CAutenticacion extends BaseController
         // Obtener los datos del formulario
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
-        
+    
         // Verificar que los campos no estén vacíos
         if (empty($email) || empty($contrasena)) {
             session()->set('error', 'Por favor, completa todos los campos.');
@@ -108,10 +108,15 @@ class CAutenticacion extends BaseController
         // Establecer la sesión del usuario y redirigir
         session()->set('userData', $informacionUsuario);
         session()->set('Tipo', 'usuario');
-        
+        session()->set('logged_in', true);  // Añadir esto
+
         log_message('debug', 'Inicio de sesión exitoso para el usuario: ' . $email);
+    
+        // Verificar la sesión antes de redirigir
+        log_message('debug', 'Session userData: ' . json_encode(session()->get('userData'))); // Depuración
         return redirect()->to('home/bienvenida');
     }
+    
     
     public function cerrarSesion()
     {

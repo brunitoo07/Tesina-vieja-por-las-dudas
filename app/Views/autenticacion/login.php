@@ -143,8 +143,11 @@
             <div class="mt-3">
                 <a href="<?= base_url('autenticacion/correo') ?>" class="text-muted">¿Olvidaste tu contraseña?</a>
             </div>
+            <a href="http://localhost/CODEIGNITERNUEVO/public/" class="btn btn-secondary mt-3">
+                            Volver al inicio
         </div>
-    </main>
+    </main> 
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

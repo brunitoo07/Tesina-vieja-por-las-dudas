@@ -12,17 +12,14 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\AuthFilter;  // Agregar el filtro de autenticación
 
 class Filters extends BaseFilters
 {
     /**
-     * Configures aliases for Filter classes to
-     * make reading things nicer and simpler.
+     * Configura alias para las clases de filtros.
      *
      * @var array<string, class-string|list<class-string>>
-     *
-     * [filter_name => classname]
-     * or [filter_name => [classname1, classname2, ...]]
      */
     public array $aliases = [
         'csrf'          => CSRF::class,
@@ -34,68 +31,50 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => AuthFilter::class, // Registrar el filtro de autenticación
     ];
 
     /**
-     * List of special required filters.
-     *
-     * The filters listed here are special. They are applied before and after
-     * other kinds of filters, and always applied even if a route does not exist.
-     *
-     * Filters set by default provide framework functionality. If removed,
-     * those functions will no longer work.
-     *
-     * @see https://codeigniter.com/user_guide/incoming/filters.html#provided-filters
+     * Filtros necesarios que se aplican antes y después de otras configuraciones.
      *
      * @var array{before: list<string>, after: list<string>}
      */
     public array $required = [
         'before' => [
-            'forcehttps', // Force Global Secure Requests
-            'pagecache',  // Web Page Caching
+            'forcehttps', // Forzar solicitudes seguras globalmente
+            'pagecache',  // Caché de páginas web
         ],
         'after' => [
-            'pagecache',   // Web Page Caching
-            'performance', // Performance Metrics
-            'toolbar',     // Debug Toolbar
+            'pagecache',   // Caché de páginas web
+            'performance', // Métricas de rendimiento
+            'toolbar',     // Barra de herramientas de depuración
         ],
     ];
 
     /**
-     * List of filter aliases that are always
-     * applied before and after every request.
+     * Filtros que se aplican de manera global antes y después de cada solicitud.
      *
      * @var array<string, array<string, array<string, string>>>|array<string, list<string>>
      */
     public array $globals = [
         'before' => [
-            'cors'  // Agrega aquí el filtro CORS para que se ejecute en todas las solicitudes
+            'cors',  // Agrega aquí el filtro CORS para que se ejecute en todas las solicitudes
+            'auth'   // Agregar filtro 'auth' para proteger las rutas que requieren autenticación
         ],
         'after'  => [
-            'toolbar',
+            'toolbar', // Barra de herramientas de depuración después de la solicitud
         ],
     ];
+
     /**
-     * List of filter aliases that works on a
-     * particular HTTP method (GET, POST, etc.).
-     *
-     * Example:
-     * 'POST' => ['foo', 'bar']
-     *
-     * If you use this, you should disable auto-routing because auto-routing
-     * permits any HTTP method to access a controller. Accessing the controller
-     * with a method you don't expect could bypass the filter.
+     * Filtros por método HTTP (GET, POST, etc.)
      *
      * @var array<string, list<string>>
      */
     public array $methods = [];
 
     /**
-     * List of filter aliases that should run on any
-     * before or after URI patterns.
-     *
-     * Example:
-     * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
+     * Filtros que deben ejecutarse antes o después de ciertos patrones de URI.
      *
      * @var array<string, array<string, list<string>>>
      */

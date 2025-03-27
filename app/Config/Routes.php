@@ -26,16 +26,18 @@ $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
-    $routes->get('home/bienvenida', 'Home::index');
+    $routes->get('home/bienvenida', 'Home::bienvenida');
+});
+
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos', 'Energia::verDatos');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('perfil/perfil', 'CUsuario::perfil');
-    $routes->get('compra/completada', 'Compra::completada');
+    $routes->get('comprar/completada', 'Compra::completada');
 
-});
+
 
 // Rutas de compra
 $routes->get('compra', 'Compra::index');
