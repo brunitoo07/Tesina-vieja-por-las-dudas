@@ -81,6 +81,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= site_url('energia') ?>">Ver Consumo</a>
                 </li>
+                <?php if (session()->get('rol') === 'admin'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= site_url('admin') ?>">
+                        <i class="fas fa-cog"></i> Panel de Administración
+                    </a>
+                </li>
+                <?php endif; ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Opciones
@@ -100,7 +107,17 @@
     <div class="container text-center mt-5">
         <h1>Bienvenido, <?= session()->get('userData')['nombre']; ?>!</h1>
         <p class="lead">Has iniciado sesión correctamente.</p>
+        <?php if (session()->get('rol') === 'admin'): ?>
+            <div class="alert alert-info">
+                <i class="fas fa-crown"></i> Tienes acceso al Panel de Administración
+            </div>
+        <?php endif; ?>
         <p>Este es el sistema de gestión de consumo energético, donde puedes administrar usuarios, viviendas, medidores y lecturas de consumo.</p>
+        <?php if (session()->get('rol') === 'admin'): ?>
+            <a href="<?= base_url('admin') ?>" class="btn btn-primary mt-4">
+                <i class="fas fa-cog"></i> Ir al Panel de Administración
+            </a>
+        <?php endif; ?>
         <a href="<?= base_url('cerrarSesion') ?>" class="btn btn-danger mt-4">Cerrar Sesión</a>
     </div>
 

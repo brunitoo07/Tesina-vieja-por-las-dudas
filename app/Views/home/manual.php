@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('/') ?>">Inicio</a>
+                    <a class="nav-link" href="<?php echo base_url('home/index'); ?>">Inicio</a>
                     </li>
                 </ul>
             </div>

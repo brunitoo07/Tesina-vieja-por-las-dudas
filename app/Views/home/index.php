@@ -25,7 +25,7 @@
         .feature-card:hover {
             transform: translateY(-10px);
         }
-        .paypal-section {
+        .pricing-section {
             background-color: #f8f9fa;
         }
     </style>
@@ -56,7 +56,7 @@
                         <a class="nav-link" href="#comprar">Comprar</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-light" href="autenticacion/login">Iniciar Sesión</a>
+                        <a class="btn btn-outline-light" href="<?php echo base_url('autenticacion/login'); ?>">Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -172,7 +172,7 @@
     </section>
 
     <!-- Comprar -->
-    <section id="comprar" class="section paypal-section">
+    <section id="comprar" class="section pricing-section">
         <div class="container">
             <h2 class="text-center mb-5">Adquiere Nuestro Proyecto</h2>
             <div class="row justify-content-center">
@@ -188,7 +188,9 @@
                                 <li><i class="fas fa-check text-success me-2"></i>Acceso como administrador</li>
                             </ul>
                             <div class="mt-4">
-                                <a href="<?= base_url('compra') ?>" class="btn btn-primary btn-lg">Comprar Ahora</a>
+                                <a href="<?= base_url('compra') ?>" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-credit-card"></i> Comprar Ahora
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -205,77 +207,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=MXN"></script>
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '99.99'
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    // Redirigir al registro después de la compra exitosa
-                    window.location.href = '<?= base_url('autenticacion/register') ?>?purchase=true';
-                });
-            }
-        }).render('#paypal-button-container');
-        <script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '99.99'
-                        <!-- Sección Comprar -->
-<section id="comprar" class="section paypal-section">
-    <div class="container">
-        <h2 class="text-center mb-5">Adquiere Nuestro Proyecto</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h3>Plan Premium</h3>
-                        <p class="lead">$99.99</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success me-2"></i> Monitoreo ilimitado</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Soporte prioritario</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Actualizaciones gratuitas</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Acceso como administrador</li>
-                        </ul>
-                        
-                        <!-- Botón de pago de PayPal -->
-                        <div id="paypal-button-container"></div>
-
-                        <!-- Botón adicional para ver la compra -->
-                        <a href="<?= base_url('compra/completada') ?>" class="btn btn-success mt-3">
-                            Ver detalles de la compra
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Redirigir a la vista de compra completada
-                window.location.href = '<?= base_url('compra/completada') ?>';
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
-
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html> 
