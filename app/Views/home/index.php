@@ -8,27 +8,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/assets/img/energy-bg.jpg');
+            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 51, 153, 0.8)), url('/assets/img/energy-bg.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0, 147, 233, 0.89);
         }
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .feature-card {
-            transition: transform 0.3s;
-        } 
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 115, 230, 0.7);
+            background-color: #e0f2ff;
+        }
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.92);
         }
         .pricing-section {
-            background-color: #f8f9fa;
+            background-color: #e0f2ff;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #0066cc;
+        }
+        .btn-outline-light {
+            border-color: #0066cc;
+            color: #0066cc;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-outline-light:hover {
+            background-color: #0066cc;
+            color: white;
         }
     </style>
+
+
 </head>
 <body>
     <!-- Navbar -->
@@ -44,7 +75,7 @@
                         <a class="nav-link" href="#quienes-somos">Quiénes Somos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#proyecto">Nuestro Proyecto</a>
+                        <a class="nav-link" href="#proyecto">Nuestro Proyecto </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#por-que">Por qué lo hicimos</a>
@@ -62,6 +93,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -82,7 +114,7 @@
                     <p>Nuestra misión es proporcionar herramientas accesibles y eficientes para que cada hogar pueda contribuir a un futuro más sostenible.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="/assets/img/team.jpg" alt="Nuestro Equipo" class="img-fluid rounded">
+                    <img src="https://media.istockphoto.com/id/2190044172/es/vector/perfil-de-la-cuenta-l%C3%ADnea-fina-e-icono-de-glifo-s%C3%B3lido-trazo-editable-y-p%C3%ADxel-perfecto.jpg?s=612x612&w=0&k=20&c=_GBUr_rXvNRGdqhvQt5luPXnCpXXUVHFUKtTYvf51I8=" alt="Nuestro Equipo" class="img-fluid rounded">
                 </div>
             </div>
         </div>
@@ -131,7 +163,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Nuestra Motivación</h3>
-                    <p>El cambio climático y el consumo excesivo de energía son desafíos globales que requieren acción inmediata. Nos propusimos crear una solución que permita a las personas tomar el control de su consumo de energía y contribuir activamente a la sostenibilidad del planeta.</p>
+                    <p>El cambio climático y el consumo excesivo de energía son desafíos globales que impactan nuestras ciudades hoy. Creemos que el cambio empieza localmente. Por eso, desarrollamos una solución que empodera a las personas para controlar su consumo energético y contribuir activamente a la sostenibilidad urbana y del planeta.</p>
                 </div>
                 <div class="col-md-6">
                     <h3>Nuestro Impacto</h3>
@@ -150,6 +182,7 @@
     <section id="manual" class="section bg-light">
         <div class="container">
             <h2 class="text-center mb-5">Manual de Usuario</h2>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-4">
@@ -165,7 +198,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="/assets/img/manual-preview.jpg" alt="Manual Preview" class="img-fluid rounded">
+                    <img src="https://resoluciondeproblema.files.wordpress.com/2013/03/autodisciplina-es-clave-lograr-el-exito-l-5ows2y.jpeg?w=300&h=225" alt="Manual Preview" class="img-fluid rounded">
                 </div>
             </div>
         </div>

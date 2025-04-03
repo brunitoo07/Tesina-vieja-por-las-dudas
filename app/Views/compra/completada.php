@@ -3,33 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compra Exitosa</title>
+    <title>¡Compra Completada! - EcoMonitor Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: #28a745;
+            margin-bottom: 2rem;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="card shadow-lg p-4">
-            <h2 class="text-center text-success"><i class="fas fa-check-circle"></i> ¡Compra Exitosa!</h2>
-            <p class="text-center">Gracias por tu compra, <strong><?= $usuario['nombre'] . ' ' . $usuario['apellido'] ?></strong>.</p>
-
-            <h4 class="mt-4">Detalles de la Transacción</h4>
-            <ul class="list-group">
-                <li class="list-group-item"><strong>Email:</strong> <?= $usuario['email'] ?></li>
-                <li class="list-group-item"><strong>Plan Adquirido:</strong> Plan Premium</li>
-                <li class="list-group-item"><strong>Monto:</strong> $99.99 MXN</li>
-                <li class="list-group-item"><strong>ID de Transacción:</strong> <?= $transaccion_id ?></li>
-                <li class="list-group-item"><strong>Fecha de Compra:</strong> <?= date('d/m/Y H:i:s') ?></li>
-            </ul>
-
-            <div class="text-center mt-4">
-                <a href="<?= base_url('dashboard') ?>" class="btn btn-primary">Ir al Panel</a>
+    <div class="success-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card p-5 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-check-circle success-icon"></i>
+                            <h1 class="display-4 mb-4">¡Gracias por tu compra!</h1>
+                            <p class="lead mb-4">Tu pago ha sido procesado exitosamente y tu cuenta de EcoMonitor Pro ha sido activada.</p>
+                            <hr class="my-4">
+                            <div class="mb-4">
+                                <h5>¿Qué sigue?</h5>
+                                <p>Recibirás un correo electrónico con los detalles de tu compra y las instrucciones para comenzar a usar EcoMonitor Pro.</p>
+                            </div>
+                            <a href="/" class="btn btn-primary btn-lg">
+                                <i class="fas fa-home me-2"></i>Volver al Inicio
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center mt-5">
-        <p>&copy; <?= date('Y') ?> EcoVolt. Todos los derechos reservados.</p>
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,1 +1,1 @@
-__ci_last_regenerate|i:1743696614;_ci_previous_url|s:70:"http://10.81.11.238/Tesina/public/autenticacion/register?purchase=true";success|s:87:"¡Compra completada! Por favor, regístrate para acceder a tu panel de administración.";__ci_vars|a:1:{s:7:"success";s:3:"old";}
+__ci_last_regenerate|i:1743696924;_ci_previous_url|s:53:"http://10.81.11.238/Tesina/public/autenticacion/login";password_error|s:92:"La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo (!@#$%).";exito|s:59:"Usuario registrado exitosamente. Por favor, inicia sesión.";
