@@ -9,7 +9,7 @@ class App extends BaseConfig
     
     /**
      * --------------------------------------------------------------------------
-     * Base Site URL jajajajaa
+     * Base Site URL jajajajaa nazi bro
      * --------------------------------------------------------------------------
      *
      * URL to your CodeIgniter root. Typically, this will be your base URL,
@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://10.81.11.240/Tesina/public/';
+    public string $baseURL = 'http://10.81.11.238/Tesina/public/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
