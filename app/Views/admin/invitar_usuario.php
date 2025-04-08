@@ -160,7 +160,7 @@
                 <?php endif; ?>
             <?php endif; ?>
 
-            <form action="<?= base_url('admin/invitarUsuario') ?>" method="post">
+            <form action="<?= base_url('admin/invitar') ?>" method="post">
                 <div class="mb-4">
                     <label for="email" class="form-label">
                         <i class="fas fa-envelope me-2"></i>Correo Electrónico

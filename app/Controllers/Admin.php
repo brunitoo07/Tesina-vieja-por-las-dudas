@@ -23,6 +23,11 @@ class Admin extends BaseController
     {
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
             return redirect()->to('/autenticacion/login');
+            
+            if (session()->get('error') && session()->get('logged_in')) {
+                session()->remove('error');
+            }
+        
         }
 
         // Obtener datos para el dashboard con valores por defecto
@@ -46,7 +51,7 @@ class Admin extends BaseController
             $email = $this->request->getPost('email');
             $rol = $this->request->getPost('rol');
 
-            // Validar que el email no esté ya registrado
+            // Validar que el email no esté ya registrado 
             if ($this->usuarioModel->where('email', $email)->countAllResults() > 0) {
                 return redirect()->back()
                     ->withInput()
@@ -55,56 +60,48 @@ class Admin extends BaseController
 
             try {
                 $token = bin2hex(random_bytes(32));
-                
-                $invitacion = [
+                $registroUrl = base_url('registro/invitacion/' . $token);
+        
+                // 1. Guardar en la tabla invitaciones
+                $this->db->table('invitaciones')->insert([
                     'email' => $email,
                     'rol' => $rol,
                     'token' => $token,
                     'fecha_expiracion' => date('Y-m-d H:i:s', strtotime('+24 hours')),
                     'estado' => 'pendiente'
-                ];
-                
-                $this->db->table('invitaciones')->insert($invitacion);
-
-                $registroUrl = base_url('registro/invitacion/' . $token);
-                $emailData = [
-                    'rol' => $rol == 1 ? 'Administrador' : 'Usuario',
-                    'registroUrl' => $registroUrl
-                ];
-
+                ]);
+        
+                // 2. Configurar email
                 $emailService = \Config\Services::email();
-                $config = [
+                $emailService->initialize([
                     'protocol' => 'smtp',
                     'SMTPHost' => 'smtp.gmail.com',
                     'SMTPUser' => 'medidorinteligente467@gmail.com',
                     'SMTPPass' => 'dhkfxnzspdrjdia',
                     'SMTPPort' => 465,
                     'SMTPCrypto' => 'ssl',
-                    'mailType' => 'html',
-                    'charset' => 'UTF-8'
-                ];
-
-                $emailService->initialize($config);
+                    'mailType' => 'html'
+                ]);
+        
                 $emailService->setFrom('medidorinteligente467@gmail.com', 'Medidor Inteligente');
                 $emailService->setTo($email);
                 $emailService->setSubject('Invitación a Medidor Inteligente');
-                $emailService->setMessage(view('emails/invitacion', $emailData));
-
+                $emailService->setMessage(view('emails/invitacion', [
+                    'rol' => $rol == 1 ? 'Administrador' : 'Usuario',
+                    'registroUrl' => $registroUrl
+                ]));
+        
+                // 3. Enviar y manejar respuesta
                 if ($emailService->send()) {
-                    return redirect()->back()->with('success', 
-                        'Invitación enviada a ' . $email . '. Verifique su bandeja de entrada.'
-                    );
+                    return redirect()->back()->with('success', 'Invitación enviada a ' . $email);
                 } else {
-                    $this->db->table('invitaciones')->where('token', $token)->delete();
-                    return redirect()->back()
-                        ->withInput()
-                        ->with('error', 'Error al enviar el correo: ' . $emailService->printDebugger(['headers']));
+                    log_message('error', $emailService->printDebugger(['headers']));
+                    return redirect()->back()->with('error', 'Error al enviar el correo. Ver logs.');
                 }
+        
             } catch (\Exception $e) {
                 log_message('error', 'Error en invitarUsuario: ' . $e->getMessage());
-                return redirect()->back()
-                    ->withInput()
-                    ->with('error', 'Error: ' . $e->getMessage());
+                return redirect()->back()->with('error', 'Error inesperado: ' . $e->getMessage());
             }
         }
 
@@ -174,4 +171,20 @@ class Admin extends BaseController
             return redirect()->back()->with('error', 'Error al eliminar el usuario');
         }
     }
+
+    public function listarAdmins()
+{
+    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+        return redirect()->to('/autenticacion/login');
+    }
+
+    $data['usuarios'] = $this->usuarioModel
+        ->select('usuario.*, roles.nombre_rol as rol')
+        ->join('roles', 'roles.id_rol = usuario.id_rol')
+        ->where('usuario.id_rol', 1) // Solo admins (id_rol = 1)
+        ->findAll();
+
+    return view('admin/gestionarUsuarios', $data); // Reutiliza la misma vista
+}
+
 }

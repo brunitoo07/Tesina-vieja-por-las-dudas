@@ -80,12 +80,12 @@
             </div>
         <?php endif; ?>
 
-        <?php if (session()->get('error')): ?>
-            <div class="alert alert-danger alert-dismissible fade show">
-                <?= session()->get('error') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+        <?php if (session()->get('error') && !session()->get('logged_in')): ?>
+    <div class="alert alert-danger alert-dismissible fade show">
+        <?= session()->get('error') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
 
         <div class="row g-4">
             <!-- Tarjeta de Usuarios -->

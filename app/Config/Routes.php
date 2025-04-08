@@ -45,11 +45,10 @@ $routes->post('usuario/cambiarRol', 'Admin::cambiarRol', ['filter' => 'auth']); 
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Admin::index');
     $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios'); // 👈 así está bien
-    $routes->get('invitar', 'Admin::invitarUsuario');
-    $routes->post('invitarUsuario', 'Admin::invitarUsuario');
-    
+    $routes->get('invitar', 'Admin::invitarUsuario'); // Mostrar formulario
+    $routes->post('invitar', 'Admin::invitarUsuario'); // Procesar envío
 
     $routes->post('eliminarUsuario', 'Admin::eliminarUsuario'); // ✅ correcto
-
+    $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
 
 });
