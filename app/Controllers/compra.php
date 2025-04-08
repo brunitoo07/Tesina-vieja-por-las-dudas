@@ -51,8 +51,8 @@ class Compra extends BaseController
             'siguiente_paso' => 'Por favor, regístrate para acceder a tu panel de administración.'
         ];
 
-        return redirect()->to('autenticacion/register?purchase=true')->with('success', '¡Compra completada! Por favor, regístrate para acceder a tu panel de administración.');
-    }
+        return redirect()->to('autenticacion/register?purchase=true');
+     }
 
     public function procesarPago()
     {

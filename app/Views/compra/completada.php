@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Compra Completada! - EcoMonitor Pro</title>
+    <title>¡Compra Completada! - EcoVolt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -34,11 +34,11 @@
                         <div class="card-body">
                             <i class="fas fa-check-circle success-icon"></i>
                             <h1 class="display-4 mb-4">¡Gracias por tu compra!</h1>
-                            <p class="lead mb-4">Tu pago ha sido procesado exitosamente y tu cuenta de EcoMonitor Pro ha sido activada.</p>
+                            <p class="lead mb-4">Tu pago ha sido procesado exitosamente y tu cuenta de EcoVolt ha sido activada.</p>
                             <hr class="my-4">
                             <div class="mb-4">
                                 <h5>¿Qué sigue?</h5>
-                                <p>Recibirás un correo electrónico con los detalles de tu compra y las instrucciones para comenzar a usar EcoMonitor Pro.</p>
+                                <p>Recibirás un correo electrónico con los detalles de tu compra y las instrucciones para comenzar a usar EcoVolt.</p>
                             </div>
                             <a href="/" class="btn btn-primary btn-lg">
                                 <i class="fas fa-home me-2"></i>Volver al Inicio

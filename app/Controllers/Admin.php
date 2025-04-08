@@ -25,7 +25,15 @@ class Admin extends BaseController
             return redirect()->to('/autenticacion/login');
         }
 
-        return view('admin/dashboard');
+        // Obtener datos para el dashboard con valores por defecto
+        $data = [
+            'usuarios' => $this->usuarioModel->where('id_rol', 2)->findAll() ?? [],
+            'admins' => $this->usuarioModel->where('id_rol', 1)->findAll() ?? [],
+            'ultimosUsuarios' => $this->usuarioModel->orderBy('created_at', 'DESC')->limit(5)->findAll() ?? [],
+            'totalDispositivos' => 0, // Agrega esta línea si necesitas mostrar dispositivos
+        ];
+
+        return view('admin/dashboard', $data);
     }
 
     public function invitarUsuario()
@@ -38,11 +46,16 @@ class Admin extends BaseController
             $email = $this->request->getPost('email');
             $rol = $this->request->getPost('rol');
 
+            // Validar que el email no esté ya registrado
+            if ($this->usuarioModel->where('email', $email)->countAllResults() > 0) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', 'Este correo electrónico ya está registrado.');
+            }
+
             try {
-                // Generar token único para la invitación
                 $token = bin2hex(random_bytes(32));
                 
-                // Guardar la invitación en la base de datos
                 $invitacion = [
                     'email' => $email,
                     'rol' => $rol,
@@ -53,17 +66,13 @@ class Admin extends BaseController
                 
                 $this->db->table('invitaciones')->insert($invitacion);
 
-                // Preparar datos para el correo
                 $registroUrl = base_url('registro/invitacion/' . $token);
                 $emailData = [
-                    'rol' => $rol == '1' ? 'Administrador' : 'Usuario',
+                    'rol' => $rol == 1 ? 'Administrador' : 'Usuario',
                     'registroUrl' => $registroUrl
                 ];
 
-                // Configurar y enviar el correo
                 $emailService = \Config\Services::email();
-
-                // Configuración detallada
                 $config = [
                     'protocol' => 'smtp',
                     'SMTPHost' => 'smtp.gmail.com',
@@ -72,70 +81,30 @@ class Admin extends BaseController
                     'SMTPPort' => 465,
                     'SMTPCrypto' => 'ssl',
                     'mailType' => 'html',
-                    'charset' => 'UTF-8',
-                    'wordWrap' => true,
-                    'wrapChars' => 76,
-                    'validate' => true,
-                    'priority' => 1,
-                    'SMTPTimeout' => 60,
-                    'SMTPKeepAlive' => true,
-                    'newline' => "\r\n"
+                    'charset' => 'UTF-8'
                 ];
 
-                // Inicializar email con la configuración
                 $emailService->initialize($config);
-
-                // Configurar el email
                 $emailService->setFrom('medidorinteligente467@gmail.com', 'Medidor Inteligente');
                 $emailService->setTo($email);
                 $emailService->setSubject('Invitación a Medidor Inteligente');
-                
-                // Cargar y establecer el mensaje
-                $mensaje = view('emails/invitacion', $emailData);
-                $emailService->setMessage($mensaje);
+                $emailService->setMessage(view('emails/invitacion', $emailData));
 
-                // Intentar enviar el email con depuración
-                $sent = false;
-                try {
-                    $sent = $emailService->send(true);
-                    $debugInfo = $emailService->printDebugger(['headers', 'subject', 'body']);
-                } catch (\Exception $e) {
-                    $debugInfo = [
-                        'Error: ' . $e->getMessage(),
-                        'Trace: ' . $e->getTraceAsString()
-                    ];
-                }
-
-                if ($sent) {
-                    // Guardar información de depuración
-                    session()->set('ultimo_email', [
-                        'to' => $email,
-                        'subject' => 'Invitación a Medidor Inteligente',
-                        'timestamp' => date('Y-m-d H:i:s'),
-                        'debug' => $debugInfo,
-                        'config' => $config
-                    ]);
-
+                if ($emailService->send()) {
                     return redirect()->back()->with('success', 
-                        'Invitación enviada correctamente a ' . $email . '. ' .
-                        'Por favor, solicite al usuario que revise su bandeja de entrada y spam.'
+                        'Invitación enviada a ' . $email . '. Verifique su bandeja de entrada.'
                     );
                 } else {
-                    // Si falla el envío, mostrar detalles del error
-                    log_message('error', 'Error al enviar email. Detalles: ' . print_r($debugInfo, true));
-                    
-                    // Eliminar la invitación
                     $this->db->table('invitaciones')->where('token', $token)->delete();
-                    
                     return redirect()->back()
                         ->withInput()
-                        ->with('error', 'Error al enviar la invitación. Detalles del error: ' . implode("\n", $debugInfo));
+                        ->with('error', 'Error al enviar el correo: ' . $emailService->printDebugger(['headers']));
                 }
             } catch (\Exception $e) {
                 log_message('error', 'Error en invitarUsuario: ' . $e->getMessage());
                 return redirect()->back()
                     ->withInput()
-                    ->with('error', 'Ha ocurrido un error: ' . $e->getMessage());
+                    ->with('error', 'Error: ' . $e->getMessage());
             }
         }
 
@@ -148,7 +117,11 @@ class Admin extends BaseController
             return redirect()->to('/autenticacion/login');
         }
 
-        $data['usuarios'] = $this->usuarioModel->findAll();
+        $data['usuarios'] = $this->usuarioModel
+        ->select('usuario.*, roles.nombre_rol as rol')
+        ->join('roles', 'roles.id_rol = usuario.id_rol')
+        ->findAll();
+    
         return view('admin/gestionarUsuarios', $data);
     }
 
@@ -161,7 +134,17 @@ class Admin extends BaseController
         $usuario_id = $this->request->getPost('usuario_id');
         $nuevo_rol = $this->request->getPost('rol');
 
-        if ($this->usuarioModel->update($usuario_id, ['rol' => $nuevo_rol])) {
+        // Validar que no sea el último administrador
+        if ($nuevo_rol == 2) {
+            $totalAdmins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
+            $usuarioActual = $this->usuarioModel->find($usuario_id);
+            
+            if ($usuarioActual['id_rol'] == 1 && $totalAdmins <= 1) {
+                return redirect()->back()->with('error', 'No puede cambiar el rol del último administrador');
+            }
+        }
+
+        if ($this->usuarioModel->update($usuario_id, ['id_rol' => $nuevo_rol])) {
             return redirect()->back()->with('success', 'Rol actualizado correctamente');
         } else {
             return redirect()->back()->with('error', 'Error al actualizar el rol');
@@ -175,6 +158,15 @@ class Admin extends BaseController
         }
 
         $usuario_id = $this->request->getPost('usuario_id');
+        $usuario = $this->usuarioModel->find($usuario_id);
+
+        // Validar que no sea el último administrador
+        if ($usuario['id_rol'] == 1) {
+            $totalAdmins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
+            if ($totalAdmins <= 1) {
+                return redirect()->back()->with('error', 'No puede eliminar al último administrador');
+            }
+        }
 
         if ($this->usuarioModel->delete($usuario_id)) {
             return redirect()->back()->with('success', 'Usuario eliminado correctamente');
@@ -182,4 +174,4 @@ class Admin extends BaseController
             return redirect()->back()->with('error', 'Error al eliminar el usuario');
         }
     }
-} 
+}

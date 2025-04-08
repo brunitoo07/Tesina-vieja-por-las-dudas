@@ -147,7 +147,7 @@
                     
                     setTimeout(function() {
                         // Redirigir a la página de registro como administrador
-                        window.location.href = '/ruta/a/tu/registro.php'; // Cambia esta ruta a la de tu página de registro
+                        window.location.href = '<?= base_url('autenticacion/register?purchase=true') ?>'; // Cambia esta ruta a la de tu página de registro
                     }, 3000);
                 });
             },

@@ -122,6 +122,7 @@
                 <div class="admin-badge">
                     <i class="fas fa-crown me-1"></i>Registro como Administrador
                 </div>
+                <input type="hidden" name="purchase" value="true">
             <?php endif; ?>
 
             <?php if (session()->get('error')): ?>
@@ -136,15 +137,27 @@
                 </div>
             <?php endif; ?>
 
-            <form action="<?= base_url('registrarse') . (isset($purchase) && $purchase ? '?purchase=true' : '') ?>" method="post">
+            <?php if (session()->get('success')): ?>
+                <div class="alert alert-success">
+                    <?= session()->get('success') ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="<?= base_url('autenticacion/registrarse') ?>" method="post">
+                <?php if (isset($purchase) && $purchase): ?>
+                    <input type="hidden" name="purchase" value="true">
+                <?php endif; ?>
+
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required 
+                           pattern="[a-zA-Z\s]+" title="Solo letras y espacios">
                 </div>
 
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                    <input type="text" class="form-control" id="apellido" name="apellido" required
+                           pattern="[a-zA-Z\s]+" title="Solo letras y espacios">
                 </div>
 
                 <div class="form-group">

@@ -15,17 +15,15 @@ $routes->get('autenticacion/correo', 'CCorreo::index');
 $routes->post('correo', 'CCorreo::correo');
 $routes->get('autenticacion/nueva_contrasena', 'CNuevacontrasena::index');
 $routes->post('actualizar-contrasena', 'CNuevacontrasena::actualizar');
-$routes->post('registrarse', 'CAutenticacion::registrarse');
+$routes->post('autenticacion/registrarse', 'CAutenticacion::registrarse');
 $routes->post('iniciarSesion', 'CAutenticacion::iniciarSesion');
 $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
 
-// Rutas de compra
+// Rutas de compra (¡actualizadas!)
 $routes->get('compra', 'Compra::index');
 $routes->post('compra/simularCompra', 'Compra::simularCompra');
+$routes->post('compra/procesarPago', 'Compra::procesarPago'); // ¡Nueva!
 $routes->get('compra/completada', 'Compra::completada');
-$routes->get('compra', 'Compra::index');
-$routes->get('compra/completada', 'Compra::completada');
-
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
@@ -42,11 +40,16 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 $routes->get('home/manual', 'Home::manual');
 
 // Rutas del panel de administración
+// Fuera del grupo 'admin':
+$routes->post('usuario/cambiarRol', 'Admin::cambiarRol', ['filter' => 'auth']); // Aplica el filtro 'auth' manualmente
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Admin::index');
-    $routes->get('usuarios', 'Admin::gestionarUsuarios');
+    $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios'); // 👈 así está bien
     $routes->get('invitar', 'Admin::invitarUsuario');
     $routes->post('invitarUsuario', 'Admin::invitarUsuario');
-    $routes->post('cambiarRol', 'Admin::cambiarRol');
+    
+
+    $routes->post('eliminarUsuario', 'Admin::eliminarUsuario'); // ✅ correcto
+
+
 });
- 

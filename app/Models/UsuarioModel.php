@@ -6,26 +6,27 @@ use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
-    protected $table = 'usuario';  // Nombre de la tabla en la base de datos
-    protected $primaryKey = 'id_usuario';  // Clave primaria de la tabla
+    protected $table = 'usuario';
+    protected $primaryKey = 'id_usuario';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $allowedFields = ['nombre', 'apellido', 'email', 'contrasena', 'direccion_id', 'id_rol'];
+    protected $allowedFields = ['nombre', 'apellido', 'email', 'contrasena', 'direccion_id', 'id_rol', 'created_at', 'updated_at']; // Añadidos los campos
+    
+    // Añadidas estas 3 líneas:
+    protected $useTimestamps = true;
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
 
     protected $beforeInsert = ['hashPassword'];
     protected $beforeUpdate = ['hashPassword'];
 
     /**
      * Inserta un nuevo usuario en la base de datos.
-     *
-     * @param array $array Datos del usuario a insertar.
-     * @return bool|int Devuelve el ID del usuario insertado o false en caso de error.
      */
     public function insertarUsuario($array)
     {
         log_message('debug', 'Datos a insertar: ' . print_r($array, true));
         
-        // Validar que el rol existe
         if (!isset($array['id_rol']) || !$this->validarRol($array['id_rol'])) {
             log_message('error', 'Rol inválido: ' . $array['id_rol']);
             return false;
@@ -44,9 +45,6 @@ class UsuarioModel extends Model
 
     /**
      * Verifica si un email ya está registrado.
-     *
-     * @param string $email Email a verificar.
-     * @return bool Retorna true si el email ya existe, false en caso contrario.
      */
     public function existenteEmail($email)
     {
@@ -55,9 +53,6 @@ class UsuarioModel extends Model
 
     /**
      * Obtiene la información del usuario basado en el email.
-     *
-     * @param string $email Email del usuario a obtener.
-     * @return array|null Información del usuario o null si no se encuentra.
      */
     public function obtenerUsuarioEmail($email)
     {
@@ -66,10 +61,6 @@ class UsuarioModel extends Model
 
     /**
      * Actualiza la contraseña del usuario.
-     *
-     * @param string $hashedContrasena Contraseña hasheada.
-     * @param int $idUsuario ID del usuario a actualizar.
-     * @return bool Retorna true si la actualización fue exitosa, false en caso contrario.
      */
     public function actualizarContrasena($hashedContrasena, $idUsuario)
     {
@@ -79,14 +70,11 @@ class UsuarioModel extends Model
     }
 
     /**
-     * Inserta un código de verificación en la tabla 'codigo'.
-     *
-     * @param array $data Datos del código a insertar.
-     * @return bool Retorna true si la inserción fue exitosa, false en caso contrario.
+     * Inserta un código de verificación.
      */
     public function insertarCodigo($data)
     {
-        return $this->db->table('codigo')->insert($data);  // Inserta en la tabla 'codigo'
+        return $this->db->table('codigo')->insert($data);
     }
 
     protected function hashPassword(array $data)
@@ -112,13 +100,13 @@ class UsuarioModel extends Model
 
     public function crearUsuarioAdmin($data)
     {
-        $data['id_rol'] = 1; // Asumiendo que 1 es el ID del rol admin
+        $data['id_rol'] = 1;
         return $this->insert($data);
     }
 
     public function crearUsuarioNormal($data)
     {
-        $data['id_rol'] = 2; // Asumiendo que 2 es el ID del rol usuario
+        $data['id_rol'] = 2;
         return $this->insert($data);
     }
 
@@ -139,20 +127,17 @@ class UsuarioModel extends Model
     public function actualizarRol($id_usuario, $id_rol)
     {
         try {
-            // Validar que el rol existe
             if (!$this->validarRol($id_rol)) {
                 log_message('error', 'Intento de actualizar a un rol inválido: ' . $id_rol);
                 return false;
             }
 
-            // Validar que el usuario existe
             $usuario = $this->find($id_usuario);
             if (!$usuario) {
                 log_message('error', 'Usuario no encontrado: ' . $id_usuario);
                 return false;
             }
 
-            // Actualizar el rol
             $data = ['id_rol' => $id_rol];
             $result = $this->update($id_usuario, $data);
             
@@ -167,14 +152,12 @@ class UsuarioModel extends Model
     public function eliminarUsuario($id_usuario)
     {
         try {
-            // Validar que el usuario existe
             $usuario = $this->find($id_usuario);
             if (!$usuario) {
                 log_message('error', 'Usuario no encontrado: ' . $id_usuario);
                 return false;
             }
 
-            // No permitir eliminar el último administrador
             if ($usuario['id_rol'] == 1) {
                 $adminCount = $this->where('id_rol', 1)->countAllResults();
                 if ($adminCount <= 1) {
