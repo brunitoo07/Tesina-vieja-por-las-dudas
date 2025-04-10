@@ -37,18 +37,17 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('perfil/perfil', 'CUsuario::perfil');
 });
 
-$routes->get('home/manual', 'Home::manual');
-
 // Rutas del panel de administración
-// Fuera del grupo 'admin':
-$routes->post('usuario/cambiarRol', 'Admin::cambiarRol', ['filter' => 'auth']); // Aplica el filtro 'auth' manualmente
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Admin::index');
-    $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios'); // 👈 así está bien
-    $routes->get('invitar', 'Admin::invitarUsuario'); // Mostrar formulario
-    $routes->post('invitar', 'Admin::invitarUsuario'); // Procesar envío
-
-    $routes->post('eliminarUsuario', 'Admin::eliminarUsuario'); // ✅ correcto
+    $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios');
+    $routes->get('invitar', 'Admin::invitar');
+    $routes->post('enviarInvitacion', 'Admin::enviarInvitacion');
+    $routes->get('registro/invitado/(:any)', 'Admin::invitar/$1');
+    $routes->post('guardar-usuario', 'Admin::guardarUsuario');
+    $routes->post('eliminarUsuario', 'Admin::eliminarUsuario');
+    $routes->post('cambiarRol', 'Admin::cambiarRol');
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
-
 });
+
+$routes->get('home/manual', 'Home::manual');

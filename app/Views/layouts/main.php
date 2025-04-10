@@ -24,7 +24,7 @@
                             <a class="nav-link" href="<?= base_url('admin/gestionarUsuarios') ?>">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('admin/invitarUsuario') ?>">Invitar Usuario</a>
+                        <a class="nav-link" href="<?= base_url('admin/invitar') ?>">Invitar Usuario</a>
                         </li>
                     <?php endif; ?>
                 </ul>

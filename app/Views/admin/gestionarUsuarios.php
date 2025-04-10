@@ -32,9 +32,9 @@
                 <td><?= esc($usuario['rol']) ?></td>
 
                 <td>
-                <form action="<?= base_url('usuario/cambiarRol') ?>" method="post">
+                    <form action="<?= base_url('admin/cambiarRol') ?>" method="post">
                         <input type="hidden" name="usuario_id" value="<?= $usuario['id_usuario'] ?>">
-                        <select name="rol" class="form-control" onchange="this.form.submit()">
+                        <select name="id_rol" class="form-control" onchange="this.form.submit()">
                             <option value="1" <?= $usuario['id_rol'] == 1 ? 'selected' : '' ?>>Administrador</option>
                             <option value="2" <?= $usuario['id_rol'] == 2 ? 'selected' : '' ?>>Usuario</option>
                         </select>
@@ -42,9 +42,11 @@
                 </td>
 
                 <td>
-                    <form action="<?= base_url('admin/eliminarUsuario') ?>" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este usuario?');">
+                    <form action="<?= base_url('admin/eliminarUsuario') ?>" method="post" class="d-inline">
                         <input type="hidden" name="usuario_id" value="<?= $usuario['id_usuario'] ?>">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>
