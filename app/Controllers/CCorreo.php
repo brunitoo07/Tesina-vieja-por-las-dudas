@@ -18,7 +18,7 @@ class CCorreo extends Controller
     }
     
 
-    public function correo()
+    public function correo() 
     {
         $email = $this->request->getPost('email');
         $usuarioModel = new UsuarioModel();
@@ -38,7 +38,7 @@ class CCorreo extends Controller
         // Guardar el código en la base de datos
         $codigoModel->insert([
             'id_usuario' => $usuario['id_usuario'],
-            'codigo' => $codigo,
+                'codigo' => $codigo,
             'expiracion' => $fechaExpiracion
         ]);
 
@@ -60,10 +60,10 @@ class CCorreo extends Controller
 
     private function enviarCodigoPorCorreo($emailDestinatario, $codigo)
     {
-        $email = \Config\Services::email();
+                $email = \Config\Services::email();
         $email->setFrom('medidorinteligente467@gmail.com', 'EcoVol Medidor Inteligente');
         $email->setTo($emailDestinatario);
-        $email->setSubject('Código de verificación para restablecer contraseña');
+                $email->setSubject('Código de verificación para restablecer contraseña');
 
         $htmlMensaje = '
         <!DOCTYPE html>
@@ -146,12 +146,12 @@ class CCorreo extends Controller
         $email->setMessage($htmlMensaje);
         $email->setMailType('html');
 
-        if ($email->send()) {
+                if ($email->send()) {
             session()->set('exito', 'Se ha enviado un código de verificación a tu correo electrónico.');
             return true;
-        } else {
+                } else {
             session()->set('error', 'Error al enviar el correo. Por favor, inténtalo de nuevo.');
-            log_message('error', 'Error al enviar el correo de restablecimiento de contraseña.');
+                    log_message('error', 'Error al enviar el correo de restablecimiento de contraseña.');
             return false;
         }
     }
@@ -354,7 +354,7 @@ class CCorreo extends Controller
 
         if ($email->send()) {
             return true;
-        } else {
+            } else {
             log_message('error', 'Error al enviar correo: ' . $email->printDebugger());
             return false;
         }
