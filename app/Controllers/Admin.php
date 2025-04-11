@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UsuarioModel;
 use App\Models\RolesModel;
 use App\Models\InvitacionModel;
+use App\Controllers\CCorreo;
 
 
 class Admin extends BaseController
@@ -42,159 +43,171 @@ class Admin extends BaseController
 
     public function enviarInvitacion()
     {
-        // Depuración de la sesión
-        log_message('debug', '=== INICIO DE ENVIAR INVITACION ===');
-        log_message('debug', 'Datos de sesión completos: ' . print_r(session()->get(), true));
-        
-        // Verificar que el usuario esté autenticado y sea administrador
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            log_message('error', 'Usuario no autenticado o no es admin');
-            log_message('error', 'logged_in: ' . (session()->get('logged_in') ? 'true' : 'false'));
-            log_message('error', 'rol: ' . session()->get('rol'));
-            
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(401)->setJSON(['error' => 'No autorizado']);
-            }
             return redirect()->to('/autenticacion/login');
         }
 
         $email = $this->request->getPost('email');
-        $id_rol = $this->request->getPost('id_rol');
-        
-        log_message('debug', 'Datos del formulario:');
-        log_message('debug', 'Email: ' . $email);
-        log_message('debug', 'ID Rol: ' . $id_rol);
-        
-        // Obtener el ID del usuario desde userData
-        $userData = session()->get('userData');
-        $idUsuario = (int)($userData['id_usuario'] ?? 0);
-        
-        log_message('debug', 'ID de usuario obtenido: ' . $idUsuario);
-        
-        // Validar que el ID del usuario sea válido
-        if ($idUsuario <= 0) {
-            log_message('error', 'ID de usuario inválido: ' . $idUsuario);
-            log_message('error', 'Datos de sesión al momento del error:');
-            log_message('error', print_r(session()->get(), true));
-            
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(400)->setJSON([
-                    'error' => 'ID de usuario inválido',
-                    'debug' => [
-                        'userData' => $userData,
-                        'logged_in' => session()->get('logged_in'),
-                        'rol' => session()->get('rol'),
-                        'session_data' => session()->get()
-                    ]
-                ]);
-            }
-            return redirect()->back()->with('error', 'ID de usuario inválido');
-        }
+        $idRol = $this->request->getPost('id_rol');
 
         // Validar email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(400)->setJSON(['error' => 'Email inválido']);
-            }
-            return redirect()->back()->with('error', 'Email inválido');
+            session()->set('error', 'Email inválido');
+            return redirect()->back();
         }
 
-        // Validar rol
-        if (!in_array($id_rol, [1, 2, 3])) {
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(400)->setJSON(['error' => 'Rol inválido']);
-            }
-            return redirect()->back()->with('error', 'Rol inválido');
+        // Verificar si el email ya está registrado
+        $usuarioModel = new UsuarioModel();
+        if ($usuarioModel->where('email', $email)->first()) {
+            session()->set('error', 'Este email ya está registrado');
+            return redirect()->back();
         }
 
+        // Verificar si ya existe una invitación pendiente para este email
         $invitacionModel = new InvitacionModel();
-        
-        try {
-            $invitacionId = $invitacionModel->crearInvitacion($email, $idUsuario, $id_rol);
-            
-            if ($invitacionId) {
-                // Obtener el token de la invitación
-                $invitacion = $invitacionModel->find($invitacionId);
-                
-                // Enviar email
-                $emailService = \Config\Services::email();
-                $emailService->setTo($email);
-                $emailService->setSubject('Invitación para unirte a nuestro sistema');
-                
-                $data = [
-                    'email' => $email,
-                    'id_rol' => $id_rol,
-                    'token' => $invitacion['token']
-                ];
-                
-                $emailService->setMessage(view('emails/invitacion', $data));
-                
-                if ($emailService->send()) {
-                    if ($this->request->isAJAX()) {
-                        return $this->response->setJSON(['success' => true, 'message' => 'Invitación enviada correctamente']);
-                    }
-                    return redirect()->to('admin/invitar')->with('success', 'Invitación enviada correctamente');
-                } else {
-                    // Si falla el envío del email, eliminamos la invitación
-                    $invitacionModel->delete($invitacionId);
-                    if ($this->request->isAJAX()) {
-                        return $this->response->setStatusCode(500)->setJSON(['error' => 'Error al enviar el email']);
-                    }
-                    return redirect()->back()->with('error', 'Error al enviar el email');
-                }
-            }
-            
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(500)->setJSON(['error' => 'Error al crear la invitación']);
-            }
-            return redirect()->back()->with('error', 'Error al crear la invitación');
-        } catch (\Exception $e) {
-            log_message('error', 'Error en enviarInvitacion: ' . $e->getMessage());
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(500)->setJSON(['error' => 'Error interno del servidor']);
-            }
-            return redirect()->back()->with('error', 'Error interno del servidor');
+        $invitacionExistente = $invitacionModel->where('email', $email)
+                                             ->where('estado', 'pendiente')
+                                             ->where('fecha_expiracion >', date('Y-m-d H:i:s'))
+                                             ->first();
+
+        if ($invitacionExistente) {
+            session()->set('error', 'Ya existe una invitación pendiente para este email');
+            return redirect()->back();
         }
+
+        // Crear nueva invitación
+        $token = $invitacionModel->crearInvitacion($email, $idRol);
+        if (!$token) {
+            session()->set('error', 'Error al crear la invitación');
+            return redirect()->back();
+        }
+
+        // Enviar correo con el enlace de invitación
+        $emailService = \Config\Services::email();
+        $emailService->setFrom('medidorinteligente467@gmail.com', 'EcoVolt');
+        $emailService->setTo($email);
+        $emailService->setSubject('Invitación para unirte a EcoVolt');
+        
+        $enlaceInvitacion = base_url('admin/registro/invitado/' . $token);
+        $mensaje = "¡Hola!\n\n";
+        $mensaje .= "Has sido invitado a unirte a EcoVolt. Para completar tu registro, haz clic en el siguiente enlace:\n\n";
+        $mensaje .= $enlaceInvitacion . "\n\n";
+        $mensaje .= "Este enlace expirará en 7 días.\n\n";
+        $mensaje .= "Saludos,\n";
+        $mensaje .= "El equipo de EcoVolt";
+        
+        $emailService->setMessage($mensaje);
+
+        if ($emailService->send()) {
+            session()->set('exito', 'Invitación enviada correctamente');
+        } else {
+            session()->set('error', 'Error al enviar el correo de invitación');
+        }
+
+        return redirect()->back();
     }
 
     public function invitar($token = null)
     {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            return redirect()->to('/autenticacion/login');
-        }
+        // Verificar si el usuario es admin
+        $isAdmin = session()->get('logged_in') && session()->get('rol') === 'admin';
 
         if ($token) {
             // Si hay token, es para el registro del usuario invitado
             $model = new \App\Models\InvitacionModel();
-            $invitacion = $model->where('token', $token)->first();
+            $invitacion = $model->validarInvitacion($token);
         
             if (!$invitacion) {
                 return redirect()->to('/')->with('error', 'Token inválido o expirado');
             }
         
-            return view('admin/invitar_usuario', ['email' => $invitacion['email'], 'id_rol' => $invitacion['id_rol']]);
+            return view('admin/invitar_usuario', [
+                'email' => $invitacion['email'],
+                'id_rol' => $invitacion['id_rol'],
+                'token' => $token,
+                'isAdmin' => false
+            ]);
         }
 
-        // Si no hay token, mostrar el formulario de invitación
-        return view('admin/invitar_usuario');
+        // Si no hay token y no es admin, redirigir al login
+        if (!$isAdmin) {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        // Si es admin, mostrar el formulario de invitación
+        return view('admin/invitar_usuario', [
+            'isAdmin' => true
+        ]);
     }
     
     public function guardarUsuario()
     {
+        $usuarioModel = new UsuarioModel();
+        $invitacionModel = new InvitacionModel();
+        $correoController = new CCorreo();
+
         $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
-        $rol = $this->request->getPost('rol');
-    
-        // Guardar en la base de datos, por ejemplo:
-        $db = \Config\Database::connect();
-        $builder = $db->table('usuario');
-        $builder->insert([
+        $token = $this->request->getPost('token');
+        $idRol = $this->request->getPost('id_rol');
+        $nombre = $this->request->getPost('nombre');
+        $apellido = $this->request->getPost('apellido');
+        $contrasena = $this->request->getPost('contrasena');
+        $confirmar_contrasena = $this->request->getPost('confirmar_contrasena');
+
+        // Verificar si el email ya está registrado
+        if ($usuarioModel->where('email', $email)->first()) {
+            session()->set('error', 'Email ya registrado: ' . $email);
+            return redirect()->back();
+        }
+
+        // Verificar que las contraseñas coincidan
+        if ($contrasena !== $confirmar_contrasena) {
+            session()->set('error', 'Las contraseñas no coinciden');
+            return redirect()->back();
+        }
+
+        // Verificar la longitud mínima de la contraseña
+        if (strlen($contrasena) < 8) {
+            session()->set('error', 'La contraseña debe tener al menos 8 caracteres');
+            return redirect()->back();
+        }
+
+        // Verificar la invitación
+        $invitacion = $invitacionModel->where('token', $token)
+                                    ->where('email', $email)
+                                    ->where('estado', 'pendiente')
+                                    ->first();
+
+        if (!$invitacion) {
+            session()->set('error', 'Invitación no encontrada o inválida.');
+            return redirect()->back();
+        }
+
+        // Crear el nuevo usuario
+        $usuarioData = [
             'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-            'rol' => $rol,
-        ]);
-    
-        return redirect()->to('/alguna-ruta')->with('mensaje', 'Usuario registrado');
+            'contrasena' => $contrasena,
+            'id_rol' => $idRol,
+            'nombre' => $nombre,
+            'apellido' => $apellido
+        ];
+
+        try {
+            // Insertar el usuario
+            $usuarioModel->insert($usuarioData);
+            $idUsuario = $usuarioModel->getInsertID();
+
+            // Actualizar el estado de la invitación
+            $invitacionModel->update($invitacion['id_invitacion'], ['estado' => 'aceptada']);
+
+            // Redirigir al login con mensaje de éxito
+            session()->set('exito', 'Registro completado exitosamente. Ahora puedes iniciar sesión.');
+            return redirect()->to('autenticacion/login');
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar usuario: ' . $e->getMessage());
+            session()->set('error', 'Error al completar el registro. Por favor, intente nuevamente.');
+            return redirect()->back();
+        }
     }
     
 

@@ -81,6 +81,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= site_url('energia') ?>">Ver Consumo</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= site_url('dispositivo') ?>">
+                        <i class="fas fa-microchip"></i> Mis Dispositivos
+                    </a>
+                </li>
                 <?php if (session()->get('rol') === 'admin'): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= site_url('admin') ?>">
@@ -96,7 +101,7 @@
                         <a class="dropdown-item" href="#">Inicio</a>
                         <a class="dropdown-item" href="<?= base_url('perfil/perfil') ?>">Perfil</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="<?= base_url('cerrarSesion') ?>">Cerrar Sesión</a>
+                        <a class="dropdown-item text-danger" href="<?= base_url('autenticacion/cerrarSesion') ?>">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
@@ -105,7 +110,7 @@
 
     <!-- Contenido principal -->
     <div class="container text-center mt-5">
-        <h1>Bienvenido, <?= session()->get('userData')['nombre']; ?>!</h1>
+        <h1>Bienvenido, <?= session()->get('nombre') . ' ' . session()->get('apellido'); ?>!</h1>
         <p class="lead">Has iniciado sesión correctamente.</p>
         <?php if (session()->get('rol') === 'admin'): ?>
             <div class="alert alert-info">
@@ -118,7 +123,7 @@
                 <i class="fas fa-cog"></i> Ir al Panel de Administración
             </a>
         <?php endif; ?>
-        <a href="<?= base_url('cerrarSesion') ?>" class="btn btn-danger mt-4">Cerrar Sesión</a>
+        <a href="<?= base_url('autenticacion/cerrarSesion') ?>" class="btn btn-danger mt-4">Cerrar Sesión</a>
     </div>
 
     <!-- Scripts de Bootstrap -->

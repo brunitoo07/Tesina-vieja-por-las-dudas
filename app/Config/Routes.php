@@ -13,11 +13,15 @@ $routes->get('autenticacion/login', 'CAutenticacion::login');
 $routes->get('autenticacion/register', 'CAutenticacion::register');
 $routes->get('autenticacion/correo', 'CCorreo::index');
 $routes->post('correo', 'CCorreo::correo');
-$routes->get('autenticacion/nueva_contrasena', 'CNuevacontrasena::index');
+$routes->get('autenticacion/nueva-contrasena', 'CNuevacontrasena::index');
 $routes->post('actualizar-contrasena', 'CNuevacontrasena::actualizar');
 $routes->post('autenticacion/registrarse', 'CAutenticacion::registrarse');
 $routes->post('iniciarSesion', 'CAutenticacion::iniciarSesion');
+$routes->post('autenticacion/iniciarSesion', 'CAutenticacion::iniciarSesion');
 $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
+$routes->get('autenticacion/cerrarSesion', 'CAutenticacion::cerrarSesion');
+$routes->get('admin/registro/invitado/(:any)', 'Admin::invitar/$1');
+$routes->post('admin/guardarUsuario', 'Admin::guardarUsuario');
 
 // Rutas de compra (¡actualizadas!)
 $routes->get('compra', 'Compra::index');
@@ -30,7 +34,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('home', 'Home::index');
     $routes->get('home/bienvenida', 'Home::bienvenida');
     $routes->get('energia', 'Energia::index');
-    $routes->get('energia/verDatos', 'Energia::verDatos');
+    $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
@@ -43,11 +47,20 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios');
     $routes->get('invitar', 'Admin::invitar');
     $routes->post('enviarInvitacion', 'Admin::enviarInvitacion');
-    $routes->get('registro/invitado/(:any)', 'Admin::invitar/$1');
-    $routes->post('guardar-usuario', 'Admin::guardarUsuario');
     $routes->post('eliminarUsuario', 'Admin::eliminarUsuario');
     $routes->post('cambiarRol', 'Admin::cambiarRol');
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
 });
 
 $routes->get('home/manual', 'Home::manual');
+
+// Rutas de dispositivos
+$routes->group('dispositivo', ['filter' => 'auth'], function($routes) {
+    $routes->get('/', 'Dispositivo::index');
+    $routes->get('agregar', 'Dispositivo::agregar');
+    $routes->post('guardar', 'Dispositivo::guardar');
+    $routes->post('eliminar/(:num)', 'Dispositivo::eliminar/$1');
+});
+
+$routes->get('consumo/ver/(:num)', 'Consumo::verDatos/$1');
+$routes->get('consumo/grafico/(:num)', 'Consumo::grafico/$1');

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\EnergiaModel;
+use App\Models\DispositivoModel;
 
 class Energia extends BaseController
 {
@@ -15,6 +16,15 @@ class Energia extends BaseController
     public function recibirDatos()
     {
         $inputData = $this->request->getJSON();
+        $mac_address = $inputData->mac_address;
+
+        // Buscar el usuario asociado a esta MAC
+        $dispositivoModel = new DispositivoModel();
+        $dispositivo = $dispositivoModel->where('mac_address', $mac_address)->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Dispositivo no registrado']);
+        }
 
         // Datos que recibimos del ESP32
         $data = [
@@ -23,6 +33,7 @@ class Energia extends BaseController
             'potencia' => $inputData->potencia,
             'kwh' => $inputData->kwh,
             'fecha' => date('Y-m-d H:i:s'),
+            'id_usuario' => $dispositivo['id_usuario']
         ];
 
         // Insertamos los datos en la base de datos
@@ -55,24 +66,30 @@ class Energia extends BaseController
         // Obtener el parámetro de orden y la dirección de la URL, con valores predeterminados
         $direction = $this->request->getGet('direction') ?? 'DESC';
 
-        // Obtener todos los registros de consumo en el orden seleccionado
-        $data['energia'] = $this->energiaModel->orderBy('id', $direction)->findAll();
+        // Obtener el ID del usuario actual
+        $id_usuario = session()->get('id_usuario');
+
+        // Obtener todos los registros de consumo del usuario en el orden seleccionado
+        $data['energia'] = $this->energiaModel->where('id_usuario', $id_usuario)
+                                             ->orderBy('id', $direction)
+                                             ->findAll();
 
         // Pasar la dirección actual para la vista
         $data['direction'] = $direction;
 
         // Obtener solo el último registro (para los datos en tiempo real)
-        $data['ultimoDato'] = $this->energiaModel->getLatestData();
+        $data['ultimoDato'] = $this->energiaModel->where('id_usuario', $id_usuario)
+                                                ->orderBy('id', 'DESC')
+                                                ->first();
 
-        // Obtener el límite de consumo y el consumo diario
-        $limite_consumo = $this->energiaModel->getLimiteConsumo();
-        $consumo_diario = $this->energiaModel->getConsumoDiario();
+        // Obtener el límite de consumo y el consumo diario del usuario
+        $limite_consumo = $this->energiaModel->getLimiteConsumo($id_usuario);
+        $consumo_diario = $this->energiaModel->getConsumoDiario($id_usuario);
 
         // Verificar si el consumo diario supera el límite
-        // Configurar advertencia si se supera el límite
-    $advertencia = null;
-    if ($consumo_diario > $limite_consumo) {
-        $advertencia = "¡Advertencia! Has superado el límite de consumo diario de $limite_consumo kWh.";
+        $advertencia = null;
+        if ($consumo_diario > $limite_consumo) {
+            $advertencia = "¡Advertencia! Has superado el límite de consumo diario de $limite_consumo kWh.";
         }
 
         // Pasar los datos a la vista
@@ -95,6 +112,18 @@ class Energia extends BaseController
 
         // Redirigir después de actualizar el límite
         return redirect()->to('/energia');
+    }
+
+    public function verDatos($id)
+    {
+        // Obtener los datos específicos del ID
+        $data['energia'] = $this->energiaModel->find($id);
+        
+        if (!$data['energia']) {
+            return redirect()->to('/energia')->with('error', 'Registro no encontrado');
+        }
+
+        return view('energia/ver_datos', $data);
     }
     
 }

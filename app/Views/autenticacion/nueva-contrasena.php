@@ -54,16 +54,20 @@
                 </div>
             <?php endif; ?>
 
-            <form action="<?= base_url('autenticacion/nueva_contrasena') ?>" method="post">
+            <form action="<?= base_url('actualizar-contrasena') ?>" method="post" id="formCambioContrasena">
+                <?= csrf_field() ?>
                 <div class="mb-3">
                     <label for="codigo" class="form-label">Código de Verificación</label>
-                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required 
+                           value="<?= old('codigo') ?>">
+                    <small class="text-muted">Ingresa el código que recibiste por correo electrónico.</small>
                 </div>
 
                 <div class="mb-3 password-input">
                     <label for="nueva_contrasena" class="form-label">Nueva Contraseña</label>
                     <input type="password" class="form-control" id="nueva_contrasena" name="nueva_contrasena" required>
                     <i class="fas fa-eye password-toggle" onclick="togglePassword('nueva_contrasena')"></i>
+                    <small class="text-muted">La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%).</small>
                 </div>
 
                 <div class="mb-3 password-input">

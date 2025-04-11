@@ -27,32 +27,54 @@ class CNuevacontrasena extends Controller
         $codigo = $this->request->getPost('codigo');
         $nuevaContrasena = $this->request->getPost('nueva_contrasena');
         $confirmarContrasena = $this->request->getPost('confirmar_contrasena');
+        $email = session()->get('emailValido');
 
-        // Verificar el código
-        $codigoData = $codigoModel->obtenerUsuarioPorCodigo($codigo);
-        if (!$codigoData) {
-            session()->set('error', 'Código inválido o expirado.');
-            return redirect()->back();
+        log_message('debug', 'Datos recibidos: ' . print_r([
+            'codigo' => $codigo,
+            'email' => $email,
+            'nueva_contrasena' => $nuevaContrasena,
+            'confirmar_contrasena' => $confirmarContrasena
+        ], true));
+
+        if (!$email) {
+            session()->set('error', 'No se encontró el email del usuario.');
+            return redirect()->to('autenticacion/login');
         }
 
-        $idUsuario = $codigoData['id_usuario'];
-        $usuario = $usuarioModel->find($idUsuario);
+        // Obtener el usuario por email
+        $usuario = $usuarioModel->where('email', $email)->first();
+        if (!$usuario) {
+            session()->set('error', 'Usuario no encontrado.');
+            return redirect()->to('autenticacion/login');
+        }
 
-        // Verificar que la nueva contraseña no sea igual a la antigua
-        if (password_verify($nuevaContrasena, $usuario['contrasena'])) {
-            session()->set('error', 'La nueva contraseña no puede ser igual a la contraseña anterior.');
+        log_message('debug', 'Usuario encontrado: ' . print_r($usuario, true));
+
+        // Verificar el código
+        $codigoData = $codigoModel->where('id_usuario', $usuario['id_usuario'])
+                                 ->where('codigo', $codigo)
+                                 ->where('expiracion >', date('Y-m-d H:i:s'))
+                                 ->first();
+
+        log_message('debug', 'Código encontrado: ' . print_r($codigoData, true));
+
+        if (!$codigoData) {
+            session()->set('error', 'Código inválido o expirado.');
+            session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
 
         // Validar que las contraseñas tengan al menos 6 caracteres, una mayúscula y un símbolo
         if (strlen($nuevaContrasena) < 6 || !preg_match('/[A-Z]/', $nuevaContrasena) || !preg_match('/[!@#$%]/', $nuevaContrasena)) {
             session()->set('error', 'La nueva contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo (!@#$%).');
+            session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
 
         // Validar que las contraseñas coincidan
         if ($nuevaContrasena !== $confirmarContrasena) {
             session()->set('error', 'Las contraseñas no coinciden.');
+            session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
 
@@ -60,13 +82,15 @@ class CNuevacontrasena extends Controller
         $hashedContraseña = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
 
         // Actualizar la contraseña del usuario
-        if ($usuarioModel->actualizarcontrasena($hashedContraseña, $idUsuario)) {
-            // Eliminar el código de recuperación
-            $codigoModel->eliminarCodigoPorUsuario($idUsuario);
+        if ($usuarioModel->update($usuario['id_usuario'], ['contrasena' => $hashedContraseña])) {
+            // Eliminar el código usado
+            $codigoModel->delete($codigoData['id_codigo']);
             session()->set('exito', 'Contraseña actualizada correctamente.');
+            session()->remove('emailValido'); // Limpiar el email de la sesión
             return redirect()->to('autenticacion/login');
         } else {
             session()->set('error', 'Error al actualizar la contraseña.');
+            session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
     }

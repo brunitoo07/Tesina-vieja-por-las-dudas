@@ -99,48 +99,35 @@ class CAutenticacion extends BaseController
     public function iniciarSesion()
     {
         $usuarioModel = new UsuarioModel();
-    
-        // Obtener los datos del formulario
+        
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
-    
-        // Verificar que los campos no estén vacíos
-        if (empty($email) || empty($contrasena)) {
-            session()->set('error', 'Por favor, completa todos los campos.');
-            return redirect()->to('autenticacion/login');
-        }
-    
-        // Obtener la información del usuario basado en el email
-        $informacionUsuario = $usuarioModel->obtenerUsuarioEmail($email);
-    
-        // Verificar si el usuario existe y si la contraseña es correcta
-        if ($informacionUsuario === null || !password_verify($contrasena, $informacionUsuario['contrasena'])) {
-            session()->set('error', 'Correo electrónico o contraseña incorrecto.');
-            log_message('error', 'Intento de inicio de sesión fallido. Email: ' . $email);
-            return redirect()->to('autenticacion/login');
-        }
-    
-        // Obtener el rol del usuario
-        $rol = $usuarioModel->obtenerRolUsuario($informacionUsuario['id_usuario']);
-        
-        // Verificar si se encontró el rol
-        if ($rol === null) {
-            log_message('error', 'No se encontró el rol para el usuario: ' . $email);
-            session()->set('error', 'Error al obtener el rol del usuario. Por favor, contacta al administrador.');
-            return redirect()->to('autenticacion/login');
-        }
-    
-        // Establecer la sesión del usuario y redirigir
-        session()->set('userData', $informacionUsuario);
-        session()->set('Tipo', 'usuario');
-        session()->set('logged_in', true);
-        session()->set('rol', $rol['nombre_rol']);
 
-        log_message('debug', 'Inicio de sesión exitoso para el usuario: ' . $email);
-        log_message('debug', 'Rol del usuario: ' . $rol['nombre_rol']);
-    
-        // Verificar la sesión antes de redirigir
-        log_message('debug', 'Session userData: ' . json_encode(session()->get('userData')));
+        $usuario = $usuarioModel->where('email', $email)->first();
+
+        if (!$usuario) {
+            session()->set('error', 'Email o contraseña incorrectos');
+            return redirect()->back();
+        }
+
+        if (!password_verify($contrasena, $usuario['contrasena'])) {
+            session()->set('error', 'Email o contraseña incorrectos');
+            return redirect()->back();
+        }
+
+        // Guardar datos del usuario en la sesión
+        $userData = [
+            'id_usuario' => $usuario['id_usuario'],
+            'email' => $usuario['email'],
+            'nombre' => $usuario['nombre'],
+            'apellido' => $usuario['apellido'],
+            'rol' => $usuario['id_rol'] == 1 ? 'admin' : 'usuario',
+            'logged_in' => true
+        ];
+
+        session()->set($userData);
+        log_message('debug', 'Datos de usuario guardados en sesión: ' . print_r($userData, true));
+
         return redirect()->to('home/bienvenida');
     }
     

@@ -151,19 +151,19 @@
     <div class="realtime-data">
         <div class="realtime-card">
             <p>Voltaje</p>
-            <p id="voltaje"><?= $ultimoDato[0]['voltaje']; ?> V</p>
+            <p id="voltaje"><?= isset($ultimoDato[0]['voltaje']) ? $ultimoDato[0]['voltaje'] . ' V' : '0 V'; ?></p>
         </div>
         <div class="realtime-card">
             <p>Corriente</p>
-            <p id="corriente"><?= $ultimoDato[0]['corriente']; ?> A</p>
+            <p id="corriente"><?= isset($ultimoDato[0]['corriente']) ? $ultimoDato[0]['corriente'] . ' A' : '0 A'; ?></p>
         </div>
         <div class="realtime-card">
             <p>Potencia</p>
-            <p id="potencia"><?= $ultimoDato[0]['potencia']; ?> W</p>
+            <p id="potencia"><?= isset($ultimoDato[0]['potencia']) ? $ultimoDato[0]['potencia'] . ' W' : '0 W'; ?></p>
         </div>
         <div class="realtime-card">
-            <p>Consumo de Energía</p>
-            <p id="kwh"><?= $ultimoDato[0]['kwh']; ?> kWh</p>
+            <p>Consumo</p>
+            <p id="kwh"><?= isset($ultimoDato[0]['kwh']) ? $ultimoDato[0]['kwh'] . ' kWh' : '0 kWh'; ?></p>
         </div>
         <div class="realtime-card" id="fecha">
             <p>Fecha</p>
