@@ -48,17 +48,21 @@ class Dispositivo extends BaseController
         if (!session()->get('logged_in')) {
             return redirect()->to('/autenticacion/login');
         }
-
+    
         $data = [
             'nombre' => $this->request->getPost('nombre'),
             'mac_address' => $this->request->getPost('mac_address'),
-            'id_usuario' => session()->get('id_usuario')
+            'id_usuario' => session()->get('id_usuario'),
+            'estado' => 1, // Valor por defecto
+            'created_at' => date('Y-m-d H:i:s') // Campo requerido
         ];
-
-        if ($this->dispositivoModel->save($data)) {
+    
+        try {
+            $this->dispositivoModel->insert($data);
             return redirect()->to('dispositivo')->with('success', 'Dispositivo guardado correctamente');
-        } else {
-            return redirect()->back()->withInput()->with('errors', $this->dispositivoModel->errors());
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar dispositivo: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Error al guardar el dispositivo');
         }
     }
 
@@ -78,4 +82,4 @@ class Dispositivo extends BaseController
 
         return redirect()->to('dispositivo');
     }
-} 
+}

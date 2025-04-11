@@ -4,126 +4,159 @@ namespace App\Controllers;
 
 use App\Models\EnergiaModel;
 use App\Models\DispositivoModel;
+use App\Models\LimiteConsumoModel;
 
 class Energia extends BaseController
 {
+    protected $energiaModel;
+    protected $limiteModel;
+
     public function __construct()
     {
         $this->energiaModel = new EnergiaModel();
+        $this->limiteModel = new LimiteConsumoModel();
     }
 
-    // Recibe los datos del ESP32 y los inserta en la base de datos
-    public function recibirDatos()
-    {
-        $inputData = $this->request->getJSON();
-        $mac_address = $inputData->mac_address;
+public function recibirDatos()
+{
+    $json = file_get_contents('php://input');
+    log_message('debug', '📩 JSON recibido: ' . $json);
+    // 1. Validación básica del JSON
+    $inputData = $this->request->getJSON();
+    if (!$inputData || !isset($inputData->mac_address)) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'Formato JSON inválido o falta MAC address'
+        ]);
+    }
 
-        // Buscar el usuario asociado a esta MAC
-        $dispositivoModel = new DispositivoModel();
-        $dispositivo = $dispositivoModel->where('mac_address', $mac_address)->first();
+    // 2. Obtener dispositivo
+    $dispositivoModel = new DispositivoModel();
+    $dispositivo = $dispositivoModel->where('mac_address', $inputData->mac_address)->first();
+    
+    if (!$dispositivo) {
+        return $this->response->setJSON([
+            'status' => 'error', 
+            'message' => 'Dispositivo no registrado'
+        ]);
+    }
 
-        if (!$dispositivo) {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Dispositivo no registrado']);
+    // 3. Validar campos numéricos
+    $camposRequeridos = [
+        'voltaje' => 'float',
+        'corriente' => 'float', 
+        'potencia' => 'float',
+        'kwh' => 'float'
+    ];
+    
+    foreach ($camposRequeridos as $campo => $tipo) {
+        if (!isset($inputData->$campo)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => "Campo {$campo} es requerido"
+            ]);
         }
+        
+        if (!is_numeric($inputData->$campo)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => "Campo {$campo} debe ser numérico"
+            ]);
+        }
+        // Ver los datos que se intentarán insertar
+log_message('debug', print_r($data, true));
 
-        // Datos que recibimos del ESP32
-        $data = [
-            'voltaje' => $inputData->voltaje,
-            'corriente' => $inputData->corriente,
-            'potencia' => $inputData->potencia,
-            'kwh' => $inputData->kwh,
-            'fecha' => date('Y-m-d H:i:s'),
-            'id_usuario' => $dispositivo['id_usuario']
-        ];
-
-        // Insertamos los datos en la base de datos
-        $this->energiaModel->insertData($data);
-
-        return $this->response->setJSON(['status' => 'success']);
+// Ver la consulta SQL generada
+log_message('debug', $this->energiaModel->getLastQuery());
     }
+
+    // 4. Preparar datos con tipos correctos
+    $data = [
+        'id_dispositivo' => (int) $dispositivo['id'],
+        'id_usuario' => (int) $dispositivo['id_usuario'],
+        'voltaje' => (float) $inputData->voltaje,
+        'corriente' => (float) $inputData->corriente,
+        'potencia' => (float) $inputData->potencia,
+        'kwh' => (float) $inputData->kwh,
+        'fecha' => date('Y-m-d H:i:s')
+    ];
+
+    // 5. Log para depuración (opcional pero recomendado)
+    log_message('debug', 'Insertando en energía: '.print_r($data, true));
+
+    // 6. Insertar con manejo de errores
+    try {
+        $this->energiaModel->insert($data);
+        return $this->response->setJSON(['status' => 'success']);
+    } catch (\Exception $e) {
+        log_message('error', 'Error en insert: '.$e->getMessage());
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'Error en base de datos',
+            'error_detail' => $e->getMessage() // Solo en desarrollo
+        ]);
+    }
+}
 
     public function getLatestData()
     {
-        // Obtener solo el último registro de consumo
         $ultimoDato = $this->energiaModel->getLatestData();
-    
-        // Si hay datos, devolverlos como JSON
-        if (!empty($ultimoDato)) {
-            echo json_encode($ultimoDato[0]);
-        } else {
-            echo json_encode([]);
-        }
+        echo json_encode(!empty($ultimoDato) ? $ultimoDato[0] : []);
     }
 
     public function index()
     {
-        // Configurar zona horaria de Argentina
         date_default_timezone_set('America/Argentina/Buenos_Aires');
-    
-        // Obtener fecha y hora actual
         $fechaActual = date('Y-m-d H:i:s'); 
 
-        // Obtener el parámetro de orden y la dirección de la URL, con valores predeterminados
         $direction = $this->request->getGet('direction') ?? 'DESC';
-
-        // Obtener el ID del usuario actual
         $id_usuario = session()->get('id_usuario');
 
-        // Obtener todos los registros de consumo del usuario en el orden seleccionado
         $data['energia'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                             ->orderBy('id', $direction)
-                                             ->findAll();
+                                               ->orderBy('id', $direction)
+                                               ->findAll();
 
-        // Pasar la dirección actual para la vista
         $data['direction'] = $direction;
 
-        // Obtener solo el último registro (para los datos en tiempo real)
         $data['ultimoDato'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                                ->orderBy('id', 'DESC')
-                                                ->first();
+                                                 ->orderBy('id', 'DESC')
+                                                 ->first();
 
-        // Obtener el límite de consumo y el consumo diario del usuario
-        $limite_consumo = $this->energiaModel->getLimiteConsumo($id_usuario);
-        $consumo_diario = $this->energiaModel->getConsumoDiario($id_usuario);
+        // Limite de consumo desde la tabla nueva
+        $limiteData = $this->limiteModel->getLimite($id_usuario);
+        $limite_consumo = $limiteData ? $limiteData['limite_consumo'] : 10;
+        $data['limite_consumo'] = $limite_consumo;
 
-        // Verificar si el consumo diario supera el límite
+        // Consumo diario
+        $data['consumo_diario'] = $this->energiaModel->getConsumoDiario($id_usuario);
+
         $advertencia = null;
-        if ($consumo_diario > $limite_consumo) {
+        if ($data['consumo_diario'] > $limite_consumo) {
             $advertencia = "¡Advertencia! Has superado el límite de consumo diario de $limite_consumo kWh.";
         }
 
-        // Pasar los datos a la vista
-        $data['fechaActual'] = $fechaActual;
-        $data['limite_consumo'] = $limite_consumo;
-        $data['consumo_diario'] = $consumo_diario;
         $data['advertencia'] = $advertencia;
+        $data['fechaActual'] = $fechaActual;
 
         return view('consumo', $data);
     }
-    
 
     public function actualizarLimite()
     {
-        // Obtener el nuevo límite de consumo desde el formulario
+        $id_usuario = session()->get('id_usuario');
         $nuevo_limite = $this->request->getPost('nuevo_limite');
+        
+        $this->limiteModel->setLimite($id_usuario, $nuevo_limite);
 
-        // Actualizar el límite de consumo en la base de datos
-        $this->energiaModel->actualizarLimiteConsumo($nuevo_limite);
-
-        // Redirigir después de actualizar el límite
         return redirect()->to('/energia');
     }
 
     public function verDatos($id)
     {
-        // Obtener los datos específicos del ID
         $data['energia'] = $this->energiaModel->find($id);
-        
         if (!$data['energia']) {
             return redirect()->to('/energia')->with('error', 'Registro no encontrado');
         }
-
         return view('energia/ver_datos', $data);
     }
-    
 }

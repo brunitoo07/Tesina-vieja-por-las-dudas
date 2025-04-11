@@ -6,10 +6,8 @@ class DispositivoModel extends Model
 {
     protected $table = 'dispositivos';
     protected $primaryKey = 'id_dispositivo';
-    protected $allowedFields = ['nombre', 'id_usuario', 'mac_address', 'estado'];
-    protected $useTimestamps = true;
-    protected $createdField = 'created_at';
-    protected $updatedField = null;
+    protected $allowedFields = ['nombre', 'mac_address', 'id_usuario', 'estado', 'created_at'];
+    protected $useTimestamps = false; // Importante: desactiva si manejas created_at manualme
 
     public function obtenerDispositivosUsuario($idUsuario)
     {

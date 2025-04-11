@@ -19,7 +19,11 @@ class Database extends Config
      */
     public string $defaultGroup = 'default';
 
+
+
+    
     /**
+     
      * The default database connection.
      *
      * @var array<string, mixed>

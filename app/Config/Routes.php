@@ -36,6 +36,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
+    $routes->get('energia/recibirDatos', 'Energia::recibirDatos');
+
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('perfil/perfil', 'CUsuario::perfil');
