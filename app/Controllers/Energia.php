@@ -30,7 +30,7 @@ class Energia extends BaseController
             ]);
         }
     
-        $dispositivoModel = new DispositivoModel();
+        $energiaModel = new EnergiaModel();
         $dispositivo = $dispositivoModel->where('mac_address', $inputData->mac_address)->first();
         
         if (!$dispositivo) {
