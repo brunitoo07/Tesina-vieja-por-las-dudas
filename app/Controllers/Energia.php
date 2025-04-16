@@ -17,86 +17,58 @@ class Energia extends BaseController
         $this->limiteModel = new LimiteConsumoModel();
     }
 
-public function recibirDatos()
-{
-    $json = file_get_contents('php://input');
-    log_message('debug', '📩 JSON recibido: ' . $json);
-    // 1. Validación básica del JSON
-    $inputData = $this->request->getJSON();
-    if (!$inputData || !isset($inputData->mac_address)) {
-        return $this->response->setJSON([
-            'status' => 'error',
-            'message' => 'Formato JSON inválido o falta MAC address'
-        ]);
-    }
-
-    // 2. Obtener dispositivo
-    $dispositivoModel = new DispositivoModel();
-    $dispositivo = $dispositivoModel->where('mac_address', $inputData->mac_address)->first();
-    
-    if (!$dispositivo) {
-        return $this->response->setJSON([
-            'status' => 'error', 
-            'message' => 'Dispositivo no registrado'
-        ]);
-    }
-
-    // 3. Validar campos numéricos
-    $camposRequeridos = [
-        'voltaje' => 'float',
-        'corriente' => 'float', 
-        'potencia' => 'float',
-        'kwh' => 'float'
-    ];
-    
-    foreach ($camposRequeridos as $campo => $tipo) {
-        if (!isset($inputData->$campo)) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => "Campo {$campo} es requerido"
-            ]);
-        }
+    public function recibirDatos()
+    {
+        $json = file_get_contents('php://input');
+        log_message('debug', '📩 JSON recibido: ' . $json);
         
-        if (!is_numeric($inputData->$campo)) {
+        $inputData = $this->request->getJSON();
+        if (!$inputData || !isset($inputData->mac_address)) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => "Campo {$campo} debe ser numérico"
+                'message' => 'Formato JSON inválido o falta MAC address'
             ]);
         }
-        // Ver los datos que se intentarán insertar
-log_message('debug', print_r($data, true));
-
-// Ver la consulta SQL generada
-log_message('debug', $this->energiaModel->getLastQuery());
+    
+        $dispositivoModel = new DispositivoModel();
+        $dispositivo = $dispositivoModel->where('mac_address', $inputData->mac_address)->first();
+        
+        if (!$dispositivo) {
+            return $this->response->setJSON([
+                'status' => 'error', 
+                'message' => 'Dispositivo no registrado'
+            ]);
+        }
+    
+        $data = [
+            'id_dispositivo' => (int) $dispositivo['id'],
+            'id_usuario' => (int) $dispositivo['id_usuario'],
+            'voltaje' => isset($inputData->voltaje) ? (float) $inputData->voltaje : null,
+            'corriente' => isset($inputData->corriente) ? (float) $inputData->corriente : null,
+            'potencia' => isset($inputData->potencia) ? (float) $inputData->potencia : null,
+            'kwh' => (float) $inputData->kwh,
+            'fecha' => date('Y-m-d H:i:s')
+        ];
+    
+        log_message('debug', 'Datos preparados: ' . print_r($data, true));
+    
+        try {
+            $insertId = $this->energiaModel->insert($data);
+            log_message('debug', 'Insert realizado. ID: ' . $insertId);
+            
+            return $this->response->setJSON([
+                'status' => 'success',
+                'inserted_id' => $insertId
+            ]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error al insertar: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error en base de datos',
+                'error' => $e->getMessage()
+            ]);
+        }
     }
-
-    // 4. Preparar datos con tipos correctos
-    $data = [
-        'id_dispositivo' => (int) $dispositivo['id'],
-        'id_usuario' => (int) $dispositivo['id_usuario'],
-        'voltaje' => (float) $inputData->voltaje,
-        'corriente' => (float) $inputData->corriente,
-        'potencia' => (float) $inputData->potencia,
-        'kwh' => (float) $inputData->kwh,
-        'fecha' => date('Y-m-d H:i:s')
-    ];
-
-    // 5. Log para depuración (opcional pero recomendado)
-    log_message('debug', 'Insertando en energía: '.print_r($data, true));
-
-    // 6. Insertar con manejo de errores
-    try {
-        $this->energiaModel->insert($data);
-        return $this->response->setJSON(['status' => 'success']);
-    } catch (\Exception $e) {
-        log_message('error', 'Error en insert: '.$e->getMessage());
-        return $this->response->setJSON([
-            'status' => 'error',
-            'message' => 'Error en base de datos',
-            'error_detail' => $e->getMessage() // Solo en desarrollo
-        ]);
-    }
-}
 
     public function getLatestData()
     {
