@@ -450,5 +450,44 @@ class CCorreo extends Controller
             return false;
         }
     }
+
+    public function actualizarContrasena()
+    {
+        $codigo = $this->request->getPost('codigo');
+        $nuevaContrasena = $this->request->getPost('nueva_contrasena');
+        $confirmarContrasena = $this->request->getPost('confirmar_contrasena');
+
+        if ($nuevaContrasena !== $confirmarContrasena) {
+            session()->set('error', 'Las contraseñas no coinciden.');
+            return redirect()->back()->withInput();
+        }
+
+        if (strlen($nuevaContrasena) < 6 || !preg_match('/[A-Z]/', $nuevaContrasena) || !preg_match('/[!@#$%]/', $nuevaContrasena)) {
+            session()->set('error', 'La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%).');
+            return redirect()->back()->withInput();
+        }
+
+        $codigoModel = new CodigoModel();
+        $usuarioModel = new UsuarioModel();
+
+        $codigoData = $codigoModel->where('codigo', $codigo)->where('expiracion >=', date('Y-m-d H:i:s'))->first();
+
+        if (!$codigoData) {
+            session()->set('error', 'El código es inválido o ha expirado.');
+            return redirect()->back()->withInput();
+        }
+
+        $hashedContrasena = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
+
+        if (!$usuarioModel->actualizarContrasena($hashedContrasena, $codigoData['id_usuario'])) {
+            session()->set('error', 'Error al actualizar la contraseña. Inténtalo de nuevo.');
+            return redirect()->back()->withInput();
+        }
+
+        $codigoModel->eliminarCodigoPorUsuario($codigoData['id_usuario']);
+
+        session()->set('exito', 'Contraseña actualizada correctamente.');
+        return redirect()->to('autenticacion/login');
+    }
 }
 

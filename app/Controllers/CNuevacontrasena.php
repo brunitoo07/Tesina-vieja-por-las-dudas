@@ -36,15 +36,16 @@ class CNuevacontrasena extends Controller
             'confirmar_contrasena' => $confirmarContrasena
         ], true));
 
+        // Verificar si el correo está en la sesión y es válido
         if (!$email) {
-            session()->set('error', 'No se encontró el email del usuario.');
+            session()->set('error', 'No se encontró el email del usuario en la sesión.');
             return redirect()->to('autenticacion/login');
         }
 
         // Obtener el usuario por email
         $usuario = $usuarioModel->where('email', $email)->first();
         if (!$usuario) {
-            session()->set('error', 'Usuario no encontrado.');
+            session()->set('error', 'El email no está registrado en el sistema.');
             return redirect()->to('autenticacion/login');
         }
 
@@ -56,13 +57,13 @@ class CNuevacontrasena extends Controller
                                  ->where('expiracion >', date('Y-m-d H:i:s'))
                                  ->first();
 
-        log_message('debug', 'Código encontrado: ' . print_r($codigoData, true));
-
         if (!$codigoData) {
-            session()->set('error', 'Código inválido o expirado.');
+            session()->set('error', 'El código ingresado es inválido o ha expirado.');
             session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
+
+        log_message('debug', 'Código válido: ' . print_r($codigoData, true));
 
         // Validar que las contraseñas tengan al menos 6 caracteres, una mayúscula y un símbolo
         if (strlen($nuevaContrasena) < 6 || !preg_match('/[A-Z]/', $nuevaContrasena) || !preg_match('/[!@#$%]/', $nuevaContrasena)) {
@@ -89,7 +90,7 @@ class CNuevacontrasena extends Controller
             session()->remove('emailValido'); // Limpiar el email de la sesión
             return redirect()->to('autenticacion/login');
         } else {
-            session()->set('error', 'Error al actualizar la contraseña.');
+            session()->set('error', 'Hubo un error al intentar actualizar la contraseña. Por favor, inténtelo de nuevo.');
             session()->setFlashdata('codigo', $codigo);
             return redirect()->back();
         }
