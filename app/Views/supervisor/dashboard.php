@@ -1,3 +1,9 @@
+<?php
+$admins = $admins ?? [];
+$usuarios = $usuarios ?? [];
+$supervisores = $supervisores ?? [];
+?>
+
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('contenido') ?>

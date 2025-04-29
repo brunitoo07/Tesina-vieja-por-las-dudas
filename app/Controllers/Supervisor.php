@@ -33,16 +33,12 @@ class Supervisor extends BaseController
         }
 
         // Obtener todos los usuarios
-        $usuarios = $this->usuarioModel->findAll();
+        $usuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
+                                     ->join('roles', 'roles.id_rol = usuario.id_rol')
+                                     ->findAll();
         
-        // Filtrar usuarios por rol
-        $admins = array_filter($usuarios, function($user) {
-            return $user['id_rol'] == 1;
-        });
-        
-        $supervisores = array_filter($usuarios, function($user) {
-            return $user['id_rol'] == 3;
-        });
+        // Obtener todos los dispositivos
+        $dispositivos = $this->dispositivoModel->findAll();
         
         // Obtener los últimos 10 usuarios registrados
         $ultimosUsuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
@@ -52,14 +48,19 @@ class Supervisor extends BaseController
                                              ->find();
         
         // Obtener total de dispositivos
-        $totalDispositivos = $this->dispositivoModel->countAll();
+        $totalDispositivos = count($dispositivos);
+
+        // NUEVO: Obtener arrays de admins y supervisores
+        $admins = $this->usuarioModel->where('id_rol', 1)->findAll();
+        $supervisores = $this->usuarioModel->where('id_rol', 3)->findAll();
 
         $data = [
             'usuarios' => $usuarios,
-            'admins' => $admins,
-            'supervisores' => $supervisores,
+            'dispositivos' => $dispositivos,
             'ultimosUsuarios' => $ultimosUsuarios,
-            'totalDispositivos' => $totalDispositivos
+            'totalDispositivos' => $totalDispositivos,
+            'admins' => $admins ?? [],
+            'supervisores' => $supervisores ?? []
         ];
 
         return view('supervisor/dashboard', $data);
