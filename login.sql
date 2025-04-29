@@ -184,7 +184,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion`, `created_at`) VALUES
 (1, 'admin', 'Administrador del sistema con acceso total', '2025-03-28 01:49:49'),
-(2, 'usuario', 'Usuario normal con acceso limitado', '2025-03-28 01:49:49');
+(2, 'usuario', 'Usuario normal con acceso limitado', '2025-03-28 01:49:49'),
+(3, 'supervisor', 'Supervisor con acceso a gestión de usuarios', '2025-03-28 01:49:49');
 
 -- --------------------------------------------------------
 
@@ -321,50 +322,7 @@ ALTER TABLE `mediciones`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `configuracion_dispositivos`
---
-ALTER TABLE `configuracion_dispositivos`
-  ADD CONSTRAINT `configuracion_dispositivos_ibfk_1` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivos` (`id_dispositivo`);
-
---
--- Filtros para la tabla `dispositivos`
---
-ALTER TABLE `dispositivos`
-  ADD CONSTRAINT `dispositivos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
-
---
--- Filtros para la tabla `invitaciones`
---
-ALTER TABLE `invitaciones`
-  ADD CONSTRAINT `invitaciones_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
-  ADD CONSTRAINT `invitaciones_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `usuario` (`id_usuario`);
-
---
--- Filtros para la tabla `mediciones`
---
-ALTER TABLE `mediciones`
-  ADD CONSTRAINT `mediciones_ibfk_1` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivos` (`id_dispositivo`);
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

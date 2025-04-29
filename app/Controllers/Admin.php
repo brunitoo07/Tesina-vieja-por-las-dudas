@@ -32,9 +32,22 @@ class Admin extends BaseController
         }
 
         $data = [
-            'usuarios' => $this->usuarioModel->where('id_rol', 2)->findAll() ?? [],
-            'admins' => $this->usuarioModel->where('id_rol', 1)->findAll() ?? [],
-            'ultimosUsuarios' => $this->usuarioModel->orderBy('created_at', 'DESC')->limit(5)->findAll() ?? [],
+            'usuarios' => $this->usuarioModel
+                ->select('usuario.*, roles.nombre_rol')
+                ->join('roles', 'roles.id_rol = usuario.id_rol')
+                ->where('usuario.id_rol', 2)
+                ->findAll() ?? [],
+            'admins' => $this->usuarioModel
+                ->select('usuario.*, roles.nombre_rol')
+                ->join('roles', 'roles.id_rol = usuario.id_rol')
+                ->where('usuario.id_rol', 1)
+                ->findAll() ?? [],
+            'ultimosUsuarios' => $this->usuarioModel
+                ->select('usuario.*, roles.nombre_rol')
+                ->join('roles', 'roles.id_rol = usuario.id_rol')
+                ->orderBy('created_at', 'DESC')
+                ->limit(5)
+                ->findAll() ?? [],
             'totalDispositivos' => 0,
         ];
 

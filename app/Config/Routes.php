@@ -54,6 +54,21 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
 });
 
+// Rutas del supervisor
+$routes->group('supervisor', ['filter' => 'auth'], function($routes) {
+    $routes->get('/', 'Supervisor::index');
+    $routes->get('gestionarUsuarios', 'Supervisor::gestionarUsuarios');
+    $routes->get('invitar', 'Supervisor::invitar');
+    $routes->post('enviarInvitacion', 'Supervisor::enviarInvitacion');
+    $routes->get('misUsuarios', 'Supervisor::misUsuarios');
+    $routes->get('dispositivosUsuarios/(:num)', 'Supervisor::dispositivosUsuarios/$1');
+    $routes->post('dispositivo/cambiarEstado', 'Supervisor::cambiarEstadoDispositivo');
+    $routes->get('dispositivo/obtener/(:num)', 'Supervisor::obtenerDispositivo/$1');
+    $routes->post('dispositivo/actualizar', 'Supervisor::actualizarDispositivo');
+    $routes->post('cambiarRol', 'Supervisor::cambiarRol');
+    $routes->post('eliminarUsuario', 'Supervisor::eliminarUsuario');
+});
+
 $routes->get('home/manual', 'Home::manual');
 
 // Rutas de dispositivos

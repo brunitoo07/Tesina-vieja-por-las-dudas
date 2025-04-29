@@ -16,16 +16,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <?php if (session()->get('logged_in') && session()->get('rol') === 'admin'): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('admin') ?>">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('admin/gestionarUsuarios') ?>">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('admin/invitar') ?>">Invitar Usuario</a>
-                        </li>
+                    <?php if (session()->get('logged_in')): ?>
+                        <?php if (session()->get('rol') === 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('admin') ?>">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('admin/gestionarUsuarios') ?>">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('admin/invitar') ?>">Invitar Usuario</a>
+                            </li>
+                        <?php elseif (session()->get('rol') === 'supervisor'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('supervisor') ?>">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('supervisor/gestionarUsuarios') ?>">Mis Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('supervisor') ?>">Dispositivos</a>
+                            </li>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </ul>
                 <ul class="navbar-nav">

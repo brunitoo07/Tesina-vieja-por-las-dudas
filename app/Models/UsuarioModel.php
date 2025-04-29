@@ -187,9 +187,12 @@ class UsuarioModel extends Model
     public function validarRol($id_rol)
     {
         try {
-            return $this->db->table('roles')
+            log_message('debug', 'Validando rol: ' . $id_rol);
+            $result = $this->db->table('roles')
                            ->where('id_rol', $id_rol)
                            ->countAllResults() > 0;
+            log_message('debug', 'Resultado de validación de rol: ' . ($result ? 'true' : 'false'));
+            return $result;
         } catch (\Exception $e) {
             log_message('error', 'Error al validar rol: ' . $e->getMessage());
             return false;

@@ -98,37 +98,53 @@ class CAutenticacion extends BaseController
 }
     public function iniciarSesion()
     {
-        $usuarioModel = new UsuarioModel();
-        
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
 
+        $usuarioModel = new UsuarioModel();
         $usuario = $usuarioModel->where('email', $email)->first();
 
-        if (!$usuario) {
-            session()->set('error', 'Email o contraseña incorrectos');
-            return redirect()->back();
+        if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
+            $rol = '';
+            switch ($usuario['id_rol']) {
+                case 1:
+                    $rol = 'admin';
+                    break;
+                case 2:
+                    $rol = 'usuario';
+                    break;
+                case 3:
+                    $rol = 'supervisor';
+                    break;
+            }
+
+            $userData = [
+                'id_usuario' => $usuario['id_usuario'],
+                'email' => $usuario['email'],
+                'rol' => $rol,
+                'logged_in' => true
+            ];
+
+            // Escribir logs directamente en un archivo
+            $logFile = WRITEPATH . 'logs/auth_debug.log';
+            $logMessage = date('Y-m-d H:i:s') . " - Usuario encontrado: " . print_r($usuario, true) . "\n";
+            $logMessage .= date('Y-m-d H:i:s') . " - ID Rol del usuario: " . $usuario['id_rol'] . "\n";
+            $logMessage .= date('Y-m-d H:i:s') . " - Rol asignado: " . $rol . "\n";
+            $logMessage .= date('Y-m-d H:i:s') . " - Datos de usuario guardados en sesión: " . print_r($userData, true) . "\n";
+            
+            file_put_contents($logFile, $logMessage, FILE_APPEND);
+
+            session()->set($userData);
+            
+            // Verificar si los datos se guardaron correctamente
+            $sessionData = session()->get();
+            $logMessage = date('Y-m-d H:i:s') . " - Datos en sesión después de guardar: " . print_r($sessionData, true) . "\n";
+            file_put_contents($logFile, $logMessage, FILE_APPEND);
+
+            return redirect()->to('/' . $rol);
         }
 
-        if (!password_verify($contrasena, $usuario['contrasena'])) {
-            session()->set('error', 'Email o contraseña incorrectos');
-            return redirect()->back();
-        }
-
-        // Guardar datos del usuario en la sesión
-        $userData = [
-            'id_usuario' => $usuario['id_usuario'],
-            'email' => $usuario['email'],
-            'nombre' => $usuario['nombre'],
-            'apellido' => $usuario['apellido'],
-            'rol' => $usuario['id_rol'] == 1 ? 'admin' : 'usuario',
-            'logged_in' => true
-        ];
-
-        session()->set($userData);
-        log_message('debug', 'Datos de usuario guardados en sesión: ' . print_r($userData, true));
-
-        return redirect()->to('home/bienvenida');
+        return redirect()->back()->with('error', 'Email o contraseña incorrectos');
     }
     
     
