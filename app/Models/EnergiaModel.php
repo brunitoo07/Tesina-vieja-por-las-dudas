@@ -7,7 +7,7 @@ class EnergiaModel extends Model
 {
     protected $table = 'energia';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh', 'fecha'];
+    protected $allowedFields = ['mac_address', 'voltaje', 'corriente', 'potencia', 'kwh', 'fecha'];
     protected $useTimestamps = false;
    
 

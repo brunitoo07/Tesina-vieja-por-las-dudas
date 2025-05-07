@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\RESTful\ResourceController;
 use App\Models\EnergiaModel;
 use App\Models\DispositivoModel;
 use App\Models\LimiteConsumoModel;
 
-class Energia extends BaseController
+class Energia extends ResourceController
 {
     protected $energiaModel;
     protected $limiteModel;
@@ -19,54 +20,27 @@ class Energia extends BaseController
 
     public function recibirDatos()
     {
-        $json = file_get_contents('php://input');
-        log_message('debug', '📩 JSON recibido: ' . $json);
-        
-        $inputData = $this->request->getJSON();
-        if (!$inputData || !isset($inputData->mac_address)) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Formato JSON inválido o falta MAC address'
-            ]);
+        $json = $this->request->getJSON();
+
+        if (!$json) {
+            return $this->fail('No se recibieron datos válidos.', 400);
         }
-    
-        $energiaModel = new EnergiaModel();
-        $dispositivo = $dispositivoModel->where('mac_address', $inputData->mac_address)->first();
-        
-        if (!$dispositivo) {
-            return $this->response->setJSON([
-                'status' => 'error', 
-                'message' => 'Dispositivo no registrado'
-            ]);
-        }
-    
+
         $data = [
-            'id_dispositivo' => (int) $dispositivo['id'],
-            'id_usuario' => (int) $dispositivo['id_usuario'],
-            'voltaje' => isset($inputData->voltaje) ? (float) $inputData->voltaje : null,
-            'corriente' => isset($inputData->corriente) ? (float) $inputData->corriente : null,
-            'potencia' => isset($inputData->potencia) ? (float) $inputData->potencia : null,
-            'kwh' => (float) $inputData->kwh,
-            'fecha' => date('Y-m-d H:i:s')
+            'mac_address' => $json->mac_address ?? null,
+            'voltaje' => $json->voltaje ?? null,
+            'corriente' => $json->corriente ?? null,
+            'potencia' => $json->potencia ?? null,
+            'kwh' => $json->kwh ?? null,
+            'fecha' => date('Y-m-d H:i:s'),
         ];
-    
-        log_message('debug', 'Datos preparados: ' . print_r($data, true));
-    
-        try {
-            $insertId = $this->energiaModel->insert($data);
-            log_message('debug', 'Insert realizado. ID: ' . $insertId);
-            
-            return $this->response->setJSON([
-                'status' => 'success',
-                'inserted_id' => $insertId
-            ]);
-        } catch (\Exception $e) {
-            log_message('error', 'Error al insertar: ' . $e->getMessage());
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Error en base de datos',
-                'error' => $e->getMessage()
-            ]);
+
+        $model = new EnergiaModel();
+
+        if ($model->insert($data)) {
+            return $this->respond(['message' => 'Datos almacenados correctamente.'], 200);
+        } else {
+            return $this->fail('Error al guardar los datos.', 500);
         }
     }
 

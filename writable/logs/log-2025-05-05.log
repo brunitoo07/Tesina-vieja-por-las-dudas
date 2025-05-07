@@ -1,0 +1,239 @@
+INFO - 2025-05-05 13:24:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-05 13:24:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-05 13:25:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:09 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:09 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:12 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-05 13:25:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:14 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:14 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:16 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:16 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:17 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:17 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:18 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:19 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:20 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/43
+INFO - 2025-05-05 13:25:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:20 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:24 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-05 13:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:24 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/43
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:24 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-05 13:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:24 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:28 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-05 13:25:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:28 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+CRITICAL - 2025-05-05 13:25:28 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/1]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-05 13:25:28 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/2]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-05 13:25:37 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/13
+INFO - 2025-05-05 13:25:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:37 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/1
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-05 13:25:44 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-05 13:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:25:44 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/13
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+CRITICAL - 2025-05-05 13:25:45 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/1]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-05 13:25:45 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/2]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-05 13:26:04 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/ver/1]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-05 13:26:08 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-05 13:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:26:08 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/1
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+CRITICAL - 2025-05-05 13:26:08 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/1]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-05 13:26:08 --> Error: Class "App\Models\LecturaModel" not found
+[Method: GET, Route: consumo/grafico/2]
+in APPPATH\Controllers\Consumo.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Consumo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-05-05 13:27:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:27:12 --> Ruta actual: /Tesina/public/home/bienvenida
+INFO - 2025-05-05 13:27:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-05 13:27:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746462297
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/1
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+INFO - 2025-05-05 13:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-05 13:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-05 13:27:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-05 13:50:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
