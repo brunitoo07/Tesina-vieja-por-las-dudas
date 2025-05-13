@@ -20,30 +20,68 @@ class Energia extends ResourceController
 
     public function recibirDatos()
     {
+        helper('text');
+        log_message('info', 'Solicitud recibida en recibirDatos');
+
         $json = $this->request->getJSON();
+        log_message('debug', 'Datos recibidos: ' . print_r($json, true));
 
         if (!$json) {
+            log_message('error', 'No se recibieron datos JSON válidos');
             return $this->fail('No se recibieron datos válidos.', 400);
         }
 
-        $data = [
-            'mac_address' => $json->mac_address ?? null,
-            'voltaje' => $json->voltaje ?? null,
-            'corriente' => $json->corriente ?? null,
-            'potencia' => $json->potencia ?? null,
-            'kwh' => $json->kwh ?? null,
+        // Validación de campos
+        $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
+        foreach ($requiredFields as $field) {
+            if (!isset($json->$field)) {
+                log_message('error', "Campo faltante: {$field}");
+                return $this->fail("Campo requerido faltante: {$field}", 400);
+            }
+        }
+
+        // Buscar dispositivo
+        log_message('info', "Buscando dispositivo con MAC: {$json->mac_address}");
+        $dispositivoModel = new \App\Models\DispositivoModel();
+        $dispositivo = $dispositivoModel->where('mac_address', $json->mac_address)->first();
+
+        if (!$dispositivo) {
+            log_message('error', "Dispositivo no encontrado para MAC: {$json->mac_address}");
+            return $this->fail('Dispositivo no encontrado.', 404);
+        }
+        log_message('info', "Dispositivo encontrado - ID: {$dispositivo['id_dispositivo']}");
+
+        // Insertar en energia
+        $energiaData = [
+            'id_dispositivo' => $dispositivo['id_dispositivo'],
+            'id_usuario' => $dispositivo['id_usuario'],
+            'voltaje' => (float)$json->voltaje,
+            'corriente' => (float)$json->corriente,
+            'potencia' => (float)$json->potencia,
+            'kwh' => (float)$json->kwh,
             'fecha' => date('Y-m-d H:i:s'),
+            'mac_address' => $json->mac_address
         ];
 
-        $model = new EnergiaModel();
+        log_message('debug', 'Datos para insertar en energia: ' . print_r($energiaData, true));
 
-        if ($model->insert($data)) {
+        // ********************* INICIO del bloque try...catch *********************
+        try {
+            if (!$this->energiaModel->insert($energiaData)) {
+                $errors = $this->energiaModel->errors();
+                log_message('error', 'Error al insertar en energia: ' . print_r($errors, true));
+                return $this->fail('Error al guardar datos de energía.', 500);
+            }
+
+            log_message('info', 'Datos insertados correctamente en energia');
             return $this->respond(['message' => 'Datos almacenados correctamente.'], 200);
-        } else {
-            return $this->fail('Error al guardar los datos.', 500);
-        }
-    }
 
+        } catch (\Exception $e) {
+            log_message('error', 'Excepción al insertar en energia: ' . $e->getMessage() . ' - ' . $e->getTraceAsString());
+            return $this->fail('Error al guardar datos de energía (excepción).', 500);
+        }
+        // ********************** FIN del bloque try...catch **********************
+    }
     public function getLatestData()
     {
         $ultimoDato = $this->energiaModel->getLatestData();
@@ -53,20 +91,20 @@ class Energia extends ResourceController
     public function index()
     {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $fechaActual = date('Y-m-d H:i:s'); 
+        $fechaActual = date('Y-m-d H:i:s');
 
         $direction = $this->request->getGet('direction') ?? 'DESC';
         $id_usuario = session()->get('id_usuario');
 
         $data['energia'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                               ->orderBy('id', $direction)
-                                               ->findAll();
+                                             ->orderBy('id', $direction)
+                                             ->findAll();
 
         $data['direction'] = $direction;
 
         $data['ultimoDato'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                                 ->orderBy('id', 'DESC')
-                                                 ->first();
+                                                ->orderBy('id', 'DESC')
+                                                ->first();
 
         // Limite de consumo desde la tabla nueva
         $limiteData = $this->limiteModel->getLimite($id_usuario);
@@ -91,7 +129,7 @@ class Energia extends ResourceController
     {
         $id_usuario = session()->get('id_usuario');
         $nuevo_limite = $this->request->getPost('nuevo_limite');
-        
+
         $this->limiteModel->setLimite($id_usuario, $nuevo_limite);
 
         return redirect()->to('/energia');
@@ -105,4 +143,59 @@ class Energia extends ResourceController
         }
         return view('energia/ver_datos', $data);
     }
+
+    // NUEVA FUNCIÓN DE PRUEBA
+    public function recibirNuevosDatos()
+    {
+        helper('text');
+        log_message('info', 'Solicitud recibida en recibirNuevosDatos');
+
+        $json = $this->request->getJSON();
+        log_message('debug', 'Datos recibidos en nuevos_datos: ' . print_r($json, true));
+
+        if (!$json) {
+            log_message('error', 'No se recibieron datos JSON válidos en nuevos_datos');
+            return $this->fail('No se recibieron datos válidos.', 400);
+        }
+
+        $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
+        foreach ($requiredFields as $field) {
+            if (!isset($json->$field)) {
+                log_message('error', "Campo faltante en nuevos_datos: {$field}");
+                return $this->fail("Campo requerido faltante: {$field}", 400);
+            }
+        }
+
+        $dispositivoModel = new \App\Models\DispositivoModel();
+        $dispositivo = $dispositivoModel->where('mac_address', $json->mac_address)->first();
+
+        if (!$dispositivo) {
+            log_message('error', "Dispositivo no encontrado para MAC en nuevos_datos: {$json->mac_address}");
+            return $this->fail('Dispositivo no encontrado.', 404);
+        }
+        log_message('info', "Dispositivo encontrado - ID en nuevos_datos: {$dispositivo['id_dispositivo']}");
+
+        $energiaData = [
+            'id_dispositivo' => $dispositivo['id_dispositivo'],
+            'id_usuario' => $dispositivo['id_usuario'],
+            'voltaje' => (float)$json->voltaje,
+            'corriente' => (float)$json->corriente,
+            'potencia' => (float)$json->potencia,
+            'kwh' => (float)$json->kwh,
+            'fecha' => date('Y-m-d H:i:s'),
+            'mac_address' => $json->mac_address
+        ];
+
+        log_message('debug', 'Datos para insertar en energia (nuevos_datos): ' . print_r($energiaData, true));
+
+        if (!$this->energiaModel->insert($energiaData)) {
+            $errors = $this->energiaModel->errors();
+            log_message('error', 'Error al insertar en energia (nuevos_datos): ' . print_r($errors, true));
+            return $this->fail('Error al guardar datos de energía.', 500);
+        }
+
+        log_message('info', 'Datos insertados correctamente en energia (nuevos_datos)');
+        return $this->respond(['message' => 'Datos almacenados correctamente (nuevos_datos).'], 200);
+    }
+
 }

@@ -82,4 +82,20 @@ class Dispositivo extends BaseController
 
         return redirect()->to('dispositivo');
     }
+
+    public function configurar()
+    {
+        if ($this->request->getMethod() === 'post') {
+            $nombre = $this->request->getPost('nombre');
+            $ssid = $this->request->getPost('ssid');
+            $password = $this->request->getPost('password');
+
+            // Aquí puedes agregar lógica para enviar estos datos al ESP32
+            // o guardarlos en la base de datos si es necesario.
+
+            return redirect()->to('/dispositivo/configurar')->with('success', 'Configuración guardada correctamente.');
+        }
+
+        return view('dispositivo/configurar');
+    }
 }

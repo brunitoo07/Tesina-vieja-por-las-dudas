@@ -1,0 +1,953 @@
+INFO - 2025-05-07 11:05:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 11:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 11:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:46 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-07 11:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:46 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:07:46 --> Buscando usuario ID: 1
+DEBUG - 2025-05-07 11:07:46 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 10:55:32
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:07:46 --> Buscando usuario ID: 
+DEBUG - 2025-05-07 11:07:46 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 29
+            [nombre] => lorena
+            [apellido] => ramirez
+            [email] => lorenita@gmail.com
+            [contrasena] => $2y$10$YvH1aTcbMHw6AZlRMOqOoOb9bxGSfupVALSzruZVIcKZF8G6lB2IC
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 12:28:53
+            [updated_at] => 2025-04-11 01:40:15
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 22
+            [nombre] => ennzo
+            [apellido] => fernandez
+            [email] => enzof@gmail.com
+            [contrasena] => $2y$10$7Jefk2Lft0.raSv9aMh6b.nm0.htn5tOXNWtW/JjwrvDyA/hcjeJa
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-08 11:09:37
+            [updated_at] => 2025-04-11 01:40:21
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 20
+            [nombre] => sasha
+            [apellido] => ferro
+            [email] => sasha@gmail.com
+            [contrasena] => $2y$10$fjJnPro4sAhNdAdVCMRppum3dL/uFApMBvKrSO5vpSL7/MQwKhDGi
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 15:01:22
+            [updated_at] => 2025-04-11 01:03:57
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 14
+            [nombre] => cristian 
+            [apellido] => JAJAJAJ
+            [email] => cristian@gmail.com
+            [contrasena] => $2y$10$YPAM8gcoLySBVuxY3zUp7OdT1bwOUpaYAnHPw4cVVMobiw4cQyWwC
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-04-07 13:37:30
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+DEBUG - 2025-05-07 11:07:52 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-07 11:07:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:52 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:07:52 --> Buscando usuario ID: 1
+DEBUG - 2025-05-07 11:07:52 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 10:55:32
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:07:52 --> Buscando usuario ID: 
+DEBUG - 2025-05-07 11:07:52 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 29
+            [nombre] => lorena
+            [apellido] => ramirez
+            [email] => lorenita@gmail.com
+            [contrasena] => $2y$10$YvH1aTcbMHw6AZlRMOqOoOb9bxGSfupVALSzruZVIcKZF8G6lB2IC
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 12:28:53
+            [updated_at] => 2025-04-11 01:40:15
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 22
+            [nombre] => ennzo
+            [apellido] => fernandez
+            [email] => enzof@gmail.com
+            [contrasena] => $2y$10$7Jefk2Lft0.raSv9aMh6b.nm0.htn5tOXNWtW/JjwrvDyA/hcjeJa
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-08 11:09:37
+            [updated_at] => 2025-04-11 01:40:21
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 20
+            [nombre] => sasha
+            [apellido] => ferro
+            [email] => sasha@gmail.com
+            [contrasena] => $2y$10$fjJnPro4sAhNdAdVCMRppum3dL/uFApMBvKrSO5vpSL7/MQwKhDGi
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 15:01:22
+            [updated_at] => 2025-04-11 01:03:57
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 3
+            [nombre] => mateo
+            [apellido] => cameille
+            [email] => mateito@gmail.com
+            [contrasena] => $2y$10$E3dKXizu.mLU5j0cUk/Iw.I.j1SsGZidsYiHGXZmvT/YHFf6FrQ0C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-04-07 13:37:30
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+DEBUG - 2025-05-07 11:07:53 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-07 11:07:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:53 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:07:53 --> Buscando usuario ID: 1
+DEBUG - 2025-05-07 11:07:53 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 10:55:32
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:07:53 --> Buscando usuario ID: 
+DEBUG - 2025-05-07 11:07:53 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 29
+            [nombre] => lorena
+            [apellido] => ramirez
+            [email] => lorenita@gmail.com
+            [contrasena] => $2y$10$YvH1aTcbMHw6AZlRMOqOoOb9bxGSfupVALSzruZVIcKZF8G6lB2IC
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 12:28:53
+            [updated_at] => 2025-04-11 01:40:15
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 22
+            [nombre] => ennzo
+            [apellido] => fernandez
+            [email] => enzof@gmail.com
+            [contrasena] => $2y$10$7Jefk2Lft0.raSv9aMh6b.nm0.htn5tOXNWtW/JjwrvDyA/hcjeJa
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-08 11:09:37
+            [updated_at] => 2025-04-11 01:40:21
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 20
+            [nombre] => sasha
+            [apellido] => ferro
+            [email] => sasha@gmail.com
+            [contrasena] => $2y$10$fjJnPro4sAhNdAdVCMRppum3dL/uFApMBvKrSO5vpSL7/MQwKhDGi
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 15:01:22
+            [updated_at] => 2025-04-11 01:03:57
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 3
+            [nombre] => mateo
+            [apellido] => cameille
+            [email] => mateito@gmail.com
+            [contrasena] => $2y$10$E3dKXizu.mLU5j0cUk/Iw.I.j1SsGZidsYiHGXZmvT/YHFf6FrQ0C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-04-07 13:37:30
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+DEBUG - 2025-05-07 11:07:54 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-07 11:07:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:54 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:07:55 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/13
+INFO - 2025-05-07 11:07:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:55 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:07:55 --> Buscando usuario ID: 13
+DEBUG - 2025-05-07 11:07:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 13
+    [nombre] => dario
+    [apellido] => BERAGALIA
+    [email] => dariobergagna@gmail.com
+    [contrasena] => $2y$10$Xdki8XC1qjdrXhXX/Yd48uQdtBiwiLMeTo5HvQMDxXj7KiR2shDoC
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 09:30:56
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:07:56 --> Buscando usuario ID: 1
+DEBUG - 2025-05-07 11:07:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 10:55:32
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:07:58 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-07 11:07:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:07:58 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/13
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:02 --> Ruta actual: /Tesina/public/supervisor/cambiarRol
+INFO - 2025-05-07 11:08:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:02 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:02 --> Buscando usuario ID: 13
+DEBUG - 2025-05-07 11:08:02 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 13
+    [nombre] => dario
+    [apellido] => BERAGALIA
+    [email] => dariobergagna@gmail.com
+    [contrasena] => $2y$10$Xdki8XC1qjdrXhXX/Yd48uQdtBiwiLMeTo5HvQMDxXj7KiR2shDoC
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 09:30:56
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:08:02 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-07 11:08:02 --> ID Usuario: 13
+DEBUG - 2025-05-07 11:08:02 --> Datos recibidos: Array
+(
+    [id_rol] => 2
+)
+
+DEBUG - 2025-05-07 11:08:02 --> Buscando usuario ID: 13
+DEBUG - 2025-05-07 11:08:02 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 13
+    [nombre] => dario
+    [apellido] => BERAGALIA
+    [email] => dariobergagna@gmail.com
+    [contrasena] => $2y$10$Xdki8XC1qjdrXhXX/Yd48uQdtBiwiLMeTo5HvQMDxXj7KiR2shDoC
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 09:30:56
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:08:02 --> Datos finales para actualización: Array
+(
+    [id_rol] => 2
+    [updated_at] => 2025-05-07 11:08:02
+)
+
+DEBUG - 2025-05-07 11:08:02 --> Resultado de la actualización: true
+DEBUG - 2025-05-07 11:08:02 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-07 11:08:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:02 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:09 --> Ruta actual: /Tesina/public/supervisor/cambiarRol
+INFO - 2025-05-07 11:08:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:09 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:09 --> Buscando usuario ID: 13
+DEBUG - 2025-05-07 11:08:09 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 13
+    [nombre] => dario
+    [apellido] => BERAGALIA
+    [email] => dariobergagna@gmail.com
+    [contrasena] => $2y$10$Xdki8XC1qjdrXhXX/Yd48uQdtBiwiLMeTo5HvQMDxXj7KiR2shDoC
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-07 11:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:08:09 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-07 11:08:09 --> ID Usuario: 13
+DEBUG - 2025-05-07 11:08:09 --> Datos recibidos: Array
+(
+    [id_rol] => 1
+)
+
+DEBUG - 2025-05-07 11:08:09 --> Buscando usuario ID: 13
+DEBUG - 2025-05-07 11:08:09 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 13
+    [nombre] => dario
+    [apellido] => BERAGALIA
+    [email] => dariobergagna@gmail.com
+    [contrasena] => $2y$10$Xdki8XC1qjdrXhXX/Yd48uQdtBiwiLMeTo5HvQMDxXj7KiR2shDoC
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-07 11:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:08:09 --> Datos finales para actualización: Array
+(
+    [id_rol] => 1
+    [updated_at] => 2025-05-07 11:08:09
+)
+
+DEBUG - 2025-05-07 11:08:09 --> Resultado de la actualización: true
+DEBUG - 2025-05-07 11:08:10 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-07 11:08:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:10 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:14 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-07 11:08:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:14 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:15 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-07 11:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:08:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1746626852
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-07 11:08:15 --> Buscando usuario ID: 1
+DEBUG - 2025-05-07 11:08:15 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-04-29 10:55:32
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-07 11:08:15 --> Buscando usuario ID: 
+DEBUG - 2025-05-07 11:08:15 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 29
+            [nombre] => lorena
+            [apellido] => ramirez
+            [email] => lorenita@gmail.com
+            [contrasena] => $2y$10$YvH1aTcbMHw6AZlRMOqOoOb9bxGSfupVALSzruZVIcKZF8G6lB2IC
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 12:28:53
+            [updated_at] => 2025-04-11 01:40:15
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 22
+            [nombre] => ennzo
+            [apellido] => fernandez
+            [email] => enzof@gmail.com
+            [contrasena] => $2y$10$7Jefk2Lft0.raSv9aMh6b.nm0.htn5tOXNWtW/JjwrvDyA/hcjeJa
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-08 11:09:37
+            [updated_at] => 2025-04-11 01:40:21
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 20
+            [nombre] => sasha
+            [apellido] => ferro
+            [email] => sasha@gmail.com
+            [contrasena] => $2y$10$fjJnPro4sAhNdAdVCMRppum3dL/uFApMBvKrSO5vpSL7/MQwKhDGi
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 15:01:22
+            [updated_at] => 2025-04-11 01:03:57
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 8
+            [nombre] => holanda
+            [apellido] => jaja
+            [email] => Holanda@gmail.com
+            [contrasena] => $2y$10$oMLV.8SEaFDrTxquJXZt5eSlje65FJ/.9R9JvViUIhdVDCoSXV4hG
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-04-07 13:37:30
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+INFO - 2025-05-07 11:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 11:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 11:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 11:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-07 11:11:07 --> Accediendo al método index del controlador Compra
+INFO - 2025-05-07 11:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 13:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-07 13:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

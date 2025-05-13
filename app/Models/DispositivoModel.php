@@ -147,4 +147,9 @@ class DispositivoModel extends Model
     {
         return $this->find($idDispositivo);
     }
-} 
+
+    public function getDispositivoByMac($macAddress)
+    {
+        return $this->where('mac_address', $macAddress)->first();
+    }
+}

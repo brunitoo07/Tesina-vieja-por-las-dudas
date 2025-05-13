@@ -45,7 +45,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
-    $routes->get('energia/recibirDatos', 'Energia::recibirDatos');
+
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
@@ -87,7 +87,15 @@ $routes->group('dispositivo', ['filter' => 'auth'], function($routes) {
     $routes->get('agregar', 'Dispositivo::agregar');
     $routes->post('guardar', 'Dispositivo::guardar');
     $routes->post('eliminar/(:num)', 'Dispositivo::eliminar/$1');
+    $routes->get('configurar', 'Dispositivo::configurar');
+    $routes->post('configurar', 'Dispositivo::configurar');
 });
 
 $routes->get('consumo/ver/(:num)', 'Consumo::verDatos/$1');
 $routes->get('consumo/grafico/(:num)', 'Consumo::grafico/$1');
+$routes->get('mediciones/(:num)', 'Mediciones::index/$1');
+$routes->get('energia', 'Energia::index');
+
+
+// NUEVA RUTA DE PRUEBA
+$routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');

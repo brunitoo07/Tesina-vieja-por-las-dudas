@@ -156,4 +156,9 @@ class EnergiaModel extends Model
     {
         return $this->insert($datos);
     }
+
+    public function getLecturasByUsuario($idUsuario)
+    {
+        return $this->where('id_usuario', $idUsuario)->orderBy('fecha', 'DESC')->findAll();
+    }
 }

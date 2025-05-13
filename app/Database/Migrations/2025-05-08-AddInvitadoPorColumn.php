@@ -1,0 +1,1 @@
+ALTER TABLE usuarios ADD COLUMN invitado_por INT NULL;
