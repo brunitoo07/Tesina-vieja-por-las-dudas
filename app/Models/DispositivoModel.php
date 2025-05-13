@@ -6,46 +6,45 @@ class DispositivoModel extends Model
 {
     protected $table = 'dispositivos';
     protected $primaryKey = 'id_dispositivo';
-    protected $allowedFields = ['nombre', 'mac_address', 'id_usuario', 'estado', 'created_at'];
+    protected $allowedFields = ['nombre', 'descripcion', 'estado', 'id_usuario'];
     protected $useTimestamps = false; // Importante: desactiva si manejas created_at manualme
 
     public function obtenerDispositivosUsuario($idUsuario)
     {
-        log_message('debug', 'Buscando dispositivos para usuario ID: ' . $idUsuario);
+        $db = \Config\Database::connect();
         
         // Obtener el rol del usuario
-        $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->find($idUsuario);
+        $usuario = $db->table('usuario')
+                     ->select('id_rol')
+                     ->where('id_usuario', $idUsuario)
+                     ->get()
+                     ->getRow();
         
         if (!$usuario) {
-            log_message('error', 'Usuario no encontrado: ' . $idUsuario);
             return [];
         }
-        
-        // Si es administrador, obtener todos los dispositivos
-        if ($usuario['id_rol'] == 1) {
-            $dispositivos = $this->findAll();
-        } else {
-            // Si es usuario normal, obtener sus dispositivos y los del administrador que lo invitó
-            $invitacionModel = new InvitacionModel();
-            $invitacion = $invitacionModel->where('email', $usuario['email'])
-                                        ->where('estado', 'aceptada')
-                                        ->first();
-            
-            if ($invitacion) {
-                $dispositivos = $this->where('id_usuario', $idUsuario)
-                                   ->orWhere('id_usuario', $invitacion['id_usuario'])
-                                   ->findAll();
-            } else {
-                $dispositivos = $this->where('id_usuario', $idUsuario)
-                                   ->findAll();
-            }
+
+        // Si es supervisor (id_rol = 3), puede ver todos los dispositivos
+        if ($usuario->id_rol == 3) {
+            return $this->findAll();
         }
-                           
-        log_message('debug', 'Consulta SQL: ' . $this->getLastQuery());
-        log_message('debug', 'Dispositivos encontrados: ' . print_r($dispositivos, true));
-        
-        return $dispositivos;
+
+        // Si es admin (id_rol = 1), puede ver sus dispositivos y los de los usuarios que invitó
+        if ($usuario->id_rol == 1) {
+            // Obtener usuarios invitados por este admin
+            $invitacionModel = new \App\Models\InvitacionModel();
+            $usuariosInvitados = $invitacionModel->where('invitado_por', $idUsuario)
+                                               ->where('estado', 'aceptada')
+                                               ->findAll();
+            
+            $idsUsuarios = array_column($usuariosInvitados, 'id_usuario');
+            $idsUsuarios[] = $idUsuario; // Incluir también al admin
+            
+            return $this->whereIn('id_usuario', $idsUsuarios)->findAll();
+        }
+
+        // Si es usuario normal (id_rol = 2), solo puede ver sus dispositivos
+        return $this->where('id_usuario', $idUsuario)->findAll();
     }
 
     public function vincularDispositivo($idUsuario, $macAddress, $nombre)
@@ -137,5 +136,15 @@ class DispositivoModel extends Model
         }
         
         return $builder->get()->getResultArray();
+    }
+
+    public function cambiarEstado($idDispositivo, $estado)
+    {
+        return $this->update($idDispositivo, ['estado' => $estado]);
+    }
+
+    public function obtenerDispositivo($idDispositivo)
+    {
+        return $this->find($idDispositivo);
     }
 } 

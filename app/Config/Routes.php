@@ -31,16 +31,24 @@ $routes->get('compra/completada', 'Compra::completada');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
+    $routes->get('dashboard', 'Home::index');
+    $routes->get('perfil/perfil', 'CUsuario::perfil');
+    $routes->post('perfil/perfil', 'CUsuario::perfil');
+    $routes->get('usuario/cambiarContrasena', 'CUsuario::cambiarContrasena');
+    $routes->post('usuario/cambiarContrasena', 'CUsuario::cambiarContrasena');
+    $routes->get('dispositivo/agregar', 'Dispositivo::agregar');
+    $routes->post('dispositivo/agregar', 'Dispositivo::agregar');
+    $routes->get('dispositivo/eliminar/(:num)', 'Dispositivo::eliminar/$1');
+    $routes->get('energia/verDatos/(:num)', 'Consumo::verDatos/$1');
     $routes->get('home', 'Home::index');
     $routes->get('home/bienvenida', 'Home::bienvenida');
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
     $routes->get('energia/recibirDatos', 'Energia::recibirDatos');
-
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
-    $routes->get('perfil/perfil', 'CUsuario::perfil');
+    $routes->get('usuario', 'CUsuario::index');
 });
 
 // Rutas del panel de administración
@@ -52,6 +60,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('eliminarUsuario', 'Admin::eliminarUsuario');
     $routes->post('cambiarRol', 'Admin::cambiarRol');
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
+    $routes->get('usuario', 'Admin::gestionarUsuarios');
 });
 
 // Rutas del supervisor
@@ -67,6 +76,7 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
     $routes->post('dispositivo/actualizar', 'Supervisor::actualizarDispositivo');
     $routes->post('cambiarRol', 'Supervisor::cambiarRol');
     $routes->post('eliminarUsuario', 'Supervisor::eliminarUsuario');
+    $routes->get('usuario', 'Supervisor::gestionarUsuarios');
 });
 
 $routes->get('home/manual', 'Home::manual');

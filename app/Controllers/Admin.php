@@ -7,6 +7,7 @@ use App\Models\UsuarioModel;
 use App\Models\RolesModel;
 use App\Models\InvitacionModel;
 use App\Controllers\CCorreo;
+use App\Models\DispositivoModel;
 
 
 class Admin extends BaseController
@@ -14,41 +15,59 @@ class Admin extends BaseController
     protected $usuarioModel;
     protected $rolesModel;
     protected $db;
+    protected $dispositivoModel;
 
     public function __construct()
     {
         $this->usuarioModel = new UsuarioModel();
         $this->rolesModel = new RolesModel();
         $this->db = \Config\Database::connect();
+        $this->dispositivoModel = new DispositivoModel();
     }
 
     public function index()
     {
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            if (session()->get('error')) {
-                session()->remove('error');
-            }
             return redirect()->to('/autenticacion/login');
         }
 
+        $idAdmin = session()->get('id_usuario');
+        
+        // Obtener usuarios invitados por este admin
+        $invitacionModel = new InvitacionModel();
+        $usuariosInvitados = $invitacionModel->where('invitado_por', $idAdmin)
+                                           ->where('estado', 'aceptada')
+                                           ->findAll();
+        
+        $idsUsuarios = array_column($usuariosInvitados, 'id_usuario');
+        $idsUsuarios[] = $idAdmin; // Incluir también al admin
+        
+        // Obtener información de los usuarios invitados
+        $usuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
+                                     ->join('roles', 'roles.id_rol = usuario.id_rol')
+                                     ->whereIn('usuario.id_usuario', $idsUsuarios)
+                                     ->findAll();
+        
+        // Obtener dispositivos de los usuarios invitados
+        $dispositivos = $this->dispositivoModel->whereIn('id_usuario', $idsUsuarios)
+                                             ->findAll();
+        
+        // Obtener los últimos 10 usuarios registrados (solo los invitados)
+        $ultimosUsuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
+                                             ->join('roles', 'roles.id_rol = usuario.id_rol')
+                                             ->whereIn('usuario.id_usuario', $idsUsuarios)
+                                             ->orderBy('usuario.created_at', 'DESC')
+                                             ->limit(10)
+                                             ->find();
+        
+        // Obtener total de dispositivos
+        $totalDispositivos = count($dispositivos);
+
         $data = [
-            'usuarios' => $this->usuarioModel
-                ->select('usuario.*, roles.nombre_rol')
-                ->join('roles', 'roles.id_rol = usuario.id_rol')
-                ->where('usuario.id_rol', 2)
-                ->findAll() ?? [],
-            'admins' => $this->usuarioModel
-                ->select('usuario.*, roles.nombre_rol')
-                ->join('roles', 'roles.id_rol = usuario.id_rol')
-                ->where('usuario.id_rol', 1)
-                ->findAll() ?? [],
-            'ultimosUsuarios' => $this->usuarioModel
-                ->select('usuario.*, roles.nombre_rol')
-                ->join('roles', 'roles.id_rol = usuario.id_rol')
-                ->orderBy('created_at', 'DESC')
-                ->limit(5)
-                ->findAll() ?? [],
-            'totalDispositivos' => 0,
+            'usuarios' => $usuarios,
+            'dispositivos' => $dispositivos,
+            'ultimosUsuarios' => $ultimosUsuarios,
+            'totalDispositivos' => $totalDispositivos
         ];
 
         return view('admin/dashboard', $data);

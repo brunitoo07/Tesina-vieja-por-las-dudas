@@ -83,4 +83,77 @@ class EnergiaModel extends Model
             ]);
         }
     }
+
+    public function obtenerConsumo24Horas($idUsuario)
+    {
+        $db = \Config\Database::connect();
+        
+        // Obtener los IDs de los dispositivos del usuario
+        $dispositivos = $db->table('dispositivos')
+                          ->select('id_dispositivo')
+                          ->where('id_usuario', $idUsuario)
+                          ->get()
+                          ->getResultArray();
+        
+        $idsDispositivos = array_column($dispositivos, 'id_dispositivo');
+        
+        if (empty($idsDispositivos)) {
+            return 0;
+        }
+
+        // Calcular el consumo total de los últimos 24 horas
+        $fechaInicio = date('Y-m-d H:i:s', strtotime('-24 hours'));
+        
+        $query = $db->table('energia')
+                   ->select('SUM(kwh) as total_consumo')
+                   ->whereIn('id_dispositivo', $idsDispositivos)
+                   ->where('fecha >=', $fechaInicio)
+                   ->get();
+        
+        $resultado = $query->getRow();
+        return $resultado ? $resultado->total_consumo : 0;
+    }
+
+    public function obtenerConsumoPromedioDiario($idUsuario)
+    {
+        $db = \Config\Database::connect();
+        
+        // Obtener los IDs de los dispositivos del usuario
+        $dispositivos = $db->table('dispositivos')
+                          ->select('id_dispositivo')
+                          ->where('id_usuario', $idUsuario)
+                          ->get()
+                          ->getResultArray();
+        
+        $idsDispositivos = array_column($dispositivos, 'id_dispositivo');
+        
+        if (empty($idsDispositivos)) {
+            return 0;
+        }
+
+        // Calcular el consumo promedio diario de los últimos 30 días
+        $fechaInicio = date('Y-m-d H:i:s', strtotime('-30 days'));
+        
+        $query = $db->table('energia')
+                   ->select('AVG(kwh) as promedio_diario')
+                   ->whereIn('id_dispositivo', $idsDispositivos)
+                   ->where('fecha >=', $fechaInicio)
+                   ->get();
+        
+        $resultado = $query->getRow();
+        return $resultado ? $resultado->promedio_diario : 0;
+    }
+
+    public function obtenerUltimosDatos($idDispositivo, $limite = 10)
+    {
+        return $this->where('id_dispositivo', $idDispositivo)
+                   ->orderBy('fecha', 'DESC')
+                   ->limit($limite)
+                   ->findAll();
+    }
+
+    public function insertarDatos($datos)
+    {
+        return $this->insert($datos);
+    }
 }
