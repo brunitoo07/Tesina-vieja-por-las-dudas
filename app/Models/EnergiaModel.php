@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -7,13 +8,21 @@ class EnergiaModel extends Model
 {
     protected $table = 'energia';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['mac_address', 'voltaje', 'corriente', 'potencia', 'kwh', 'fecha'];
+    protected $useAutoIncrement = true;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh', 'fecha', 'mac_address'];
     protected $useTimestamps = false;
-   
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
 
-    public function insertData($data)
+    public function getLatestData()
     {
-        return $this->insert($data);
+        return $this->orderBy('fecha', 'DESC')->findAll(1);
     }
 
     public function getConsumoDiario($id_usuario = null)
@@ -24,9 +33,9 @@ class EnergiaModel extends Model
         }
         $hoy = date('Y-m-d');
         $consumo = $builder->select('SUM(kwh) as total')
-                          ->where('DATE(fecha)', $hoy)
-                          ->get()
-                          ->getRow();
+                            ->where('DATE(fecha)', $hoy)
+                            ->get()
+                            ->getRow()->kwh ?? 0;
         return $consumo ? $consumo->total : 0;
     }
 
@@ -35,19 +44,6 @@ class EnergiaModel extends Model
         return $this->orderBy('id', 'DESC')->findAll();
     }
 
-    public function getLatestData($id_usuario = null)
-    {
-        $builder = $this->builder();
-        if ($id_usuario) {
-            $builder->where('id_usuario', $id_usuario);
-        }
-        return $builder->orderBy('id', 'DESC')
-                      ->limit(1)
-                      ->get()
-                      ->getResultArray();
-    }
-
-    // ✅ Obtenemos el límite de consumo de la tabla limites_consumo
     public function getLimiteConsumo($id_usuario)
     {
         $db = \Config\Database::connect();
@@ -61,22 +57,18 @@ class EnergiaModel extends Model
         return $registro ? $registro->limite_consumo : 10; // valor por defecto
     }
 
-    // ✅ Actualizar el límite en la tabla limites_consumo
     public function updateLimiteConsumo($id_usuario, $nuevoLimite)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('limites_consumo');
 
-        // Verificamos si ya existe un registro para ese usuario
         $existe = $builder->where('id_usuario', $id_usuario)->countAllResults();
 
         if ($existe) {
-            // Si ya existe, actualizamos
             return $builder->where('id_usuario', $id_usuario)
                            ->set('limite_consumo', $nuevoLimite)
                            ->update();
         } else {
-            // Si no existe, insertamos uno nuevo
             return $builder->insert([
                 'id_usuario' => $id_usuario,
                 'limite_consumo' => $nuevoLimite
@@ -87,29 +79,27 @@ class EnergiaModel extends Model
     public function obtenerConsumo24Horas($idUsuario)
     {
         $db = \Config\Database::connect();
-        
-        // Obtener los IDs de los dispositivos del usuario
+
         $dispositivos = $db->table('dispositivos')
-                          ->select('id_dispositivo')
-                          ->where('id_usuario', $idUsuario)
-                          ->get()
-                          ->getResultArray();
-        
+                            ->select('id_dispositivo')
+                            ->where('id_usuario', $idUsuario)
+                            ->get()
+                            ->getResultArray();
+
         $idsDispositivos = array_column($dispositivos, 'id_dispositivo');
-        
+
         if (empty($idsDispositivos)) {
             return 0;
         }
 
-        // Calcular el consumo total de los últimos 24 horas
         $fechaInicio = date('Y-m-d H:i:s', strtotime('-24 hours'));
-        
+
         $query = $db->table('energia')
-                   ->select('SUM(kwh) as total_consumo')
-                   ->whereIn('id_dispositivo', $idsDispositivos)
-                   ->where('fecha >=', $fechaInicio)
-                   ->get();
-        
+                    ->select('SUM(kwh) as total_consumo')
+                    ->whereIn('id_dispositivo', $idsDispositivos)
+                    ->where('fecha >=', $fechaInicio)
+                    ->get();
+
         $resultado = $query->getRow();
         return $resultado ? $resultado->total_consumo : 0;
     }
@@ -117,29 +107,27 @@ class EnergiaModel extends Model
     public function obtenerConsumoPromedioDiario($idUsuario)
     {
         $db = \Config\Database::connect();
-        
-        // Obtener los IDs de los dispositivos del usuario
+
         $dispositivos = $db->table('dispositivos')
-                          ->select('id_dispositivo')
-                          ->where('id_usuario', $idUsuario)
-                          ->get()
-                          ->getResultArray();
-        
+                            ->select('id_dispositivo')
+                            ->where('id_usuario', $idUsuario)
+                            ->get()
+                            ->getResultArray();
+
         $idsDispositivos = array_column($dispositivos, 'id_dispositivo');
-        
+
         if (empty($idsDispositivos)) {
             return 0;
         }
 
-        // Calcular el consumo promedio diario de los últimos 30 días
         $fechaInicio = date('Y-m-d H:i:s', strtotime('-30 days'));
-        
+
         $query = $db->table('energia')
-                   ->select('AVG(kwh) as promedio_diario')
-                   ->whereIn('id_dispositivo', $idsDispositivos)
-                   ->where('fecha >=', $fechaInicio)
-                   ->get();
-        
+                    ->select('AVG(kwh) as promedio_diario')
+                    ->whereIn('id_dispositivo', $idsDispositivos)
+                    ->where('fecha >=', $fechaInicio)
+                    ->get();
+
         $resultado = $query->getRow();
         return $resultado ? $resultado->promedio_diario : 0;
     }
@@ -147,9 +135,9 @@ class EnergiaModel extends Model
     public function obtenerUltimosDatos($idDispositivo, $limite = 10)
     {
         return $this->where('id_dispositivo', $idDispositivo)
-                   ->orderBy('fecha', 'DESC')
-                   ->limit($limite)
-                   ->findAll();
+                    ->orderBy('fecha', 'DESC')
+                    ->limit($limite)
+                    ->findAll();
     }
 
     public function insertarDatos($datos)
@@ -161,4 +149,19 @@ class EnergiaModel extends Model
     {
         return $this->where('id_usuario', $idUsuario)->orderBy('fecha', 'DESC')->findAll();
     }
+
+    // *** LÓGICA PARA FORZAR A ENTERO ANTES DE INSERTAR ***
+    public function insert($data = null, bool $returnID = true, bool $overwrite = false)
+    {
+        if (is_array($data)) {
+            if (isset($data['id_dispositivo'])) {
+                $data['id_dispositivo'] = (int)$data['id_dispositivo'];
+            }
+            if (isset($data['id_usuario'])) {
+                $data['id_usuario'] = (int)$data['id_usuario'];
+            }
+        }
+        return parent::insert($data, $returnID, $overwrite);
+    }
+    // *** FIN DE LA LÓGICA ***
 }

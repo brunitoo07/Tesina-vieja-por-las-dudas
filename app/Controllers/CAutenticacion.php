@@ -3,9 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\UsuarioModel;
+use App\Models\DispositivoModel;
 
 class CAutenticacion extends BaseController
 {
+    protected $usuarioModel;
+    protected $dispositivoModel; // <--- Declara el modelo
+
+    public function __construct()
+    {
+        $this->usuarioModel = new UsuarioModel();
+        $this->dispositivoModel = new DispositivoModel(); // <--- Inicializa el modelo
+    }
     public function login()
     {
         if (session()->get('userData')) {
@@ -81,6 +90,47 @@ class CAutenticacion extends BaseController
         if (!$usuarioModel->insertarUsuario($dataUsuario)) {
             throw new \RuntimeException('Error al insertar usuario en la base de datos');
         }
+        $nuevoAdminId = $usuarioModel->getInsertID(); // Obtener el ID del usuario recién insertado
+
+        if ($purchase) {
+            // Simular la generación de una MAC address aleatoria solo para administradores
+            $macSimulada = $this->generarMacAleatoria();
+
+            // Guardar el dispositivo simulado y asociarlo al administrador
+            $this->dispositivoModel->save([
+                'id_usuario' => $nuevoAdminId,
+                'nombre' => 'Dispositivo Admin ' . $nuevoAdminId, // Nombre por defecto
+                'mac_address' => $macSimulada,
+                'estado' => 'activo' // Estado inicial
+            ]);
+        }
+
+        $mensaje = $purchase
+            ? '¡Registro como administrador exitoso! Ahora puedes iniciar sesión.'
+            : 'Registro exitoso. Bienvenido/a.';
+
+        return redirect()->to('autenticacion/login')
+                         ->with('success', $mensaje);
+
+    } catch (\Exception $e) {
+        log_message('error', 'Error en registro: ' . $e->getMessage());
+        return redirect()->back()
+                         ->withInput()
+                         ->with('error', 'Error durante el registro. Por favor intente nuevamente.');
+    }
+}
+
+private function generarMacAleatoria() {
+    $hexDigits = '0123456789abcdef';
+    $mac = '';
+    for ($i = 0; $i < 6; $i++) {
+        $mac .= str_repeat($hexDigits[rand(0, 15)], 2);
+        if ($i < 5) {
+            $mac .= ':';
+        }
+    }
+    return strtoupper($mac);
+}
 
         $mensaje = $purchase 
             ? '¡Registro como administrador exitoso! Ahora puedes iniciar sesión.' 

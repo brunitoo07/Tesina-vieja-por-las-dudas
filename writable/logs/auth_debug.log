@@ -270,3 +270,341 @@
     [logged_in] => 1
 )
 
+2025-05-13 08:25:39 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+2025-05-13 08:25:39 - ID Rol del usuario: 3
+2025-05-13 08:25:39 - Rol asignado: supervisor
+2025-05-13 08:25:39 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-13 08:25:39 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747135539
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-13 11:24:15 - Usuario encontrado: Array
+(
+    [id_usuario] => 42
+    [nombre] => Leonel
+    [apellido] => Sanchez
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-28 13:40:25
+    [updated_at] => 2025-04-28 13:40:25
+    [invitado_por] => 
+)
+
+2025-05-13 11:24:15 - ID Rol del usuario: 1
+2025-05-13 11:24:15 - Rol asignado: admin
+2025-05-13 11:24:15 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 11:24:15 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747146234
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:01:18 - Usuario encontrado: Array
+(
+    [id_usuario] => 42
+    [nombre] => Leonel
+    [apellido] => Sanchez
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-28 13:40:25
+    [updated_at] => 2025-04-28 13:40:25
+    [invitado_por] => 
+)
+
+2025-05-13 12:01:18 - ID Rol del usuario: 1
+2025-05-13 12:01:18 - Rol asignado: admin
+2025-05-13 12:01:18 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:01:18 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148459
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:02:58 - Usuario encontrado: Array
+(
+    [id_usuario] => 47
+    [nombre] => Manuel
+    [apellido] => Urrutia
+    [email] => manuelurrutia@gmail.com
+    [contrasena] => $2y$10$VStKa5Q62xOfayEZr9i3G./gZaOGzjVC6pm7wqLqvOCEoHVJL8Cue
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-05-13 12:02:44
+    [updated_at] => 2025-05-13 12:02:44
+    [invitado_por] => 
+)
+
+2025-05-13 12:02:58 - ID Rol del usuario: 1
+2025-05-13 12:02:58 - Rol asignado: admin
+2025-05-13 12:02:58 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:02:58 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148459
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:04:09 - Usuario encontrado: Array
+(
+    [id_usuario] => 47
+    [nombre] => Manuel
+    [apellido] => Urrutia
+    [email] => manuelurrutia@gmail.com
+    [contrasena] => $2y$10$VStKa5Q62xOfayEZr9i3G./gZaOGzjVC6pm7wqLqvOCEoHVJL8Cue
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-13 12:02:44
+    [updated_at] => 2025-05-13 12:03:19
+    [invitado_por] => 
+)
+
+2025-05-13 12:04:09 - ID Rol del usuario: 2
+2025-05-13 12:04:09 - Rol asignado: usuario
+2025-05-13 12:04:09 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+2025-05-13 12:04:09 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148625
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+2025-05-13 12:05:32 - Usuario encontrado: Array
+(
+    [id_usuario] => 42
+    [nombre] => Leonel
+    [apellido] => Sanchez
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-28 13:40:25
+    [updated_at] => 2025-04-28 13:40:25
+    [invitado_por] => 
+)
+
+2025-05-13 12:05:32 - ID Rol del usuario: 1
+2025-05-13 12:05:32 - Rol asignado: admin
+2025-05-13 12:05:32 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:05:32 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148721
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 42
+    [email] => leonelsanchez@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-13 12:06:08 - Usuario encontrado: Array
+(
+    [id_usuario] => 47
+    [nombre] => Manuel
+    [apellido] => Urrutia
+    [email] => manuelurrutia@gmail.com
+    [contrasena] => $2y$10$VStKa5Q62xOfayEZr9i3G./gZaOGzjVC6pm7wqLqvOCEoHVJL8Cue
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-13 12:02:44
+    [updated_at] => 2025-05-13 12:03:19
+    [invitado_por] => 
+)
+
+2025-05-13 12:06:08 - ID Rol del usuario: 2
+2025-05-13 12:06:08 - Rol asignado: usuario
+2025-05-13 12:06:08 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+2025-05-13 12:06:08 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148721
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 47
+    [email] => manuelurrutia@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+2025-05-13 12:06:32 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+2025-05-13 12:06:32 - ID Rol del usuario: 3
+2025-05-13 12:06:32 - Rol asignado: supervisor
+2025-05-13 12:06:32 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-13 12:06:32 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148792
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-13 12:09:19 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+2025-05-13 12:09:19 - ID Rol del usuario: 3
+2025-05-13 12:09:19 - Rol asignado: supervisor
+2025-05-13 12:09:19 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-13 12:09:19 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747148950
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-14 13:21:28 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+2025-05-14 13:21:28 - ID Rol del usuario: 3
+2025-05-14 13:21:28 - Rol asignado: supervisor
+2025-05-14 13:21:28 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+2025-05-14 13:21:28 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+

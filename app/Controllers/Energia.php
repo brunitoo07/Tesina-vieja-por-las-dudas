@@ -51,10 +51,19 @@ class Energia extends ResourceController
         }
         log_message('info', "Dispositivo encontrado - ID: {$dispositivo['id_dispositivo']}");
 
+        // *** AÑADIDO PARA DEBUG ***
+        log_message('debug', 'Contenido de $dispositivo: ' . print_r($dispositivo, true));
+
+         if (!isset($dispositivo['id_dispositivo']) || !isset($dispositivo['id_usuario'])) {
+            log_message('error', '¡Error! Faltan id_dispositivo o id_usuario en $dispositivo');
+            return $this->fail('Error al obtener información del dispositivo.', 500); // O un código de error más apropiado
+        }
+        // *** FIN AÑADIDO PARA DEBUG ***
+
         // Insertar en energia
-        $energiaData = [
-            'id_dispositivo' => $dispositivo['id_dispositivo'],
-            'id_usuario' => $dispositivo['id_usuario'],
+          $energiaData = [
+            'id_dispositivo' => (int)$dispositivo['id_dispositivo'],
+            'id_usuario' => (int)$dispositivo['id_usuario'],
             'voltaje' => (float)$json->voltaje,
             'corriente' => (float)$json->corriente,
             'potencia' => (float)$json->potencia,
@@ -65,7 +74,6 @@ class Energia extends ResourceController
 
         log_message('debug', 'Datos para insertar en energia: ' . print_r($energiaData, true));
 
-        // ********************* INICIO del bloque try...catch *********************
         try {
             if (!$this->energiaModel->insert($energiaData)) {
                 $errors = $this->energiaModel->errors();
@@ -80,8 +88,10 @@ class Energia extends ResourceController
             log_message('error', 'Excepción al insertar en energia: ' . $e->getMessage() . ' - ' . $e->getTraceAsString());
             return $this->fail('Error al guardar datos de energía (excepción).', 500);
         }
-        // ********************** FIN del bloque try...catch **********************
     }
+
+
+    
     public function getLatestData()
     {
         $ultimoDato = $this->energiaModel->getLatestData();
@@ -175,9 +185,13 @@ class Energia extends ResourceController
         }
         log_message('info', "Dispositivo encontrado - ID en nuevos_datos: {$dispositivo['id_dispositivo']}");
 
+        // *** CONVERSIÓN EXPLÍCITA A ENTERO ANTES DE USAR ***
+        $idDispositivo = (int)$dispositivo['id_dispositivo'];
+        $idUsuario = (int)$dispositivo['id_usuario'];
+
         $energiaData = [
-            'id_dispositivo' => $dispositivo['id_dispositivo'],
-            'id_usuario' => $dispositivo['id_usuario'],
+            'id_dispositivo' => $idDispositivo,
+            'id_usuario' => $idUsuario,
             'voltaje' => (float)$json->voltaje,
             'corriente' => (float)$json->corriente,
             'potencia' => (float)$json->potencia,
@@ -187,6 +201,8 @@ class Energia extends ResourceController
         ];
 
         log_message('debug', 'Datos para insertar en energia (nuevos_datos): ' . print_r($energiaData, true));
+        log_message('debug', 'Tipo de id_dispositivo (después de conversión): ' . gettype($energiaData['id_dispositivo']));
+        log_message('debug', 'Tipo de id_usuario (después de conversión): ' . gettype($energiaData['id_usuario']));
 
         if (!$this->energiaModel->insert($energiaData)) {
             $errors = $this->energiaModel->errors();

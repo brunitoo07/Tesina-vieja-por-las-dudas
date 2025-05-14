@@ -9,7 +9,6 @@ use App\Models\InvitacionModel;
 use App\Controllers\CCorreo;
 use App\Models\DispositivoModel;
 
-
 class Admin extends BaseController
 {
     protected $usuarioModel;
@@ -23,6 +22,7 @@ class Admin extends BaseController
         $this->rolesModel = new RolesModel();
         $this->db = \Config\Database::connect();
         $this->dispositivoModel = new DispositivoModel();
+        helper('form'); // Si vas a usar el helper de formularios
     }
 
     public function index()
@@ -32,34 +32,34 @@ class Admin extends BaseController
         }
 
         $idAdmin = session()->get('id_usuario');
-        
+
         // Obtener usuarios invitados por este admin
         $invitacionModel = new InvitacionModel();
         $usuariosInvitados = $invitacionModel->where('invitado_por', $idAdmin)
-                                           ->where('estado', 'aceptada')
-                                           ->findAll();
-        
+                                            ->where('estado', 'aceptada')
+                                            ->findAll();
+
         $idsUsuarios = array_column($usuariosInvitados, 'id_usuario');
         $idsUsuarios[] = $idAdmin; // Incluir también al admin
-        
+
         // Obtener información de los usuarios invitados
         $usuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
-                                     ->join('roles', 'roles.id_rol = usuario.id_rol')
-                                     ->whereIn('usuario.id_usuario', $idsUsuarios)
-                                     ->findAll();
-        
+                                        ->join('roles', 'roles.id_rol = usuario.id_rol')
+                                        ->whereIn('usuario.id_usuario', $idsUsuarios)
+                                        ->findAll();
+
         // Obtener dispositivos de los usuarios invitados
         $dispositivos = $this->dispositivoModel->whereIn('id_usuario', $idsUsuarios)
-                                             ->findAll();
-        
+                                                ->findAll();
+
         // Obtener los últimos 10 usuarios registrados (solo los invitados)
         $ultimosUsuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
-                                             ->join('roles', 'roles.id_rol = usuario.id_rol')
-                                             ->whereIn('usuario.id_usuario', $idsUsuarios)
-                                             ->orderBy('usuario.created_at', 'DESC')
-                                             ->limit(10)
-                                             ->find();
-        
+                                                ->join('roles', 'roles.id_rol = usuario.id_rol')
+                                                ->whereIn('usuario.id_usuario', $idsUsuarios)
+                                                ->orderBy('usuario.created_at', 'DESC')
+                                                ->limit(10)
+                                                ->find();
+
         // Obtener total de dispositivos
         $totalDispositivos = count($dispositivos);
 
@@ -98,9 +98,9 @@ class Admin extends BaseController
         // Verificar si ya existe una invitación pendiente para este email
         $invitacionModel = new InvitacionModel();
         $invitacionExistente = $invitacionModel->where('email', $email)
-                                             ->where('estado', 'pendiente')
-                                             ->where('fecha_expiracion >', date('Y-m-d H:i:s'))
-                                             ->first();
+                                                ->where('estado', 'pendiente')
+                                                ->where('fecha_expiracion >', date('Y-m-d H:i:s'))
+                                                ->first();
 
         if ($invitacionExistente) {
             session()->set('error', 'Ya existe una invitación pendiente para este email');
@@ -119,7 +119,7 @@ class Admin extends BaseController
         $emailService->setFrom('medidorinteligente467@gmail.com', 'EcoVolt');
         $emailService->setTo($email);
         $emailService->setSubject('Invitación para unirte a EcoVolt');
-        
+
         $enlaceInvitacion = base_url('admin/registro/invitado/' . $token);
         $mensaje = "¡Hola!\n\n";
         $mensaje .= "Has sido invitado a unirte a EcoVolt. Para completar tu registro, haz clic en el siguiente enlace:\n\n";
@@ -127,7 +127,7 @@ class Admin extends BaseController
         $mensaje .= "Este enlace expirará en 7 días.\n\n";
         $mensaje .= "Saludos,\n";
         $mensaje .= "El equipo de EcoVolt";
-        
+
         $emailService->setMessage($mensaje);
 
         if ($emailService->send()) {
@@ -148,11 +148,11 @@ class Admin extends BaseController
             // Si hay token, es para el registro del usuario invitado
             $model = new \App\Models\InvitacionModel();
             $invitacion = $model->validarInvitacion($token);
-        
+
             if (!$invitacion) {
                 return redirect()->to('/')->with('error', 'Token inválido o expirado');
             }
-        
+
             return view('admin/invitar_usuario', [
                 'email' => $invitacion['email'],
                 'id_rol' => $invitacion['id_rol'],
@@ -171,7 +171,7 @@ class Admin extends BaseController
             'isAdmin' => true
         ]);
     }
-    
+
     public function guardarUsuario()
     {
         $usuarioModel = new UsuarioModel();
@@ -206,9 +206,9 @@ class Admin extends BaseController
 
         // Verificar la invitación
         $invitacion = $invitacionModel->where('token', $token)
-                                    ->where('email', $email)
-                                    ->where('estado', 'pendiente')
-                                    ->first();
+                                        ->where('email', $email)
+                                        ->where('estado', 'pendiente')
+                                        ->first();
 
         if (!$invitacion) {
             session()->set('error', 'Invitación no encontrada o inválida.');
@@ -241,106 +241,162 @@ class Admin extends BaseController
             return redirect()->back();
         }
     }
-    
-
-    
 
     public function listarAdmins()
-{
-    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-        return redirect()->to('/autenticacion/login');
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        $data['usuarios'] = $this->usuarioModel
+            ->select('usuario.*, roles.nombre_rol as rol')
+            ->join('roles', 'roles.id_rol = usuario.id_rol')
+            ->where('usuario.id_rol', 1) // Solo admins (id_rol = 1)
+            ->findAll();
+
+        return view('admin/gestionarUsuarios', $data); // Reutiliza la misma vista
     }
 
-    $data['usuarios'] = $this->usuarioModel
-        ->select('usuario.*, roles.nombre_rol as rol')
-        ->join('roles', 'roles.id_rol = usuario.id_rol')
-        ->where('usuario.id_rol', 1) // Solo admins (id_rol = 1)
-        ->findAll();
+    public function gestionarUsuarios()
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
 
-    return view('admin/gestionarUsuarios', $data); // Reutiliza la misma vista
-}
+        $data['usuarios'] = $this->usuarioModel
+            ->select('usuario.*, roles.nombre_rol as rol')
+            ->join('roles', 'roles.id_rol = usuario.id_rol')
+            ->findAll();
 
-public function gestionarUsuarios()
-{
-    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-        return redirect()->to('/autenticacion/login');
+        return view('admin/gestionarUsuarios', $data);
     }
 
-    $data['usuarios'] = $this->usuarioModel
-        ->select('usuario.*, roles.nombre_rol as rol')
-        ->join('roles', 'roles.id_rol = usuario.id_rol')
-        ->findAll();
+    public function cambiarRol()
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
 
-    return view('admin/gestionarUsuarios', $data);
-}
+        $usuario_id = $this->request->getPost('usuario_id');
+        $id_rol = $this->request->getPost('id_rol');
 
-public function cambiarRol()
-{
-    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-        return redirect()->to('/autenticacion/login');
-    }
+        // Verificar que el usuario existe
+        $usuario = $this->usuarioModel->find($usuario_id);
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'Usuario no encontrado');
+        }
 
-    $usuario_id = $this->request->getPost('usuario_id');
-    $id_rol = $this->request->getPost('id_rol');
+        // Verificar que el rol existe
+        $rol = $this->rolesModel->find($id_rol);
+        if (!$rol) {
+            return redirect()->back()->with('error', 'Rol no válido');
+        }
 
-    // Verificar que el usuario existe
-    $usuario = $this->usuarioModel->find($usuario_id);
-    if (!$usuario) {
-        return redirect()->back()->with('error', 'Usuario no encontrado');
-    }
+        // Verificar que no se está cambiando el último admin
+        if ($usuario['id_rol'] == 1 && $id_rol != 1) {
+            $admins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
+            if ($admins <= 1) {
+                return redirect()->back()->with('error', 'No se puede quitar el último administrador');
+            }
+        }
 
-    // Verificar que el rol existe
-    $rol = $this->rolesModel->find($id_rol);
-    if (!$rol) {
-        return redirect()->back()->with('error', 'Rol no válido');
-    }
-
-    // Verificar que no se está cambiando el último admin
-    if ($usuario['id_rol'] == 1 && $id_rol != 1) {
-        $admins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
-        if ($admins <= 1) {
-            return redirect()->back()->with('error', 'No se puede quitar el último administrador');
+        try {
+            $this->usuarioModel->update($usuario_id, ['id_rol' => $id_rol]);
+            return redirect()->back()->with('success', 'Rol actualizado correctamente');
+        } catch (\Exception $e) {
+            log_message('error', 'Error al cambiar rol: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al actualizar el rol');
         }
     }
 
-    try {
-        $this->usuarioModel->update($usuario_id, ['id_rol' => $id_rol]);
-        return redirect()->back()->with('success', 'Rol actualizado correctamente');
-    } catch (\Exception $e) {
-        log_message('error', 'Error al cambiar rol: ' . $e->getMessage());
-        return redirect()->back()->with('error', 'Error al actualizar el rol');
-    }
-}
+    public function eliminarUsuario()
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
 
-public function eliminarUsuario()
-{
-    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-        return redirect()->to('/autenticacion/login');
-    }
+        $usuario_id = $this->request->getPost('usuario_id');
 
-    $usuario_id = $this->request->getPost('usuario_id');
+        // Verificar que el usuario existe
+        $usuario = $this->usuarioModel->find($usuario_id);
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'Usuario no encontrado');
+        }
 
-    // Verificar que el usuario existe
-    $usuario = $this->usuarioModel->find($usuario_id);
-    if (!$usuario) {
-        return redirect()->back()->with('error', 'Usuario no encontrado');
-    }
+        // Verificar que no se está eliminando el último admin
+        if ($usuario['id_rol'] == 1) {
+            $admins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
+            if ($admins <= 1) {
+                return redirect()->back()->with('error', 'No se puede eliminar el último administrador');
+            }
+        }
 
-    // Verificar que no se está eliminando el último admin
-    if ($usuario['id_rol'] == 1) {
-        $admins = $this->usuarioModel->where('id_rol', 1)->countAllResults();
-        if ($admins <= 1) {
-            return redirect()->back()->with('error', 'No se puede eliminar el último administrador');
+        try {
+            $this->usuarioModel->delete($usuario_id);
+            return redirect()->back()->with('success', 'Usuario eliminado correctamente');
+        } catch (\Exception $e) {
+            log_message('error', 'Error al eliminar usuario: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al eliminar el usuario');
         }
     }
 
-    try {
-        $this->usuarioModel->delete($usuario_id);
-        return redirect()->back()->with('success', 'Usuario eliminado correctamente');
-    } catch (\Exception $e) {
-        log_message('error', 'Error al eliminar usuario: ' . $e->getMessage());
-        return redirect()->back()->with('error', 'Error al eliminar el usuario');
-    }
-}
+    // NUEVA FUNCIÓN PARA BUSCAR DISPOSITIVOS
 
+   public function buscarDispositivos()
+   {
+       if ($this->request->isAJAX() || $this->request->is('post')) { // Permitir peticiones POST también
+           $macAddress = $this->request->getPost('mac_address');
+
+           if ($macAddress) {
+               // Aquí podrías guardar la MAC address en una tabla temporal
+               // para dispositivos pendientes de aprobación, junto con una
+               // marca de tiempo del descubrimiento.
+
+               // Por ahora, simplemente devolvemos la MAC recibida para que
+               // aparezca en la lista del administrador.
+               $nuevoDispositivo = ['mac_address' => $macAddress];
+               return $this->response->setJSON([$nuevoDispositivo]);
+           } else {
+               return $this->response->setJSON([]); // No se recibió MAC address
+           }
+       }
+
+       return $this->response->setStatusCode(403)->setJSON(['error' => 'Acceso no autorizado']);
+   }
+    // NUEVA FUNCIÓN PARA APROBAR DISPOSITIVO
+    public function aprobarDispositivo()
+    {
+        if ($this->request->isAJAX()) {
+            $macAddress = $this->request->getVar('mac_address');
+            $nombre = $this->request->getVar('nombre');
+
+            if ($macAddress && $nombre) {
+                // Verificar si ya existe un dispositivo con esta MAC (opcional, según tu lógica)
+                $existingDevice = $this->dispositivoModel->where('mac_address', $macAddress)->first();
+
+                if (!$existingDevice) {
+                    // Guardar el nuevo dispositivo en la base de datos
+                    $nuevoDispositivo = [
+                        'nombre' => $nombre,
+                        'mac_address' => $macAddress,
+                        'estado' => 'activo', // O el estado que desees
+                        // Aquí podrías también asociarlo a un usuario si tienes la lógica
+                        // 'id_usuario' => $usuarioId;
+                    ];
+
+                    if ($this->dispositivoModel->save($nuevoDispositivo)) {
+                        return $this->response->setJSON(['success' => true, 'message' => 'Dispositivo aprobado']);
+                    } else {
+                        return $this->response->setJSON(['success' => false, 'error' => 'Error al guardar el dispositivo']);
+                    }
+                } else {
+                    return $this->response->setJSON(['success' => false, 'error' => 'Ya existe un dispositivo con esta MAC address']);
+                }
+            } else {
+                return $this->response->setJSON(['success' => false, 'error' => 'Faltan la MAC address o el nombre']);
+            }
+        }
+
+        return $this->response->setStatusCode(403)->setJSON(['error' => 'Acceso no autorizado']);
+    }
 }

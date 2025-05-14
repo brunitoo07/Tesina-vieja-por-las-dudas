@@ -72,7 +72,7 @@
                 <?= date('d/m/Y H:i') ?>
             </div>
         </div>
-        
+
         <?php if (session()->get('success')): ?>
             <div class="alert alert-success alert-dismissible fade show">
                 <?= session()->get('success') ?>
@@ -81,14 +81,13 @@
         <?php endif; ?>
 
         <?php if (session()->get('error') && !session()->get('logged_in')): ?>
-    <div class="alert alert-danger alert-dismissible fade show">
-        <?= session()->get('error') ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-<?php endif; ?>
+            <div class="alert alert-danger alert-dismissible fade show">
+                <?= session()->get('error') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
 
         <div class="row g-4">
-            <!-- Tarjeta de Usuarios -->
             <div class="col-md-4">
                 <div class="card admin-card border-primary">
                     <div class="card-body text-center">
@@ -107,7 +106,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta de Administradores -->
             <div class="col-md-4">
                 <div class="card admin-card border-success">
                     <div class="card-body text-center">
@@ -126,7 +124,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta de Invitaciones -->
             <div class="col-md-4">
                 <div class="card admin-card border-warning">
                     <div class="card-body text-center">
@@ -143,7 +140,17 @@
             </div>
         </div>
 
-        <!-- Sección de últimos usuarios -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-wifi me-2"></i>Gestionar Nuevos Dispositivos</h5>
+            </div>
+            <div class="card-body">
+                <button id="buscarNuevosDispositivos" class="btn btn-primary"><i class="fas fa-search me-2"></i>Buscar Nuevos Dispositivos</button>
+                <div id="nuevosDispositivosLista" class="mt-3">
+                    </div>
+            </div>
+        </div>
+
         <?php if (!empty($ultimosUsuarios)): ?>
         <div class="row mt-4">
             <div class="col-12">
@@ -186,6 +193,79 @@
         <?php endif; ?>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('buscarNuevosDispositivos').addEventListener('click', function() {
+            fetch('/admin/buscarDispositivos', {
+                method: 'POST', // Usamos POST para iniciar la búsqueda en el backend
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // Para identificar como petición AJAX
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dispositivos encontrados:', data);
+                mostrarNuevosDispositivos(data); // Llamar a una función para mostrar los resultados
+            })
+            .catch(error => {
+                console.error('Error al buscar dispositivos:', error);
+                document.getElementById('nuevosDispositivosLista').innerHTML = '<div class="alert alert-danger">Error al buscar nuevos dispositivos. Intente nuevamente.</div>';
+            });
+
+            // Mostrar un mensaje mientras se busca
+            document.getElementById('nuevosDispositivosLista').innerHTML = '<div class="alert alert-info">Buscando nuevos dispositivos...</div>';
+        });
+
+        function mostrarNuevosDispositivos(dispositivos) {
+            const listaContainer = document.getElementById('nuevosDispositivosLista');
+            listaContainer.innerHTML = ''; // Limpiar la lista anterior
+
+            if (dispositivos && dispositivos.length > 0) {
+                const lista = document.createElement('ul');
+                dispositivos.forEach(dispositivo => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `MAC Address: ${dispositivo.mac_address} - 
+                                          <input type="text" placeholder="Nombre del dispositivo" id="nombre-${dispositivo.mac_address}"> 
+                                          <button class="btn btn-sm btn-success" onclick="aprobarDispositivo('${dispositivo.mac_address}')">Aprobar</button>`;
+                    lista.appendChild(listItem);
+                });
+                listaContainer.appendChild(lista);
+            } else {
+                listaContainer.innerHTML = '<div class="alert alert-warning">No se encontraron nuevos dispositivos.</div>';
+            }
+        }
+
+        function aprobarDispositivo(macAddress) {
+            const nombreInput = document.getElementById(`nombre-${macAddress}`);
+            const nombre = nombreInput.value.trim();
+
+            if (nombre) {
+                fetch('/admin/aprobarDispositivo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ mac_address: macAddress, nombre: nombre })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Dispositivo con MAC ${macAddress} aprobado y nombrado como "${nombre}".`);
+                        // Recargar la lista de dispositivos pendientes o actualizar la UI
+                        document.getElementById('buscarNuevosDispositivos').click(); // Volver a buscar para actualizar la lista
+                    } else {
+                        alert(`Error al aprobar el dispositivo: ${data.error || 'Desconocido'}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al aprobar dispositivo:', error);
+                    alert('Error al aprobar el dispositivo. Intente nuevamente.');
+                });
+            } else {
+                alert('Por favor, ingrese un nombre para el dispositivo.');
+            }
+        }
+    </script>
 </body>
 </html>

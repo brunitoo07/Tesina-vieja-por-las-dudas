@@ -1,0 +1,1161 @@
+INFO - 2025-05-14 13:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-14 13:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-14 13:21:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:28 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-14 13:21:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:28 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:21:28 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:28 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-14 13:21:28 --> Buscando usuario ID: 
+DEBUG - 2025-05-14 13:21:28 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 47
+            [nombre] => Manuel
+            [apellido] => Urrutia
+            [email] => manuelurrutia@gmail.com
+            [contrasena] => $2y$10$VStKa5Q62xOfayEZr9i3G./gZaOGzjVC6pm7wqLqvOCEoHVJL8Cue
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-05-13 12:02:44
+            [updated_at] => 2025-05-13 12:03:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 46
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.ir3.edu.ar
+            [contrasena] => $2y$10$bU.hVPU5Vh7z.f59WPO7zOy.UdWOpxgLmC69GCs.j7Nvgm8.TEeZa
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-13 11:24:09
+            [updated_at] => 2025-05-13 12:05:52
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 45
+            [nombre] => franco
+            [apellido] => garcia
+            [email] => francogarcia@gmail.com
+            [contrasena] => $2y$10$SJP81v3muAY57wxrBVmKYuE/1tLf7Ec3vEfAYxeQDAckHAI2qwAj.
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-08 14:39:48
+            [updated_at] => 2025-05-08 14:39:48
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 44
+            [nombre] => liliana
+            [apellido] => elias
+            [email] => liliana@gmail.com
+            [contrasena] => $2y$10$KBzqqcpvLXAJswxT0IJhIOOz1Zf4MyokD66VT999Mrngu2TNCnTgO
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-08 14:15:40
+            [updated_at] => 2025-05-08 14:15:40
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+DEBUG - 2025-05-14 13:21:35 --> Ruta actual: /Tesina/public/supervisor
+INFO - 2025-05-14 13:21:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:35 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:21:35 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:35 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-14 13:21:35 --> Buscando usuario ID: 
+DEBUG - 2025-05-14 13:21:35 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 47
+            [nombre] => Manuel
+            [apellido] => Urrutia
+            [email] => manuelurrutia@gmail.com
+            [contrasena] => $2y$10$VStKa5Q62xOfayEZr9i3G./gZaOGzjVC6pm7wqLqvOCEoHVJL8Cue
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-05-13 12:02:44
+            [updated_at] => 2025-05-13 12:03:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [1] => Array
+        (
+            [id_usuario] => 46
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.ir3.edu.ar
+            [contrasena] => $2y$10$bU.hVPU5Vh7z.f59WPO7zOy.UdWOpxgLmC69GCs.j7Nvgm8.TEeZa
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-13 11:24:09
+            [updated_at] => 2025-05-13 12:05:52
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [2] => Array
+        (
+            [id_usuario] => 45
+            [nombre] => franco
+            [apellido] => garcia
+            [email] => francogarcia@gmail.com
+            [contrasena] => $2y$10$SJP81v3muAY57wxrBVmKYuE/1tLf7Ec3vEfAYxeQDAckHAI2qwAj.
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-08 14:39:48
+            [updated_at] => 2025-05-08 14:39:48
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [3] => Array
+        (
+            [id_usuario] => 44
+            [nombre] => liliana
+            [apellido] => elias
+            [email] => liliana@gmail.com
+            [contrasena] => $2y$10$KBzqqcpvLXAJswxT0IJhIOOz1Zf4MyokD66VT999Mrngu2TNCnTgO
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-05-08 14:15:40
+            [updated_at] => 2025-05-08 14:15:40
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [4] => Array
+        (
+            [id_usuario] => 43
+            [nombre] => renzo
+            [apellido] => cenation
+            [email] => ezoi@gmail.com
+            [contrasena] => Hola_07$
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:45:43
+            [updated_at] => 2025-04-29 09:37:28
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [5] => Array
+        (
+            [id_usuario] => 42
+            [nombre] => Leonel
+            [apellido] => Sanchez
+            [email] => leonelsanchez@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$fCb7Ic7MVGWqBbNwXmVM4OtC3gcNwaL1zuwTpys57pxv8JyKOxyMy
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-28 13:40:25
+            [updated_at] => 2025-04-28 13:40:25
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+    [6] => Array
+        (
+            [id_usuario] => 41
+            [nombre] => ivooooo
+            [apellido] => ferrer
+            [email] => ivitoferrer@gmail.com
+            [contrasena] => $2y$10$fVRET8uHPf67prZfQmBh0OIxCmpnHTKWTLFmsxkTYFntUSEIJ5Ecq
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-25 10:40:00
+            [updated_at] => 2025-04-29 09:30:22
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [7] => Array
+        (
+            [id_usuario] => 40
+            [nombre] => Joel
+            [apellido] => medina
+            [email] => joel@gmail.com
+            [contrasena] => $2y$10$jQfTxTqXMqQvYr56jU/13Oa8WFZtR1cjW1HLcXVdw6urhCS./462C
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-11 08:38:41
+            [updated_at] => 2025-04-29 09:30:19
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [8] => Array
+        (
+            [id_usuario] => 36
+            [nombre] => holas
+            [apellido] => jeje
+            [email] => holandaaaa@gmail.com
+            [contrasena] => $2y$10$ynY7fJxH3Wa0D3/Ntsw1ned40vY29BjPvoQTUR5OXf5XBpZ33S7xS
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:52:41
+            [updated_at] => 2025-04-11 01:40:06
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+    [9] => Array
+        (
+            [id_usuario] => 35
+            [nombre] => marxelito
+            [apellido] => JSJASDA
+            [email] => marcelito0099@gmail.com
+            [contrasena] => $2y$10$o47jKIlAAtwMiaWxMcYEQOdSM6PB1tMV8AB6u0Dvu.wrcZBF/UfY.
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-04-10 17:31:04
+            [updated_at] => 2025-04-11 01:40:11
+            [invitado_por] => 
+            [nombre_rol] => usuario
+        )
+
+)
+
+DEBUG - 2025-05-14 13:21:36 --> Ruta actual: /Tesina/public/supervisor/gestionarUsuarios
+INFO - 2025-05-14 13:21:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:36 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:21:41 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-14 13:21:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:41 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:21:41 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:41 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-14 13:21:41 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:41 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+ERROR - 2025-05-14 13:21:41 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-05-14 13:21:41 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:21:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:41 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:41 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-14 13:21:44 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('1')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:21:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/ver/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('1')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('1')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:44 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('1')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-14 13:21:48 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-14 13:21:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:21:48 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747239676
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/1
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:21:48 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:48 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-14 13:21:48 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:21:48 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+ERROR - 2025-05-14 13:21:48 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:21:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:48 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-14 13:21:48 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:21:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:21:48 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-14 13:31:34 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('2')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:31:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/ver/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('2')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('2')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:34 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` DESC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(30): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->verDatos('2')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-14 13:31:35 --> Ruta actual: /Tesina/public/supervisor/dispositivosUsuarios/1
+INFO - 2025-05-14 13:31:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-14 13:31:35 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747240295
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/supervisor/dispositivosUsuarios/1
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => supervisor
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-14 13:31:35 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:31:35 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-14 13:31:35 --> Buscando usuario ID: 1
+DEBUG - 2025-05-14 13:31:35 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 3
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-08 13:08:02
+    [invitado_por] => 
+)
+
+ERROR - 2025-05-14 13:31:36 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:31:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-14 13:31:36 --> mysqli_sql_exception: Table 'login.lectura' doesn't exist in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Tesina\app\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-14 13:31:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:36 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'1\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('1')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+[Method: GET, Route: consumo/grafico/2]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 13:31:36 --> [Caused by] mysqli_sql_exception: Table 'login.lectura' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = \'2\'
+ORDER BY `fecha` ASC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `lectura`
+WHERE `id_dispositivo` = :id_dispositivo:
+ORDER BY `fecha` ASC', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Consumo.php(42): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Consumo->grafico('2')
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Consumo))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

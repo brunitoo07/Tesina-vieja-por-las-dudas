@@ -61,6 +61,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('cambiarRol', 'Admin::cambiarRol');
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
     $routes->get('usuario', 'Admin::gestionarUsuarios');
+    $routes->post('aprobarDispositivo', 'Admin::aprobarDispositivo');
 });
 
 // Rutas del supervisor

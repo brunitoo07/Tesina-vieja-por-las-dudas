@@ -12,21 +12,29 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Fecha</th>
+                    <th>ID</th>
+                    <th>ID Dispositivo</th>
+                    <th>ID Usuario</th>
                     <th>Voltaje (V)</th>
                     <th>Corriente (A)</th>
                     <th>Potencia (W)</th>
                     <th>Consumo (kWh)</th>
+                    <th>Fecha</th>
+                    <th>MAC Address</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($lecturas as $lectura): ?>
                     <tr>
-                        <td><?= $lectura['fecha'] ?></td>
+                        <td><?= $lectura['id'] ?></td>
+                        <td><?= $lectura['id_dispositivo'] ?></td>
+                        <td><?= $lectura['id_usuario'] ?></td>
                         <td><?= $lectura['voltaje'] ?></td>
                         <td><?= $lectura['corriente'] ?></td>
                         <td><?= $lectura['potencia'] ?></td>
                         <td><?= $lectura['kwh'] ?></td>
+                        <td><?= $lectura['fecha'] ?></td>
+                        <td><?= $lectura['mac_address'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
