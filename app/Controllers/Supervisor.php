@@ -136,80 +136,22 @@ class Supervisor extends BaseController
         }
     }
 
-    public function enviarInvitacion()
-    {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'supervisor') {
-            return redirect()->to('/autenticacion/login');
-        }
-
-        $email = $this->request->getPost('email');
-        $idRol = $this->request->getPost('id_rol');
-
-        // Validar email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            session()->set('error', 'Email inválido');
-            return redirect()->back();
-        }
-
-        // Validar que el rol sea válido (usuario o admin)
-        if ($idRol != 1 && $idRol != 2) {
-            session()->set('error', 'Rol no válido');
-            return redirect()->back();
-        }
-
-        // Generar token único
-        helper('text');
-        $token = random_string('alnum', 32);
-
-        $invitacionModel = new InvitacionModel();
-        $data = [
-            'email' => $email,
-            'token' => $token,
-            'id_rol' => $idRol,
-            'estado' => 'pendiente',
-            'invitado_por' => session()->get('id_usuario')
-        ];
-
-        if ($invitacionModel->insert($data)) {
-            // Enviar email con el token
-            $emailService = \Config\Services::email();
-            $emailService->setTo($email);
-            $emailService->setFrom('medidorinteligente457@gmail.com', 'EcoVolt');
-            $emailService->setSubject('Invitación a registrarte');
-            
-            $link = base_url("registro/invitado/$token");
-            $mensaje = view('emails/invitacion', ['link' => $link]);
-            
-            $emailService->setMessage($mensaje);
-            
-            if ($emailService->send()) {
-                session()->set('success', 'Invitación enviada correctamente');
-            } else {
-                session()->set('error', 'Error al enviar el email');
-            }
-        } else {
-            session()->set('error', 'Error al guardar la invitación');
-        }
-
-        return redirect()->back();
-    }
+    
 
     public function misUsuarios()
-    {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'supervisor') {
-            return redirect()->to('/autenticacion/login');
-        }
-
-        $id_supervisor = session()->get('id_usuario');
-        
-        $data['usuarios'] = $this->usuarioModel
-            ->select('usuario.*, roles.nombre_rol as nombre_rol')
-            ->join('roles', 'roles.id_rol = usuario.id_rol')
-            ->where('usuario.invitado_por', $id_supervisor)
-            ->findAll();
-
-        return view('supervisor/misUsuarios', $data);
+{
+    if (!session()->get('logged_in') || session()->get('rol') !== 'supervisor') {
+        return redirect()->to('/autenticacion/login');
     }
+
+    $data['usuarios'] = $this->usuarioModel
+        ->select('usuario.*, roles.nombre_rol as nombre_rol')
+        ->join('roles', 'roles.id_rol = usuario.id_rol')
+        // ->where('usuario.invitado_por', $id_supervisor) // Comenta esta línea
+        ->findAll();
+
+    return view('supervisor/misUsuarios', $data);
+}
 
     public function dispositivosUsuarios($idUsuario)
     {

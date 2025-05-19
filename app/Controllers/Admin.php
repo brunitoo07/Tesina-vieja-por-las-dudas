@@ -78,64 +78,56 @@ class Admin extends BaseController
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
             return redirect()->to('/autenticacion/login');
         }
-
+    
         $email = $this->request->getPost('email');
         $idRol = $this->request->getPost('id_rol');
-
+    
         // Validar email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             session()->set('error', 'Email inválido');
             return redirect()->back();
         }
-
-        // Verificar si el email ya está registrado
-        $usuarioModel = new UsuarioModel();
-        if ($usuarioModel->where('email', $email)->first()) {
-            session()->set('error', 'Este email ya está registrado');
+    
+        // Validar que el rol sea válido (solo usuario para invitación)
+        if ($idRol != 2) {
+            session()->set('error', 'Solo se pueden invitar usuarios normales.');
             return redirect()->back();
         }
-
-        // Verificar si ya existe una invitación pendiente para este email
+    
+        // Generar token único
+        helper('text');
+        $token = random_string('alnum', 32);
+    
         $invitacionModel = new InvitacionModel();
-        $invitacionExistente = $invitacionModel->where('email', $email)
-                                                ->where('estado', 'pendiente')
-                                                ->where('fecha_expiracion >', date('Y-m-d H:i:s'))
-                                                ->first();
-
-        if ($invitacionExistente) {
-            session()->set('error', 'Ya existe una invitación pendiente para este email');
-            return redirect()->back();
-        }
-
-        // Crear nueva invitación
-        $token = $invitacionModel->crearInvitacion($email, $idRol);
-        if (!$token) {
-            session()->set('error', 'Error al crear la invitación');
-            return redirect()->back();
-        }
-
-        // Enviar correo con el enlace de invitación
-        $emailService = \Config\Services::email();
-        $emailService->setFrom('medidorinteligente467@gmail.com', 'EcoVolt');
-        $emailService->setTo($email);
-        $emailService->setSubject('Invitación para unirte a EcoVolt');
-
-        $enlaceInvitacion = base_url('admin/registro/invitado/' . $token);
-        $mensaje = "¡Hola!\n\n";
-        $mensaje .= "Has sido invitado a unirte a EcoVolt. Para completar tu registro, haz clic en el siguiente enlace:\n\n";
-        $mensaje .= $enlaceInvitacion . "\n\n";
-        $mensaje .= "Este enlace expirará en 7 días.\n\n";
-        $mensaje .= "Saludos,\n";
-        $mensaje .= "El equipo de EcoVolt";
-
-        $emailService->setMessage($mensaje);
-
-        if ($emailService->send()) {
-            session()->set('exito', 'Invitación enviada correctamente');
+        $data = [
+            'email' => $email,
+            'token' => $token,
+            'id_rol' => $idRol,
+            'estado' => 'pendiente',
+            'invitado_por' => session()->get('id_usuario') // Guardar el ID del admin que invita
+        ];
+    
+        if ($invitacionModel->insert($data)) {
+            // Enviar email con el token
+            $emailService = \Config\Services::email();
+            $emailService->setTo($email);
+            $emailService->setFrom('medidorinteligente457@gmail.com', 'EcoVolt');
+            $emailService->setSubject('Invitación a registrarte');
+    
+            $link = base_url("registro/invitado/$token");
+            $mensaje = view('emails/invitacion', ['link' => $link]);
+    
+            $emailService->setMessage($mensaje);
+    
+            if ($emailService->send()) {
+                session()->set('success', 'Invitación enviada correctamente');
+            } else {
+                session()->set('error', 'Error al enviar el email');
+            }
         } else {
-            session()->set('error', 'Error al enviar el correo de invitación');
+            session()->set('error', 'Error al guardar la invitación');
         }
-
+    
         return redirect()->back();
     }
 
