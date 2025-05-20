@@ -78,26 +78,26 @@ class Admin extends BaseController
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
             return redirect()->to('/autenticacion/login');
         }
-    
+
         $email = $this->request->getPost('email');
-        $idRol = $this->request->getPost('id_rol');
-    
+        $idRol = $this->request->getPost('id_rol'); // <--- Esta es la variable que necesitamos
+
         // Validar email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             session()->set('error', 'Email inválido');
             return redirect()->back();
         }
-    
+
         // Validar que el rol sea válido (solo usuario para invitación)
         if ($idRol != 2) {
             session()->set('error', 'Solo se pueden invitar usuarios normales.');
             return redirect()->back();
         }
-    
+
         // Generar token único
         helper('text');
         $token = random_string('alnum', 32);
-    
+
         $invitacionModel = new InvitacionModel();
         $data = [
             'email' => $email,
@@ -106,19 +106,20 @@ class Admin extends BaseController
             'estado' => 'pendiente',
             'invitado_por' => session()->get('id_usuario') // Guardar el ID del admin que invita
         ];
-    
+
         if ($invitacionModel->insert($data)) {
             // Enviar email con el token
             $emailService = \Config\Services::email();
             $emailService->setTo($email);
             $emailService->setFrom('medidorinteligente457@gmail.com', 'EcoVolt');
             $emailService->setSubject('Invitación a registrarte');
-    
+
             $link = base_url("registro/invitado/$token");
-            $mensaje = view('emails/invitacion', ['link' => $link]);
-    
+            // ¡MODIFICACIÓN AQUÍ! Pasa $idRol a la vista también
+            $mensaje = view('emails/invitacion', ['link' => $link, 'id_rol' => $idRol]);
+
             $emailService->setMessage($mensaje);
-    
+
             if ($emailService->send()) {
                 session()->set('success', 'Invitación enviada correctamente');
             } else {
@@ -127,10 +128,10 @@ class Admin extends BaseController
         } else {
             session()->set('error', 'Error al guardar la invitación');
         }
-    
+
         return redirect()->back();
     }
-
+    
     public function invitar($token = null)
     {
         // Verificar si el usuario es admin

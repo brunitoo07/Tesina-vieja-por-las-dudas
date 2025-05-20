@@ -1,0 +1,300 @@
+INFO - 2025-05-20 13:38:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-20 13:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-20 13:39:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:39:16 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-20 13:39:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:39:16 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-20 13:39:16 --> Buscando usuario ID: 1
+DEBUG - 2025-05-20 13:39:16 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-19 14:18:29
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-20 13:39:16 --> Buscando usuario ID: 
+DEBUG - 2025-05-20 13:39:16 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-19 14:18:29
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-20 13:39:23 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-20 13:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:39:23 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-20 13:39:29 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios/admin
+INFO - 2025-05-20 13:39:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:39:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-20 13:40:02 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-20 13:40:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:40:02 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-20 13:40:07 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:40:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-20 13:40:07 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-20 13:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:40:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+DEBUG - 2025-05-20 13:40:12 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:40:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:40:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+CRITICAL - 2025-05-20 13:40:12 --> ErrorException: Undefined variable $id_rol
+[Method: POST, Route: admin/enviarInvitacion]
+in APPPATH\Views\emails\invitacion.php on line 51.
+ 1 APPPATH\Views\emails\invitacion.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $id_rol', 'C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php', 51)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/invitacion', [], true)
+ 5 APPPATH\Controllers\Admin.php(118): view('emails/invitacion', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->enviarInvitacion()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-20 13:42:00 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:42:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:42:00 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759144
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+CRITICAL - 2025-05-20 13:42:00 --> ErrorException: Undefined variable $token
+[Method: POST, Route: admin/enviarInvitacion]
+in APPPATH\Views\emails\invitacion.php on line 56.
+ 1 APPPATH\Views\emails\invitacion.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $token', 'C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php', 56)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/invitacion', [], true)
+ 5 APPPATH\Controllers\Admin.php(119): view('emails/invitacion', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->enviarInvitacion()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-20 13:44:21 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:44:21 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+CRITICAL - 2025-05-20 13:44:21 --> ErrorException: Undefined variable $token
+[Method: POST, Route: admin/enviarInvitacion]
+in APPPATH\Views\emails\invitacion.php on line 56.
+ 1 APPPATH\Views\emails\invitacion.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $token', 'C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php', 56)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\invitacion.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/invitacion', [], true)
+ 5 APPPATH\Controllers\Admin.php(119): view('emails/invitacion', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->enviarInvitacion()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-20 13:45:41 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:45:41 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+CRITICAL - 2025-05-20 13:45:41 --> ParseError: syntax error, unexpected variable "$link ", expecting "," or ";"
+[Method: POST, Route: admin/enviarInvitacion]
+in APPPATH\Views\emails\invitacion.php on line 56.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/invitacion', [], true)
+ 3 APPPATH\Controllers\Admin.php(119): view('emails/invitacion', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->enviarInvitacion()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-20 13:46:41 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:46:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:46:41 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+DEBUG - 2025-05-20 13:46:45 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-20 13:46:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:46:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-20 13:46:49 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:46:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:46:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-20 13:46:52 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-20 13:46:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:46:52 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-20 13:47:07 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-20 13:47:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:47:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-20 13:47:11 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-20 13:47:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 13:47:11 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1747759461
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
