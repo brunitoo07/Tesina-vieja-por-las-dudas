@@ -73,64 +73,76 @@ class Admin extends BaseController
         return view('admin/dashboard', $data);
     }
 
-    public function enviarInvitacion()
-    {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            return redirect()->to('/autenticacion/login');
-        }
+   // app/Controllers/Admin.php
 
-        $email = $this->request->getPost('email');
-        $idRol = $this->request->getPost('id_rol'); // <--- Esta es la variable que necesitamos
+public function enviarInvitacion()
+{
+    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+        return redirect()->to('/autenticacion/login');
+    }
 
-        // Validar email
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            session()->set('error', 'Email inválido');
-            return redirect()->back();
-        }
+    $email = $this->request->getPost('email');
 
-        // Validar que el rol sea válido (solo usuario para invitación)
-        if ($idRol != 2) {
-            session()->set('error', 'Solo se pueden invitar usuarios normales.');
-            return redirect()->back();
-        }
+    // **CAMBIO CLAVE AQUÍ:** Fija el idRol directamente a '2' (o el ID de tu rol 'Usuario')
+    // Ya no lo obtenemos del POST porque lo eliminamos del formulario.
+    $idRol = 2; // Asumiendo que '2' es el ID para el rol 'Usuario'
 
-        // Generar token único
-        helper('text');
-        $token = random_string('alnum', 32);
-
-        $invitacionModel = new InvitacionModel();
-        $data = [
-            'email' => $email,
-            'token' => $token,
-            'id_rol' => $idRol,
-            'estado' => 'pendiente',
-            'invitado_por' => session()->get('id_usuario') // Guardar el ID del admin que invita
-        ];
-
-        if ($invitacionModel->insert($data)) {
-            // Enviar email con el token
-            $emailService = \Config\Services::email();
-            $emailService->setTo($email);
-            $emailService->setFrom('medidorinteligente457@gmail.com', 'EcoVolt');
-            $emailService->setSubject('Invitación a registrarte');
-
-            $link = base_url("registro/invitado/$token");
-            // ¡MODIFICACIÓN AQUÍ! Pasa $idRol a la vista también
-            $mensaje = view('emails/invitacion', ['link' => $link, 'id_rol' => $idRol]);
-
-            $emailService->setMessage($mensaje);
-
-            if ($emailService->send()) {
-                session()->set('success', 'Invitación enviada correctamente');
-            } else {
-                session()->set('error', 'Error al enviar el email');
-            }
-        } else {
-            session()->set('error', 'Error al guardar la invitación');
-        }
-
+    // 1. Validar email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        session()->setFlashdata('error', 'Email inválido.');
         return redirect()->back();
     }
+
+    // 2. **ELIMINA ESTE BLOQUE DE VALIDACIÓN DEL ROL**
+    //    ya que siempre será '2' y no necesitamos la validación.
+    /*
+    if ($idRol != 2) {
+        session()->setFlashdata('error', 'Solo se pueden invitar usuarios con el rol de "Usuario".');
+        return redirect()->back();
+    }
+    */
+
+    // A partir de aquí, las validaciones pasaron. Procedemos con la lógica de negocio.
+
+    // 3. Generar token y datos de la invitación
+    helper('text');
+    $token = random_string('alnum', 32);
+
+    $invitacionModel = new \App\Models\InvitacionModel();
+    $dataInvitacion = [
+        'email'        => $email,
+        'token'        => $token,
+        'id_rol'       => $idRol, // Ya está fijo a '2'
+        'estado'       => 'pendiente',
+        'invitado_por' => session()->get('id_usuario')
+    ];
+
+    // Intentar insertar la invitación en la base de datos
+    if ($invitacionModel->insert($dataInvitacion)) {
+        // 4. Si la invitación se guarda correctamente, intentar enviar el email
+        $emailService = \Config\Services::email();
+        $emailService->setTo($email);
+        $emailService->setFrom('medidorinteligente457@gmail.com', 'EcoVolt');
+        $emailService->setSubject('Invitación a registrarte en EcoVolt');
+
+        $link = base_url("registro/invitado/$token");
+        // Asegúrate de que tu vista `emails/invitacion` reciba el `id_rol`
+        $mensaje = view('emails/invitacion', ['link' => $link, 'id_rol' => $idRol]);
+
+        $emailService->setMessage($mensaje);
+
+        if ($emailService->send()) {
+            session()->setFlashdata('success', 'Invitación enviada correctamente.');
+        } else {
+            log_message('error', 'Error al enviar email de invitación: ' . $emailService->printDebugger(['headers', 'subject', 'body']));
+            session()->setFlashdata('error', 'Error al enviar el email de invitación. Por favor, inténtalo de nuevo.');
+        }
+    } else {
+        session()->setFlashdata('error', 'Error al guardar la invitación. Posiblemente el email ya ha sido invitado o hay un problema en la base de datos.');
+    }
+
+    return redirect()->back();
+}
     
     public function invitar($token = null)
     {
@@ -235,35 +247,52 @@ class Admin extends BaseController
         }
     }
 
-    public function listarAdmins()
-    {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            return redirect()->to('/autenticacion/login');
-        }
+    // app/Controllers/Admin.php
 
-        $data['usuarios'] = $this->usuarioModel
-            ->select('usuario.*, roles.nombre_rol as rol')
-            ->join('roles', 'roles.id_rol = usuario.id_rol')
-            ->where('usuario.id_rol', 1) // Solo admins (id_rol = 1)
-            ->findAll();
-
-        return view('admin/gestionarUsuarios', $data); // Reutiliza la misma vista
+public function listarAdmins()
+{
+    // Verifica si el usuario está logueado y tiene rol de 'admin'
+    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+        return redirect()->to('/autenticacion/login');
     }
 
-    public function gestionarUsuarios()
-    {
-        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
-            return redirect()->to('/autenticacion/login');
-        }
+    // Obtener el ID del administrador que está logueado en este momento
+    $id_admin_logueado = session()->get('id_usuario');
 
-        $data['usuarios'] = $this->usuarioModel
-            ->select('usuario.*, roles.nombre_rol as rol')
-            ->join('roles', 'roles.id_rol = usuario.id_rol')
-            ->findAll();
+    // Construye la consulta para obtener solo los administradores
+    // que fueron invitados por el administrador logueado
+    $data['usuarios'] = $this->usuarioModel
+        ->select('usuario.*, roles.nombre_rol as rol')
+        ->join('roles', 'roles.id_rol = usuario.id_rol')
+        ->where('usuario.id_rol', 1) // Filtra para obtener solo usuarios con rol de Administrador (ID 1)
+        ->where('usuario.invitado_por', $id_admin_logueado) // ¡FILTRO CLAVE: Solo muestra a los que invitó este admin!
+        ->findAll();
 
-        return view('admin/gestionarUsuarios', $data);
+    // Reutiliza la misma vista 'admin/gestionarUsuarios'
+    // Asegúrate de que esta vista sea adecuada para mostrar esta lista de usuarios.
+    return view('admin/gestionarUsuarios', $data);
+}
+
+public function gestionarUsuarios()
+{
+    if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+        return redirect()->to('/autenticacion/login');
     }
 
+    // Obtener el ID del administrador logueado
+    $id_admin = session()->get('id_usuario');
+
+    // El administrador solo ve los usuarios que él invitó
+    $data['usuarios'] = $this->usuarioModel
+        ->select('usuario.*, roles.nombre_rol as rol') // Nota: Aquí usas 'rol' en vez de 'nombre_rol' como alias.
+                                                      // Asegúrate de que tu vista use 'rol' para mostrarlo.
+        ->join('roles', 'roles.id_rol = usuario.id_rol')
+        ->where('usuario.invitado_por', $id_admin) // ¡Esta es la línea clave que añade el filtro!
+        ->findAll();
+
+    // La vista 'admin/gestionarUsuarios' debería ser adecuada para mostrar esta lista.
+    return view('admin/gestionarUsuarios', $data);
+}
     public function cambiarRol()
     {
         if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {

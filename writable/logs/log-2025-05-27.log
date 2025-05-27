@@ -1,0 +1,647 @@
+INFO - 2025-05-27 11:43:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 12:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 12:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 12:59:03 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 12:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 12:59:03 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748361533
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 12:59:04 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 12:59:04 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 12:59:04 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 12:59:04 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 12:59:08 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 12:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 12:59:08 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748361533
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-05-27 13:11:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:11:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:11:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:40 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 13:11:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748362294
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:11:40 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:11:40 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:11:40 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 13:11:40 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 13:11:42 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 13:11:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:42 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748362294
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:11:45 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios/admin
+INFO - 2025-05-27 13:11:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748362294
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:11:49 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 13:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748362294
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:11:56 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios/admin
+INFO - 2025-05-27 13:11:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:11:56 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748362294
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:11 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 13:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:11 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:11 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:31:11 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:31:11 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 13:31:11 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 13:31:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:31:12 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 13:31:12 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 13:31:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:31:12 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:31:12 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 13:31:12 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 13:31:13 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios/admin
+INFO - 2025-05-27 13:31:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:13 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:16 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 13:31:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:16 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:18 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:31:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:18 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:40 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-27 13:31:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-27 13:31:40 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:31:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:31:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+DEBUG - 2025-05-27 13:32:02 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-27 13:32:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:32:02 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+)
+
+DEBUG - 2025-05-27 13:32:06 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:32:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:32:06 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:34:58 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:34:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:35:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:35:00 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748363471
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+INFO - 2025-05-27 13:35:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-27 13:35:01 --> ErrorException: unlink(C:\xampp\htdocs\Tesina\writable\debugbar/debugbar_1748361548.617078.json): No such file or directory
+[Method: GET, Route: /]
+in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 82.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(C:\\xampp\\htdocs\\Tesina\\writable\\debugbar/debugbar_1748361548.617078.json): No such file or directory', 'C:\\xampp\\htdocs\\Tesina\\system\\Debug\\Toolbar\\Collectors\\History.php', 82)
+ 2 SYSTEMPATH\Debug\Toolbar\Collectors\History.php(82): unlink('C:\\xampp\\htdocs\\Tesina\\writable\\debugbar/debugbar_1748361548.617078.json')
+ 3 SYSTEMPATH\Debug\Toolbar.php(518): CodeIgniter\Debug\Toolbar\Collectors\History->setFiles('1748363700.718548', 20)
+ 4 SYSTEMPATH\Debug\Toolbar.php(497): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 5 APPPATH\Config\Events.php(47): CodeIgniter\Debug\Toolbar->respond()
+ 6 SYSTEMPATH\Events\Events.php(155): CodeIgniter\Events\Events::Config\{closure}()
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\Events\Events::trigger('pre_system')
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:35:01 --> ErrorException: unlink(C:\xampp\htdocs\Tesina\writable\debugbar/debugbar_1748361548.617078.json): No such file or directory
+[Method: GET, Route: /]
+in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 82.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(C:\\xampp\\htdocs\\Tesina\\writable\\debugbar/debugbar_1748361548.617078.json): No such file or directory', 'C:\\xampp\\htdocs\\Tesina\\system\\Debug\\Toolbar\\Collectors\\History.php', 82)
+ 2 SYSTEMPATH\Debug\Toolbar\Collectors\History.php(82): unlink('C:\\xampp\\htdocs\\Tesina\\writable\\debugbar/debugbar_1748361548.617078.json')
+ 3 SYSTEMPATH\Debug\Toolbar.php(518): CodeIgniter\Debug\Toolbar\Collectors\History->setFiles('1748363698.820424', 20)
+ 4 SYSTEMPATH\Debug\Toolbar.php(497): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 5 APPPATH\Config\Events.php(47): CodeIgniter\Debug\Toolbar->respond()
+ 6 SYSTEMPATH\Events\Events.php(155): CodeIgniter\Events\Events::Config\{closure}()
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\Events\Events::trigger('pre_system')
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-27 13:44:07 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:44:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:44:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:44:52 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:44:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:44:52 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:44:57 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:44:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:44:57 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:44:59 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 13:44:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:44:59 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:45:00 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:45:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:00 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+INFO - 2025-05-27 13:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:31 --> Ruta actual: /Tesina/public/home/bienvenida
+INFO - 2025-05-27 13:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:31 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:45:35 --> Ruta actual: /Tesina/public/dispositivo
+INFO - 2025-05-27 13:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:35 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/home/bienvenida
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:45:35 --> ID Usuario: 1
+DEBUG - 2025-05-27 13:45:35 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:45:35 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:45:35 --> Dispositivos encontrados: Array
+(
+    [0] => Array
+        (
+            [id_dispositivo] => 1
+            [nombre] => medidor de ecovolt
+            [id_usuario] => 1
+            [mac_address] => 00:1A:2B:3C:4D:5E
+            [estado] => activo
+            [created_at] => 2025-04-10 22:26:34
+        )
+
+    [1] => Array
+        (
+            [id_dispositivo] => 2
+            [nombre] => ECOVOLT HOYY 11/4
+            [id_usuario] => 1
+            [mac_address] => 08:D1:F9:A5:2A:14
+            [estado] => activo
+            [created_at] => 2025-04-11 10:03:27
+        )
+
+)
+
+DEBUG - 2025-05-27 13:45:38 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-27 13:45:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:38 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/dispositivo
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:45:38 --> Buscando usuario ID: 1
+DEBUG - 2025-05-27 13:45:38 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-27 13:45:38 --> Buscando usuario ID: 
+DEBUG - 2025-05-27 13:45:38 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-27 13:45:39 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-27 13:45:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:39 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+
+DEBUG - 2025-05-27 13:45:40 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-27 13:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-27 13:45:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748364247
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [error] => Solo se pueden invitar usuarios normales.
+    [success] => Invitación enviada correctamente
+)
+

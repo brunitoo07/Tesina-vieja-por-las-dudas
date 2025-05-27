@@ -32,9 +32,7 @@
                         <label for="id_rol" class="form-label">Rol</label>
                         <select class="form-select" id="id_rol" name="id_rol" required>
                             <option value="">Seleccione un rol</option>
-                            <option value="1">Administrador</option>
                             <option value="2">Usuario</option>
-                            <option value="3">Invitado</option>
                         </select>
                     </div>
 
