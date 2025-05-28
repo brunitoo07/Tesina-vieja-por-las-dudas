@@ -1,0 +1,887 @@
+INFO - 2025-05-28 08:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 08:34:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 08:34:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 08:34:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 08:34:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:21 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-05-28 08:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:21 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:34:21 --> Buscando usuario ID: 1
+DEBUG - 2025-05-28 08:34:21 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 08:34:21 --> Buscando usuario ID: 
+DEBUG - 2025-05-28 08:34:21 --> Resultado de la búsqueda: Array
+(
+    [0] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-05-26 09:50:13
+            [invitado_por] => 
+            [nombre_rol] => admin
+        )
+
+)
+
+DEBUG - 2025-05-28 08:34:23 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios
+INFO - 2025-05-28 08:34:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:23 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:34:27 --> Ruta actual: /Tesina/public/admin/gestionarUsuarios/admin
+INFO - 2025-05-28 08:34:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:27 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:34:33 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 08:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:33 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/gestionarUsuarios/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:34:46 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 08:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:46 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+ERROR - 2025-05-28 08:34:48 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-05-28 08:34:48 --> 220 smtp.gmail.com ESMTP a1e0cc1a2514c-87e1f01ac50sm662605241.12 - gsmtp
+
+hello: 250-smtp.gmail.com at your service, [181.228.71.105]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a1e0cc1a2514c-87e1f01ac50sm662605241.12 - gsmtp
+
+ERROR - 2025-05-28 08:34:48 --> Error al enviar email de invitación: 220 smtp.gmail.com ESMTP a1e0cc1a2514c-87e1f01ac50sm662605241.12 - gsmtp
+<br><pre>hello: 250-smtp.gmail.com at your service, [181.228.71.105]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+</pre>Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a1e0cc1a2514c-87e1f01ac50sm662605241.12 - gsmtp
+<br>Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Wed, 28 May 2025 08:34:46 -0300
+To: crisahnfajajaja@gmial.com
+From: &quot;EcoVolt&quot; &lt;medidorinteligente457@gmail.com&gt;
+Return-Path: &lt;medidorinteligente457@gmail.com&gt;
+Subject: =?UTF-8?Q?Invitaci=C3=B3n=20a=20registrarte=20en=20EcoVolt?=
+Reply-To: &lt;medidorinteligente457@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: medidorinteligente457@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;6836f4d6dbfe32.13784647@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_6836f4d6dbffa3.10368103&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_6836f4d6dbffa3.10368103
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+   
+        ¡Has sido invitado a EcoVolt!
+   
+   
+   
+        Hola,
+       
+        Has sido invitado a unirte a EcoVolt como Usuario.
+       
+        Para completar tu registro, haz clic en el siguiente enlace:
+       
+       
+            Completar Registro
+       
+       
+        Si el botón no funciona, copia y pega este enlace en tu
+navegador:
+       
+http://192.168.2.176/Tesina/public/registro/invitado/iJEsshFNt3zPOIslirFprgk48Z2djBDX
+       
+        Este enlace expirará en 24 horas por razones de seguridad.
+   
+   
+   
+        Este es un correo automático, por favor no respondas a este
+mensaje.
+        &amp;copy; 2025 EcoVolt. Todos los derechos reservados.
+   
+
+
+--B_ALT_6836f4d6dbffa3.10368103
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+&lt;!-- DEBUG-VIEW START 1 APPPATH\Views\emails\invitacion.php --&gt;=0A&lt;!DOCTYPE=
+ html&gt;=0A&lt;html&gt;=0A&lt;head&gt;=0A=C2=A0 =C2=A0 &lt;style&gt;=0A=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 body {=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 font-family: Aria=
+l, sans-serif;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 line-height: 1.6=
+;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 color: #333;=0A=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max-width: 600px;=0A=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 margin: 0 auto;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 padding: 20px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 }=0A=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 .header {=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bac=
+kground-color: #007bff;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 color: =
+white;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 padding: 20px;=0A=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 text-align: center;=0A=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 border-radius: 5px;=0A=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 }=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 .content {=0A=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 padding: 20px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 background-color: #f8f9fa;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 border-radius: 5px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 margin-top: 20px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 }=0A=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 .button {=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 display=
+: inline-block;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 padding: 10px 2=
+0px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 background-color: #28a745;=
+=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 color: white;=0A=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 text-decoration: none;=0A=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 border-radius: 5px;=0A=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 margin-top: 20px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 }=0A=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 .footer {=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 text-align: center;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 margin-top: 20px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 font-size=
+: 12px;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 color: #6c757d;=0A=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }=0A=C2=A0 =C2=A0 &lt;/style&gt;=0A&lt;/head&gt;=0A&lt;body&gt;=
+=0A=C2=A0 =C2=A0 &lt;div class=3D&quot;header&quot;&gt;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;h1&gt;=
+=C2=A1Has sido invitado a EcoVolt!&lt;/h1&gt;=0A=C2=A0 =C2=A0 &lt;/div&gt;=0A=C2=A0 =
+=C2=A0 =0A=C2=A0 =C2=A0 &lt;div class=3D&quot;content&quot;&gt;=0A=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 &lt;p&gt;Hola,&lt;/p&gt;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =0A=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 &lt;p&gt;Has sido invitado a unirte a EcoVolt como Usuario.&lt;/p&gt;=0A=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p&gt;Para completa=
+r tu registro, haz clic en el siguiente enlace:&lt;/p&gt;=0A=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;div style=3D&quot;text-align: center;=
+&quot;&gt;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;a href=3D&quot;http://192.168.2.=
+176/Tesina/public/registro/invitado/iJEsshFNt3zPOIslirFprgk48Z2djBDX&quot; class=
+=3D&quot;button&quot;&gt;Completar Registro&lt;/a&gt; =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;/div&gt;=0A=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p&gt;Si el bot=
+=C3=B3n no funciona, copia y pega este enlace en tu navegador:&lt;/p&gt;=0A=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p style=3D&quot;word-break: break-all;&quot;&gt;http://192.168=
+.2.176/Tesina/public/registro/invitado/iJEsshFNt3zPOIslirFprgk48Z2djBDX&lt;/p&gt;=
+ =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 =0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p&gt;Este enla=
+ce expirar=C3=A1 en 24 horas por razones de seguridad.&lt;/p&gt;=0A=C2=A0 =C2=
+=A0 &lt;/div&gt;=0A=C2=A0 =C2=A0 =0A=C2=A0 =C2=A0 &lt;div class=3D&quot;footer&quot;&gt;=0A=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p&gt;Este es un correo autom=C3=A1tico, por favor no=
+ respondas a este mensaje.&lt;/p&gt;=0A=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;p&gt;&amp;copy; 2025=
+ EcoVolt. Todos los derechos reservados.&lt;/p&gt;=0A=C2=A0 =C2=A0 &lt;/div&gt;=0A&lt;/bod=
+y&gt;=0A&lt;/html&gt;=0A&lt;!-- DEBUG-VIEW ENDED 1 APPPATH\Views\emails\invitacion.php =
+--&gt;
+
+--B_ALT_6836f4d6dbffa3.10368103--</pre>
+DEBUG - 2025-05-28 08:34:49 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 08:34:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:34:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432042
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:41:54 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 08:41:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:41:54 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432514
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 08:41:57 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 08:41:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 08:41:57 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748432514
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 09:50:28 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 09:50:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 09:50:28 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748436628
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 09:50:58 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 09:50:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 09:50:58 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748436628
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 09:51:09 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 09:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 09:51:09 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748436628
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 09:51:12 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 09:51:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 09:51:12 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748436628
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-05-28 09:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-28 09:57:34 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "autenticacion/registro_invitado.php"
+[Method: GET, Route: registro/invitado/vafQtNHdyRqenr6XMs9NeimAT3Nwv3Km]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('autenticacion/registro_invitado.php')
+ 2 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('autenticacion/registro_invitado', [], true)
+ 3 APPPATH\Controllers\CAutenticacion.php(154): view('autenticacion/registro_invitado', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->registroInvitado('vafQtNHdyRqenr6XMs9NeimAT3Nwv3Km')
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-05-28 09:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 09:59:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 09:59:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:04:03 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 10:04:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:04:04 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748437444
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:04:07 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:04:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:04:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748437444
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-05-28 10:04:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-28 10:07:27 --> ParseError: syntax error, unexpected token "private", expecting end of file
+[Method: GET, Route: registro/invitado/QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ]
+in APPPATH\Controllers\CAutenticacion.php on line 297.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Tesina\\app\\Controllers\\CAutenticacion.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CAutenticacion')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CAutenticacion')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CAutenticacion', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-28 10:07:31 --> ParseError: syntax error, unexpected token "private", expecting end of file
+[Method: GET, Route: autenticacion/login]
+in APPPATH\Controllers\CAutenticacion.php on line 297.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Tesina\\app\\Controllers\\CAutenticacion.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CAutenticacion')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CAutenticacion')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CAutenticacion', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-28 10:07:34 --> ParseError: syntax error, unexpected token "private", expecting end of file
+[Method: GET, Route: autenticacion/login]
+in APPPATH\Controllers\CAutenticacion.php on line 297.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\Tesina\\app\\Controllers\\CAutenticacion.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(272): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\CAutenticacion')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\CAutenticacion')
+ 4 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\CAutenticacion', true)
+ 5 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-28 10:09:04 --> ErrorException: Cannot redeclare App\Controllers\CAutenticacion::generarMacAleatoria()
+[Method: GET, Route: autenticacion/login]
+in APPPATH\Controllers\CAutenticacion.php on line 297.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-05-28 10:09:05 --> ErrorException: Cannot redeclare App\Controllers\CAutenticacion::generarMacAleatoria()
+[Method: GET, Route: autenticacion/login]
+in APPPATH\Controllers\CAutenticacion.php on line 297.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2025-05-28 10:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:12:10 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:12:10 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"loyola@gmail.com","id_rol_invitado":"2","token_invitacion":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","nombre":"loyol","apellido":"jaakad","contrasena":"Loyola_07$","confirmar_contrasena":"LOYOLA_07$"}
+DEBUG - 2025-05-28 10:12:10 --> Token del formulario: QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ
+DEBUG - 2025-05-28 10:12:10 --> Email del formulario: loyola@gmail.com
+DEBUG - 2025-05-28 10:12:10 --> ID Rol Invitado del formulario: 2
+CRITICAL - 2025-05-28 10:12:10 --> ErrorException: Undefined property: App\Controllers\CAutenticacion::$invitacionModel
+[Method: POST, Route: registro/procesarInvitado]
+in APPPATH\Controllers\CAutenticacion.php on line 178.
+ 1 APPPATH\Controllers\CAutenticacion.php(178): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\CAutenticacion::$invitacionModel', 'C:\\xampp\\htdocs\\Tesina\\app\\Controllers\\CAutenticacion.php', 178)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->procesarRegistroInvitado()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-28 10:13:58 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:13:58 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"loyola@gmail.com","id_rol_invitado":"2","token_invitacion":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","nombre":"loyol","apellido":"jaakad","contrasena":"Loyola_07$","confirmar_contrasena":"LOYOLA_07$"}
+DEBUG - 2025-05-28 10:13:58 --> Token del formulario: QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ
+DEBUG - 2025-05-28 10:13:58 --> Email del formulario: loyola@gmail.com
+DEBUG - 2025-05-28 10:13:58 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:13:58 --> Invitación encontrada: {"id_invitacion":"33","email":"loyola@gmail.com","id_rol":"2","token":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:04:04","id_usuario":"0","created_at":"2025-05-28 10:04:04"}
+ERROR - 2025-05-28 10:13:58 --> El ID de rol de la invitación (2) no coincide con el del formulario (2).
+INFO - 2025-05-28 10:13:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:13:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:15:49 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:15:49 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"loyola@gmail.com","id_rol_invitado":"2","token_invitacion":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","nombre":"loyol","apellido":"jaakad","contrasena":"Loyola_07$","confirmar_contrasena":"LOYOLA_07$"}
+DEBUG - 2025-05-28 10:15:49 --> Token del formulario: QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ
+DEBUG - 2025-05-28 10:15:49 --> Email del formulario: loyola@gmail.com
+DEBUG - 2025-05-28 10:15:49 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:15:49 --> Invitación encontrada: {"id_invitacion":"33","email":"loyola@gmail.com","id_rol":"2","token":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:04:04","id_usuario":"0","created_at":"2025-05-28 10:04:04"}
+DEBUG - 2025-05-28 10:15:49 --> Validación de invitación inicial OK.
+ERROR - 2025-05-28 10:15:49 --> Validación fallida: Contraseñas no coinciden.
+INFO - 2025-05-28 10:15:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:15:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:20:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:21:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:22:07 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:22:07 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"loyola@gmail.com","id_rol_invitado":"2","token_invitacion":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","nombre":"loyol","apellido":"jajadjadjadad","contrasena":"Loyola_07$","confirmar_contrasena":"Loyola_07$"}
+DEBUG - 2025-05-28 10:22:07 --> Token del formulario: QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ
+DEBUG - 2025-05-28 10:22:07 --> Email del formulario: loyola@gmail.com
+DEBUG - 2025-05-28 10:22:07 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:22:07 --> Invitación encontrada: {"id_invitacion":"33","email":"loyola@gmail.com","id_rol":"2","token":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:04:04","id_usuario":"0","created_at":"2025-05-28 10:04:04"}
+DEBUG - 2025-05-28 10:22:07 --> Validación de invitación inicial OK.
+DEBUG - 2025-05-28 10:22:07 --> Validación de datos del formulario OK.
+DEBUG - 2025-05-28 10:22:07 --> Datos de usuario a insertar: {"nombre":"loyol","apellido":"jajadjadjadad","email":"loyola@gmail.com","contrasena":"Loyola_07$","id_rol":"2","estado":"activo","invitado_por":null}
+DEBUG - 2025-05-28 10:22:07 --> Datos a insertar: Array
+(
+    [nombre] => loyol
+    [apellido] => jajadjadjadad
+    [email] => loyola@gmail.com
+    [contrasena] => Loyola_07$
+    [id_rol] => 2
+    [estado] => activo
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:22:07 --> Validando rol: 2
+DEBUG - 2025-05-28 10:22:07 --> Resultado de validación de rol: true
+DEBUG - 2025-05-28 10:22:07 --> Usuario insertado con ID: 49
+INFO - 2025-05-28 10:22:07 --> Usuario registrado exitosamente con ID: 49
+CRITICAL - 2025-05-28 10:22:07 --> Excepción durante el procesamiento del registro de invitado: Undefined array key "id"
+INFO - 2025-05-28 10:22:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:22:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:23:49 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 10:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:23:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748438629
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:23:52 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:23:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:23:52 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748438629
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:27:06 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:27:06 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"loyola@gmail.com","id_rol_invitado":"2","token_invitacion":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","nombre":"loyol","apellido":"jajadjadjadad","contrasena":"dadas","confirmar_contrasena":"sdaasadasdSs"}
+DEBUG - 2025-05-28 10:27:06 --> Token del formulario: QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ
+DEBUG - 2025-05-28 10:27:06 --> Email del formulario: loyola@gmail.com
+DEBUG - 2025-05-28 10:27:06 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:27:06 --> Invitación encontrada: {"id_invitacion":"33","email":"loyola@gmail.com","id_rol":"2","token":"QOLQNarlZCa8kpQSMyRvbX6HqTLhy1KQ","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:04:04","id_usuario":"0","created_at":"2025-05-28 10:04:04"}
+DEBUG - 2025-05-28 10:27:06 --> Validación de invitación inicial OK.
+ERROR - 2025-05-28 10:27:06 --> Validación fallida: El email ya está registrado como usuario activo.
+INFO - 2025-05-28 10:27:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:27:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:27:19 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 10:27:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:27:19 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748438629
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:27:23 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:27:23 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748438629
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:33:09 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:33:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:33:09 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748439189
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:33:15 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 10:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:33:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748439189
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:33:15 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:33:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748439189
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:33:29 --> Ruta actual: /Tesina/public/admin/enviarInvitacion
+INFO - 2025-05-28 10:33:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:33:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748439189
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:33:33 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-05-28 10:33:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:33:33 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748439189
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-05-28 10:33:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:34:09 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:34:09 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"chuyala@gmail.com","id_rol_invitado":"2","token_invitacion":"IwN3rWbK8iASGKk7sg8cVOKproTGm4KN","nombre":"chuyala","apellido":"jajajaa","contrasena":"Chuyala_07$","confirmar_contrasena":"Chuyala_07$"}
+DEBUG - 2025-05-28 10:34:09 --> Token del formulario: IwN3rWbK8iASGKk7sg8cVOKproTGm4KN
+DEBUG - 2025-05-28 10:34:09 --> Email del formulario: chuyala@gmail.com
+DEBUG - 2025-05-28 10:34:09 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:34:09 --> Invitación encontrada: {"id_invitacion":"36","email":"chuyala@gmail.com","id_rol":"2","token":"IwN3rWbK8iASGKk7sg8cVOKproTGm4KN","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:33:29","id_usuario":"0","created_at":"2025-05-28 10:33:29"}
+DEBUG - 2025-05-28 10:34:09 --> Validación de invitación inicial OK.
+DEBUG - 2025-05-28 10:34:09 --> Validación de datos del formulario OK.
+DEBUG - 2025-05-28 10:34:09 --> Datos de usuario a insertar: {"nombre":"chuyala","apellido":"jajajaa","email":"chuyala@gmail.com","contrasena":"Chuyala_07$","id_rol":"2","estado":"activo","invitado_por":null}
+DEBUG - 2025-05-28 10:34:09 --> Datos a insertar: Array
+(
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => Chuyala_07$
+    [id_rol] => 2
+    [estado] => activo
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:34:09 --> Validando rol: 2
+DEBUG - 2025-05-28 10:34:09 --> Resultado de validación de rol: true
+DEBUG - 2025-05-28 10:34:09 --> Usuario insertado con ID: 50
+INFO - 2025-05-28 10:34:09 --> Usuario registrado exitosamente con ID: 50
+CRITICAL - 2025-05-28 10:34:09 --> Excepción durante el procesamiento del registro de invitado: Undefined variable $invitacionModel
+INFO - 2025-05-28 10:34:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:34:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-28 10:37:05 --> Error: Cannot call constructor
+[Method: GET, Route: registro/invitado/IwN3rWbK8iASGKk7sg8cVOKproTGm4KN]
+in APPPATH\Controllers\CAutenticacion.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\CAutenticacion->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-05-28 10:58:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:58:33 --> Iniciando procesarRegistroInvitado.
+DEBUG - 2025-05-28 10:58:33 --> Datos recibidos del POST: {"csrf_test_name":"1bb2e25f9ba8a14764faca2cad0a99bb","email":"chuyala@gmail.com","id_rol_invitado":"2","token_invitacion":"IwN3rWbK8iASGKk7sg8cVOKproTGm4KN","nombre":"chuyala","apellido":"dad","contrasena":"dad","confirmar_contrasena":"adssdad"}
+DEBUG - 2025-05-28 10:58:33 --> Token del formulario: IwN3rWbK8iASGKk7sg8cVOKproTGm4KN
+DEBUG - 2025-05-28 10:58:33 --> Email del formulario: chuyala@gmail.com
+DEBUG - 2025-05-28 10:58:33 --> ID Rol Invitado del formulario: 2
+DEBUG - 2025-05-28 10:58:33 --> Invitación encontrada: {"id_invitacion":"36","email":"chuyala@gmail.com","id_rol":"2","token":"IwN3rWbK8iASGKk7sg8cVOKproTGm4KN","estado":"pendiente","invitado_por":null,"fecha_expiracion":"2025-05-28 10:33:29","id_usuario":"0","created_at":"2025-05-28 10:33:29"}
+DEBUG - 2025-05-28 10:58:33 --> Validación de invitación inicial OK.
+ERROR - 2025-05-28 10:58:33 --> Validación fallida: El email ya está registrado como usuario activo.
+INFO - 2025-05-28 10:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:58:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:58:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:58:54 --> Ruta actual: /Tesina/public/usuario
+INFO - 2025-05-28 10:58:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:58:54 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748440695
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 50
+    [email] => chuyala@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:58:54 --> Usuario ID: 50
+DEBUG - 2025-05-28 10:58:54 --> Buscando usuario ID: 50
+DEBUG - 2025-05-28 10:58:54 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:58:54 --> Datos del usuario: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:58:54 --> Buscando usuario ID: 50
+DEBUG - 2025-05-28 10:58:54 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:58:54 --> Dispositivos encontrados: Array
+(
+)
+
+DEBUG - 2025-05-28 10:58:54 --> Consumo 24h: 0
+DEBUG - 2025-05-28 10:58:54 --> Consumo promedio: 0
+DEBUG - 2025-05-28 10:58:54 --> Datos enviados a la vista: Array
+(
+    [usuario] => Array
+        (
+            [id_usuario] => 50
+            [nombre] => chuyala
+            [apellido] => jajajaa
+            [email] => chuyala@gmail.com
+            [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-05-28 10:34:09
+            [updated_at] => 2025-05-28 10:34:09
+            [invitado_por] => 
+        )
+
+    [dispositivos] => Array
+        (
+        )
+
+    [consumo24h] => 0
+    [consumoPromedio] => 0
+)
+
+DEBUG - 2025-05-28 10:58:57 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-05-28 10:58:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:58:57 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748440695
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/usuario
+    [id_usuario] => 50
+    [email] => chuyala@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+INFO - 2025-05-28 10:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:59:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-28 10:59:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:59:11 --> Ruta actual: /Tesina/public/usuario
+INFO - 2025-05-28 10:59:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:59:11 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748440741
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/
+    [id_usuario] => 50
+    [email] => chuyala@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:59:11 --> Usuario ID: 50
+DEBUG - 2025-05-28 10:59:11 --> Buscando usuario ID: 50
+DEBUG - 2025-05-28 10:59:11 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:59:11 --> Datos del usuario: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:59:11 --> Buscando usuario ID: 50
+DEBUG - 2025-05-28 10:59:11 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:59:11 --> Dispositivos encontrados: Array
+(
+)
+
+DEBUG - 2025-05-28 10:59:11 --> Consumo 24h: 0
+DEBUG - 2025-05-28 10:59:11 --> Consumo promedio: 0
+DEBUG - 2025-05-28 10:59:11 --> Datos enviados a la vista: Array
+(
+    [usuario] => Array
+        (
+            [id_usuario] => 50
+            [nombre] => chuyala
+            [apellido] => jajajaa
+            [email] => chuyala@gmail.com
+            [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+            [direccion_id] => 0
+            [id_rol] => 2
+            [created_at] => 2025-05-28 10:34:09
+            [updated_at] => 2025-05-28 10:34:09
+            [invitado_por] => 
+        )
+
+    [dispositivos] => Array
+        (
+        )
+
+    [consumo24h] => 0
+    [consumoPromedio] => 0
+)
+
+DEBUG - 2025-05-28 10:59:18 --> Ruta actual: /Tesina/public/perfil/perfil
+INFO - 2025-05-28 10:59:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:59:18 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748440741
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/usuario
+    [id_usuario] => 50
+    [email] => chuyala@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+
+DEBUG - 2025-05-28 10:59:18 --> === INICIO ACTUALIZACIÓN PERFIL ===
+DEBUG - 2025-05-28 10:59:18 --> ID Usuario: 50
+DEBUG - 2025-05-28 10:59:18 --> Buscando usuario ID: 50
+DEBUG - 2025-05-28 10:59:18 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:59:18 --> Datos actuales del usuario: Array
+(
+    [id_usuario] => 50
+    [nombre] => chuyala
+    [apellido] => jajajaa
+    [email] => chuyala@gmail.com
+    [contrasena] => $2y$10$KtydOaIRYpqzfUEaPYJejepJHIB6iJh8E/mYvNgz3iQmclw/Fcygm
+    [direccion_id] => 0
+    [id_rol] => 2
+    [created_at] => 2025-05-28 10:34:09
+    [updated_at] => 2025-05-28 10:34:09
+    [invitado_por] => 
+)
+
+DEBUG - 2025-05-28 10:59:22 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-05-28 10:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-28 10:59:22 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1748440741
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/perfil/perfil
+    [id_usuario] => 50
+    [email] => chuyala@gmail.com
+    [rol] => usuario
+    [logged_in] => 1
+)
+

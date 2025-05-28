@@ -20,13 +20,18 @@ $routes->post('iniciarSesion', 'CAutenticacion::iniciarSesion');
 $routes->post('autenticacion/iniciarSesion', 'CAutenticacion::iniciarSesion');
 $routes->get('cerrarSesion', 'CAutenticacion::cerrarSesion');
 $routes->get('autenticacion/cerrarSesion', 'CAutenticacion::cerrarSesion');
-$routes->get('admin/registro/invitado/(:any)', 'Admin::invitar/$1');
-$routes->post('admin/guardarUsuario', 'Admin::guardarUsuario');
+
+// *** RUTAS PARA REGISTRO DE INVITADOS (¡CORREGIDAS Y AÑADIDAS AQUÍ!) ***
+$routes->get('registro/invitado/(:segment)', 'CAutenticacion::registroInvitado/$1'); // Para el enlace del email (GET)
+$routes->post('registro/procesarInvitado', 'CAutenticacion::procesarRegistroInvitado'); // Para el envío del formulario (POST)
+// ********************************************************************
+
+$routes->post('admin/guardarUsuario', 'Admin::guardarUsuario'); // Esta ruta es de administrador, pero no depende de la anterior.
 
 // Rutas de compra (¡actualizadas!)
 $routes->get('compra', 'Compra::index');
 $routes->post('compra/simularCompra', 'Compra::simularCompra');
-$routes->post('compra/procesarPago', 'Compra::procesarPago'); // ¡Nueva!
+$routes->post('compra/procesarPago', 'Compra::procesarPago');
 $routes->get('compra/completada', 'Compra::completada');
 
 // Rutas protegidas (requieren autenticación)
@@ -96,7 +101,6 @@ $routes->get('consumo/ver/(:num)', 'Consumo::verDatos/$1');
 $routes->get('consumo/grafico/(:num)', 'Consumo::grafico/$1');
 $routes->get('mediciones/(:num)', 'Mediciones::index/$1');
 $routes->get('energia', 'Energia::index');
-
 
 // NUEVA RUTA DE PRUEBA
 $routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');

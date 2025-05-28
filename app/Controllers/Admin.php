@@ -92,6 +92,11 @@ public function enviarInvitacion()
         session()->setFlashdata('error', 'Email inválido.');
         return redirect()->back();
     }
+     // --- VALIDACIÓN ADICIONAL: Verificar si el email ya es un usuario registrado ---
+     if ($this->usuarioModel->existenteEmail($email)) {
+        session()->setFlashdata('error', 'El correo electrónico ' . esc($email) . ' ya está registrado como usuario. No se puede enviar una invitación.');
+        return redirect()->back()->withInput();
+    }
 
     // 2. **ELIMINA ESTE BLOQUE DE VALIDACIÓN DEL ROL**
     //    ya que siempre será '2' y no necesitamos la validación.
