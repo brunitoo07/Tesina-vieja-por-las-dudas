@@ -6,8 +6,51 @@ class DispositivoModel extends Model
 {
     protected $table = 'dispositivos';
     protected $primaryKey = 'id_dispositivo';
-    protected $allowedFields = ['nombre', 'descripcion', 'estado', 'id_usuario'];
-    protected $useTimestamps = false; // Importante: desactiva si manejas created_at manualme
+    protected $allowedFields = [
+        'nombre',
+        'descripcion',
+        'precio',
+        'imagen',
+        'caracteristicas',
+        'stock',
+        'estado'
+    ];
+
+    protected $useTimestamps = true;
+    protected $createdField = 'fecha_creacion';
+    protected $updatedField = 'fecha_actualizacion';
+
+    protected $validationRules = [
+        'nombre' => 'required|min_length[3]|max_length[100]',
+        'descripcion' => 'required|min_length[10]',
+        'precio' => 'required|numeric',
+        'stock' => 'required|integer',
+        'estado' => 'required|in_list[activo,inactivo]'
+    ];
+
+    protected $validationMessages = [
+        'nombre' => [
+            'required' => 'El nombre del dispositivo es requerido',
+            'min_length' => 'El nombre debe tener al menos 3 caracteres',
+            'max_length' => 'El nombre no puede exceder los 100 caracteres'
+        ],
+        'descripcion' => [
+            'required' => 'La descripción es requerida',
+            'min_length' => 'La descripción debe tener al menos 10 caracteres'
+        ],
+        'precio' => [
+            'required' => 'El precio es requerido',
+            'numeric' => 'El precio debe ser un número válido'
+        ],
+        'stock' => [
+            'required' => 'El stock es requerido',
+            'integer' => 'El stock debe ser un número entero'
+        ],
+        'estado' => [
+            'required' => 'El estado es requerido',
+            'in_list' => 'El estado debe ser activo o inactivo'
+        ]
+    ];
 
     public function obtenerDispositivosUsuario($idUsuario)
     {
@@ -151,5 +194,30 @@ class DispositivoModel extends Model
     public function getDispositivoByMac($macAddress)
     {
         return $this->where('mac_address', $macAddress)->first();
+    }
+
+    public function getDispositivosActivos()
+    {
+        return $this->where('estado', 'activo')->findAll();
+    }
+
+    public function getDispositivoConStock($id)
+    {
+        return $this->where('id_dispositivo', $id)
+                    ->where('estado', 'activo')
+                    ->where('stock >', 0)
+                    ->first();
+    }
+
+    public function actualizarStock($id, $cantidad)
+    {
+        $dispositivo = $this->find($id);
+        if ($dispositivo) {
+            $nuevoStock = $dispositivo['stock'] - $cantidad;
+            if ($nuevoStock >= 0) {
+                return $this->update($id, ['stock' => $nuevoStock]);
+            }
+        }
+        return false;
     }
 }

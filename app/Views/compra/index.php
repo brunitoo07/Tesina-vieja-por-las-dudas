@@ -45,43 +45,90 @@
             display: none;
             margin-top: 20px;
         }
+        .device-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .device-card:hover {
+            border-color: #4CAF50;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .device-card.selected {
+            border-color: #4CAF50;
+            background-color: #f1f8e9;
+        }
+        .device-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="pricing-header">
         <h1 class="display-4">EcoMonitor Pro</h1>
-        <p class="lead">La solución completa para el monitoreo de energía</p>
+        <p class="lead">Selecciona tu dispositivo y completa tu compra</p>
     </div>
 
     <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
+        <div class="row">
+            <!-- Selección de Dispositivo -->
+            <div class="col-md-6">
+                <h2 class="mb-4">Selecciona tu Dispositivo</h2>
+                <div class="device-card selected" data-device="eco-monitor-pro">
+                    <img src="<?= base_url('assets/img/eco-monitor-pro.jpg') ?>" alt="EcoMonitor Pro" class="device-image">
+                    <h3>EcoMonitor Pro</h3>
+                    <p class="text-muted">Nuestro dispositivo más avanzado para monitoreo de energía</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Monitoreo en tiempo real</li>
+                        <li><i class="fas fa-check-circle"></i> Análisis detallado de consumo</li>
+                        <li><i class="fas fa-check-circle"></i> Alertas personalizadas</li>
+                        <li><i class="fas fa-check-circle"></i> Compatible con todos los sistemas</li>
+                    </ul>
+                    <div class="price-tag">$99.99</div>
+                </div>
+            </div>
+
+            <!-- Resumen de Compra -->
+            <div class="col-md-6">
                 <div class="card shadow-lg">
-                    <div class="card-body text-center p-5">
-                        <h2 class="card-title mb-4">Plan Premium</h2>
-                        <div class="price-tag mb-4">$99.99</div>
-                        <p class="text-muted mb-4">Acceso completo a todas las funcionalidades</p>
+                    <div class="card-body p-5">
+                        <h2 class="card-title mb-4">Resumen de Compra</h2>
+                        <div id="selected-device-info">
+                            <h4>EcoMonitor Pro</h4>
+                            <p class="text-muted">Dispositivo de monitoreo de energía</p>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Subtotal:</span>
+                                <span>$99.99</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Envío:</span>
+                                <span>Gratis</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-4">
+                                <strong>Total:</strong>
+                                <strong class="price-tag">$99.99</strong>
+                            </div>
 
-                        <ul class="feature-list text-start mb-5">
-                            <li><i class="fas fa-check-circle"></i> Panel de administración completo</li>
-                            <li><i class="fas fa-check-circle"></i> Monitoreo en tiempo real</li>
-                            <li><i class="fas fa-check-circle"></i> Reportes detallados</li>
-                            <li><i class="fas fa-check-circle"></i> Alertas personalizadas</li>
-                            <li><i class="fas fa-check-circle"></i> Soporte prioritario 24/7</li>
-                            <li><i class="fas fa-check-circle"></i> Actualizaciones gratuitas</li>
-                        </ul>
+                            <button id="btn-comprar" class="btn btn-primary btn-purchase btn-lg w-100">
+                                <i class="fas fa-shopping-cart me-2"></i>Proceder al Pago
+                            </button>
 
-                        <button id="btn-comprar" class="btn btn-primary btn-purchase btn-lg w-100">
-                            <i class="fas fa-shopping-cart me-2"></i>Comprar Ahora
-                        </button>
-
-                        <!-- Contenedor de PayPal (se muestra tras hacer clic en comprar) -->
-                        <div id="paypal-container">
-                            <h4 class="mt-4">Finalizar Pago con PayPal</h4>
-                            <div id="paypal-button-container"></div>
-                            <p id="status" class="mt-3"></p>
+                            <!-- Contenedor de PayPal -->
+                            <div id="paypal-container">
+                                <h4 class="mt-4">Finalizar Pago con PayPal</h4>
+                                <div id="paypal-button-container"></div>
+                                <p id="status" class="mt-3"></p>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -111,7 +158,7 @@
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        description: "EcoMonitor Pro - Plan Premium",
+                        description: "EcoMonitor Pro - Dispositivo de Monitoreo",
                         amount: {
                             currency_code: "USD",
                             value: '99.99',
@@ -123,8 +170,8 @@
                             }
                         },
                         items: [{
-                            name: "EcoMonitor Pro Premium",
-                            description: "Acceso completo a todas las funcionalidades",
+                            name: "EcoMonitor Pro",
+                            description: "Dispositivo de monitoreo de energía",
                             unit_amount: {
                                 currency_code: "USD",
                                 value: '99.99'
@@ -145,9 +192,9 @@
                             <p class="mb-0">ID de Transacción: ${details.id}</p>
                         </div>`;
                     
+                    // Redirigir al formulario de registro
                     setTimeout(function() {
-                        // Redirigir a la página de registro como administrador
-                        window.location.href = '<?= base_url('autenticacion/register?purchase=true') ?>'; // Cambia esta ruta a la de tu página de registro
+                        window.location.href = '<?= base_url('registro-compra') ?>';
                     }, 3000);
                 });
             },

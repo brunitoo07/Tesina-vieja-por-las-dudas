@@ -4,9 +4,23 @@ namespace App\Controllers;
 use App\Models\UsuarioModel;
 use App\Models\CompraModel;
 use App\Models\DireccionModel;
+use App\Models\DispositivoModel;
 
 class RegistroCompra extends BaseController
 {
+    protected $usuarioModel;
+    protected $compraModel;
+    protected $direccionModel;
+    protected $dispositivoModel;
+
+    public function __construct()
+    {
+        $this->usuarioModel = new UsuarioModel();
+        $this->compraModel = new CompraModel();
+        $this->direccionModel = new DireccionModel();
+        $this->dispositivoModel = new DispositivoModel();
+    }
+
     public function mostrarFormulario()
     {
         return view('registro/compra');
@@ -14,10 +28,6 @@ class RegistroCompra extends BaseController
 
     public function procesarFormulario()
     {
-        $usuarioModel = new UsuarioModel();
-        $compraModel = new CompraModel();
-        $direccionModel = new DireccionModel();
-
         $nombre = $this->request->getPost('nombre');
         $apellido = $this->request->getPost('apellido');
         $email = $this->request->getPost('email');
@@ -27,13 +37,21 @@ class RegistroCompra extends BaseController
         $ciudad = $this->request->getPost('ciudad');
         $codigo_postal = $this->request->getPost('codigo_postal');
         $pais = $this->request->getPost('pais');
+        $id_dispositivo = $this->request->getPost('id_dispositivo');
 
         // Validaciones básicas
-        if (!$nombre || !$apellido || !$email || !$contrasena || !$calle || !$numero || !$ciudad || !$codigo_postal || !$pais) {
+        if (!$nombre || !$apellido || !$email || !$contrasena || !$calle || !$numero || !$ciudad || !$codigo_postal || !$pais || !$id_dispositivo) {
             return redirect()->back()->with('error', 'Todos los campos son obligatorios.');
         }
-        if ($usuarioModel->where('email', $email)->first()) {
+
+        if ($this->usuarioModel->where('email', $email)->first()) {
             return redirect()->back()->with('error', 'El email ya está registrado.');
+        }
+
+        // Verificar disponibilidad del dispositivo
+        $dispositivo = $this->dispositivoModel->getDispositivoConStock($id_dispositivo);
+        if (!$dispositivo) {
+            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible.');
         }
 
         // Generar token de activación
@@ -49,8 +67,8 @@ class RegistroCompra extends BaseController
             'estado' => 'pendiente',
             'token_activacion' => $token
         ];
-        $usuarioModel->insert($usuarioData);
-        $idUsuario = $usuarioModel->getInsertID();
+        $this->usuarioModel->insert($usuarioData);
+        $idUsuario = $this->usuarioModel->getInsertID();
 
         // Crear dirección y asociar al usuario
         $direccionData = [
@@ -61,56 +79,69 @@ class RegistroCompra extends BaseController
             'pais' => $pais,
             'id_usuario' => $idUsuario
         ];
-        $direccionModel->insert($direccionData);
-        $direccion_id = $direccionModel->getInsertID();
+        $this->direccionModel->insert($direccionData);
+        $direccion_id = $this->direccionModel->getInsertID();
 
         // Actualizar usuario con direccion_id
-        $usuarioModel->update($idUsuario, ['direccion_id' => $direccion_id]);
+        $this->usuarioModel->update($idUsuario, ['direccion_id' => $direccion_id]);
 
         // Concatenar dirección para la compra
         $direccion_envio = "$calle $numero, $ciudad, $codigo_postal, $pais";
 
         // Crear compra (estado pendiente)
-        $compraModel->insert([
+        $this->compraModel->insert([
             'id_usuario' => $idUsuario,
+            'id_dispositivo' => $id_dispositivo,
             'direccion_envio' => $direccion_envio,
-            'estado' => 'pendiente'
+            'estado' => 'pendiente',
+            'fecha_compra' => date('Y-m-d H:i:s')
         ]);
 
-        // Guardar en sesión para usar tras el pago
-        session()->set('id_usuario_registro', $idUsuario);
-        session()->set('token_activacion', $token);
+        // Actualizar stock del dispositivo
+        $this->dispositivoModel->actualizarStock($id_dispositivo, 1);
 
-        // Redirigir a PayPal (aquí solo simula, luego se integra real)
+        // Guardar en sesión para usar tras el pago
+        session()->set([
+            'id_usuario_registro' => $idUsuario,
+            'token_activacion' => $token,
+            'id_dispositivo' => $id_dispositivo
+        ]);
+
+        // Enviar email de bienvenida
+        $this->enviarEmailBienvenida($email, $nombre, $token);
+
         return redirect()->to('/registro-compra/pago-exitoso');
     }
 
-    // Simulación de pago exitoso (aquí iría la validación real de PayPal)
     public function pagoExitoso()
     {
         $idUsuario = session()->get('id_usuario_registro');
         $token = session()->get('token_activacion');
-        if (!$idUsuario || !$token) {
+        $idDispositivo = session()->get('id_dispositivo');
+
+        if (!$idUsuario || !$token || !$idDispositivo) {
             return redirect()->to('/registro-compra')->with('error', 'Sesión expirada. Intenta de nuevo.');
         }
 
-        $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->find($idUsuario);
+        $usuario = $this->usuarioModel->find($idUsuario);
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
 
         // Activar cuenta automáticamente
-        $usuarioModel->update($idUsuario, [
+        $this->usuarioModel->update($idUsuario, [
             'estado' => 'activo',
             'token_activacion' => null
         ]);
 
-        // (Opcional) Enviar email de bienvenida
-        $emailService = \Config\Services::email();
-        $emailService->setTo($usuario['email']);
-        $emailService->setFrom('noreply@tusitio.com', 'EcoVolt');
-        $emailService->setSubject('¡Bienvenido a EcoVolt!');
-        $mensaje = "<p>Hola {$usuario['nombre']},</p><p>¡Tu cuenta ha sido activada automáticamente tras la compra! Cuando recibas tu producto, ingresa a tu cuenta y sigue el <a href='" . base_url('manual') . "'>manual de usuario</a> para asociar tu dispositivo.</p>";
-        $emailService->setMessage($mensaje);
-        $emailService->send();
+        // Actualizar estado de la compra
+        $this->compraModel->where('id_usuario', $idUsuario)
+                         ->set(['estado' => 'completada'])
+                         ->update();
+
+        // Enviar email de confirmación de compra
+        $this->enviarEmailConfirmacionCompra($usuario['email'], $usuario['nombre'], $dispositivo);
+
+        // Limpiar sesión
+        session()->remove(['id_usuario_registro', 'token_activacion', 'id_dispositivo']);
 
         // Mensaje de bienvenida en sesión
         session()->setFlashdata('success', '¡Cuenta activada! Cuando recibas tu producto, ingresa a tu cuenta y sigue el manual para asociar tu dispositivo.');
@@ -119,21 +150,59 @@ class RegistroCompra extends BaseController
         return redirect()->to(base_url('manual'));
     }
 
-    // Activación de cuenta por email
+    protected function enviarEmailBienvenida($email, $nombre, $token)
+    {
+        $emailService = \Config\Services::email();
+        
+        $emailService->setTo($email);
+        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
+        $emailService->setSubject('¡Bienvenido a EcoVolt!');
+        
+        $mensaje = view('emails/bienvenida', [
+            'nombre' => $nombre,
+            'enlace_activacion' => base_url("registro-compra/activar/$token")
+        ]);
+        
+        $emailService->setMessage($mensaje);
+        $emailService->send();
+    }
+
+    protected function enviarEmailConfirmacionCompra($email, $nombre, $dispositivo)
+    {
+        $emailService = \Config\Services::email();
+        
+        $emailService->setTo($email);
+        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
+        $emailService->setSubject('¡Gracias por tu compra en EcoVolt!');
+        
+        $mensaje = view('emails/confirmacion_compra', [
+            'nombre' => $nombre,
+            'dispositivo' => $dispositivo,
+            'manual_url' => base_url('manual')
+        ]);
+        
+        $emailService->setMessage($mensaje);
+        $emailService->send();
+    }
+
     public function activar($token)
     {
-        $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->where('token_activacion', $token)->first();
+        $usuario = $this->usuarioModel->where('token_activacion', $token)->first();
+        
         if ($usuario) {
             // Activar cuenta
-            $usuarioModel->update($usuario['id_usuario'], [
+            $this->usuarioModel->update($usuario['id_usuario'], [
                 'estado' => 'activo',
                 'token_activacion' => null
             ]);
+            
             return view('registro/activacion_exitosa', ['nombre' => $usuario['nombre']]);
         } else {
             // Buscar si el usuario ya está activado
-            $usuarioYaActivo = $usuarioModel->where('estado', 'activo')->where('token_activacion', null)->first();
+            $usuarioYaActivo = $this->usuarioModel->where('estado', 'activo')
+                                                 ->where('token_activacion', null)
+                                                 ->first();
+            
             if ($usuarioYaActivo) {
                 return view('registro/activacion_ya_activada', ['nombre' => $usuarioYaActivo['nombre']]);
             } else {

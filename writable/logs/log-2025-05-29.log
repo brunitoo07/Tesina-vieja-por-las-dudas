@@ -1554,3 +1554,400 @@ DEBUG - 2025-05-29 09:58:24 --> Accediendo al método index del controlador Comp
 INFO - 2025-05-29 09:58:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-05-29 09:58:52 --> Accediendo al método index del controlador Compra
 INFO - 2025-05-29 09:58:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:14:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-29 14:15:56 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-29 14:15:56 --> ID Usuario: 55
+DEBUG - 2025-05-29 14:15:56 --> Datos recibidos: Array
+(
+    [direccion_id] => 3
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Buscando usuario ID: 55
+DEBUG - 2025-05-29 14:15:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 55
+    [nombre] => catalina
+    [apellido] => gigena
+    [email] => catagige@gmail.com
+    [contrasena] => $2y$10$WSKuUPBi/wa5pA05zj7/hutFoaIic3NW.liPYYU.C8RhT8QpAINlC
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:15:56
+    [updated_at] => 2025-05-29 14:15:56
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Datos finales para actualización: Array
+(
+    [direccion_id] => 3
+    [updated_at] => 2025-05-29 14:15:56
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Resultado de la actualización: true
+INFO - 2025-05-29 14:15:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:15:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-29 14:15:56 --> Buscando usuario ID: 55
+DEBUG - 2025-05-29 14:15:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 55
+    [nombre] => catalina
+    [apellido] => gigena
+    [email] => catagige@gmail.com
+    [contrasena] => $2y$10$WSKuUPBi/wa5pA05zj7/hutFoaIic3NW.liPYYU.C8RhT8QpAINlC
+    [direccion_id] => 3
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:15:56
+    [updated_at] => 2025-05-29 14:15:56
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:15:56 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-29 14:15:56 --> ID Usuario: 55
+DEBUG - 2025-05-29 14:15:56 --> Datos recibidos: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Buscando usuario ID: 55
+DEBUG - 2025-05-29 14:15:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 55
+    [nombre] => catalina
+    [apellido] => gigena
+    [email] => catagige@gmail.com
+    [contrasena] => $2y$10$WSKuUPBi/wa5pA05zj7/hutFoaIic3NW.liPYYU.C8RhT8QpAINlC
+    [direccion_id] => 3
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:15:56
+    [updated_at] => 2025-05-29 14:15:56
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Datos finales para actualización: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+    [updated_at] => 2025-05-29 14:15:56
+)
+
+DEBUG - 2025-05-29 14:15:56 --> Resultado de la actualización: true
+INFO - 2025-05-29 14:16:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:22:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:22:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:22:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:23:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:23:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:23:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-29 14:32:32 --> mysqli_sql_exception: Table 'invitaciones' already exists in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('CREATE TABLE `i...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `i...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `i...')
+#3 C:\xampp\htdocs\Tesina\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `i...')
+#4 C:\xampp\htdocs\Tesina\app\Database\Migrations\2024-03-20-000001_CreateInvitacionesTable.php(50): CodeIgniter\Database\Forge->createTable('invitaciones')
+#5 C:\xampp\htdocs\Tesina\system\Database\MigrationRunner.php(867): App\Database\Migrations\CreateInvitacionesTable->up()
+#6 C:\xampp\htdocs\Tesina\system\Database\MigrationRunner.php(183): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\Tesina\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\Tesina\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\Tesina\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\Tesina\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\Tesina\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+INFO - 2025-05-29 14:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:35:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-29 14:36:24 --> mysqli_sql_exception: Unknown column 'stock' in 'where clause' in C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\Tesina\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\Tesina\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\Tesina\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\Tesina\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Tesina\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\Tesina\app\Models\DispositivoModel.php(209): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\Tesina\app\Controllers\RegistroCompra.php(67): App\Models\DispositivoModel->getDispositivoConStock('1')
+#8 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(933): App\Controllers\RegistroCompra->procesarFormulario()
+#9 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+#10 C:\xampp\htdocs\Tesina\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\Tesina\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\Tesina\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\Tesina\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-29 14:36:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'stock' in 'where clause'
+[Method: POST, Route: registro-compra/procesar]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = :id_dispositivo:
+AND `estado` = :estado:
+AND `stock` > :stock:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Models\DispositivoModel.php(209): CodeIgniter\BaseModel->first()
+ 5 APPPATH\Controllers\RegistroCompra.php(67): App\Models\DispositivoModel->getDispositivoConStock('1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RegistroCompra->procesarFormulario()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-29 14:36:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'stock' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = \'1\'
+AND `estado` = \'activo\'
+AND `stock` > 0
+ LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = \'1\'
+AND `estado` = \'activo\'
+AND `stock` > 0
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = :id_dispositivo:
+AND `estado` = :estado:
+AND `stock` > :stock:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 6 APPPATH\Models\DispositivoModel.php(209): CodeIgniter\BaseModel->first()
+ 7 APPPATH\Controllers\RegistroCompra.php(67): App\Models\DispositivoModel->getDispositivoConStock('1')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RegistroCompra->procesarFormulario()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-29 14:36:24 --> [Caused by] mysqli_sql_exception: Unknown column 'stock' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = \'1\'
+AND `estado` = \'activo\'
+AND `stock` > 0
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = \'1\'
+AND `estado` = \'activo\'
+AND `stock` > 0
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = \'1\'
+AND `estado` = \'activo\'
+AND `stock` > 0
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `dispositivos`
+WHERE `id_dispositivo` = :id_dispositivo:
+AND `estado` = :estado:
+AND `stock` > :stock:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\DispositivoModel.php(209): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\RegistroCompra.php(67): App\Models\DispositivoModel->getDispositivoConStock('1')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RegistroCompra->procesarFormulario()
+10 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+11 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-29 14:41:21 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-29 14:41:21 --> ID Usuario: 56
+DEBUG - 2025-05-29 14:41:21 --> Datos recibidos: Array
+(
+    [direccion_id] => 4
+)
+
+DEBUG - 2025-05-29 14:41:21 --> Buscando usuario ID: 56
+DEBUG - 2025-05-29 14:41:21 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 56
+    [nombre] => mario
+    [apellido] => salgado
+    [email] => mariosalgado@gmail.com
+    [contrasena] => $2y$10$7xxpJDU/NornsbpGOu2wEe9TCx7Rb8xz4Rh0QHsjnQ/A9gT.T/o7a
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:41:21
+    [updated_at] => 2025-05-29 14:41:21
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:21 --> Datos finales para actualización: Array
+(
+    [direccion_id] => 4
+    [updated_at] => 2025-05-29 14:41:21
+)
+
+DEBUG - 2025-05-29 14:41:21 --> Resultado de la actualización: true
+INFO - 2025-05-29 14:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-29 14:41:25 --> Buscando usuario ID: 56
+DEBUG - 2025-05-29 14:41:25 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 56
+    [nombre] => mario
+    [apellido] => salgado
+    [email] => mariosalgado@gmail.com
+    [contrasena] => $2y$10$7xxpJDU/NornsbpGOu2wEe9TCx7Rb8xz4Rh0QHsjnQ/A9gT.T/o7a
+    [direccion_id] => 4
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:41:21
+    [updated_at] => 2025-05-29 14:41:21
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:25 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-29 14:41:25 --> ID Usuario: 56
+DEBUG - 2025-05-29 14:41:25 --> Datos recibidos: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:25 --> Buscando usuario ID: 56
+DEBUG - 2025-05-29 14:41:25 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 56
+    [nombre] => mario
+    [apellido] => salgado
+    [email] => mariosalgado@gmail.com
+    [contrasena] => $2y$10$7xxpJDU/NornsbpGOu2wEe9TCx7Rb8xz4Rh0QHsjnQ/A9gT.T/o7a
+    [direccion_id] => 4
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:41:21
+    [updated_at] => 2025-05-29 14:41:21
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:25 --> Datos finales para actualización: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+    [updated_at] => 2025-05-29 14:41:25
+)
+
+DEBUG - 2025-05-29 14:41:25 --> Resultado de la actualización: true
+CRITICAL - 2025-05-29 14:41:25 --> ErrorException: Undefined array key "descripcion"
+[Method: GET, Route: registro-compra/pago-exitoso]
+in APPPATH\Views\emails\confirmacion_compra.php on line 65.
+ 1 APPPATH\Views\emails\confirmacion_compra.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\confirmacion_compra.php', 65)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\confirmacion_compra.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/confirmacion_compra', [], true)
+ 5 APPPATH\Controllers\RegistroCompra.php(209): view('emails/confirmacion_compra', [...])
+ 6 APPPATH\Controllers\RegistroCompra.php(172): App\Controllers\RegistroCompra->enviarEmailConfirmacionCompra('mariosalgado@gmail.com', 'mario', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RegistroCompra->pagoExitoso()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-05-29 14:41:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:41:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-29 14:41:30 --> Buscando usuario ID: 56
+DEBUG - 2025-05-29 14:41:30 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 56
+    [nombre] => mario
+    [apellido] => salgado
+    [email] => mariosalgado@gmail.com
+    [contrasena] => $2y$10$7xxpJDU/NornsbpGOu2wEe9TCx7Rb8xz4Rh0QHsjnQ/A9gT.T/o7a
+    [direccion_id] => 4
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:41:21
+    [updated_at] => 2025-05-29 14:41:25
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:30 --> === INICIO ACTUALIZACIÓN USUARIO ===
+DEBUG - 2025-05-29 14:41:30 --> ID Usuario: 56
+DEBUG - 2025-05-29 14:41:30 --> Datos recibidos: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:30 --> Buscando usuario ID: 56
+DEBUG - 2025-05-29 14:41:30 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 56
+    [nombre] => mario
+    [apellido] => salgado
+    [email] => mariosalgado@gmail.com
+    [contrasena] => $2y$10$7xxpJDU/NornsbpGOu2wEe9TCx7Rb8xz4Rh0QHsjnQ/A9gT.T/o7a
+    [direccion_id] => 4
+    [id_rol] => 1
+    [created_at] => 2025-05-29 14:41:21
+    [updated_at] => 2025-05-29 14:41:25
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-05-29 14:41:30 --> Datos finales para actualización: Array
+(
+    [estado] => activo
+    [token_activacion] => 
+    [updated_at] => 2025-05-29 14:41:30
+)
+
+DEBUG - 2025-05-29 14:41:30 --> Resultado de la actualización: true
+CRITICAL - 2025-05-29 14:41:30 --> ErrorException: Undefined array key "descripcion"
+[Method: GET, Route: registro-compra/pago-exitoso]
+in APPPATH\Views\emails\confirmacion_compra.php on line 65.
+ 1 APPPATH\Views\emails\confirmacion_compra.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "descripcion"', 'C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\confirmacion_compra.php', 65)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\Tesina\\app\\Views\\emails\\confirmacion_compra.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('emails/confirmacion_compra', [], true)
+ 5 APPPATH\Controllers\RegistroCompra.php(209): view('emails/confirmacion_compra', [...])
+ 6 APPPATH\Controllers\RegistroCompra.php(172): App\Controllers\RegistroCompra->enviarEmailConfirmacionCompra('mariosalgado@gmail.com', 'mario', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RegistroCompra->pagoExitoso()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegistroCompra))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-05-29 14:43:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:43:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:43:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:43:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:44:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:44:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:44:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 14:44:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-29 15:20:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

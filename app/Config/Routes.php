@@ -28,11 +28,16 @@ $routes->post('registro/procesarInvitado', 'CAutenticacion::procesarRegistroInvi
 
 $routes->post('admin/guardarUsuario', 'Admin::guardarUsuario'); // Esta ruta es de administrador, pero no depende de la anterior.
 
-// Rutas de compra (¡actualizadas!)
+// Rutas de compra
 $routes->get('compra', 'Compra::index');
-$routes->post('compra/simularCompra', 'Compra::simularCompra');
 $routes->post('compra/procesarPago', 'Compra::procesarPago');
 $routes->get('compra/completada', 'Compra::completada');
+
+// Rutas de registro de compra
+$routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
+$routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
+$routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
+$routes->get('registro-compra/activar/(:segment)', 'RegistroCompra::activar/$1');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
@@ -104,8 +109,3 @@ $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
 $routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');
-
-$routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
-$routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
-$routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
-$routes->get('registro-compra/activar/(:segment)', 'RegistroCompra::activar/$1');
