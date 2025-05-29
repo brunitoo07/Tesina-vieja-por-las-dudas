@@ -526,7 +526,7 @@
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Actualizaciones gratuitas</li>
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Acceso como administrador</li>
                             </ul>
-                            <a href="<?= base_url('compra') ?>" class="btn btn-primary btn-lg">
+                            <a href="<?= base_url('registro-compra') ?>" class="btn btn-primary btn-lg">
                                 <i class="fas fa-credit-card me-2"></i> Comprar Ahora
                             </a>
                         </div>

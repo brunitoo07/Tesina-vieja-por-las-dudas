@@ -6,7 +6,7 @@ class InvitacionModel extends Model
 {
     protected $table = 'invitaciones';
     protected $primaryKey = 'id_invitacion';
-    protected $allowedFields = ['email', 'token', 'id_usuario', 'fecha_expiracion', 'id_rol', 'estado', 'created_at'];
+    protected $allowedFields = ['email', 'token', 'id_usuario', 'fecha_expiracion', 'id_rol', 'estado', 'created_at', 'invitado_por'];
     protected $useTimestamps = false;
 
     public function crearInvitacion($email, $idRol)

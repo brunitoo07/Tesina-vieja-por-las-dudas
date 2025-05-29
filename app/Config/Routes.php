@@ -104,3 +104,8 @@ $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
 $routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');
+
+$routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
+$routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
+$routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
+$routes->get('registro-compra/activar/(:segment)', 'RegistroCompra::activar/$1');

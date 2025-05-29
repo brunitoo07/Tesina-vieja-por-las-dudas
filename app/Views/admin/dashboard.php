@@ -94,31 +94,13 @@
                         <div class="card-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h5 class="card-title">Usuarios Registrados</h5>
+                        <h5 class="card-title">Usuarios que invité</h5>
                         <p class="stat-number">
                             <?= isset($usuarios) ? count($usuarios) : 0 ?>
                         </p>
-                        <p class="text-muted">Total de usuarios en el sistema</p>
+                        <p class="text-muted">Usuarios registrados por tu invitación</p>
                         <a href="<?= base_url('admin/gestionarUsuarios') ?>" class="btn btn-outline-primary">
-                            <i class="fas fa-cog me-1"></i> Gestionar
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card admin-card border-success">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <h5 class="card-title">Administradores</h5>
-                        <p class="stat-number">
-                            <?= isset($admins) ? count($admins) : 0 ?>
-                        </p>
-                        <p class="text-muted">Usuarios con privilegios</p>
-                        <a href="<?= base_url('admin/gestionarUsuarios/admin') ?>" class="btn btn-outline-success">
-                            <i class="fas fa-list me-1"></i> Ver Lista
+                            <i class="fas fa-cog me-1"></i> Ver usuarios que invité
                         </a>
                     </div>
                 </div>

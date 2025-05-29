@@ -231,7 +231,8 @@ public function enviarInvitacion()
             'contrasena' => $contrasena,
             'id_rol' => $idRol,
             'nombre' => $nombre,
-            'apellido' => $apellido
+            'apellido' => $apellido,
+            'invitado_por' => $invitacion['invitado_por'] ?? null // Asegura que se setea el campo
         ];
 
         try {
@@ -239,8 +240,11 @@ public function enviarInvitacion()
             $usuarioModel->insert($usuarioData);
             $idUsuario = $usuarioModel->getInsertID();
 
-            // Actualizar el estado de la invitación
-            $invitacionModel->update($invitacion['id_invitacion'], ['estado' => 'aceptada']);
+            // Actualizar el estado de la invitación y asociar el usuario creado
+            $invitacionModel->update($invitacion['id_invitacion'], [
+                'estado' => 'aceptada',
+                'id_usuario' => $idUsuario
+            ]);
 
             // Redirigir al login con mensaje de éxito
             session()->set('exito', 'Registro completado exitosamente. Ahora puedes iniciar sesión.');

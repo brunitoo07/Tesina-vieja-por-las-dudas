@@ -1084,3 +1084,105 @@
     [logged_in] => 1
 )
 
+2025-05-28 12:44:54 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+2025-05-28 12:44:54 - ID Rol del usuario: 1
+2025-05-28 12:44:54 - Rol asignado: admin
+2025-05-28 12:44:54 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-28 12:44:54 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1748447082
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-28 13:42:33 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+2025-05-28 13:42:33 - ID Rol del usuario: 1
+2025-05-28 13:42:33 - Rol asignado: admin
+2025-05-28 13:42:33 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-28 13:42:33 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1748450531
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-29 07:56:20 - Usuario encontrado: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-05-26 09:50:13
+    [invitado_por] => 
+)
+
+2025-05-29 07:56:20 - ID Rol del usuario: 1
+2025-05-29 07:56:20 - Rol asignado: admin
+2025-05-29 07:56:20 - Datos de usuario guardados en sesión: Array
+(
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+2025-05-29 07:56:20 - Datos en sesión después de guardar: Array
+(
+    [__ci_last_regenerate] => 1748516139
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+

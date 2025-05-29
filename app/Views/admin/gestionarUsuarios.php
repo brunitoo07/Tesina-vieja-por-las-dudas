@@ -2,7 +2,7 @@
 
 <?= $this->section('contenido') ?>
 
-<h2>Gestión de Usuarios</h2>
+<h2 class="mb-4 text-primary">Usuarios que invité</h2>
 
 <?php if (session()->getFlashdata('success')) : ?>
     <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
@@ -12,6 +12,9 @@
     <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
 <?php endif; ?>
 
+<?php if (empty($usuarios)) : ?>
+    <div class="alert alert-info">Aún no has invitado usuarios que se hayan registrado.</div>
+<?php else : ?>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -53,5 +56,6 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<?php endif; ?>
 
 <?= $this->endSection() ?>
