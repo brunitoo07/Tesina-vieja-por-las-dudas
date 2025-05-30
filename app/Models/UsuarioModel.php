@@ -12,7 +12,7 @@ class UsuarioModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['nombre', 'apellido', 'email', 'contrasena', 'direccion_id', 'id_rol', 'invitado_por', 'updated_at'];
+    protected $allowedFields = ['nombre', 'apellido', 'email', 'contrasena', 'direccion_id', 'id_rol', 'invitado_por', 'updated_at', 'estado'];
 
     // Dates
     protected $useTimestamps = true;
@@ -106,11 +106,26 @@ class UsuarioModel extends Model
 
     protected function hashPassword(array $data)
     {
+        log_message('debug', 'Iniciando hashPassword con datos: ' . json_encode($data));
+        
         if (!isset($data['data']['contrasena']) || empty($data['data']['contrasena'])) {
+            log_message('debug', 'No se encontró contraseña para hashear');
             return $data;
         }
 
-        $data['data']['contrasena'] = password_hash($data['data']['contrasena'], PASSWORD_DEFAULT);
+        $contrasenaOriginal = $data['data']['contrasena'];
+        log_message('debug', 'Contraseña original: ' . $contrasenaOriginal);
+        log_message('debug', 'Longitud de la contraseña original: ' . strlen($contrasenaOriginal));
+
+        // Si la contraseña ya está hasheada, no la hasheamos de nuevo
+        if (strpos($contrasenaOriginal, '$2y$') === 0) {
+            log_message('debug', 'La contraseña ya está hasheada, no se modificará');
+            return $data;
+        }
+
+        $data['data']['contrasena'] = password_hash($contrasenaOriginal, PASSWORD_DEFAULT);
+        log_message('debug', 'Hash generado: ' . $data['data']['contrasena']);
+
         return $data;
     }
 

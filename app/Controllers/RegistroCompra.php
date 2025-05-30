@@ -39,19 +39,24 @@ class RegistroCompra extends BaseController
         $pais = $this->request->getPost('pais');
         $id_dispositivo = $this->request->getPost('id_dispositivo');
 
+        log_message('debug', 'Procesando registro para email: ' . $email);
+
         // Validaciones básicas
         if (!$nombre || !$apellido || !$email || !$contrasena || !$calle || !$numero || !$ciudad || !$codigo_postal || !$pais || !$id_dispositivo) {
+            log_message('debug', 'Faltan campos obligatorios en el registro');
             return redirect()->back()->with('error', 'Todos los campos son obligatorios.');
         }
 
         if ($this->usuarioModel->where('email', $email)->first()) {
+            log_message('debug', 'Email ya registrado: ' . $email);
             return redirect()->back()->with('error', 'El email ya está registrado.');
         }
 
         // Verificar disponibilidad del dispositivo
         $dispositivo = $this->dispositivoModel->getDispositivoConStock($id_dispositivo);
         if (!$dispositivo) {
-            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible.');
+            log_message('debug', 'Dispositivo no disponible: ' . $id_dispositivo);
+            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible o no hay stock.');
         }
 
         // Generar token de activación
@@ -62,13 +67,22 @@ class RegistroCompra extends BaseController
             'nombre' => $nombre,
             'apellido' => $apellido,
             'email' => $email,
-            'contrasena' => password_hash($contrasena, PASSWORD_DEFAULT),
+            'contrasena' => $contrasena,
             'id_rol' => 1, // admin
             'estado' => 'pendiente',
             'token_activacion' => $token
         ];
+
+        log_message('debug', 'Creando usuario con datos: ' . json_encode([
+            'email' => $email,
+            'rol' => 1,
+            'estado' => 'pendiente'
+        ]));
+
         $this->usuarioModel->insert($usuarioData);
         $idUsuario = $this->usuarioModel->getInsertID();
+
+        log_message('debug', 'Usuario creado con ID: ' . $idUsuario);
 
         // Crear dirección y asociar al usuario
         $direccionData = [
@@ -85,32 +99,23 @@ class RegistroCompra extends BaseController
         // Actualizar usuario con direccion_id
         $this->usuarioModel->update($idUsuario, ['direccion_id' => $direccion_id]);
 
-        // Concatenar dirección para la compra
-        $direccion_envio = "$calle $numero, $ciudad, $codigo_postal, $pais";
-
-        // Crear compra (estado pendiente)
-        $this->compraModel->insert([
-            'id_usuario' => $idUsuario,
-            'id_dispositivo' => $id_dispositivo,
-            'direccion_envio' => $direccion_envio,
-            'estado' => 'pendiente',
-            'fecha_compra' => date('Y-m-d H:i:s')
-        ]);
-
-        // Actualizar stock del dispositivo
-        $this->dispositivoModel->actualizarStock($id_dispositivo, 1);
+        log_message('debug', 'Dirección creada y asociada al usuario: ' . $direccion_id);
 
         // Guardar en sesión para usar tras el pago
         session()->set([
             'id_usuario_registro' => $idUsuario,
             'token_activacion' => $token,
-            'id_dispositivo' => $id_dispositivo
+            'id_dispositivo' => $id_dispositivo,
+            'datos_compra' => [
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+                'email' => $email,
+                'direccion' => "$calle $numero, $ciudad, $codigo_postal, $pais"
+            ]
         ]);
 
-        // Enviar email de bienvenida
-        $this->enviarEmailBienvenida($email, $nombre, $token);
-
-        return redirect()->to('/registro-compra/pago-exitoso');
+        // Redirigir a la página de compra con PayPal
+        return redirect()->to(base_url('compra'));
     }
 
     public function pagoExitoso()
@@ -119,12 +124,22 @@ class RegistroCompra extends BaseController
         $token = session()->get('token_activacion');
         $idDispositivo = session()->get('id_dispositivo');
 
+        log_message('debug', 'Procesando pago exitoso para usuario: ' . $idUsuario);
+
         if (!$idUsuario || !$token || !$idDispositivo) {
+            log_message('debug', 'Sesión expirada o datos faltantes');
             return redirect()->to('/registro-compra')->with('error', 'Sesión expirada. Intenta de nuevo.');
         }
 
         $usuario = $this->usuarioModel->find($idUsuario);
         $dispositivo = $this->dispositivoModel->find($idDispositivo);
+
+        log_message('debug', 'Datos del usuario antes de activación: ' . json_encode([
+            'id' => $usuario['id_usuario'],
+            'email' => $usuario['email'],
+            'estado' => $usuario['estado'],
+            'rol' => $usuario['id_rol']
+        ]));
 
         // Activar cuenta automáticamente
         $this->usuarioModel->update($idUsuario, [
@@ -132,22 +147,33 @@ class RegistroCompra extends BaseController
             'token_activacion' => null
         ]);
 
+        log_message('debug', 'Usuario activado correctamente');
+
         // Actualizar estado de la compra
         $this->compraModel->where('id_usuario', $idUsuario)
                          ->set(['estado' => 'completada'])
                          ->update();
 
+        log_message('debug', 'Compra marcada como completada');
+
         // Enviar email de confirmación de compra
         $this->enviarEmailConfirmacionCompra($usuario['email'], $usuario['nombre'], $dispositivo);
 
+        // Preparar datos para la vista
+        $data = [
+            'nombre' => $usuario['nombre'],
+            'dispositivo' => $dispositivo,
+            'fecha' => date('d/m/Y'),
+            'direccion' => session()->get('datos_compra')['direccion']
+        ];
+
         // Limpiar sesión
-        session()->remove(['id_usuario_registro', 'token_activacion', 'id_dispositivo']);
+        session()->remove(['id_usuario_registro', 'token_activacion', 'id_dispositivo', 'datos_compra']);
 
-        // Mensaje de bienvenida en sesión
-        session()->setFlashdata('success', '¡Cuenta activada! Cuando recibas tu producto, ingresa a tu cuenta y sigue el manual para asociar tu dispositivo.');
+        log_message('debug', 'Redirigiendo a página de pago exitoso');
 
-        // Redirigir al manual de usuario
-        return redirect()->to(base_url('manual'));
+        // Mostrar página de pago exitoso
+        return view('registro_compra/pago_exitoso', $data);
     }
 
     protected function enviarEmailBienvenida($email, $nombre, $token)
@@ -172,13 +198,15 @@ class RegistroCompra extends BaseController
         $emailService = \Config\Services::email();
         
         $emailService->setTo($email);
-        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
-        $emailService->setSubject('¡Gracias por tu compra en EcoVolt!');
+        $emailService->setFrom('noreply@ecomonitor.com', 'EcoMonitor');
+        $emailService->setSubject('Confirmación de Compra - EcoMonitor Pro');
         
         $mensaje = view('emails/confirmacion_compra', [
             'nombre' => $nombre,
             'dispositivo' => $dispositivo,
-            'manual_url' => base_url('manual')
+            'fecha' => date('d/m/Y'),
+            'direccion' => session()->get('datos_compra')['direccion'],
+            'precio' => number_format($dispositivo['precio'], 2)
         ]);
         
         $emailService->setMessage($mensaje);

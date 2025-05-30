@@ -6,51 +6,124 @@ class DispositivoModel extends Model
 {
     protected $table = 'dispositivos';
     protected $primaryKey = 'id_dispositivo';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
     protected $allowedFields = [
+        'id_usuario',
         'nombre',
-        'descripcion',
-        'precio',
-        'imagen',
-        'caracteristicas',
+        'mac_address',
         'stock',
-        'estado'
+        'precio',
+        'descripcion',
+        'estado',
+        'fecha_actualizacion'
     ];
 
+    // Dates
     protected $useTimestamps = true;
-    protected $createdField = 'fecha_creacion';
-    protected $updatedField = 'fecha_actualizacion';
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
 
+    // Validation
     protected $validationRules = [
+        'id_usuario' => 'required|numeric',
         'nombre' => 'required|min_length[3]|max_length[100]',
-        'descripcion' => 'required|min_length[10]',
-        'precio' => 'required|numeric',
-        'stock' => 'required|integer',
-        'estado' => 'required|in_list[activo,inactivo]'
+        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]',
+        'stock' => 'required|numeric|greater_than_equal_to[0]',
+        'precio' => 'required|numeric|greater_than_equal_to[0]',
+        'estado' => 'required|in_list[pendiente,activo,inactivo]'
     ];
 
     protected $validationMessages = [
+        'id_usuario' => [
+            'required' => 'El ID del usuario es requerido',
+            'numeric' => 'El ID del usuario debe ser un número'
+        ],
         'nombre' => [
             'required' => 'El nombre del dispositivo es requerido',
             'min_length' => 'El nombre debe tener al menos 3 caracteres',
-            'max_length' => 'El nombre no puede exceder los 100 caracteres'
+            'max_length' => 'El nombre no puede tener más de 100 caracteres'
         ],
-        'descripcion' => [
-            'required' => 'La descripción es requerida',
-            'min_length' => 'La descripción debe tener al menos 10 caracteres'
-        ],
-        'precio' => [
-            'required' => 'El precio es requerido',
-            'numeric' => 'El precio debe ser un número válido'
+        'mac_address' => [
+            'required' => 'La dirección MAC es requerida',
+            'regex_match' => 'La dirección MAC debe tener el formato XX:XX:XX:XX:XX:XX',
+            'is_unique' => 'Esta dirección MAC ya está registrada'
         ],
         'stock' => [
             'required' => 'El stock es requerido',
-            'integer' => 'El stock debe ser un número entero'
+            'numeric' => 'El stock debe ser un número',
+            'greater_than_equal_to' => 'El stock no puede ser negativo'
+        ],
+        'precio' => [
+            'required' => 'El precio es requerido',
+            'numeric' => 'El precio debe ser un número',
+            'greater_than_equal_to' => 'El precio no puede ser negativo'
         ],
         'estado' => [
             'required' => 'El estado es requerido',
-            'in_list' => 'El estado debe ser activo o inactivo'
+            'in_list' => 'El estado debe ser pendiente, activo o inactivo'
         ]
     ];
+
+    protected $skipValidation = false;
+    protected $cleanValidationRules = true;
+
+    public function generarMacSimulada()
+    {
+        do {
+            $mac = '';
+            for ($i = 0; $i < 6; $i++) {
+                $mac .= sprintf('%02x', rand(0, 255));
+                if ($i < 5) {
+                    $mac .= ':';
+                }
+            }
+            $mac = strtoupper($mac);
+        } while ($this->where('mac_address', $mac)->first() !== null);
+
+        return $mac;
+    }
+
+    public function iniciarConfiguracion($idDispositivo)
+    {
+        return $this->update($idDispositivo, [
+            'estado' => 'configurando'
+        ]);
+    }
+
+    public function activarDispositivo($idDispositivo, $macReal, $ssid)
+    {
+        return $this->update($idDispositivo, [
+            'estado' => 'activo',
+            'mac_address' => $macReal,
+            'ssid' => $ssid,
+            'fecha_actualizacion' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    public function obtenerDispositivosPendientes($idUsuario)
+    {
+        return $this->where('id_usuario', $idUsuario)
+                    ->where('estado', 'pendiente')
+                    ->findAll();
+    }
+
+    public function obtenerDispositivosActivos($idUsuario)
+    {
+        return $this->where('id_usuario', $idUsuario)
+                    ->where('estado', 'activo')
+                    ->findAll();
+    }
+
+    public function actualizarUltimaConexion($idDispositivo)
+    {
+        return $this->update($idDispositivo, [
+            'fecha_actualizacion' => date('Y-m-d H:i:s')
+        ]);
+    }
 
     public function obtenerDispositivosUsuario($idUsuario)
     {
@@ -181,9 +254,12 @@ class DispositivoModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function cambiarEstado($idDispositivo, $estado)
+    public function actualizarEstado($idDispositivo, $estado)
     {
-        return $this->update($idDispositivo, ['estado' => $estado]);
+        return $this->update($idDispositivo, [
+            'estado' => $estado,
+            'fecha_actualizacion' => date('Y-m-d H:i:s')
+        ]);
     }
 
     public function obtenerDispositivo($idDispositivo)
@@ -201,21 +277,21 @@ class DispositivoModel extends Model
         return $this->where('estado', 'activo')->findAll();
     }
 
-    public function getDispositivoConStock($id)
+    public function getDispositivoConStock($idDispositivo)
     {
-        return $this->where('id_dispositivo', $id)
+        return $this->where('id_dispositivo', $idDispositivo)
                     ->where('estado', 'activo')
                     ->where('stock >', 0)
                     ->first();
     }
 
-    public function actualizarStock($id, $cantidad)
+    public function actualizarStock($idDispositivo, $cantidad)
     {
-        $dispositivo = $this->find($id);
+        $dispositivo = $this->find($idDispositivo);
         if ($dispositivo) {
             $nuevoStock = $dispositivo['stock'] - $cantidad;
             if ($nuevoStock >= 0) {
-                return $this->update($id, ['stock' => $nuevoStock]);
+                return $this->update($idDispositivo, ['stock' => $nuevoStock]);
             }
         }
         return false;

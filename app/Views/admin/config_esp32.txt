@@ -1,0 +1,44 @@
+// Configuración del ESP32
+const char* CONFIG_FILE = "/config.json";
+
+// Estructura de configuración
+struct Config {
+  char ssid[32];
+  char password[64];
+  char server_url[128];
+  char device_name[32];
+  bool is_configured;
+};
+
+// Pines
+const int LCD_SDA = 21;
+const int LCD_SCL = 22;
+const int ADC_CURRENT = 34;
+const int ADC_VOLTAGE = 35;
+
+// Calibraciones
+const float CURRENT_CALIBRATION = 69.0;
+const float VOLTAGE_CALIBRATION = 220.0;
+
+// Intervalos
+const unsigned long SENSOR_INTERVAL = 2000;    // 2 segundos
+const unsigned long WIFI_CHECK_INTERVAL = 30000; // 30 segundos
+const unsigned long SERVER_UPDATE_INTERVAL = 60000; // 1 minuto
+
+// Configuración del servidor
+const char* SERVER_HOST = "192.168.2.176";
+const int SERVER_PORT = 80;
+const char* SERVER_PATH = "/Tesina/public";
+
+// Endpoints
+const char* ENDPOINT_ACTIVAR = "/api/dispositivo/activar";
+const char* ENDPOINT_DATOS = "/api/dispositivo/datos";
+const char* ENDPOINT_ESTADO = "/api/dispositivo/actualizarEstado";
+
+// Timeouts
+const int WIFI_TIMEOUT = 180;  // 3 minutos
+const int HTTP_TIMEOUT = 5000; // 5 segundos
+
+// Reintentos
+const int MAX_RETRIES = 3;
+const int RETRY_DELAY = 5000;  // 5 segundos 

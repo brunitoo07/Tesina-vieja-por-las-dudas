@@ -25,11 +25,25 @@ class Compra extends BaseController
 
     public function index()
     {
-        // Obtener lista de dispositivos disponibles
-        $dispositivos = $this->dispositivoModel->findAll();
+        // Verificar si hay datos de registro en sesión
+        if (!session()->has('datos_compra')) {
+            return redirect()->to('registro-compra');
+        }
+
+        // Obtener datos de la sesión
+        $datosCompra = session()->get('datos_compra');
+        $idDispositivo = session()->get('id_dispositivo');
+        
+        // Obtener información del dispositivo
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
+        
+        if (!$dispositivo) {
+            return redirect()->to('registro-compra')->with('error', 'Dispositivo no encontrado.');
+        }
         
         $data = [
-            'dispositivos' => $dispositivos
+            'dispositivo' => $dispositivo,
+            'datos_compra' => $datosCompra
         ];
         
         return view('compra/index', $data);
@@ -44,29 +58,134 @@ class Compra extends BaseController
 
     public function procesarPago()
     {
-        // Obtener datos del pago de PayPal
-        $paymentData = $this->request->getJSON();
-        
-        if (!$paymentData) {
+        try {
+            // Obtener datos del pago de PayPal
+            $paymentData = $this->request->getJSON();
+            
+            if (!$paymentData) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'No se recibieron datos de pago'
+                ]);
+            }
+
+            // Obtener datos de la sesión
+            $idUsuario = session()->get('id_usuario_registro');
+            $idDispositivo = session()->get('id_dispositivo');
+            $datosCompra = session()->get('datos_compra');
+
+            if (!$idUsuario || !$idDispositivo || !$datosCompra) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Sesión expirada. Por favor, intenta de nuevo.'
+                ]);
+            }
+
+            // Verificar stock nuevamente antes de procesar el pago
+            $dispositivo = $this->dispositivoModel->find($idDispositivo);
+            if (!$dispositivo || $dispositivo['stock'] <= 0) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Lo sentimos, el dispositivo ya no está disponible.'
+                ]);
+            }
+
+            // Crear la compra
+            $compraData = [
+                'id_usuario' => $idUsuario,
+                'id_dispositivo' => $idDispositivo,
+                'direccion_envio' => $datosCompra['direccion'],
+                'estado' => 'completada',
+                'fecha_compra' => date('Y-m-d H:i:s'),
+                'payment_id' => $paymentData->id
+            ];
+
+            if (!$this->compraModel->insert($compraData)) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Error al registrar la compra'
+                ]);
+            }
+
+            // Actualizar stock del dispositivo
+            $nuevoStock = $dispositivo['stock'] - 1;
+            if (!$this->dispositivoModel->update($idDispositivo, ['stock' => $nuevoStock])) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Error al actualizar el stock'
+                ]);
+            }
+
+            // Guardar datos necesarios en sesión antes de limpiar
+            $tokenActivacion = session()->get('token_activacion');
+            $email = $datosCompra['email'];
+            $nombre = $datosCompra['nombre'];
+
+            // Enviar email de bienvenida
+            $this->enviarEmailBienvenida($email, $nombre, $tokenActivacion);
+
+            // Enviar email de confirmación de compra
+            $this->enviarEmailConfirmacionCompra($email, $nombre, $dispositivo);
+
+            // Marcar la compra como exitosa en la sesión
+            session()->set('compra_exitosa', true);
+            session()->set('payment_id', $paymentData->id);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'redirect' => base_url('registro-compra/pago-exitoso')
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error en procesarPago: ' . $e->getMessage());
             return $this->response->setJSON([
                 'success' => false,
-                'message' => 'No se recibieron datos de pago'
+                'message' => 'Ha ocurrido un error al procesar el pago. Por favor, inténtalo de nuevo.'
             ]);
         }
+    }
 
-        // Guardar información de la compra en sesión
-        session()->set([
-            'compra_exitosa' => true,
-            'payment_id' => $paymentData->id,
-            'payment_status' => $paymentData->status,
-            'payment_amount' => $paymentData->amount->total,
-            'selected_device' => $paymentData->purchase_units[0]->items[0]->name
+    protected function enviarEmailBienvenida($email, $nombre, $token)
+    {
+        $emailService = \Config\Services::email();
+        
+        $emailService->setTo($email);
+        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
+        $emailService->setSubject('¡Bienvenido a EcoVolt!');
+        
+        $mensaje = view('emails/bienvenida', [
+            'nombre' => $nombre,
+            'enlace_activacion' => base_url("registro-compra/activar/$token")
+        ]);
+        
+        $emailService->setMessage($mensaje);
+        $emailService->send();
+    }
+
+    private function enviarEmailConfirmacionCompra($emailDestino, $nombre, $dispositivo)
+    {
+        $emailService = \Config\Services::email();
+
+        $emailService->setFrom('noreply@ecomonitor.com', 'EcoMonitor');
+        $emailService->setTo($emailDestino);
+        $emailService->setSubject('Confirmación de Compra - EcoMonitor Pro');
+
+        $mensaje = view('emails/confirmacion_compra', [
+            'nombre' => $nombre,
+            'dispositivo' => $dispositivo,
+            'fecha' => date('d/m/Y'),
+            'direccion' => session()->get('datos_compra')['direccion'],
+            'precio' => number_format($dispositivo['precio'], 2)
         ]);
 
-        return $this->response->setJSON([
-            'success' => true,
-            'redirect' => base_url('registro-compra')
-        ]);
+        $emailService->setMessage($mensaje);
+
+        if (!$emailService->send()) {
+            log_message('error', 'Error al enviar email de confirmación de compra: ' . $emailService->printDebugger(['headers']));
+            return false;
+        }
+
+        return true;
     }
 
     public function completada()
@@ -93,5 +212,17 @@ class Compra extends BaseController
         ];
 
         return redirect()->to('registro-compra');
+    }
+
+    public function pagoExitoso()
+    {
+        if (!session()->get('compra_exitosa')) {
+            return redirect()->to('registro-compra')->with('error', 'Sesión expirada. Intenta de nuevo.');
+        }
+
+        // Limpiar la sesión después de mostrar la página de éxito
+        session()->remove(['id_usuario_registro', 'token_activacion', 'id_dispositivo', 'datos_compra', 'compra_exitosa', 'payment_id']);
+
+        return view('registro_compra/pago_exitoso');
     }
 } 

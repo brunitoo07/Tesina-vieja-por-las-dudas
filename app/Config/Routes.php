@@ -63,7 +63,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 
 // Rutas del panel de administración
 $routes->group('admin', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'Admin::index');
+    $routes->get('/', 'Admin\Dashboard::index');
+    $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('gestionarUsuarios', 'Admin::gestionarUsuarios');
     $routes->get('invitar', 'Admin::invitar');
     $routes->post('enviarInvitacion', 'Admin::enviarInvitacion');
@@ -72,6 +73,14 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
     $routes->get('usuario', 'Admin::gestionarUsuarios');
     $routes->post('aprobarDispositivo', 'Admin::aprobarDispositivo');
+    $routes->get('dispositivos', 'Dispositivos::index');
+    $routes->get('dispositivos/registrar', 'Dispositivos::registrar');
+    $routes->get('dispositivos/buscar', 'Dispositivos::buscar');
+    $routes->post('dispositivos/guardar', 'Dispositivos::guardar');
+    $routes->post('dispositivos/activar/(:segment)', 'Dispositivos::activar/$1');
+    $routes->post('dispositivos/desactivar/(:segment)', 'Dispositivos::desactivar/$1');
+    $routes->post('dispositivos/eliminar/(:segment)', 'Dispositivos::eliminar/$1');
+    $routes->post('dispositivos/detalles/(:segment)', 'Dispositivos::detalles/$1');
 });
 
 // Rutas del supervisor
@@ -109,3 +118,10 @@ $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
 $routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');
+
+// Rutas de API para dispositivos
+$routes->group('api/dispositivo', ['namespace' => 'App\Controllers\Api'], function($routes) {
+    $routes->get('buscar', 'Dispositivo::buscar');
+    $routes->get('redes', 'Dispositivo::redes');
+    $routes->post('configurar', 'Dispositivo::configurar');
+});

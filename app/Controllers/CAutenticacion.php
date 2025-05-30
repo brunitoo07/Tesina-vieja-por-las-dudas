@@ -258,10 +258,10 @@ class CAutenticacion extends BaseController
             'nombre' => $nombre,
             'apellido' => $apellido,
             'email' => $email,
-            'contrasena' => $contrasena, // Tu modelo UsuarioModel debe hashear esta contraseña
+            'contrasena' => $contrasena,
             'id_rol' => $id_rol_invitado,
             'estado' => 'activo',
-            'invitado_por' => $invitacion['invitado_por']
+            'invitado_por' => $invitacion['invitado_por'] ?? null
         ];
 
         log_message('debug', 'Datos de usuario a insertar: ' . json_encode($dataUsuario));
@@ -316,50 +316,65 @@ class CAutenticacion extends BaseController
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
 
+        log_message('debug', 'Intento de inicio de sesión para email: ' . $email);
+        log_message('debug', 'Longitud de la contraseña ingresada: ' . strlen($contrasena));
+
         // Usar $this->usuarioModel
         $usuario = $this->usuarioModel->where('email', $email)->first();
 
-        if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
-            $rol = '';
-            switch ($usuario['id_rol']) {
-                case 1:
-                    $rol = 'admin';
-                    break;
-                case 2:
-                    $rol = 'usuario';
-                    break;
-                case 3:
-                    $rol = 'supervisor';
-                    break;
-            }
-
-            $userData = [
-                'id_usuario' => $usuario['id_usuario'],
-                'email' => $usuario['email'],
-                'rol' => $rol,
-                'logged_in' => true
-            ];
-
-            // Escribir logs directamente en un archivo
-            $logFile = WRITEPATH . 'logs/auth_debug.log';
-            $logMessage = date('Y-m-d H:i:s') . " - Usuario encontrado: " . print_r($usuario, true) . "\n";
-            $logMessage .= date('Y-m-d H:i:s') . " - ID Rol del usuario: " . $usuario['id_rol'] . "\n";
-            $logMessage .= date('Y-m-d H:i:s') . " - Rol asignado: " . $rol . "\n";
-            $logMessage .= date('Y-m-d H:i:s') . " - Datos de usuario guardados en sesión: " . print_r($userData, true) . "\n";
-
-            file_put_contents($logFile, $logMessage, FILE_APPEND);
-
-            session()->set($userData);
-
-            // Verificar si los datos se guardaron correctamente
-            $sessionData = session()->get();
-            $logMessage = date('Y-m-d H:i:s') . " - Datos en sesión después de guardar: " . print_r($sessionData, true) . "\n";
-            file_put_contents($logFile, $logMessage, FILE_APPEND);
-
-            return redirect()->to('/' . $rol);
+        if (!$usuario) {
+            log_message('debug', 'Usuario no encontrado para email: ' . $email);
+            return redirect()->back()->with('error', 'Credenciales inválidas.');
         }
 
-        return redirect()->back()->with('error', 'Email o contraseña incorrectos');
+        log_message('debug', 'Usuario encontrado: ' . json_encode([
+            'id' => $usuario['id_usuario'],
+            'email' => $usuario['email'],
+            'estado' => $usuario['estado'],
+            'rol' => $usuario['id_rol']
+        ]));
+
+        if ($usuario['estado'] !== 'activo') {
+            log_message('debug', 'Usuario no activo: ' . $usuario['estado']);
+            return redirect()->back()->with('error', 'Tu cuenta no está activa. Por favor, verifica tu email.');
+        }
+
+        // Verificar la contraseña
+        $passwordVerification = password_verify($contrasena, $usuario['contrasena']);
+        log_message('debug', 'Resultado de verificación de contraseña: ' . ($passwordVerification ? 'true' : 'false'));
+        log_message('debug', 'Hash almacenado en la base de datos: ' . $usuario['contrasena']);
+
+        if (!$passwordVerification) {
+            log_message('debug', 'Contraseña incorrecta para usuario: ' . $email);
+            return redirect()->back()->with('error', 'Credenciales inválidas.');
+        }
+
+        log_message('debug', 'Inicio de sesión exitoso para usuario: ' . $email);
+
+        $rol = '';
+        switch ($usuario['id_rol']) {
+            case 1:
+                $rol = 'admin';
+                break;
+            case 2:
+                $rol = 'usuario';
+                break;
+            case 3:
+                $rol = 'supervisor';
+                break;
+        }
+
+        $userData = [
+            'id_usuario' => $usuario['id_usuario'],
+            'email' => $usuario['email'],
+            'rol' => $rol,
+            'logged_in' => true
+        ];
+
+        session()->set($userData);
+        log_message('debug', 'Datos de sesión guardados: ' . json_encode($userData));
+
+        return redirect()->to('/' . $rol);
     }
 
     public function cerrarSesion()
