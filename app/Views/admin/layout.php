@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - EcoMonitor</title>
+    <title>Panel de Administración - EcoVolt</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
-                        <h5 class="text-white">EcoMonitor</h5>
+                        <h5 class="text-white">EcoVolt</h5>
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">

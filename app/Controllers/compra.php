@@ -166,9 +166,9 @@ class Compra extends BaseController
     {
         $emailService = \Config\Services::email();
 
-        $emailService->setFrom('noreply@ecomonitor.com', 'EcoMonitor');
+        $emailService->setFrom('noreply@ecomonitor.com', 'EcoVolt');
         $emailService->setTo($emailDestino);
-        $emailService->setSubject('Confirmación de Compra - EcoMonitor Pro');
+        $emailService->setSubject('Confirmación de Compra - EcoVolt Pro');
 
         $mensaje = view('emails/confirmacion_compra', [
             'nombre' => $nombre,

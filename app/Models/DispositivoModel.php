@@ -18,7 +18,9 @@ class DispositivoModel extends Model
         'precio',
         'descripcion',
         'estado',
-        'fecha_actualizacion'
+        'fecha_actualizacion',
+        'created_at',
+        'updated_at'
     ];
 
     // Dates
@@ -70,6 +72,18 @@ class DispositivoModel extends Model
 
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
+
+    public function __construct()
+    {
+        parent::__construct();
+        
+        // Asegurarnos de que las columnas de timestamp existan
+        $this->db->query("
+            ALTER TABLE dispositivos 
+            ADD COLUMN IF NOT EXISTS created_at DATETIME NULL,
+            ADD COLUMN IF NOT EXISTS updated_at DATETIME NULL
+        ");
+    }
 
     public function generarMacSimulada()
     {

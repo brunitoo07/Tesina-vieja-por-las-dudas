@@ -259,4 +259,54 @@ class Supervisor extends BaseController
             return $this->response->setJSON(['success' => false, 'message' => 'Error al actualizar el dispositivo']);
         }
     }
+
+    public function verLecturasDispositivo($idDispositivo)
+    {
+        // Verificar que el dispositivo existe
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
+        if (!$dispositivo) {
+            return redirect()->back()->with('error', 'Dispositivo no encontrado');
+        }
+
+        // Obtener las lecturas de energía del dispositivo
+        $lecturas = $this->energiaModel->where('id_dispositivo', $idDispositivo)
+                                     ->orderBy('fecha_hora', 'DESC')
+                                     ->limit(100)
+                                     ->find();
+
+        $data = [
+            'dispositivo' => $dispositivo,
+            'lecturas' => $lecturas
+        ];
+
+        return view('supervisor/lecturas_dispositivo', $data);
+    }
+
+    public function obtenerLecturasDispositivo($idDispositivo)
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Solicitud no válida'
+            ]);
+        }
+
+        $fechaInicio = $this->request->getGet('fecha_inicio');
+        $fechaFin = $this->request->getGet('fecha_fin');
+
+        $builder = $this->energiaModel->where('id_dispositivo', $idDispositivo);
+
+        if ($fechaInicio && $fechaFin) {
+            $builder->where('fecha_hora >=', $fechaInicio . ' 00:00:00')
+                   ->where('fecha_hora <=', $fechaFin . ' 23:59:59');
+        }
+
+        $lecturas = $builder->orderBy('fecha_hora', 'DESC')
+                          ->findAll();
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'lecturas' => $lecturas
+        ]);
+    }
 } 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar EcoMonitor Pro</title>
+    <title>Comprar EcoVolt Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://www.paypal.com/sdk/js?client-id=AVc8Jj68sTx6Jv9nb46eoXNfoSgFcAr6C0ZQuogzyFuQ7dDwBPPSnqET1LM3vr1yi0c9tHp4mVuPxZlB&currency=USD"></script>
@@ -52,7 +52,7 @@
 </head>
 <body>
     <div class="pricing-header">
-        <h1 class="display-4">EcoMonitor Pro</h1>
+        <h1 class="display-4">EcoVolt Pro</h1>
         <p class="lead">Finaliza tu compra de manera segura con PayPal</p>
     </div>
 
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <h2 class="mb-4">Detalles del Producto</h2>
                 <div class="device-card">
-                    <img src="<?= base_url('assets/img/eco-monitor-pro.jpg') ?>" alt="EcoMonitor Pro" class="device-image">
+                    <img src="<?= base_url('assets/img/eco-monitor-pro.jpg') ?>" alt="EcoVolt Pro" class="device-image">
                     <h3><?= esc($dispositivo['nombre']) ?></h3>
                     <p class="text-muted"><?= isset($dispositivo['descripcion']) ? esc($dispositivo['descripcion']) : 'Dispositivo de monitoreo de energía' ?></p>
                     <ul class="feature-list">
@@ -130,7 +130,7 @@
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        description: "EcoMonitor Pro - Dispositivo de Monitoreo",
+                        description: "EcoVolt Pro - Dispositivo de Monitoreo",
                         amount: {
                             currency_code: "USD",
                             value: '99.99',
@@ -142,7 +142,7 @@
                             }
                         },
                         items: [{
-                            name: "EcoMonitor Pro",
+                            name: "EcoVolt Pro",
                             description: "Dispositivo de monitoreo de energía",
                             unit_amount: {
                                 currency_code: "USD",

@@ -57,22 +57,27 @@
                                         <?= ucfirst($dispositivo['estado']) ?>
                                     </span>
                                 </td>
-                                <td><?= $dispositivo['ultima_conexion'] ? date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion'])) : 'Nunca' ?></td>
+                                <td><?= isset($dispositivo['ultima_conexion']) && $dispositivo['ultima_conexion'] ? date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion'])) : 'Nunca' ?></td>
                                 <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info btn-sm" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
-                                            <i class="fas fa-info-circle"></i>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
+                                            <i class="fas fa-eye"></i>
                                         </button>
-                                        <?php if ($dispositivo['estado'] === 'pendiente'): ?>
-                                            <button type="button" class="btn btn-success btn-sm" onclick="activarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                        <?php elseif ($dispositivo['estado'] === 'activo'): ?>
-                                            <button type="button" class="btn btn-warning btn-sm" onclick="desactivarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
-                                                <i class="fas fa-pause"></i>
-                                            </button>
+                                        <?php if ($dispositivo['estado'] === 'activo'): ?>
+                                            <a href="<?= base_url('admin/dispositivos/desactivar/' . $dispositivo['id_dispositivo']) ?>" 
+                                               class="btn btn-sm btn-warning" 
+                                               onclick="return confirm('¿Estás seguro de desactivar este dispositivo?')">
+                                                <i class="fas fa-power-off"></i>
+                                            </a>
+                                        <?php elseif ($dispositivo['estado'] === 'inactivo'): ?>
+                                            <a href="<?= base_url('admin/dispositivos/activar/' . $dispositivo['id_dispositivo']) ?>" 
+                                               class="btn btn-sm btn-success" 
+                                               onclick="return confirm('¿Estás seguro de activar este dispositivo?')">
+                                                <i class="fas fa-power-off"></i>
+                                            </a>
                                         <?php endif; ?>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
+                                        <button type="button" class="btn btn-sm btn-danger" 
+                                                onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -144,18 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error:', error);
             alert('Error al cargar los detalles del dispositivo');
-        }
-    }
-
-    window.activarDispositivo = function(id) {
-        if (confirm('¿Está seguro de activar este dispositivo?')) {
-            window.location.href = `<?= base_url('admin/dispositivos/activar') ?>/${id}`;
-        }
-    }
-
-    window.desactivarDispositivo = function(id) {
-        if (confirm('¿Está seguro de desactivar este dispositivo?')) {
-            window.location.href = `<?= base_url('admin/dispositivos/desactivar') ?>/${id}`;
         }
     }
 

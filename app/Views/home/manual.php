@@ -36,7 +36,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">EcoMonitor</a>
+            <a class="navbar-brand" href="/">EcoVolt</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -179,7 +179,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-            <p>&copy; 2024 EcoMonitor. Todos los derechos reservados.</p>
+            <p>&copy; 2024 EcoVolt. Todos los derechos reservados.</p>
         </div>
     </footer>
 

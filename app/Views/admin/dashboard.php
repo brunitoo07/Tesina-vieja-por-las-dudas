@@ -135,7 +135,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (isset($ultimosDispositivos) && !empty($ultimosDispositivos)): ?>
+                                <?php if (!empty($ultimosDispositivos)): ?>
                                     <?php foreach ($ultimosDispositivos as $dispositivo): ?>
                                         <tr>
                                             <td><?= esc($dispositivo['nombre']) ?></td>
@@ -153,7 +153,15 @@
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="3" class="text-center">No hay dispositivos registrados</td>
+                                        <td colspan="3" class="text-center">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="fas fa-info-circle me-2"></i>
+                                                No tienes dispositivos registrados. 
+                                                <a href="<?= base_url('admin/dispositivos/registrar') ?>" class="alert-link">
+                                                    Registra tu primer dispositivo
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>

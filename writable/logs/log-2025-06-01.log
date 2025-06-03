@@ -1,0 +1,14 @@
+INFO - 2025-06-01 21:19:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-01 21:20:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-01 21:21:54 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-06-01 21:21:54 --> Longitud de la contraseña ingresada: 18
+CRITICAL - 2025-06-01 21:21:54 --> ErrorException: Undefined array key "estado"
+[Method: POST, Route: iniciarSesion]
+in APPPATH\Controllers\CAutenticacion.php on line 333.
+ 1 APPPATH\Controllers\CAutenticacion.php(333): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "estado"', 'C:\\xampp\\htdocs\\Tesina\\app\\Controllers\\CAutenticacion.php', 333)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CAutenticacion->iniciarSesion()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CAutenticacion))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

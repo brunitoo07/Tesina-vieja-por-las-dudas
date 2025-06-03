@@ -4,19 +4,23 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\DispositivoModel;
+use App\Models\UsuarioModel;
 
 class Dispositivos extends BaseController
 {
     protected $dispositivoModel;
+    protected $usuarioModel;
 
     public function __construct()
     {
         $this->dispositivoModel = new DispositivoModel();
+        $this->usuarioModel = new UsuarioModel();
     }
 
     public function index()
     {
-        $data['dispositivos'] = $this->dispositivoModel->findAll();
+        $idUsuario = session()->get('id_usuario');
+        $data['dispositivos'] = $this->dispositivoModel->where('id_usuario', $idUsuario)->findAll();
         return view('admin/dispositivos/index', $data);
     }
 
@@ -41,10 +45,12 @@ class Dispositivos extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $idUsuario = session()->get('id_usuario');
         $data = [
             'nombre' => $this->request->getPost('nombre'),
             'mac_address' => $this->request->getPost('mac_address'),
-            'estado' => 'pendiente'
+            'estado' => 'pendiente',
+            'id_usuario' => $idUsuario
         ];
 
         if ($this->dispositivoModel->insert($data)) {
@@ -56,6 +62,15 @@ class Dispositivos extends BaseController
 
     public function activar($id)
     {
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_dispositivo', $id)
+                                            ->where('id_usuario', $idUsuario)
+                                            ->first();
+
+        if (!$dispositivo) {
+            return redirect()->back()->with('error', 'Dispositivo no encontrado o no tienes permiso');
+        }
+
         if ($this->dispositivoModel->update($id, ['estado' => 'activo'])) {
             return redirect()->to('admin/dispositivos')->with('success', 'Dispositivo activado exitosamente');
         }
@@ -65,6 +80,15 @@ class Dispositivos extends BaseController
 
     public function desactivar($id)
     {
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_dispositivo', $id)
+                                            ->where('id_usuario', $idUsuario)
+                                            ->first();
+
+        if (!$dispositivo) {
+            return redirect()->back()->with('error', 'Dispositivo no encontrado o no tienes permiso');
+        }
+
         if ($this->dispositivoModel->update($id, ['estado' => 'inactivo'])) {
             return redirect()->to('admin/dispositivos')->with('success', 'Dispositivo desactivado exitosamente');
         }
@@ -74,27 +98,64 @@ class Dispositivos extends BaseController
 
     public function eliminar($id)
     {
-        if ($this->dispositivoModel->delete($id)) {
-            return redirect()->to('admin/dispositivos')->with('success', 'Dispositivo eliminado exitosamente');
-        }
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_dispositivo', $id)
+                                            ->where('id_usuario', $idUsuario)
+                                            ->first();
 
-        return redirect()->back()->with('error', 'Error al eliminar el dispositivo');
-    }
-
-    public function detalles($id)
-    {
-        $dispositivo = $this->dispositivoModel->find($id);
-        
         if (!$dispositivo) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => 'Dispositivo no encontrado'
+                'message' => 'Dispositivo no encontrado o no tienes permiso'
+            ]);
+        }
+
+        if ($this->dispositivoModel->delete($id)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Dispositivo eliminado exitosamente'
             ]);
         }
 
         return $this->response->setJSON([
-            'status' => 'success',
-            'dispositivo' => $dispositivo
+            'status' => 'error',
+            'message' => 'Error al eliminar el dispositivo'
         ]);
+    }
+
+    public function detalles($id)
+    {
+        try {
+            $idUsuario = session()->get('id_usuario');
+            $dispositivo = $this->dispositivoModel->select('dispositivos.*, COALESCE(fecha_actualizacion, created_at) as ultima_conexion')
+                                                ->where('id_dispositivo', $id)
+                                                ->where('id_usuario', $idUsuario)
+                                                ->first();
+
+            if (!$dispositivo) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Dispositivo no encontrado o no tienes permiso'
+                ]);
+            }
+
+            // Formatear la fecha de última conexión
+            if ($dispositivo['ultima_conexion']) {
+                $dispositivo['ultima_conexion'] = date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion']));
+            } else {
+                $dispositivo['ultima_conexion'] = 'Nunca';
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'dispositivo' => $dispositivo
+            ]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error en detalles del dispositivo: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al cargar los detalles del dispositivo'
+            ]);
+        }
     }
 } 

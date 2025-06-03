@@ -128,11 +128,16 @@ class RegistroCompra extends BaseController
 
         if (!$idUsuario || !$token || !$idDispositivo) {
             log_message('debug', 'Sesión expirada o datos faltantes');
-            return redirect()->to('/registro-compra')->with('error', 'Sesión expirada. Intenta de nuevo.');
+            return redirect()->to(base_url('registro-compra'))->with('error', 'Sesión expirada. Intenta de nuevo.');
         }
 
         $usuario = $this->usuarioModel->find($idUsuario);
         $dispositivo = $this->dispositivoModel->find($idDispositivo);
+
+        if (!$usuario || !$dispositivo) {
+            log_message('debug', 'Usuario o dispositivo no encontrado');
+            return redirect()->to(base_url('registro-compra'))->with('error', 'Error al procesar la compra. Por favor, intenta de nuevo.');
+        }
 
         log_message('debug', 'Datos del usuario antes de activación: ' . json_encode([
             'id' => $usuario['id_usuario'],
@@ -176,6 +181,13 @@ class RegistroCompra extends BaseController
         return view('registro_compra/pago_exitoso', $data);
     }
 
+    public function error()
+    {
+        return view('registro_compra/error', [
+            'mensaje' => 'Ha ocurrido un error al procesar tu pago. Por favor, intenta de nuevo.'
+        ]);
+    }
+
     protected function enviarEmailBienvenida($email, $nombre, $token)
     {
         $emailService = \Config\Services::email();
@@ -198,8 +210,8 @@ class RegistroCompra extends BaseController
         $emailService = \Config\Services::email();
         
         $emailService->setTo($email);
-        $emailService->setFrom('noreply@ecomonitor.com', 'EcoMonitor');
-        $emailService->setSubject('Confirmación de Compra - EcoMonitor Pro');
+        $emailService->setFrom('noreply@ecomonitor.com', 'EcoVolt');
+        $emailService->setSubject('Confirmación de Compra - EcoVolt Pro');
         
         $mensaje = view('emails/confirmacion_compra', [
             'nombre' => $nombre,

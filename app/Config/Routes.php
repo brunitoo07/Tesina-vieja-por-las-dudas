@@ -32,12 +32,14 @@ $routes->post('admin/guardarUsuario', 'Admin::guardarUsuario'); // Esta ruta es 
 $routes->get('compra', 'Compra::index');
 $routes->post('compra/procesarPago', 'Compra::procesarPago');
 $routes->get('compra/completada', 'Compra::completada');
+$routes->get('compra/error', 'Compra::error');
 
 // Rutas de registro de compra
 $routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
 $routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
 $routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
 $routes->get('registro-compra/activar/(:segment)', 'RegistroCompra::activar/$1');
+$routes->get('registro-compra/error', 'RegistroCompra::error');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
@@ -73,14 +75,15 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
     $routes->get('usuario', 'Admin::gestionarUsuarios');
     $routes->post('aprobarDispositivo', 'Admin::aprobarDispositivo');
-    $routes->get('dispositivos', 'Dispositivos::index');
-    $routes->get('dispositivos/registrar', 'Dispositivos::registrar');
-    $routes->get('dispositivos/buscar', 'Dispositivos::buscar');
-    $routes->post('dispositivos/guardar', 'Dispositivos::guardar');
-    $routes->post('dispositivos/activar/(:segment)', 'Dispositivos::activar/$1');
-    $routes->post('dispositivos/desactivar/(:segment)', 'Dispositivos::desactivar/$1');
-    $routes->post('dispositivos/eliminar/(:segment)', 'Dispositivos::eliminar/$1');
-    $routes->post('dispositivos/detalles/(:segment)', 'Dispositivos::detalles/$1');
+    $routes->get('dispositivos', 'Admin\Dispositivos::index');
+    $routes->get('dispositivos/registrar', 'Admin\Dispositivos::registrar');
+    $routes->get('dispositivos/buscar', 'Admin\Dispositivos::buscar');
+    $routes->post('dispositivos/guardar', 'Admin\Dispositivos::guardar');
+    $routes->get('dispositivos/activar/(:num)', 'Admin\Dispositivos::activar/$1');
+    $routes->get('dispositivos/desactivar/(:num)', 'Admin\Dispositivos::desactivar/$1');
+    $routes->post('dispositivos/eliminar/(:num)', 'Admin\Dispositivos::eliminar/$1');
+    $routes->get('dispositivos/detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
+    $routes->get('dispositivos/desactivar/(:num)', 'Dispositivos::desactivar/$1');
 });
 
 // Rutas del supervisor
@@ -91,6 +94,8 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
     $routes->post('enviarInvitacion', 'Supervisor::enviarInvitacion');
     $routes->get('misUsuarios', 'Supervisor::misUsuarios');
     $routes->get('dispositivosUsuarios/(:num)', 'Supervisor::dispositivosUsuarios/$1');
+    $routes->get('supervisor/verLecturasDispositivo/(:num)', 'Supervisor::verLecturasDispositivo/$1');
+    $routes->get('supervisor/obtenerLecturasDispositivo/(:num)', 'Supervisor::obtenerLecturasDispositivo/$1');
     $routes->post('dispositivo/cambiarEstado', 'Supervisor::cambiarEstadoDispositivo');
     $routes->get('dispositivo/obtener/(:num)', 'Supervisor::obtenerDispositivo/$1');
     $routes->post('dispositivo/actualizar', 'Supervisor::actualizarDispositivo');

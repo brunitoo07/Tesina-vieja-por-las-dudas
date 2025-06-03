@@ -65,12 +65,12 @@
 
             <p>Si tienes alguna pregunta sobre tu compra, no dudes en contactarnos respondiendo a este email.</p>
 
-            <p>¡Gracias por confiar en EcoMonitor!</p>
+            <p>¡Gracias por confiar en EcoVolt!</p>
         </div>
 
         <div class="footer">
             <p>Este es un email automático, por favor no respondas a este mensaje.</p>
-            <p>&copy; <?= date('Y') ?> EcoMonitor. Todos los derechos reservados.</p>
+            <p>&copy; <?= date('Y') ?> EcoVolt. Todos los derechos reservados.</p>
         </div>
     </div>
 </body>
