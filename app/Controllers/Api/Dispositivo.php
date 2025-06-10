@@ -2,202 +2,159 @@
 
 namespace App\Controllers\Api;
 
-use App\Controllers\BaseController;
+use CodeIgniter\RESTful\ResourceController;
 use App\Models\DispositivoModel;
 
-class Dispositivo extends BaseController
+class Dispositivo extends ResourceController
 {
-    protected $dispositivoModel;
+    protected $modelName = 'App\Models\DispositivoModel';
+    protected $format    = 'json';
 
     public function __construct()
     {
         $this->dispositivoModel = new DispositivoModel();
     }
 
-    public function buscar()
-    {
-        // Simular búsqueda de dispositivos ESP32 en modo AP
-        // En una implementación real, esto se conectaría al ESP32 en modo AP
-        // y obtendría la lista de dispositivos disponibles
-        $dispositivos = [
-            [
-                'mac_address' => 'AA:BB:CC:DD:EE:FF',
-                'nombre' => 'ESP32_1',
-                'signal_strength' => -65
-            ],
-            [
-                'mac_address' => '11:22:33:44:55:66',
-                'nombre' => 'ESP32_2',
-                'signal_strength' => -70
-            ]
-        ];
-
-        return $this->response->setJSON([
-            'status' => 'success',
-            'dispositivos' => $dispositivos
-        ]);
-    }
-
-    public function redes()
-    {
-        // Simular obtención de redes WiFi disponibles
-        // En una implementación real, esto se conectaría al ESP32
-        // y obtendría la lista de redes WiFi disponibles
-        $redes = [
-            [
-                'ssid' => 'MiRedWiFi',
-                'signal_strength' => -50
-            ],
-            [
-                'ssid' => 'RedVecina',
-                'signal_strength' => -75
-            ]
-        ];
-
-        return $this->response->setJSON([
-            'status' => 'success',
-            'redes' => $redes
-        ]);
-    }
-
-    public function configurar()
+    /**
+     * Endpoint para que el ESP32 se registre/active.
+     * Espera:
+     * - `codigo_activacion`: El código alfanumérico generado por el admin.
+     * - `mac_real_esp32`: La MAC física del ESP32.
+     * - `nombre_esp32`: Un nombre opcional para identificar el ESP32 (e.g., "MiMedidor_sala").
+     *
+     * Este es el nuevo flujo de activación.
+     */
+    public function activarDispositivo()
     {
         $rules = [
-            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]',
-            'nombre' => 'required|min_length[3]|max_length[100]',
-            'ssid' => 'required',
-            'password' => 'required'
+            'codigo_activacion' => 'required|alpha_numeric|min_length[10]|max_length[32]',
+            'mac_real_esp32'    => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]',
+            'nombre_esp32'      => 'permit_empty|min_length[3]|max_length[100]'
         ];
+
+        // Obtener datos del cuerpo de la solicitud JSON (típico para APIs de dispositivos)
+        $data = $this->request->getJSON(true); // true para obtener como array asociativo
 
         if (!$this->validate($rules)) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Datos inválidos',
-                'errors' => $this->validator->getErrors()
-            ]);
+            return $this->failValidationErrors($this->validator->getErrors());
         }
 
-        $data = [
-            'mac_address' => $this->request->getJSON()->mac_address,
-            'nombre' => $this->request->getJSON()->nombre,
-            'ssid' => $this->request->getJSON()->ssid,
-            'password' => $this->request->getJSON()->password
+        $codigoActivacion = strtoupper($data['codigo_activacion']); // Asegurar mayúsculas
+        $macRealEsp32 = strtoupper($data['mac_real_esp32']);       // Asegurar mayúsculas
+        $nombreEsp32 = $data['nombre_esp32'] ?? null;
+
+        // 1. Buscar el dispositivo por el código de activación
+        $dispositivo = $this->dispositivoModel->getDispositivoByCodigoActivacion($codigoActivacion);
+
+        if (!$dispositivo) {
+            log_message('error', 'API_ACTIVACION: Código de activación inválido o no encontrado: ' . $codigoActivacion);
+            return $this->failUnauthorized('Código de activación inválido o no encontrado.');
+        }
+
+        // 2. Verificar el estado del dispositivo
+        if ($dispositivo['estado'] !== 'pendiente_configuracion') {
+            log_message('error', 'API_ACTIVACION: Dispositivo con ID ' . $dispositivo['id_dispositivo'] . ' y código ' . $codigoActivacion . ' no está en estado "pendiente_configuracion". Estado actual: ' . $dispositivo['estado']);
+            return $this->failForbidden('Este dispositivo no está listo para ser activado. Estado actual: ' . $dispositivo['estado']);
+        }
+
+        // 3. Verificar si la MAC Real ya está vinculada a otro dispositivo
+        $existingMacReal = $this->dispositivoModel->getDispositivoByMacReal($macRealEsp32);
+        if ($existingMacReal && $existingMacReal['id_dispositivo'] != $dispositivo['id_dispositivo']) {
+            log_message('error', 'API_ACTIVACION: La MAC real ' . $macRealEsp32 . ' ya está vinculada al dispositivo ID: ' . $existingMacReal['id_dispositivo']);
+            return $this->failConflict('La MAC real proporcionada ya está vinculada a otro dispositivo.');
+        }
+
+        // 4. Actualizar el dispositivo
+        $updateData = [
+            'estado'            => 'activo',
+            'mac_real_esp32'    => $macRealEsp32,
+            'codigo_activacion' => null, // Una vez usado, el código se anula
+            'nombre'            => $nombreEsp32 ?? $dispositivo['nombre'] // Si el ESP32 manda un nombre, lo usamos, si no, mantenemos el que tenía.
         ];
 
-        // En una implementación real, esto enviaría la configuración al ESP32
-        // y esperaría la confirmación de que se conectó exitosamente
-
-        // Simular éxito en la configuración
-        return $this->response->setJSON([
-            'status' => 'success',
-            'message' => 'Dispositivo configurado exitosamente'
-        ]);
-    }
-
-    public function activar()
-    {
-        $macAddress = $this->request->getPost('mac_address');
-
-        if (!$macAddress) {
-            return $this->fail('Falta la dirección MAC');
-        }
-
-        // Buscar el dispositivo por la MAC
-        $dispositivo = $this->dispositivoModel->where('mac_address', $macAddress)
-                                            ->where('estado', 'pendiente')
-                                            ->first();
-
-        if (!$dispositivo) {
-            return $this->fail('Dispositivo no encontrado o ya está activo');
-        }
-
-        // Activar el dispositivo
-        if ($this->dispositivoModel->cambiarEstado($dispositivo['id_dispositivo'], 'activo')) {
-            return $this->respond([
-                'status' => 'success',
-                'message' => 'Dispositivo activado correctamente',
-                'data' => [
+        if ($this->dispositivoModel->update($dispositivo['id_dispositivo'], $updateData)) {
+            log_message('info', 'API_ACTIVACION: Dispositivo ID ' . $dispositivo['id_dispositivo'] . ' activado exitosamente con MAC real: ' . $macRealEsp32);
+            return $this->respondCreated([
+                'status'  => 'success',
+                'message' => 'Dispositivo activado y vinculado exitosamente.',
+                'data'    => [
                     'id_dispositivo' => $dispositivo['id_dispositivo'],
-                    'mac_address' => $macAddress,
-                    'estado' => 'activo'
+                    'mac_simulada'   => $dispositivo['mac_address'], // MAC simulada asignada por el admin
+                    'mac_real_esp32' => $macRealEsp32,               // MAC física del ESP32
+                    'nombre_asignado'=> $updateData['nombre'],
+                    'estado'         => 'activo'
                 ]
             ]);
+        } else {
+            log_message('error', 'API_ACTIVACION: Error al actualizar el dispositivo ID ' . $dispositivo['id_dispositivo'] . ': ' . json_encode($this->dispositivoModel->errors()));
+            return $this->failServerError('Error interno al activar el dispositivo. ' . json_encode($this->dispositivoModel->errors()));
         }
-
-        return $this->fail('Error al activar el dispositivo');
     }
 
-    public function iniciarConfiguracion()
+    /**
+     * Endpoint para que el ESP32 reporte su estado o "heartbeat".
+     * Actualiza la fecha de la última conexión.
+     * Espera:
+     * - `mac_real_esp32`: La MAC física del ESP32.
+     */
+    public function reportarEstado()
     {
-        $macSimulada = $this->request->getPost('mac_simulada');
+        $rules = [
+            'mac_real_esp32' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]'
+        ];
 
-        if (!$macSimulada) {
-            return $this->fail('Falta la MAC simulada');
+        $data = $this->request->getJSON(true);
+
+        if (!$this->validate($rules)) {
+            return $this->failValidationErrors($this->validator->getErrors());
         }
 
-        $dispositivo = $this->dispositivoModel->where('mac_simulada', $macSimulada)
-                                            ->where('estado', 'pendiente')
-                                            ->first();
+        $macRealEsp32 = strtoupper($data['mac_real_esp32']);
+
+        $dispositivo = $this->dispositivoModel->getDispositivoByMacReal($macRealEsp32);
 
         if (!$dispositivo) {
-            return $this->fail('Dispositivo no encontrado o ya está configurado');
+            log_message('warning', 'API_REPORTE: Dispositivo no encontrado con MAC real: ' . $macRealEsp32);
+            return $this->failNotFound('Dispositivo no encontrado.');
         }
 
-        if ($this->dispositivoModel->iniciarConfiguracion($dispositivo['id_dispositivo'])) {
+        // El campo 'updated_at' del modelo ya se actualiza automáticamente al hacer un `update`.
+        // Si necesitas un campo específico como 'last_connection_at', añádelo a tu tabla.
+        // Por ahora, simplemente actualizamos un campo dummy o esperamos que `updated_at` sea suficiente.
+        // Podemos actualizar el estado a "activo" para asegurar que si se marcó inactivo, vuelva a activo.
+        if ($dispositivo['estado'] !== 'activo') {
+             $updateData = ['estado' => 'activo'];
+        } else {
+            // Si ya está activo, una actualización "vacía" basta para refrescar updated_at
+            $updateData = []; // o un campo específico si existe como 'last_heartbeat'
+        }
+
+        if ($this->dispositivoModel->update($dispositivo['id_dispositivo'], $updateData)) {
+            log_message('info', 'API_REPORTE: Dispositivo ID ' . $dispositivo['id_dispositivo'] . ' reportó estado. MAC real: ' . $macRealEsp32);
             return $this->respond([
-                'status' => 'success',
-                'message' => 'Modo configuración iniciado',
-                'data' => [
+                'status'  => 'success',
+                'message' => 'Estado del dispositivo actualizado.',
+                'data'    => [
                     'id_dispositivo' => $dispositivo['id_dispositivo'],
-                    'estado' => 'configurando'
+                    'mac_real_esp32' => $macRealEsp32,
+                    'estado'         => $this->dispositivoModel->find($dispositivo['id_dispositivo'])['estado'] // Obtener el estado actualizado
                 ]
             ]);
+        } else {
+            log_message('error', 'API_REPORTE: Error al actualizar el estado del dispositivo ID ' . $dispositivo['id_dispositivo'] . ': ' . json_encode($this->dispositivoModel->errors()));
+            return $this->failServerError('Error interno al actualizar el estado del dispositivo.');
         }
-
-        return $this->fail('Error al iniciar la configuración');
     }
 
-    public function actualizarEstado()
-    {
-        $macAddress = $this->request->getPost('mac_address');
-        $estado = $this->request->getPost('estado');
+    // --- Métodos Anteriores que son Redundantes o Cambiados ---
 
-        if (!$macAddress || !$estado) {
-            return $this->fail('Faltan datos requeridos');
-        }
-
-        $dispositivo = $this->dispositivoModel->where('mac_address', $macAddress)->first();
-
-        if (!$dispositivo) {
-            return $this->fail('Dispositivo no encontrado');
-        }
-
-        if ($this->dispositivoModel->cambiarEstado($dispositivo['id_dispositivo'], $estado)) {
-            return $this->respond([
-                'status' => 'success',
-                'message' => 'Estado actualizado correctamente'
-            ]);
-        }
-
-        return $this->fail('Error al actualizar el estado');
-    }
-
-    public function actualizarStock()
-    {
-        $idDispositivo = $this->request->getPost('id_dispositivo');
-        $cantidad = $this->request->getPost('cantidad');
-
-        if (!$idDispositivo || !$cantidad) {
-            return $this->fail('Faltan datos requeridos');
-        }
-
-        if ($this->dispositivoModel->actualizarStock($idDispositivo, $cantidad)) {
-            return $this->respond([
-                'status' => 'success',
-                'message' => 'Stock actualizado correctamente'
-            ]);
-        }
-
-        return $this->fail('Error al actualizar el stock');
-    }
-} 
+    // `buscar()`, `redes()`, `configurar()`, `activar()`, `iniciarConfiguracion()`, `actualizarEstado()`, `actualizarStock()`
+    // Estos métodos anteriores fueron eliminados o reemplazados.
+    // - `buscar()` y `redes()` simulaban escaneos, que no son responsabilidad de la API de activación.
+    // - `configurar()` simulaba la configuración del ESP32, ahora el ESP32 debe tener su propio firmware para eso.
+    // - `activar()` y `iniciarConfiguracion()` fueron reemplazados por el único `activarDispositivo()`.
+    // - `actualizarEstado()` es reemplazado por `reportarEstado()` y la lógica de `activarDispositivo()`.
+    // - `actualizarStock()` es una operación de negocio que no debe ser expuesta a los dispositivos ESP32.
+    //   Si necesitas que un ESP32 interactúe con el stock, debe haber una razón de negocio muy específica
+    //   y una capa de autenticación mucho más robusta.
+}

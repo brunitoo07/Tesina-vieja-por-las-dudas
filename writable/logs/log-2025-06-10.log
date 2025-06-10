@@ -1,0 +1,152 @@
+DEBUG - 2025-06-10 13:29:04 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-10 13:29:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:29:04 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749572944
+)
+
+INFO - 2025-06-10 13:29:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-10 13:30:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-10 13:30:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:30:45 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-06-10 13:30:45 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-06-10 13:30:45 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-06-10 13:30:45 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-06-10 13:30:45 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-06-10 13:30:45 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-06-10 13:30:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:30:45 --> Datos de sesión guardados: {"id_usuario":"1","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-06-10 13:30:45 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-10 13:30:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:30:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749573037
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:48:29 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-10 13:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:48:31 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-06-10 13:48:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:31 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+WARNING - 2025-06-10 13:48:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\Api\Dispositivo::$dispositivoModel is deprecated in APPPATH\Controllers\Api\Dispositivo.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Api\Dispositivo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2025-06-10 13:48:34 --> [DEPRECATED] Creation of dynamic property App\Controllers\Api\Dispositivo::$dispositivoModel is deprecated in APPPATH\Controllers\Api\Dispositivo.php on line 15.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\Api\Dispositivo->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-10 13:48:35 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-10 13:48:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:35 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos/buscar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:48:36 --> Ruta actual: /Tesina/public/admin/dispositivos/registrar
+INFO - 2025-06-10 13:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:36 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:48:37 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-10 13:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:37 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos/registrar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:48:43 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-06-10 13:48:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:48:43 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:49:41 --> Ruta actual: /Tesina/public/energia
+INFO - 2025-06-10 13:49:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:49:41 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos/buscar
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:49:48 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-06-10 13:49:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:49:48 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/energia
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-10 13:49:51 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-06-10 13:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-10 13:49:51 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749574109
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
