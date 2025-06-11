@@ -37,17 +37,33 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= base_url('supervisor') ?>">Dispositivos</a>
                             </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('dispositivo') ?>">Mis Dispositivos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= base_url('energia') ?>">Energía</a>
+                            </li>
                         <?php endif; ?>
                     <?php endif; ?>
                 </ul>
                 <ul class="navbar-nav">
                     <?php if (session()->get('logged_in')): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('autenticacion/cerrarSesion') ?>">Cerrar Sesión</a>
+                            <a class="nav-link" href="<?= base_url('usuario/perfil') ?>">
+                                <i class="fas fa-user-circle"></i> Mi Perfil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('autenticacion/cerrarSesion') ?>">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('autenticacion/login') ?>">Iniciar Sesión</a>
+                            <a class="nav-link" href="<?= base_url('autenticacion/login') ?>">
+                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
                         </li>
                     <?php endif; ?>
                 </ul>

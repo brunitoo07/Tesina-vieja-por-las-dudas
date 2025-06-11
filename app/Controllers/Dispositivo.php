@@ -206,19 +206,145 @@ class Dispositivo extends BaseController
         return redirect()->to('dispositivo');
     }
 
-    public function configurar()
+    public function configurar($macAddress = null)
     {
-        if ($this->request->getMethod() === 'post') {
-            $nombre = $this->request->getPost('nombre');
-            $ssid = $this->request->getPost('ssid');
-            $password = $this->request->getPost('password');
-
-            // Aquí puedes agregar lógica para enviar estos datos al ESP32
-            // o guardarlos en la base de datos si es necesario.
-
-            return redirect()->to('/dispositivo/configurar')->with('success', 'Configuración guardada correctamente.');
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
         }
 
-        return view('dispositivo/configurar');
+        if (!$macAddress) {
+            return redirect()->to('dispositivo')->with('error', 'No se especificó la dirección MAC del dispositivo');
+        }
+
+        $data = [
+            'mac_address' => $macAddress,
+            'titulo' => 'Configurar Dispositivo'
+        ];
+
+        return view('dispositivo/configurar', $data);
+    }
+
+    public function getMac()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'No autorizado'
+            ]);
+        }
+
+        try {
+            // Intentar obtener la dirección MAC del dispositivo ESP32
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.4.1/status");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($httpCode === 200 && $response) {
+                $data = json_decode($response, true);
+                if ($data && isset($data['mac_address'])) {
+                    return $this->response->setJSON([
+                        'status' => 'success',
+                        'mac_address' => $data['mac_address']
+                    ]);
+                }
+            }
+
+            // Si no se puede obtener la MAC del dispositivo, intentar obtenerla de la base de datos
+            $macAddress = $this->request->getGet('mac_address');
+            if ($macAddress) {
+                $dispositivo = $this->dispositivoModel->where('mac_address', $macAddress)->first();
+                if ($dispositivo) {
+                    return $this->response->setJSON([
+                        'status' => 'success',
+                        'mac_address' => $dispositivo['mac_address']
+                    ]);
+                }
+            }
+
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'No se pudo obtener la dirección MAC del dispositivo'
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al obtener MAC: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al obtener la dirección MAC: ' . $e->getMessage()
+            ]);
+        }
+    }
+
+    public function updateWifi()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'No autorizado'
+            ]);
+        }
+
+        $json = $this->request->getJSON();
+        $ssid = $json->ssid ?? null;
+        $password = $json->password ?? null;
+        $macAddress = $json->mac_address ?? null;
+
+        if (!$ssid || !$password || !$macAddress) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Faltan datos requeridos'
+            ]);
+        }
+
+        try {
+            // Enviar la nueva configuración al dispositivo ESP32
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.4.1/update-wifi");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+                'ssid' => $ssid,
+                'password' => $password
+            ]));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($httpCode === 200 && $response) {
+                $data = json_decode($response, true);
+                if ($data && $data['status'] === 'success') {
+                    // Actualizar la configuración en la base de datos
+                    $this->dispositivoModel->where('mac_address', $macAddress)
+                        ->set([
+                            'wifi_ssid' => $ssid,
+                            'wifi_password' => $password
+                        ])
+                        ->update();
+
+                    return $this->response->setJSON([
+                        'status' => 'success',
+                        'message' => 'Configuración WiFi actualizada correctamente'
+                    ]);
+                }
+            }
+
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al actualizar la configuración WiFi'
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al actualizar WiFi: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al actualizar la configuración WiFi: ' . $e->getMessage()
+            ]);
+        }
     }
 }

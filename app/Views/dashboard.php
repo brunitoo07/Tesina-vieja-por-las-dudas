@@ -39,11 +39,11 @@
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="fas fa-user"></i> Perfil
+                        <i class="fas fa-user-circle"></i> Mi Perfil
                     </h5>
-                    <p class="card-text">Gestiona tu información personal y configuración.</p>
-                    <a href="<?= base_url('perfil/perfil') ?>" class="btn btn-primary">
-                        <i class="fas fa-user-cog"></i> Editar Perfil
+                    <p class="card-text">Gestiona tu información personal y cambia tu contraseña.</p>
+                    <a href="<?= base_url('usuario/perfil') ?>" class="btn btn-primary">
+                        <i class="fas fa-user-edit"></i> Editar Perfil
                     </a>
                 </div>
             </div>

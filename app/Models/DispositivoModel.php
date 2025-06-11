@@ -21,7 +21,8 @@ class DispositivoModel extends Model
         'descripcion',
         'estado',            // Ahora incluirá 'pendiente_configuracion'
         'created_at',
-        'updated_at'
+        'updated_at',
+        'ultima_lectura'
     ];
 
     // Dates
@@ -130,55 +131,36 @@ class DispositivoModel extends Model
                     ->findAll();
     }
 
-    // El método `actualizarUltimaConexion` usaba `fecha_actualizacion`, que fue eliminada.
-    // `updated_at` es manejado automáticamente si `useTimestamps` es true en el `update()` normal.
-    // Si necesitas un campo específico para "última conexión" que no sea `updated_at`, añádelo a la DB y al `allowedFields`.
-    // public function actualizarUltimaConexion($idDispositivo)
-    // {
-    //     return $this->update($idDispositivo, [
-    //         'updated_at' => date('Y-m-d H:i:s')
-    //     ]);
-    // }
-
-    // `obtenerDispositivosUsuario` tenía lógica de roles. Esta lógica debe ir en el controlador.
-    // El modelo solo debe hacer consultas a la DB.
-    // public function obtenerDispositivosUsuario($idUsuario) { ... }
-
-    // `vincularDispositivo` se usaba para crear dispositivos activos directamente.
-    // Ahora, los dispositivos se crean como 'pendiente_configuracion' y luego se actualizan.
-    // Este método ya no es necesario para el nuevo flujo.
-    // public function vincularDispositivo($idUsuario, $macAddress, $nombre) { ... }
-
-    // `desvincularDispositivo` está bien si solo se usa para eliminar.
-    // Si la "desvinculación" implica cambiar estado a 'inactivo' o 'pendiente', se podría ajustar.
-    public function desvincularDispositivo($idDispositivo, $idUsuario)
+    // Obtener todos los dispositivos de un usuario específico
+    public function obtenerDispositivosUsuario($idUsuario)
     {
-        // Verificar si el usuario es el propietario del dispositivo
-        $dispositivo = $this->where('id_dispositivo', $idDispositivo)
-                            ->where('id_usuario', $idUsuario)
-                            ->first();
-
-        if (!$dispositivo) {
-            return false;
-        }
-
-        // Si quieres solo "desactivar" en lugar de eliminar, cambia esto:
-        return $this->update($idDispositivo, ['estado' => 'inactivo', 'mac_real_esp32' => null, 'codigo_activacion' => null]);
-        // return $this->delete($idDispositivo); // Para eliminar
+        return $this->where('id_usuario', $idUsuario)
+                    ->orderBy('created_at', 'DESC')
+                    ->findAll();
     }
 
-    // `findAll` sobrescribía el comportamiento base del modelo con lógica de roles.
-    // Se elimina para que `findAll` del modelo devuelva *todos* los registros de la tabla.
-    // La lógica de filtrado por rol debe estar en el controlador.
-    // public function findAll(?int $limit = null, int $offset = 0) { ... }
+    // Obtener un dispositivo por su dirección MAC
+    public function obtenerPorMac($macAddress)
+    {
+        return $this->where('mac_address', $macAddress)->first();
+    }
 
+    // Verificar si un dispositivo ya está registrado
+    public function dispositivoExiste($macAddress)
+    {
+        return $this->where('mac_address', $macAddress)->countAllResults() > 0;
+    }
 
+    // Actualizar el estado del dispositivo
     public function actualizarEstado($idDispositivo, $estado)
     {
-        return $this->update($idDispositivo, [
-            'estado' => $estado,
-            // 'updated_at' es manejado automáticamente por el modelo
-        ]);
+        return $this->update($idDispositivo, ['estado' => $estado]);
+    }
+
+    // Actualizar la última lectura del dispositivo
+    public function actualizarUltimaLectura($idDispositivo, $lectura)
+    {
+        return $this->update($idDispositivo, ['ultima_lectura' => $lectura]);
     }
 
     public function obtenerDispositivo($idDispositivo)

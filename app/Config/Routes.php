@@ -71,6 +71,11 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energy/dispositivo/ver/(:segment)', 'EnergyController::verDetalles/$1');
     $routes->get('energy/get-mac', 'EnergyController::getMacAddress');
     $routes->get('energy/scan-wifi', 'EnergyController::scanWifiNetworks');
+
+    // Rutas para el perfil de usuario
+    $routes->get('usuario/perfil', 'Usuario::perfil');
+    $routes->post('usuario/actualizar-perfil', 'Usuario::actualizarPerfil');
+    $routes->post('usuario/cambiar-contrasena', 'Usuario::cambiarContrasena');
 });
 
 // Rutas del panel de administración
@@ -126,6 +131,8 @@ $routes->group('dispositivo', ['filter' => 'auth'], function($routes) {
     $routes->get('agregar', 'Dispositivo::agregar');
     $routes->post('guardar', 'Dispositivo::guardar');
     $routes->get('eliminar/(:num)', 'Dispositivo::eliminar/$1');
+    $routes->get('dispositivo/get-mac', 'Dispositivo::getMac');
+    $routes->post('dispositivo/update-wifi', 'Dispositivo::updateWifi');
 });
 
 $routes->get('consumo/ver/(:num)', 'Consumo::verDatos/$1');

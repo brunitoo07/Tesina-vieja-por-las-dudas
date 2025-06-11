@@ -351,6 +351,7 @@ class CAutenticacion extends BaseController
 
         log_message('debug', 'Inicio de sesión exitoso para usuario: ' . $email);
 
+        // Determinar el rol basado en id_rol
         $rol = '';
         switch ($usuario['id_rol']) {
             case 1:
@@ -362,10 +363,16 @@ class CAutenticacion extends BaseController
             case 3:
                 $rol = 'supervisor';
                 break;
+            default:
+                $rol = 'usuario'; // Rol por defecto
+                break;
         }
 
+        // Crear sesión con todos los datos necesarios
         $userData = [
             'id_usuario' => $usuario['id_usuario'],
+            'nombre' => $usuario['nombre'],
+            'apellido' => $usuario['apellido'],
             'email' => $usuario['email'],
             'rol' => $rol,
             'logged_in' => true

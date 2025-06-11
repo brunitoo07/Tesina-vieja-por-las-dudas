@@ -69,6 +69,11 @@
                                 <i class="fas fa-bolt"></i> Energía
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= strpos(current_url(), 'usuario/perfil') !== false ? 'active' : '' ?>" href="<?= base_url('usuario/perfil') ?>">
+                                <i class="fas fa-user-circle"></i> Mi Perfil
+                            </a>
+                        </li>
                         <li class="nav-item mt-4">
                             <a class="nav-link text-danger" href="<?= base_url('cerrarSesion') ?>">
                                 <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
