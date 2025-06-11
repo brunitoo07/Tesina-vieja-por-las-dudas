@@ -26,7 +26,61 @@ class Dispositivos extends BaseController
 
     public function buscar()
     {
-        return view('admin/dispositivos/buscar');
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        $usuario = $this->usuarioModel->find($idUsuario);
+        
+        if (!$usuario) {
+            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
+        }
+
+        // Solo permitir acceso a admin y supervisor
+        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
+            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
+        }
+
+        $data = [
+            'titulo' => 'Buscar Dispositivos'
+        ];
+
+        return view('admin/dispositivos/buscar', $data);
+    }
+
+    public function scanWifiNetworks()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'No autorizado'
+            ]);
+        }
+
+        try {
+            // Buscar dispositivos en la base de datos
+            $dispositivos = $this->dispositivoModel->where('estado', 'activo')->findAll();
+            
+            if (empty($dispositivos)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'No se encontraron dispositivos. Asegúrate de que el ESP32 esté en la misma red que el servidor (192.168.2.xxx)'
+                ]);
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'networks' => $dispositivos
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al escanear redes: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Error al buscar dispositivos: ' . $e->getMessage()
+            ]);
+        }
     }
 
     public function registrar()

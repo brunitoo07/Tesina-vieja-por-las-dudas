@@ -57,10 +57,20 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
-
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
+
+    // Rutas para el medidor de energía
+    $routes->get('energy', 'EnergyController::index');
+    $routes->get('energy/setup', 'EnergyController::setup');
+    $routes->post('energy/save-config', 'EnergyController::saveConfig');
+    $routes->post('energy/nuevos_datos', 'EnergyController::nuevos_datos');
+    $routes->get('energy/ultimos_datos', 'EnergyController::getLatestData');
+    $routes->get('energy/datos_dispositivo/(:segment)', 'EnergyController::getDeviceData/$1');
+    $routes->get('energy/dispositivo/ver/(:segment)', 'EnergyController::verDetalles/$1');
+    $routes->get('energy/get-mac', 'EnergyController::getMacAddress');
+    $routes->get('energy/scan-wifi', 'EnergyController::scanWifiNetworks');
 });
 
 // Rutas del panel de administración
@@ -106,14 +116,16 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
 
 $routes->get('home/manual', 'Home::manual');
 
-// Rutas de dispositivos
+// Rutas para dispositivos
 $routes->group('dispositivo', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Dispositivo::index');
+    $routes->get('buscar', 'Dispositivo::buscar');
+    $routes->get('get-mac', 'Dispositivo::getMacAddress');
+    $routes->get('scan-wifi', 'Dispositivo::scanWifiNetworks');
+    $routes->post('save-config', 'Dispositivo::saveConfig');
     $routes->get('agregar', 'Dispositivo::agregar');
     $routes->post('guardar', 'Dispositivo::guardar');
-    $routes->post('eliminar/(:num)', 'Dispositivo::eliminar/$1');
-    $routes->get('configurar', 'Dispositivo::configurar');
-    $routes->post('configurar', 'Dispositivo::configurar');
+    $routes->get('eliminar/(:num)', 'Dispositivo::eliminar/$1');
 });
 
 $routes->get('consumo/ver/(:num)', 'Consumo::verDatos/$1');
@@ -129,4 +141,16 @@ $routes->group('api/dispositivo', ['namespace' => 'App\Controllers\Api'], functi
     $routes->get('buscar', 'Dispositivo::buscar');
     $routes->get('redes', 'Dispositivo::redes');
     $routes->post('configurar', 'Dispositivo::configurar');
+});
+
+// Rutas para dispositivos
+$routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
+    $routes->get('/', 'Admin\Dispositivos::index');
+    $routes->get('buscar', 'Admin\Dispositivos::buscar');
+    $routes->get('scan-wifi', 'Admin\Dispositivos::scanWifiNetworks');
+    $routes->get('registrar', 'Admin\Dispositivos::registrar');
+    $routes->post('guardar', 'Admin\Dispositivos::guardar');
+    $routes->get('eliminar/(:num)', 'Admin\Dispositivos::eliminar/$1');
+    $routes->get('detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
+    $routes->get('desactivar/(:num)', 'Admin\Dispositivos::desactivar/$1');
 });

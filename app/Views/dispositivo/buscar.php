@@ -1,13 +1,10 @@
-<?= $this->extend('admin/layout') ?>
+<?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Buscar Dispositivos ESP32</h1>
-    
-    <div class="card mb-4">
+<div class="container-fluid">
+    <div class="card">
         <div class="card-header">
-            <i class="fas fa-search me-1"></i>
-            Dispositivos Disponibles
+            <h3 class="card-title">Buscar Dispositivos ESP32</h3>
         </div>
         <div class="card-body">
             <!-- Instrucciones -->
@@ -27,14 +24,16 @@
                 <span id="statusMessage">Verificando conexión...</span>
             </div>
 
-            <div class="mb-3">
-                <button id="btnBuscar" class="btn btn-primary">
-                    <i class="fas fa-search me-1"></i> Buscar Dispositivos
+            <!-- Botón de búsqueda -->
+            <div class="text-center mb-4">
+                <button id="btnBuscar" class="btn btn-primary btn-lg">
+                    <i class="fas fa-search"></i> Buscar Dispositivos
                 </button>
             </div>
 
-            <div id="listaDispositivos" class="table-responsive">
-                <table class="table table-bordered">
+            <!-- Tabla de dispositivos -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -108,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         connectionStatus.className = 'alert alert-info mb-4';
         
         try {
-            const response = await fetch('<?= base_url('admin/dispositivos/scan-wifi') ?>');
+            const response = await fetch('<?= base_url('dispositivo/scan-wifi') ?>');
             const data = await response.json();
             console.log('Respuesta del servidor:', data);
             
@@ -181,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para ver detalles
     window.verDetalles = function(macAddress) {
-        window.location.href = `<?= base_url('admin/dispositivos/detalles/') ?>${macAddress}`;
+        window.location.href = `<?= base_url('dispositivo/ver/') ?>${macAddress}`;
     }
     
     // Evento para buscar dispositivos
@@ -199,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = Object.fromEntries(formData.entries());
         
         try {
-            const response = await fetch('<?= base_url('admin/dispositivos/guardar') ?>', {
+            const response = await fetch('<?= base_url('dispositivo/guardar') ?>', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
