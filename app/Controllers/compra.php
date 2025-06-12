@@ -83,10 +83,10 @@ class Compra extends BaseController
 
             // Verificar stock nuevamente antes de procesar el pago
             $dispositivo = $this->dispositivoModel->find($idDispositivo);
-            if (!$dispositivo || $dispositivo['stock'] <= 0) {
+            if (!$dispositivo) {
                 return $this->response->setJSON([
                     'success' => false,
-                    'message' => 'Lo sentimos, el dispositivo ya no está disponible.'
+                    'message' => 'Lo sentimos, el dispositivo no existe.'
                 ]);
             }
 
@@ -107,22 +107,12 @@ class Compra extends BaseController
                 ]);
             }
 
-            // Actualizar stock del dispositivo
-            $nuevoStock = $dispositivo['stock'] - 1;
-            if (!$this->dispositivoModel->update($idDispositivo, ['stock' => $nuevoStock])) {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Error al actualizar el stock'
-                ]);
-            }
+            // Actualizar el estado del dispositivo a activo
+            $this->dispositivoModel->update($idDispositivo, ['estado' => 'activo']);
 
             // Guardar datos necesarios en sesión antes de limpiar
-            $tokenActivacion = session()->get('token_activacion');
             $email = $datosCompra['email'];
             $nombre = $datosCompra['nombre'];
-
-            // Enviar email de bienvenida
-            $this->enviarEmailBienvenida($email, $nombre, $tokenActivacion);
 
             // Enviar email de confirmación de compra
             $this->enviarEmailConfirmacionCompra($email, $nombre, $dispositivo);

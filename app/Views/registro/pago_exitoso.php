@@ -1,6 +1,5 @@
 <div class="alert alert-success">
     ¡Pago realizado con éxito!<br>
-    Te enviamos un email a <b><?= esc(
-$email) ?></b> para activar tu cuenta.<br>
-    Revisa tu correo y sigue el enlace de activación.
+    Te enviamos un email a <b><?= esc($email) ?></b> con los detalles de tu compra.<br>
+    Ya puedes iniciar sesión con tu cuenta.
 </div> 

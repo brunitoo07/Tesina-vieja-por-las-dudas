@@ -36,13 +36,13 @@ class DispositivoModel extends Model
     protected $validationRules = [
         'id_usuario' => 'required|numeric',
         'nombre' => 'required|min_length[3]|max_length[100]',
-        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]', // Si la MAC simulada DEBE ser única por cada "producto"
-        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]', // DEBE ser única si se registra. 'permit_empty' porque al inicio es NULL.
-        'codigo_activacion' => 'permit_empty|alpha_numeric|min_length[10]|max_length[32]|is_unique[dispositivos.codigo_activacion]', // DEBE ser única. 'permit_empty' porque al inicio es NULL.
-        'stock' => 'required|numeric|greater_than_equal_to[0]',
-        'precio' => 'required|numeric|greater_than_equal_to[0]',
-        'descripcion' => 'permit_empty|max_length[255]', // Añadida validación para descripción
-        'estado' => 'required|in_list[pendiente,activo,inactivo,pendiente_configuracion]' // Añadido el nuevo estado
+        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]',
+        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]',
+        'codigo_activacion' => 'permit_empty|alpha_numeric|min_length[10]|max_length[32]|is_unique[dispositivos.codigo_activacion]',
+        'stock' => 'permit_empty|numeric|greater_than_equal_to[0]',
+        'precio' => 'permit_empty|numeric|greater_than_equal_to[0]',
+        'descripcion' => 'permit_empty|max_length[255]',
+        'estado' => 'required|in_list[pendiente,activo,inactivo,pendiente_configuracion]'
     ];
 
     protected $validationMessages = [
@@ -125,18 +125,53 @@ class DispositivoModel extends Model
     // Obtener todos los dispositivos, con la información del usuario y su rol
     public function getAllDispositivosConUsuario()
     {
-        return $this->select('dispositivos.*, usuarios.nombre as nombre_usuario, usuarios.apellido as apellido_usuario, usuarios.email as email_usuario, roles.nombre_rol as nombre_rol_usuario')
-                    ->join('usuarios', 'usuarios.id_usuario = dispositivos.id_usuario', 'left')
-                    ->join('roles', 'roles.id_rol = usuarios.id_rol', 'left')
+        return $this->select('dispositivos.*, usuario.nombre as nombre_usuario, usuario.apellido as apellido_usuario, usuario.email as email_usuario, roles.nombre_rol as nombre_rol_usuario')
+                    ->join('usuario', 'usuario.id_usuario = dispositivos.id_usuario', 'left')
+                    ->join('roles', 'roles.id_rol = usuario.id_rol', 'left')
                     ->findAll();
     }
 
     // Obtener todos los dispositivos de un usuario específico
     public function obtenerDispositivosUsuario($idUsuario)
     {
-        return $this->where('id_usuario', $idUsuario)
-                    ->orderBy('created_at', 'DESC')
-                    ->findAll();
+        // Obtener el rol del usuario y el admin que lo invitó
+        $db = \Config\Database::connect();
+        $builder = $db->table('usuario');
+        $builder->select('id_rol, invitado_por');
+        $builder->where('id_usuario', $idUsuario);
+        $usuario = $builder->get()->getRowArray();
+
+        if ($usuario && $usuario['id_rol'] == 2) { // Si es usuario normal
+            // Obtener dispositivos del admin que lo invitó y los propios
+            $builder = $db->table('dispositivos d');
+            $builder->select('d.*, u.nombre as nombre_usuario, u.email as email_usuario');
+            $builder->join('usuario u', 'u.id_usuario = d.id_usuario');
+            $builder->groupStart()
+                    ->where('u.id_usuario', $usuario['invitado_por']) // Dispositivos del admin que lo invitó
+                    ->orWhere('d.id_usuario', $idUsuario) // Dispositivos propios
+                    ->groupEnd();
+            $dispositivos = $builder->get()->getResultArray();
+        } else { // Si es admin o supervisor
+            // Obtener todos los dispositivos del admin
+            $builder = $db->table('dispositivos d');
+            $builder->select('d.*, u.nombre as nombre_usuario, u.email as email_usuario');
+            $builder->join('usuario u', 'u.id_usuario = d.id_usuario');
+            $builder->where('d.id_usuario', $idUsuario);
+            $dispositivos = $builder->get()->getResultArray();
+        }
+
+        // Para cada dispositivo, obtener su última lectura
+        foreach ($dispositivos as &$dispositivo) {
+            $builder = $db->table('energia');
+            $builder->select('*');
+            $builder->where('id_dispositivo', $dispositivo['id_dispositivo']);
+            $builder->orderBy('fecha', 'DESC');
+            $builder->limit(1);
+            $ultima_lectura = $builder->get()->getRowArray();
+            $dispositivo['ultima_lectura'] = $ultima_lectura;
+        }
+
+        return $dispositivos;
     }
 
     // Obtener un dispositivo por su dirección MAC
@@ -193,10 +228,17 @@ class DispositivoModel extends Model
 
     public function getDispositivoConStock($idDispositivo)
     {
-        return $this->where('id_dispositivo', $idDispositivo)
-                    ->where('estado', 'activo')
-                    ->where('stock >', 0)
+        log_message('debug', '=== BUSCANDO DISPOSITIVO ===');
+        log_message('debug', 'ID Dispositivo: ' . $idDispositivo);
+        
+        $dispositivo = $this->where('id_dispositivo', $idDispositivo)
+                    ->whereIn('estado', ['pendiente', 'inactivo'])
                     ->first();
+                    
+        log_message('debug', 'Resultado de la búsqueda: ' . json_encode($dispositivo));
+        log_message('debug', '=== FIN BUSQUEDA DISPOSITIVO ===');
+        
+        return $dispositivo;
     }
 
     public function actualizarStock($idDispositivo, $cantidad)
@@ -209,5 +251,118 @@ class DispositivoModel extends Model
             }
         }
         return false;
+    }
+
+    // Obtener todas las lecturas de un dispositivo
+    public function obtenerLecturasDispositivo($idDispositivo, $fechaInicio = null, $fechaFin = null)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia');
+        $builder->where('id_dispositivo', $idDispositivo);
+        
+        if ($fechaInicio && $fechaFin) {
+            $builder->where('fecha >=', $fechaInicio);
+            $builder->where('fecha <=', $fechaFin);
+        }
+        
+        $builder->orderBy('fecha', 'ASC');
+        return $builder->get()->getResultArray();
+    }
+
+    // Obtener la última lectura de un dispositivo
+    public function obtenerUltimaLectura($idDispositivo)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia');
+        $builder->where('id_dispositivo', $idDispositivo);
+        $builder->orderBy('fecha', 'DESC');
+        $builder->limit(1);
+        return $builder->get()->getRowArray();
+    }
+
+    // Obtener todas las lecturas de un usuario
+    public function obtenerLecturasUsuario($idUsuario, $fechaInicio = null, $fechaFin = null)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia e');
+        $builder->select('e.*, d.nombre as nombre_dispositivo');
+        $builder->join('dispositivos d', 'd.id_dispositivo = e.id_dispositivo');
+        $builder->where('d.id_usuario', $idUsuario);
+        
+        if ($fechaInicio && $fechaFin) {
+            $builder->where('e.fecha >=', $fechaInicio);
+            $builder->where('e.fecha <=', $fechaFin);
+        }
+        
+        $builder->orderBy('e.fecha', 'ASC');
+        return $builder->get()->getResultArray();
+    }
+
+    // Obtener todas las lecturas de un dispositivo en un rango de fechas
+    public function obtenerLecturasPorRango($idDispositivo, $fechaInicio, $fechaFin)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia');
+        $builder->where('id_dispositivo', $idDispositivo);
+        $builder->where('fecha >=', $fechaInicio);
+        $builder->where('fecha <=', $fechaFin);
+        $builder->orderBy('fecha', 'ASC');
+        return $builder->get()->getResultArray();
+    }
+
+    // Obtener todas las lecturas de un usuario en un rango de fechas
+    public function obtenerLecturasUsuarioPorRango($idUsuario, $fechaInicio, $fechaFin)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia e');
+        $builder->select('e.*, d.nombre as nombre_dispositivo');
+        $builder->join('dispositivos d', 'd.id_dispositivo = e.id_dispositivo');
+        $builder->where('d.id_usuario', $idUsuario);
+        $builder->where('e.fecha >=', $fechaInicio);
+        $builder->where('e.fecha <=', $fechaFin);
+        $builder->orderBy('e.fecha', 'ASC');
+        return $builder->get()->getResultArray();
+    }
+
+    // Obtener todas las lecturas de un dispositivo en un rango de fechas con paginación
+    public function obtenerLecturasPorRangoPaginadas($idDispositivo, $fechaInicio, $fechaFin, $porPagina = 10, $pagina = 1)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia');
+        $builder->where('id_dispositivo', $idDispositivo);
+        $builder->where('fecha >=', $fechaInicio);
+        $builder->where('fecha <=', $fechaFin);
+        $builder->orderBy('fecha', 'ASC');
+        
+        $total = $builder->countAllResults(false);
+        $builder->limit($porPagina, ($pagina - 1) * $porPagina);
+        
+        return [
+            'lecturas' => $builder->get()->getResultArray(),
+            'total' => $total,
+            'paginas' => ceil($total / $porPagina)
+        ];
+    }
+
+    // Obtener todas las lecturas de un usuario en un rango de fechas con paginación
+    public function obtenerLecturasUsuarioPorRangoPaginadas($idUsuario, $fechaInicio, $fechaFin, $porPagina = 10, $pagina = 1)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('energia e');
+        $builder->select('e.*, d.nombre as nombre_dispositivo');
+        $builder->join('dispositivos d', 'd.id_dispositivo = e.id_dispositivo');
+        $builder->where('d.id_usuario', $idUsuario);
+        $builder->where('e.fecha >=', $fechaInicio);
+        $builder->where('e.fecha <=', $fechaFin);
+        $builder->orderBy('e.fecha', 'ASC');
+        
+        $total = $builder->countAllResults(false);
+        $builder->limit($porPagina, ($pagina - 1) * $porPagina);
+        
+        return [
+            'lecturas' => $builder->get()->getResultArray(),
+            'total' => $total,
+            'paginas' => ceil($total / $porPagina)
+        ];
     }
 }

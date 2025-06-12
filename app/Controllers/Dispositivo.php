@@ -169,23 +169,49 @@ class Dispositivo extends BaseController
     public function guardar()
     {
         if (!session()->get('logged_in')) {
+            log_message('error', 'Intento de guardar dispositivo sin sesión iniciada');
             return redirect()->to('/autenticacion/login');
         }
+    
+        log_message('info', 'Iniciando guardado de dispositivo');
+        log_message('info', 'Datos recibidos: ' . json_encode($this->request->getPost()));
     
         $data = [
             'nombre' => $this->request->getPost('nombre'),
             'mac_address' => $this->request->getPost('mac_address'),
             'id_usuario' => session()->get('id_usuario'),
-            'estado' => 1, // Valor por defecto
-            'created_at' => date('Y-m-d H:i:s') // Campo requerido
+            'estado' => 'pendiente',
+            'created_at' => date('Y-m-d H:i:s')
         ];
     
+        log_message('info', 'Datos preparados para insertar: ' . json_encode($data));
+    
         try {
-            $this->dispositivoModel->insert($data);
-            return redirect()->to('dispositivo')->with('success', 'Dispositivo guardado correctamente');
+            // Verificar si la MAC ya existe
+            $dispositivoExistente = $this->dispositivoModel->where('mac_address', $data['mac_address'])->first();
+            if ($dispositivoExistente) {
+                log_message('warning', 'Intento de registrar MAC duplicada: ' . $data['mac_address']);
+                session()->setFlashdata('error', 'La dirección MAC ya está registrada');
+                return redirect()->back()->withInput();
+            }
+
+            log_message('info', 'Intentando insertar dispositivo en la base de datos');
+            $resultado = $this->dispositivoModel->insert($data);
+            
+            if ($resultado) {
+                log_message('info', 'Dispositivo guardado exitosamente. ID: ' . $resultado);
+                session()->setFlashdata('success', 'Dispositivo guardado correctamente');
+                return redirect()->to(base_url('admin/dispositivos'));
+            } else {
+                log_message('error', 'Error al insertar dispositivo. Errores del modelo: ' . json_encode($this->dispositivoModel->errors()));
+                session()->setFlashdata('error', 'Error al guardar el dispositivo: ' . implode(', ', $this->dispositivoModel->errors()));
+                return redirect()->back()->withInput();
+            }
         } catch (\Exception $e) {
-            log_message('error', 'Error al guardar dispositivo: ' . $e->getMessage());
-            return redirect()->back()->withInput()->with('error', 'Error al guardar el dispositivo');
+            log_message('error', 'Excepción al guardar dispositivo: ' . $e->getMessage());
+            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
+            session()->setFlashdata('error', 'Error al guardar el dispositivo: ' . $e->getMessage());
+            return redirect()->back()->withInput();
         }
     }
 

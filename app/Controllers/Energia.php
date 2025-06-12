@@ -2,216 +2,322 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\RESTful\ResourceController;
 use App\Models\EnergiaModel;
 use App\Models\DispositivoModel;
 use App\Models\LimiteConsumoModel;
 
-class Energia extends ResourceController
+class Energia extends BaseController
 {
     protected $energiaModel;
+    protected $dispositivoModel;
     protected $limiteModel;
 
     public function __construct()
     {
         $this->energiaModel = new EnergiaModel();
+        $this->dispositivoModel = new DispositivoModel();
         $this->limiteModel = new LimiteConsumoModel();
-    }
-
-    public function recibirDatos()
-    {
-        helper('text');
-        log_message('info', 'Solicitud recibida en recibirDatos');
-
-        $json = $this->request->getJSON();
-        log_message('debug', 'Datos recibidos: ' . print_r($json, true));
-
-        if (!$json) {
-            log_message('error', 'No se recibieron datos JSON válidos');
-            return $this->fail('No se recibieron datos válidos.', 400);
-        }
-
-        // Validación de campos
-        $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
-        foreach ($requiredFields as $field) {
-            if (!isset($json->$field)) {
-                log_message('error', "Campo faltante: {$field}");
-                return $this->fail("Campo requerido faltante: {$field}", 400);
-            }
-        }
-
-        // Buscar dispositivo
-        log_message('info', "Buscando dispositivo con MAC: {$json->mac_address}");
-        $dispositivoModel = new \App\Models\DispositivoModel();
-        $dispositivo = $dispositivoModel->where('mac_address', $json->mac_address)->first();
-
-        if (!$dispositivo) {
-            log_message('error', "Dispositivo no encontrado para MAC: {$json->mac_address}");
-            return $this->fail('Dispositivo no encontrado.', 404);
-        }
-        log_message('info', "Dispositivo encontrado - ID: {$dispositivo['id_dispositivo']}");
-
-        // *** AÑADIDO PARA DEBUG ***
-        log_message('debug', 'Contenido de $dispositivo: ' . print_r($dispositivo, true));
-
-         if (!isset($dispositivo['id_dispositivo']) || !isset($dispositivo['id_usuario'])) {
-            log_message('error', '¡Error! Faltan id_dispositivo o id_usuario en $dispositivo');
-            return $this->fail('Error al obtener información del dispositivo.', 500); // O un código de error más apropiado
-        }
-        // *** FIN AÑADIDO PARA DEBUG ***
-
-        // Insertar en energia
-          $energiaData = [
-            'id_dispositivo' => (int)$dispositivo['id_dispositivo'],
-            'id_usuario' => (int)$dispositivo['id_usuario'],
-            'voltaje' => (float)$json->voltaje,
-            'corriente' => (float)$json->corriente,
-            'potencia' => (float)$json->potencia,
-            'kwh' => (float)$json->kwh,
-            'fecha' => date('Y-m-d H:i:s'),
-            'mac_address' => $json->mac_address
-        ];
-
-        log_message('debug', 'Datos para insertar en energia: ' . print_r($energiaData, true));
-
-        try {
-            if (!$this->energiaModel->insert($energiaData)) {
-                $errors = $this->energiaModel->errors();
-                log_message('error', 'Error al insertar en energia: ' . print_r($errors, true));
-                return $this->fail('Error al guardar datos de energía.', 500);
-            }
-
-            log_message('info', 'Datos insertados correctamente en energia');
-            return $this->respond(['message' => 'Datos almacenados correctamente.'], 200);
-
-        } catch (\Exception $e) {
-            log_message('error', 'Excepción al insertar en energia: ' . $e->getMessage() . ' - ' . $e->getTraceAsString());
-            return $this->fail('Error al guardar datos de energía (excepción).', 500);
-        }
-    }
-
-
-    
-    public function getLatestData()
-    {
-        $ultimoDato = $this->energiaModel->getLatestData();
-        echo json_encode(!empty($ultimoDato) ? $ultimoDato[0] : []);
     }
 
     public function index()
     {
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $fechaActual = date('Y-m-d H:i:s');
-
-        $direction = $this->request->getGet('direction') ?? 'DESC';
-        $id_usuario = session()->get('id_usuario');
-
-        $data['energia'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                             ->orderBy('id', $direction)
-                                             ->findAll();
-
-        $data['direction'] = $direction;
-
-        $data['ultimoDato'] = $this->energiaModel->where('id_usuario', $id_usuario)
-                                                ->orderBy('id', 'DESC')
-                                                ->first();
-
-        // Limite de consumo desde la tabla nueva
-        $limiteData = $this->limiteModel->getLimite($id_usuario);
-        $limite_consumo = $limiteData ? $limiteData['limite_consumo'] : 10;
-        $data['limite_consumo'] = $limite_consumo;
-
-        // Consumo diario
-        $data['consumo_diario'] = $this->energiaModel->getConsumoDiario($id_usuario);
-
-        $advertencia = null;
-        if ($data['consumo_diario'] > $limite_consumo) {
-            $advertencia = "¡Advertencia! Has superado el límite de consumo diario de $limite_consumo kWh.";
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
         }
 
-        $data['advertencia'] = $advertencia;
-        $data['fechaActual'] = $fechaActual;
+        try {
+            $idUsuario = session()->get('id_usuario');
+            
+            // Obtener todos los dispositivos del usuario
+            $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)->findAll();
+            
+            if (empty($dispositivos)) {
+                return redirect()->to('/dispositivos')->with('error', 'No tienes dispositivos registrados');
+            }
 
-        return view('consumo', $data);
-    }
+            // Obtener el último dispositivo
+            $ultimoDispositivo = end($dispositivos);
+            
+            // Obtener las últimas 50 lecturas del dispositivo
+            $lecturas = $this->energiaModel->where('id_dispositivo', $ultimoDispositivo['id_dispositivo'])
+                                         ->orderBy('fecha', 'DESC')
+                                         ->limit(50)
+                                         ->findAll();
 
-    public function actualizarLimite()
-    {
-        $id_usuario = session()->get('id_usuario');
-        $nuevo_limite = $this->request->getPost('nuevo_limite');
+            // Obtener configuración de límites
+            $limite = $this->limiteModel->getLimiteByDispositivo($ultimoDispositivo['id_dispositivo']);
+            $limite_consumo = $limite ? $limite['limite_consumo'] : 10;
 
-        $this->limiteModel->setLimite($id_usuario, $nuevo_limite);
+            // Log para debugging
+            log_message('info', 'Dispositivo ID: ' . $ultimoDispositivo['id_dispositivo']);
+            log_message('info', 'Número de lecturas encontradas: ' . count($lecturas));
 
-        return redirect()->to('/energia');
-    }
+            return view('energia/index', [
+                'lecturas' => $lecturas,
+                'dispositivo' => $ultimoDispositivo,
+                'limite_consumo' => $limite_consumo
+            ]);
 
-    public function verDatos($id)
-    {
-        $data['energia'] = $this->energiaModel->find($id);
-        if (!$data['energia']) {
-            return redirect()->to('/energia')->with('error', 'Registro no encontrado');
+        } catch (\Exception $e) {
+            log_message('error', 'Error en Energia::index: ' . $e->getMessage());
+            return redirect()->to('/dashboard')->with('error', 'Error al cargar los datos de energía');
         }
-        return view('energia/ver_datos', $data);
     }
 
-    // NUEVA FUNCIÓN DE PRUEBA
-    public function recibirNuevosDatos()
+    public function getLatestData()
     {
-        helper('text');
-        log_message('info', 'Solicitud recibida en recibirNuevosDatos');
-
-        $json = $this->request->getJSON();
-        log_message('debug', 'Datos recibidos en nuevos_datos: ' . print_r($json, true));
-
-        if (!$json) {
-            log_message('error', 'No se recibieron datos JSON válidos en nuevos_datos');
-            return $this->fail('No se recibieron datos válidos.', 400);
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
         }
 
-        $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
-        foreach ($requiredFields as $field) {
-            if (!isset($json->$field)) {
-                log_message('error', "Campo faltante en nuevos_datos: {$field}");
-                return $this->fail("Campo requerido faltante: {$field}", 400);
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                            ->orderBy('id_dispositivo', 'DESC')
+                                            ->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+        }
+
+        $ultimaLectura = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                                          ->orderBy('fecha', 'DESC')
+                                          ->first();
+
+        if (!$ultimaLectura) {
+            return $this->response->setJSON(['error' => 'No hay lecturas disponibles'])->setStatusCode(404);
+        }
+
+        // Verificar límite de consumo
+        $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+        if ($limite && $ultimaLectura['kwh'] > $limite['limite_consumo']) {
+            // Marcar la lectura como que superó el límite
+            $this->energiaModel->update($ultimaLectura['id'], ['limite_superado' => 1]);
+            
+            // Enviar notificación si no se ha enviado recientemente
+            if (!$limite['notificacion_enviada'] || 
+                (strtotime($limite['ultima_notificacion']) < strtotime('-1 hour'))) {
+                $this->enviarNotificacionEmail($idUsuario, $ultimaLectura['kwh'], $limite['limite_consumo']);
+                $this->limiteModel->actualizarNotificacion($limite['id']);
             }
         }
 
-        $dispositivoModel = new \App\Models\DispositivoModel();
-        $dispositivo = $dispositivoModel->where('mac_address', $json->mac_address)->first();
-
-        if (!$dispositivo) {
-            log_message('error', "Dispositivo no encontrado para MAC en nuevos_datos: {$json->mac_address}");
-            return $this->fail('Dispositivo no encontrado.', 404);
-        }
-        log_message('info', "Dispositivo encontrado - ID en nuevos_datos: {$dispositivo['id_dispositivo']}");
-
-        // *** CONVERSIÓN EXPLÍCITA A ENTERO ANTES DE USAR ***
-        $idDispositivo = (int)$dispositivo['id_dispositivo'];
-        $idUsuario = (int)$dispositivo['id_usuario'];
-
-        $energiaData = [
-            'id_dispositivo' => $idDispositivo,
-            'id_usuario' => $idUsuario,
-            'voltaje' => (float)$json->voltaje,
-            'corriente' => (float)$json->corriente,
-            'potencia' => (float)$json->potencia,
-            'kwh' => (float)$json->kwh,
-            'fecha' => date('Y-m-d H:i:s'),
-            'mac_address' => $json->mac_address
-        ];
-
-        log_message('debug', 'Datos para insertar en energia (nuevos_datos): ' . print_r($energiaData, true));
-        log_message('debug', 'Tipo de id_dispositivo (después de conversión): ' . gettype($energiaData['id_dispositivo']));
-        log_message('debug', 'Tipo de id_usuario (después de conversión): ' . gettype($energiaData['id_usuario']));
-
-        if (!$this->energiaModel->insert($energiaData)) {
-            $errors = $this->energiaModel->errors();
-            log_message('error', 'Error al insertar en energia (nuevos_datos): ' . print_r($errors, true));
-            return $this->fail('Error al guardar datos de energía.', 500);
-        }
-
-        log_message('info', 'Datos insertados correctamente en energia (nuevos_datos)');
-        return $this->respond(['message' => 'Datos almacenados correctamente (nuevos_datos).'], 200);
+        return $this->response->setJSON($ultimaLectura);
     }
 
+    public function getDataByPeriod($periodo)
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                            ->orderBy('id_dispositivo', 'DESC')
+                                            ->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+        }
+
+        $fechaInicio = date('Y-m-d H:i:s', strtotime("-1 $periodo"));
+        
+        $lecturas = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                                     ->where('fecha >=', $fechaInicio)
+                                     ->orderBy('fecha', 'ASC')
+                                     ->findAll();
+
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => $lecturas
+        ]);
+    }
+
+    public function getConfig()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        try {
+            $idUsuario = session()->get('id_usuario');
+            $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                                ->orderBy('id_dispositivo', 'DESC')
+                                                ->first();
+
+            if (!$dispositivo) {
+                log_message('error', 'No se encontró dispositivo para el usuario: ' . $idUsuario);
+                return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+            }
+
+            $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+            
+            log_message('info', 'Obteniendo configuración para dispositivo: ' . $dispositivo['id_dispositivo']);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'limite_consumo' => $limite ? $limite['limite_consumo'] : 10,
+                'email' => $limite ? $limite['email_notificacion'] : session()->get('email')
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al obtener configuración: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'error' => 'Error al obtener la configuración',
+                'details' => $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    public function saveConfig()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        try {
+            $idUsuario = session()->get('id_usuario');
+            $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                                ->orderBy('id_dispositivo', 'DESC')
+                                                ->first();
+
+            if (!$dispositivo) {
+                log_message('error', 'No se encontró dispositivo para el usuario: ' . $idUsuario);
+                return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+            }
+
+            $data = $this->request->getJSON(true);
+            
+            // Validar datos
+            if (!isset($data['limite_consumo']) || !is_numeric($data['limite_consumo'])) {
+                return $this->response->setJSON(['error' => 'El límite de consumo es requerido y debe ser numérico'])->setStatusCode(400);
+            }
+
+            $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+            
+            if ($limite) {
+                log_message('info', 'Actualizando límite existente para dispositivo: ' . $dispositivo['id_dispositivo']);
+                $this->limiteModel->update($limite['id'], [
+                    'limite_consumo' => $data['limite_consumo'],
+                    'email_notificacion' => $data['email'] ?? null
+                ]);
+            } else {
+                log_message('info', 'Creando nuevo límite para dispositivo: ' . $dispositivo['id_dispositivo']);
+                $this->limiteModel->insert([
+                    'id_usuario' => $idUsuario,
+                    'id_dispositivo' => $dispositivo['id_dispositivo'],
+                    'limite_consumo' => $data['limite_consumo'],
+                    'email_notificacion' => $data['email'] ?? null
+                ]);
+            }
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Configuración guardada correctamente'
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar configuración: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'error' => 'Error al guardar la configuración',
+                'details' => $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    public function exportData()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                            ->orderBy('id_dispositivo', 'DESC')
+                                            ->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+        }
+
+        $lecturas = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                                     ->orderBy('fecha', 'DESC')
+                                     ->findAll();
+
+        $csv = "Fecha,Voltaje,Corriente,Potencia,Consumo,Límite Superado,MAC Address\n";
+        foreach ($lecturas as $lectura) {
+            $csv .= sprintf(
+                "%s,%.2f,%.4f,%.2f,%.4f,%s,%s\n",
+                $lectura['fecha'],
+                $lectura['voltaje'],
+                $lectura['corriente'],
+                $lectura['potencia'],
+                $lectura['kwh'],
+                $lectura['limite_superado'] ? 'Sí' : 'No',
+                $lectura['mac_address']
+            );
+        }
+
+        return $this->response->setHeader('Content-Type', 'text/csv')
+                            ->setHeader('Content-Disposition', 'attachment; filename="consumo_energia.csv"')
+                            ->setBody($csv);
+    }
+
+    private function enviarNotificacionEmail($idUsuario, $consumoActual, $limite)
+    {
+        $email = \Config\Services::email();
+        $user = $this->userModel->find($idUsuario);
+
+        $email->setFrom('noreply@ecovolt.com', 'EcoVolt');
+        $email->setTo($user['email']);
+        $email->setSubject('¡Alerta de Consumo de Energía!');
+        
+        $mensaje = "Estimado usuario,\n\n";
+        $mensaje .= "Le informamos que ha superado el límite de consumo diario establecido.\n\n";
+        $mensaje .= "Consumo actual: " . number_format($consumoActual, 4) . " kWh\n";
+        $mensaje .= "Límite establecido: " . number_format($limite, 4) . " kWh\n\n";
+        $mensaje .= "Por favor, revise su consumo de energía y tome las medidas necesarias.\n\n";
+        $mensaje .= "Saludos cordiales,\n";
+        $mensaje .= "Equipo EcoVolt";
+
+        $email->setMessage($mensaje);
+        $email->send();
+    }
+
+    public function recibirDatos()
+    {
+        $json = $this->request->getJSON();
+
+        if (!$json) {
+            log_message('error', 'Datos recibidos no son JSON válido');
+            return $this->response->setJSON(['error' => 'Datos inválidos'])->setStatusCode(400);
+        }
+
+        $dispositivo = $this->dispositivoModel->where('mac_address', $json->mac_address)->first();
+
+        if (!$dispositivo) {
+            log_message('error', 'Dispositivo no encontrado: ' . $json->mac_address);
+            return $this->response->setJSON(['error' => 'Dispositivo no registrado'])->setStatusCode(404);
+        }
+
+        $data = [
+            'id_dispositivo' => $dispositivo['id_dispositivo'],
+            'id_usuario' => $dispositivo['id_usuario'],
+            'voltaje' => $json->voltaje,
+            'corriente' => $json->corriente,
+            'potencia' => $json->potencia,
+            'kwh' => $json->kwh,
+            'fecha' => date('Y-m-d H:i:s'),
+            'mac_address' => $json->mac_address,
+            'limite_superado' => 0
+        ];
+
+        try {
+            $this->energiaModel->insert($data);
+            log_message('info', 'Datos guardados correctamente para dispositivo: ' . $json->mac_address);
+            return $this->response->setJSON(['success' => true]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar datos: ' . $e->getMessage());
+            return $this->response->setJSON(['error' => 'Error al guardar datos'])->setStatusCode(500);
+        }
+    }
 }

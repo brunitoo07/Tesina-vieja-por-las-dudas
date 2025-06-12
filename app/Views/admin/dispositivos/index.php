@@ -1,6 +1,6 @@
-<?= $this->extend('admin/layout') ?>
+<?= $this->extend('layouts/main') ?>
 
-<?= $this->section('content') ?>
+<?= $this->section('contenido') ?>
 <div class="container-fluid px-4">
     <h1 class="mt-4">Gestión de Dispositivos</h1>
     
@@ -11,11 +11,8 @@
                 Dispositivos Registrados
             </div>
             <div>
-                <a href="<?= base_url('admin/dispositivos/buscar') ?>" class="btn btn-primary me-2">
+                <a href="<?= base_url('admin/dispositivos/buscar') ?>" class="btn btn-primary">
                     <i class="fas fa-search me-1"></i> Buscar Dispositivos
-                </a>
-                <a href="<?= base_url('admin/dispositivos/registrar') ?>" class="btn btn-success">
-                    <i class="fas fa-plus me-1"></i> Registrar Nuevo
                 </a>
             </div>
         </div>
@@ -42,48 +39,70 @@
                             <th>Nombre</th>
                             <th>MAC Address</th>
                             <th>Estado</th>
-                            <th>Última Conexión</th>
+                            <th>Última Actualización</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($dispositivos as $dispositivo): ?>
+                        <?php if (empty($dispositivos)): ?>
                             <tr>
-                                <td><?= $dispositivo['id_dispositivo'] ?></td>
-                                <td><?= esc($dispositivo['nombre']) ?></td>
-                                <td><?= esc($dispositivo['mac_address']) ?></td>
-                                <td>
-                                    <span class="badge bg-<?= $dispositivo['estado'] === 'activo' ? 'success' : ($dispositivo['estado'] === 'pendiente' ? 'warning' : 'danger') ?>">
-                                        <?= ucfirst($dispositivo['estado']) ?>
-                                    </span>
-                                </td>
-                                <td><?= isset($dispositivo['ultima_conexion']) && $dispositivo['ultima_conexion'] ? date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion'])) : 'Nunca' ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-sm btn-primary" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <?php if ($dispositivo['estado'] === 'activo'): ?>
-                                            <a href="<?= base_url('admin/dispositivos/desactivar/' . $dispositivo['id_dispositivo']) ?>" 
-                                               class="btn btn-sm btn-warning" 
-                                               onclick="return confirm('¿Estás seguro de desactivar este dispositivo?')">
-                                                <i class="fas fa-power-off"></i>
-                                            </a>
-                                        <?php elseif ($dispositivo['estado'] === 'inactivo'): ?>
-                                            <a href="<?= base_url('admin/dispositivos/activar/' . $dispositivo['id_dispositivo']) ?>" 
-                                               class="btn btn-sm btn-success" 
-                                               onclick="return confirm('¿Estás seguro de activar este dispositivo?')">
-                                                <i class="fas fa-power-off"></i>
-                                            </a>
-                                        <?php endif; ?>
-                                        <button type="button" class="btn btn-sm btn-danger" 
-                                                onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
+                                <td colspan="6" class="text-center">No hay dispositivos registrados</td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <?php foreach ($dispositivos as $dispositivo): ?>
+                                <tr>
+                                    <td><?= $dispositivo['id_dispositivo'] ?></td>
+                                    <td><?= $dispositivo['nombre'] ?></td>
+                                    <td><?= $dispositivo['mac_address'] ?></td>
+                                    <td>
+                                        <?php
+                                        $estadoClass = '';
+                                        switch ($dispositivo['estado']) {
+                                            case 'activo':
+                                                $estadoClass = 'success';
+                                                break;
+                                            case 'pendiente':
+                                                $estadoClass = 'warning';
+                                                break;
+                                            case 'inactivo':
+                                                $estadoClass = 'danger';
+                                                break;
+                                        }
+                                        ?>
+                                        <span class="badge bg-<?= $estadoClass ?>">
+                                            <?= ucfirst($dispositivo['estado']) ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <?= isset($dispositivo['ultima_conexion']) ? date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion'])) : 'Nunca' ?>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-sm btn-primary" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <?php if (in_array($dispositivo['estado'], ['pendiente', 'inactivo'])): ?>
+                                                <a href="<?= base_url('admin/dispositivos/activar/' . $dispositivo['id_dispositivo']) ?>" 
+                                                   class="btn btn-sm btn-success" 
+                                                   onclick="return confirm('¿Estás seguro de activar este dispositivo?')">
+                                                    <i class="fas fa-power-off"></i> Activar
+                                                </a>
+                                            <?php elseif ($dispositivo['estado'] === 'activo'): ?>
+                                                <a href="<?= base_url('admin/dispositivos/desactivar/' . $dispositivo['id_dispositivo']) ?>" 
+                                                   class="btn btn-sm btn-warning" 
+                                                   onclick="return confirm('¿Estás seguro de desactivar este dispositivo?')">
+                                                    <i class="fas fa-power-off"></i> Desactivar
+                                                </a>
+                                            <?php endif; ?>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                    onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -91,7 +110,7 @@
     </div>
 </div>
 
-<!-- Modal de Detalles -->
+<!-- Modal para ver detalles -->
 <div class="modal fade" id="detallesModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -99,64 +118,60 @@
                 <h5 class="modal-title">Detalles del Dispositivo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body" id="detallesBody">
-                <!-- Los detalles se cargarán aquí dinámicamente -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-body">
+                <div id="detallesContenido"></div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const detallesModal = new bootstrap.Modal(document.getElementById('detallesModal'));
-    
-    window.verDetalles = async function(id) {
-        try {
-            const response = await fetch(`<?= base_url('admin/dispositivos/detalles') ?>/${id}`);
-            const data = await response.json();
-            
+function verDetalles(id) {
+    fetch(`<?= base_url('admin/dispositivos/detalles/') ?>${id}`)
+        .then(response => response.json())
+        .then(data => {
             if (data.status === 'success') {
                 const dispositivo = data.dispositivo;
-                document.getElementById('detallesBody').innerHTML = `
-                    <dl class="row">
-                        <dt class="col-sm-4">ID</dt>
-                        <dd class="col-sm-8">${dispositivo.id_dispositivo}</dd>
-                        
-                        <dt class="col-sm-4">Nombre</dt>
-                        <dd class="col-sm-8">${dispositivo.nombre}</dd>
-                        
-                        <dt class="col-sm-4">MAC Address</dt>
-                        <dd class="col-sm-8">${dispositivo.mac_address}</dd>
-                        
-                        <dt class="col-sm-4">Estado</dt>
-                        <dd class="col-sm-8">
-                            <span class="badge bg-${dispositivo.estado === 'activo' ? 'success' : (dispositivo.estado === 'pendiente' ? 'warning' : 'danger')}">
-                                ${dispositivo.estado.charAt(0).toUpperCase() + dispositivo.estado.slice(1)}
-                            </span>
-                        </dd>
-                        
-                        <dt class="col-sm-4">Última Conexión</dt>
-                        <dd class="col-sm-8">${dispositivo.ultima_conexion ? new Date(dispositivo.ultima_conexion).toLocaleString() : 'Nunca'}</dd>
-                    </dl>
+                document.getElementById('detallesContenido').innerHTML = `
+                    <p><strong>ID:</strong> ${dispositivo.id_dispositivo}</p>
+                    <p><strong>Nombre:</strong> ${dispositivo.nombre}</p>
+                    <p><strong>MAC Address:</strong> ${dispositivo.mac_address}</p>
+                    <p><strong>Estado:</strong> ${dispositivo.estado}</p>
+                    <p><strong>Última Actualización:</strong> ${dispositivo.ultima_conexion}</p>
                 `;
-                detallesModal.show();
+                new bootstrap.Modal(document.getElementById('detallesModal')).show();
             } else {
-                alert('Error al cargar los detalles del dispositivo');
+                alert('Error al cargar los detalles: ' + data.message);
             }
-        } catch (error) {
+        })
+        .catch(error => {
             console.error('Error:', error);
             alert('Error al cargar los detalles del dispositivo');
-        }
-    }
+        });
+}
 
-    window.eliminarDispositivo = function(id) {
-        if (confirm('¿Está seguro de eliminar este dispositivo? Esta acción no se puede deshacer.')) {
-            window.location.href = `<?= base_url('admin/dispositivos/eliminar') ?>/${id}`;
-        }
+function eliminarDispositivo(id) {
+    if (confirm('¿Estás seguro de eliminar este dispositivo?')) {
+        fetch(`<?= base_url('admin/dispositivos/eliminar/') ?>${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert('Error al eliminar el dispositivo: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al eliminar el dispositivo');
+        });
     }
-});
+}
 </script>
+
 <?= $this->endSection() ?> 

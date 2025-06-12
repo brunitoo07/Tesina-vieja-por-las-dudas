@@ -8,21 +8,59 @@ class LimiteConsumoModel extends Model
 {
     protected $table = 'limites_consumo';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id_usuario', 'limite_consumo'];
+    protected $allowedFields = [
+        'id_usuario',
+        'id_dispositivo',
+        'limite_consumo',
+        'email_notificacion',
+        'notificacion_enviada',
+        'ultima_notificacion'
+    ];
+    protected $useTimestamps = true;
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
 
-    public function getLimite($id_usuario)
+    protected $validationRules = [
+        'id_usuario' => 'required|numeric',
+        'id_dispositivo' => 'required|numeric',
+        'limite_consumo' => 'required|numeric|greater_than[0]',
+        'email_notificacion' => 'permit_empty|valid_email'
+    ];
+
+    protected $validationMessages = [
+        'id_usuario' => [
+            'required' => 'El ID de usuario es requerido',
+            'numeric' => 'El ID de usuario debe ser numérico'
+        ],
+        'id_dispositivo' => [
+            'required' => 'El ID de dispositivo es requerido',
+            'numeric' => 'El ID de dispositivo debe ser numérico'
+        ],
+        'limite_consumo' => [
+            'required' => 'El límite de consumo es requerido',
+            'numeric' => 'El límite de consumo debe ser numérico',
+            'greater_than' => 'El límite de consumo debe ser mayor que 0'
+        ],
+        'email_notificacion' => [
+            'valid_email' => 'El email de notificación debe ser válido'
+        ]
+    ];
+
+    public function getLimiteByUsuario($idUsuario)
     {
-        return $this->where('id_usuario', $id_usuario)->first();
+        return $this->where('id_usuario', $idUsuario)->first();
     }
 
-    public function setLimite($id_usuario, $limite)
+    public function getLimiteByDispositivo($idDispositivo)
     {
-        $data = ['limite_consumo' => $limite];
+        return $this->where('id_dispositivo', $idDispositivo)->first();
+    }
 
-        if ($this->where('id_usuario', $id_usuario)->first()) {
-            return $this->where('id_usuario', $id_usuario)->set($data)->update();
-        } else {
-            return $this->insert(['id_usuario' => $id_usuario, 'limite_consumo' => $limite]);
-        }
+    public function actualizarNotificacion($id, $enviada = true)
+    {
+        return $this->update($id, [
+            'notificacion_enviada' => $enviada ? 1 : 0,
+            'ultima_notificacion' => date('Y-m-d H:i:s')
+        ]);
     }
 }

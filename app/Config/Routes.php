@@ -161,3 +161,12 @@ $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
     $routes->get('detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
     $routes->get('desactivar/(:num)', 'Admin\Dispositivos::desactivar/$1');
 });
+
+// Rutas para energía
+$routes->get('energia', 'Energia::index');
+$routes->get('energia/getConfig', 'Energia::getConfig');
+$routes->post('energia/saveConfig', 'Energia::saveConfig');
+$routes->get('energia/getLatestData', 'Energia::getLatestData');
+$routes->get('energia/getDataByPeriod/(:segment)', 'Energia::getDataByPeriod/$1');
+$routes->get('energia/exportData', 'Energia::exportData');
+$routes->post('energia/recibirDatos', 'Energia::recibirDatos');

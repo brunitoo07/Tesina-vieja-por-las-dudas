@@ -39,7 +39,12 @@ class RegistroCompra extends BaseController
         $pais = $this->request->getPost('pais');
         $id_dispositivo = $this->request->getPost('id_dispositivo');
 
-        log_message('debug', 'Procesando registro para email: ' . $email);
+        log_message('debug', '=== INICIO PROCESO DE COMPRA ===');
+        log_message('debug', 'Datos recibidos: ' . json_encode([
+            'nombre' => $nombre,
+            'email' => $email,
+            'id_dispositivo' => $id_dispositivo
+        ]));
 
         // Validaciones básicas
         if (!$nombre || !$apellido || !$email || !$contrasena || !$calle || !$numero || !$ciudad || !$codigo_postal || !$pais || !$id_dispositivo) {
@@ -53,10 +58,17 @@ class RegistroCompra extends BaseController
         }
 
         // Verificar disponibilidad del dispositivo
-        $dispositivo = $this->dispositivoModel->getDispositivoConStock($id_dispositivo);
+        $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+        log_message('debug', 'Dispositivo encontrado: ' . json_encode($dispositivo));
+
         if (!$dispositivo) {
-            log_message('debug', 'Dispositivo no disponible: ' . $id_dispositivo);
-            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible o no hay stock.');
+            log_message('debug', 'Dispositivo no encontrado: ' . $id_dispositivo);
+            return redirect()->back()->with('error', 'El dispositivo seleccionado no existe.');
+        }
+
+        if (!in_array($dispositivo['estado'], ['pendiente', 'inactivo'])) {
+            log_message('debug', 'Estado del dispositivo incorrecto. Estado actual: ' . $dispositivo['estado']);
+            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible para compra.');
         }
 
         // Generar token de activación
@@ -96,26 +108,29 @@ class RegistroCompra extends BaseController
         $this->direccionModel->insert($direccionData);
         $direccion_id = $this->direccionModel->getInsertID();
 
-        // Actualizar usuario con direccion_id
-        $this->usuarioModel->update($idUsuario, ['direccion_id' => $direccion_id]);
+        log_message('debug', 'Dirección creada con ID: ' . $direccion_id);
 
-        log_message('debug', 'Dirección creada y asociada al usuario: ' . $direccion_id);
+        // Guardar datos en sesión para el proceso de pago
+        $datosCompra = [
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'email' => $email,
+            'direccion' => $calle . ' ' . $numero . ', ' . $ciudad . ', ' . $codigo_postal . ', ' . $pais
+        ];
 
-        // Guardar en sesión para usar tras el pago
-        session()->set([
-            'id_usuario_registro' => $idUsuario,
-            'token_activacion' => $token,
-            'id_dispositivo' => $id_dispositivo,
-            'datos_compra' => [
-                'nombre' => $nombre,
-                'apellido' => $apellido,
-                'email' => $email,
-                'direccion' => "$calle $numero, $ciudad, $codigo_postal, $pais"
-            ]
-        ]);
+        session()->set('datos_compra', $datosCompra);
+        session()->set('id_usuario_registro', $idUsuario);
+        session()->set('id_dispositivo', $id_dispositivo);
+        session()->set('token_activacion', $token);
 
-        // Redirigir a la página de compra con PayPal
-        return redirect()->to(base_url('compra'));
+        log_message('debug', 'Datos guardados en sesión: ' . json_encode([
+            'id_usuario' => $idUsuario,
+            'id_dispositivo' => $id_dispositivo
+        ]));
+
+        log_message('debug', '=== FIN PROCESO DE COMPRA ===');
+
+        return redirect()->to('compra');
     }
 
     public function pagoExitoso()

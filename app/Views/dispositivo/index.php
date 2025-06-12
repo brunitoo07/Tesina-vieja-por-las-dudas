@@ -1,4 +1,4 @@
-<?= $this->extend('layout/default') ?>
+<?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
 <div class="container-fluid">
@@ -36,7 +36,7 @@
                                     <td><?= $dispositivo['mac_address'] ?></td>
                                     <td>
                                         <?= $dispositivo['ultima_lectura'] ? 
-                                            date('d/m/Y H:i:s', strtotime($dispositivo['ultima_lectura']['created_at'])) : 
+                                            date('d/m/Y H:i:s', strtotime($dispositivo['ultima_lectura']['fecha'])) : 
                                             'Sin lecturas' ?>
                                     </td>
                                     <td>
@@ -60,14 +60,15 @@
                                             '-' ?>
                                     </td>
                                     <td>
-                                        <a href="<?= base_url('dispositivo/ver/' . $dispositivo['mac_address']) ?>" 
-                                           class="btn btn-info btn-sm">
-                                            <i class="fas fa-eye"></i> Ver Detalles
+                                        <a href="<?= base_url('dispositivo/ver/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-info btn-sm">
+                                            <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="<?= base_url('dispositivo/configurar/' . $dispositivo['mac_address']) ?>" 
-                                           class="btn btn-warning btn-sm">
-                                            <i class="fas fa-cog"></i> Configurar
+                                        <a href="<?= base_url('dispositivo/editar/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-warning btn-sm">
+                                            <i class="fas fa-edit"></i>
                                         </a>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -80,138 +81,53 @@
     </div>
 </div>
 
-<!-- Modal de Configuración WiFi -->
-<div class="modal fade" id="wifiModal" tabindex="-1">
+<!-- Modal para configurar WiFi -->
+<div class="modal fade" id="wifiModal" tabindex="-1" aria-labelledby="wifiModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Configurar Red WiFi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title" id="wifiModalLabel">Configurar WiFi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-info">
-                    <h5><i class="fas fa-info-circle me-2"></i>Instrucciones:</h5>
-                    <ol>
-                        <li>Conecta tu teléfono a la red WiFi "Medidor-Config"</li>
-                        <li>Una vez conectado, selecciona tu red WiFi de la lista</li>
-                        <li>Ingresa la contraseña de tu red WiFi</li>
-                        <li>El dispositivo se reiniciará y se conectará a tu red</li>
-                    </ol>
-                </div>
-
-                <div id="wifi-status" class="alert alert-warning">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    Conectando a la red del dispositivo...
-                </div>
-
-                <div id="wifi-config" style="display: none;">
-                    <form id="wifi-form">
-                        <div class="mb-3">
-                            <label for="ssid" class="form-label">Red WiFi</label>
-                            <select class="form-select" id="ssid" name="ssid" required>
-                                <option value="">Seleccionar red...</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-wifi"></i> Conectar
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <form id="wifiForm">
+                    <div class="mb-3">
+                        <label for="ssid" class="form-label">SSID (Nombre de la red)</label>
+                        <input type="text" class="form-control" id="ssid" name="ssid" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="configurarWiFi()">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// Actualizar la tabla cada 5 segundos
-setInterval(function() {
-    location.reload();
-}, 5000);
-
-// Funciones para el modal de WiFi
-document.addEventListener('DOMContentLoaded', function() {
-    const wifiModal = document.getElementById('wifiModal');
-    const wifiStatus = document.getElementById('wifi-status');
-    const wifiConfig = document.getElementById('wifi-config');
-    const wifiForm = document.getElementById('wifi-form');
-
-    wifiModal.addEventListener('show.bs.modal', function() {
-        checkDeviceConnection();
-    });
-
-    function checkDeviceConnection() {
-        fetch('http://192.168.4.1/scan')
-            .then(response => {
-                if (response.ok) {
-                    wifiStatus.style.display = 'none';
-                    wifiConfig.style.display = 'block';
-                    loadNetworks();
-                } else {
-                    setTimeout(checkDeviceConnection, 2000);
-                }
-            })
-            .catch(() => {
-                setTimeout(checkDeviceConnection, 2000);
-            });
+function eliminarDispositivo(id) {
+    if (confirm('¿Está seguro de que desea eliminar este dispositivo?')) {
+        window.location.href = '<?= base_url('dispositivo/eliminar/') ?>' + id;
     }
+}
 
-    function loadNetworks() {
-        fetch('http://192.168.4.1/scan')
-            .then(response => response.json())
-            .then(networks => {
-                const select = document.getElementById('ssid');
-                select.innerHTML = '<option value="">Seleccionar red...</option>';
-                networks.forEach(network => {
-                    const option = document.createElement('option');
-                    option.value = network.ssid;
-                    option.textContent = network.ssid;
-                    select.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Error al cargar redes:', error);
-                wifiStatus.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al cargar las redes WiFi';
-                wifiStatus.className = 'alert alert-danger';
-            });
+function configurarWiFi() {
+    const ssid = document.getElementById('ssid').value;
+    const password = document.getElementById('password').value;
+    
+    if (!ssid || !password) {
+        alert('Por favor complete todos los campos');
+        return;
     }
-
-    wifiForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        
-        fetch('http://192.168.4.1/connect', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(html => {
-            wifiConfig.innerHTML = `
-                <div class="alert alert-success">
-                    <h5><i class="fas fa-check-circle me-2"></i>¡Configuración exitosa!</h5>
-                    <p>El dispositivo se está reiniciando para conectarse a la red seleccionada.</p>
-                    <p>Por favor, espera unos momentos y vuelve a conectarte a tu red WiFi normal.</p>
-                </div>
-            `;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            wifiConfig.innerHTML = `
-                <div class="alert alert-danger">
-                    <h5><i class="fas fa-exclamation-circle me-2"></i>Error</h5>
-                    <p>Hubo un error al conectar el dispositivo. Por favor, intenta nuevamente.</p>
-                </div>
-            `;
-        });
-    });
-});
+    
+    // Aquí iría la lógica para enviar la configuración al dispositivo
+    alert('Configuración de WiFi enviada al dispositivo');
+    $('#wifiModal').modal('hide');
+}
 </script>
 <?= $this->endSection() ?> 

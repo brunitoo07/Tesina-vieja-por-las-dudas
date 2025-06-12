@@ -76,11 +76,141 @@ void handleRoot() {
     <head>
       <title>EcoVolt WiFi Setup</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="/style.css">
+      <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          padding: 20px;
+          background-color: #f5f5f5;
+          color: #333;
+        }
+        .container {
+          max-width: 600px;
+          margin: 0 auto;
+          background: white;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+          color: #2c3e50;
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 24px;
+        }
+        .logo {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .logo img {
+          width: 80px;
+          height: 80px;
+        }
+        .network {
+          background: #f8f9fa;
+          padding: 15px;
+          margin: 10px 0;
+          border-radius: 8px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .network:hover {
+          background: #e9ecef;
+          transform: translateY(-2px);
+        }
+        .network .ssid {
+          font-weight: 500;
+        }
+        .network .rssi {
+          color: #6c757d;
+          font-size: 0.9em;
+        }
+        .form-group {
+          margin-bottom: 20px;
+        }
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 500;
+        }
+        input[type="password"] {
+          width: 100%;
+          padding: 12px;
+          border: 2px solid #ddd;
+          border-radius: 8px;
+          font-size: 16px;
+          transition: border-color 0.3s ease;
+        }
+        input[type="password"]:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+        button {
+          width: 100%;
+          padding: 12px;
+          background: #007bff;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+        button:hover {
+          background: #0056b3;
+        }
+        .status {
+          text-align: center;
+          margin-top: 20px;
+          padding: 10px;
+          border-radius: 8px;
+          display: none;
+        }
+        .status.success {
+          background: #d4edda;
+          color: #155724;
+          display: block;
+        }
+        .status.error {
+          background: #f8d7da;
+          color: #721c24;
+          display: block;
+        }
+        .loading {
+          text-align: center;
+          margin: 20px 0;
+          display: none;
+        }
+        .loading::after {
+          content: '';
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #f3f3f3;
+          border-top: 2px solid #007bff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
     </head>
     <body>
       <div class="container">
-        <h1>Configuración de EcoVolt</h1>
+        <div class="logo">
+          <h1>EcoVolt</h1>
+        </div>
         <div id="networks"></div>
         <div id="connect-form" style="display: none;">
           <h2>Conectar a Red WiFi</h2>
@@ -93,14 +223,30 @@ void handleRoot() {
             <button type="submit">Conectar</button>
           </form>
         </div>
+        <div id="loading" class="loading"></div>
+        <div id="status" class="status"></div>
       </div>
       <script>
         function showConnectForm(ssid) {
           document.getElementById('ssid').value = ssid;
           document.getElementById('connect-form').style.display = 'block';
+          document.getElementById('networks').style.display = 'none';
+        }
+        
+        function showLoading() {
+          document.getElementById('loading').style.display = 'block';
+          document.getElementById('status').style.display = 'none';
+        }
+        
+        function showStatus(message, isError = false) {
+          const status = document.getElementById('status');
+          status.textContent = message;
+          status.className = 'status ' + (isError ? 'error' : 'success');
+          document.getElementById('loading').style.display = 'none';
         }
         
         function scanNetworks() {
+          showLoading();
           fetch('/scan')
             .then(response => response.json())
             .then(networks => {
@@ -114,11 +260,34 @@ void handleRoot() {
                   </div>
                 `;
               });
+              document.getElementById('loading').style.display = 'none';
+            })
+            .catch(error => {
+              showStatus('Error al escanear redes WiFi', true);
             });
         }
         
         // Escanear redes al cargar la página
         scanNetworks();
+        
+        // Manejar el envío del formulario
+        document.querySelector('form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          showLoading();
+          
+          const formData = new FormData(this);
+          fetch('/connect', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.text())
+          .then(html => {
+            showStatus('Conectando... El dispositivo se reiniciará en unos segundos.');
+          })
+          .catch(error => {
+            showStatus('Error al conectar', true);
+          });
+        });
       </script>
     </body>
     </html>

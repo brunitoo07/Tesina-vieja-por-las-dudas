@@ -1,40 +1,60 @@
-<?= $this->extend('admin/layout') ?>
+<?= $this->extend('layouts/main') ?>
 
-<?= $this->section('content') ?>
+<?= $this->section('contenido') ?>
 <div class="container-fluid px-4">
     <h1 class="mt-4">Registrar Nuevo Dispositivo</h1>
     
+    <?php if (session()->has('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= session('error') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->has('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= session('success') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->has('errors')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul class="mb-0">
+                <?php foreach (session('errors') as $error): ?>
+                    <li><?= esc($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-plus me-1"></i>
-            Formulario de Registro
+            Información del Dispositivo
         </div>
         <div class="card-body">
-            <?php if (session()->has('errors')): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <ul class="mb-0">
-                        <?php foreach (session('errors') as $error): ?>
-                            <li><?= esc($error) ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            <?php endif; ?>
-
             <form action="<?= base_url('admin/dispositivos/guardar') ?>" method="post">
                 <?= csrf_field() ?>
                 
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre del Dispositivo</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" value="<?= old('nombre') ?>" required>
-                    <div class="form-text">Ingrese un nombre descriptivo para el dispositivo.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="mac_address" class="form-label">Dirección MAC</label>
-                    <input type="text" class="form-control" id="mac_address" name="mac_address" value="<?= old('mac_address') ?>" 
-                           pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" required>
-                    <div class="form-text">Formato: XX:XX:XX:XX:XX:XX o XX-XX-XX-XX-XX-XX</div>
+                    <input type="text" class="form-control" id="mac_address" name="mac_address" 
+                           value="<?= old('mac_address') ?>" 
+                           pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                           placeholder="XX:XX:XX:XX:XX:XX" required>
+                    <div class="form-text">Formato: XX:XX:XX:XX:XX:XX (donde X es un número hexadecimal)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><?= old('descripcion') ?></textarea>
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -56,15 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     macInput.addEventListener('input', function(e) {
         let value = e.target.value.replace(/[^0-9A-Fa-f]/g, '');
-        if (value.length > 12) value = value.substr(0, 12);
+        let formattedValue = '';
         
-        let formatted = '';
-        for (let i = 0; i < value.length; i++) {
-            if (i > 0 && i % 2 === 0) formatted += ':';
-            formatted += value[i];
+        for (let i = 0; i < value.length && i < 12; i++) {
+            if (i > 0 && i % 2 === 0) {
+                formattedValue += ':';
+            }
+            formattedValue += value[i];
         }
         
-        e.target.value = formatted;
+        e.target.value = formattedValue;
     });
 });
 </script>

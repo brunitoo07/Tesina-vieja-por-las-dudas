@@ -12,8 +12,16 @@
                 </div>
                 <div class="card-body">
                     <?php if (session()->has('error')): ?>
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <?= session('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->has('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
 
@@ -22,7 +30,8 @@
                         
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre del Dispositivo</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" 
+                                   value="<?= old('nombre') ?>" required>
                             <div class="form-text">Asigna un nombre para identificar tu dispositivo</div>
                         </div>
 
@@ -30,13 +39,15 @@
                             <label for="mac_address" class="form-label">Dirección MAC</label>
                             <input type="text" class="form-control" id="mac_address" name="mac_address" 
                                    pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" 
-                                   placeholder="XX:XX:XX:XX:XX:XX" required>
+                                   placeholder="XX:XX:XX:XX:XX:XX" 
+                                   value="<?= old('mac_address') ?>" required>
                             <div class="form-text">Ingresa la dirección MAC que aparece en el dispositivo</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción (opcional)</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" 
+                                      rows="3"><?= old('descripcion') ?></textarea>
                             <div class="form-text">Añade una descripción para tu dispositivo</div>
                         </div>
 
@@ -44,8 +55,8 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Guardar Dispositivo
                             </button>
-                            <a href="<?= base_url('admin/dispositivos/buscar') ?>" class="btn btn-outline-secondary">
-                                <i class="fas fa-arrow-left"></i> Volver a Configuración
+                            <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Volver a Mis Dispositivos
                             </a>
                         </div>
                     </form>

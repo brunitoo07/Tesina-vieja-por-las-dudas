@@ -19,8 +19,33 @@ class Dispositivos extends BaseController
 
     public function index()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
+        }
+
         $idUsuario = session()->get('id_usuario');
-        $data['dispositivos'] = $this->dispositivoModel->where('id_usuario', $idUsuario)->findAll();
+        $usuario = $this->usuarioModel->find($idUsuario);
+        
+        if (!$usuario) {
+            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
+        }
+
+        // Solo permitir acceso a admin y supervisor
+        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
+            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
+        }
+
+        // Obtener todos los dispositivos del admin
+        $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                             ->orderBy('created_at', 'DESC')
+                                             ->findAll();
+        
+        $data = [
+            'dispositivos' => $dispositivos,
+            'titulo' => 'Gestión de Dispositivos',
+            'usuario' => $usuario
+        ];
+
         return view('admin/dispositivos/index', $data);
     }
 
@@ -85,44 +110,83 @@ class Dispositivos extends BaseController
 
     public function registrar()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        $usuario = $this->usuarioModel->find($idUsuario);
+        
+        if (!$usuario) {
+            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
+        }
+
+        // Solo permitir acceso a admin y supervisor
+        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
+            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
+        }
+
         return view('admin/dispositivos/registrar');
     }
 
     public function guardar()
     {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        $usuario = $this->usuarioModel->find($idUsuario);
+        
+        if (!$usuario) {
+            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
+        }
+
+        // Solo permitir acceso a admin y supervisor
+        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
+            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
+        }
+
         $rules = [
             'nombre' => 'required|min_length[3]|max_length[100]',
-            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]'
+            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]'
         ];
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $idUsuario = session()->get('id_usuario');
-        $data = [
-            'nombre' => $this->request->getPost('nombre'),
-            'mac_address' => $this->request->getPost('mac_address'),
-            'estado' => 'pendiente',
-            'id_usuario' => $idUsuario
-        ];
+        try {
+            $data = [
+                'nombre' => $this->request->getPost('nombre'),
+                'mac_address' => $this->request->getPost('mac_address'),
+                'estado' => 'pendiente',
+                'id_usuario' => $idUsuario
+            ];
 
-        if ($this->dispositivoModel->insert($data)) {
-            return redirect()->to('admin/dispositivos')->with('success', 'Dispositivo registrado exitosamente');
+            if ($this->dispositivoModel->insert($data)) {
+                session()->setFlashdata('success', 'Dispositivo registrado exitosamente');
+                return redirect()->to(base_url('admin/dispositivos'));
+            } else {
+                session()->setFlashdata('error', 'Error al registrar el dispositivo');
+                return redirect()->back()->withInput();
+            }
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar dispositivo: ' . $e->getMessage());
+            session()->setFlashdata('error', 'Error al registrar el dispositivo: ' . $e->getMessage());
+            return redirect()->back()->withInput();
         }
-
-        return redirect()->back()->withInput()->with('error', 'Error al registrar el dispositivo');
     }
 
     public function activar($id)
     {
-        $idUsuario = session()->get('id_usuario');
-        $dispositivo = $this->dispositivoModel->where('id_dispositivo', $id)
-                                            ->where('id_usuario', $idUsuario)
-                                            ->first();
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
 
+        $dispositivo = $this->dispositivoModel->find($id);
         if (!$dispositivo) {
-            return redirect()->back()->with('error', 'Dispositivo no encontrado o no tienes permiso');
+            return redirect()->back()->with('error', 'Dispositivo no encontrado');
         }
 
         if ($this->dispositivoModel->update($id, ['estado' => 'activo'])) {
@@ -134,13 +198,13 @@ class Dispositivos extends BaseController
 
     public function desactivar($id)
     {
-        $idUsuario = session()->get('id_usuario');
-        $dispositivo = $this->dispositivoModel->where('id_dispositivo', $id)
-                                            ->where('id_usuario', $idUsuario)
-                                            ->first();
+        if (!session()->get('logged_in') || session()->get('rol') !== 'admin') {
+            return redirect()->to('/autenticacion/login');
+        }
 
+        $dispositivo = $this->dispositivoModel->find($id);
         if (!$dispositivo) {
-            return redirect()->back()->with('error', 'Dispositivo no encontrado o no tienes permiso');
+            return redirect()->back()->with('error', 'Dispositivo no encontrado');
         }
 
         if ($this->dispositivoModel->update($id, ['estado' => 'inactivo'])) {
