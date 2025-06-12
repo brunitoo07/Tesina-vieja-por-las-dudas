@@ -19,6 +19,7 @@ class Dispositivos extends BaseController
 
     public function index()
     {
+        // Verificar si el usuario está autenticado
         if (!session()->get('logged_in')) {
             return redirect()->to('/autenticacion/login');
         }
@@ -39,7 +40,7 @@ class Dispositivos extends BaseController
         $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)
                                              ->orderBy('created_at', 'DESC')
                                              ->findAll();
-        
+
         $data = [
             'dispositivos' => $dispositivos,
             'titulo' => 'Gestión de Dispositivos',

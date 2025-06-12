@@ -141,7 +141,7 @@ $routes->get('mediciones/(:num)', 'Mediciones::index/$1');
 $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
-$routes->post('/nuevos_datos', 'Energia::recibirNuevosDatos');
+$routes->match(['get', 'post'], '/nuevos_datos', 'Energia::recibirNuevosDatos');
 
 // Rutas de API para dispositivos
 $routes->group('api/dispositivo', ['namespace' => 'App\Controllers\Api'], function($routes) {
@@ -164,9 +164,7 @@ $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
 
 // Rutas para energía
 $routes->get('energia', 'Energia::index');
-$routes->get('energia/getConfig', 'Energia::getConfig');
-$routes->post('energia/saveConfig', 'Energia::saveConfig');
-$routes->get('energia/getLatestData', 'Energia::getLatestData');
-$routes->get('energia/getDataByPeriod/(:segment)', 'Energia::getDataByPeriod/$1');
-$routes->get('energia/exportData', 'Energia::exportData');
-$routes->post('energia/recibirDatos', 'Energia::recibirDatos');
+$routes->get('energia/exportar', 'Energia::exportar');
+$routes->post('energia/recibirNuevosDatos', 'Energia::recibirNuevosDatos');
+$routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
+$routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');

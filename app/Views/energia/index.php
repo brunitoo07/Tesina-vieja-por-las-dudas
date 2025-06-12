@@ -171,7 +171,77 @@
         let consumoChart;
         let distribucionChart;
         const limiteConsumo = <?php echo $limite_consumo; ?>;
+        const MAC_ADDRESS = '08:D1:F9:A5:2A:14'; // MAC address de tu dispositivo
         
+        // Función para actualizar los datos en tiempo real
+        function actualizarDatos() {
+            fetch(`/Tesina/public/energia/getLatestDataByMac/${MAC_ADDRESS.replace(/:/g, '')}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Actualizar tarjetas
+                        document.getElementById('potencia-actual').textContent = `${data.data.potencia.toFixed(2)} W`;
+                        document.getElementById('voltaje-actual').textContent = `${data.data.voltaje.toFixed(2)} V`;
+                        document.getElementById('corriente-actual').textContent = `${data.data.corriente.toFixed(4)} A`;
+                        document.getElementById('consumo-total').textContent = `${data.data.kwh.toFixed(4)} kWh`;
+
+                        // Actualizar gráfico de consumo
+                        const fecha = new Date(data.data.fecha);
+                        consumoChart.data.labels.push(fecha.toLocaleTimeString());
+                        consumoChart.data.datasets[0].data.push(data.data.kwh);
+
+                        // Mantener solo los últimos 20 puntos
+                        if (consumoChart.data.labels.length > 20) {
+                            consumoChart.data.labels.shift();
+                            consumoChart.data.datasets[0].data.shift();
+                        }
+
+                        consumoChart.update();
+
+                        // Actualizar gráfico de distribución
+                        distribucionChart.data.datasets[0].data = [
+                            data.data.potencia,
+                            data.data.voltaje * data.data.corriente - data.data.potencia
+                        ];
+                        distribucionChart.update();
+
+                        // Verificar límite de consumo
+                        if (data.data.kwh > data.limite_consumo) {
+                            document.getElementById('notificationBadge').style.display = 'block';
+                            document.getElementById('notificationText').textContent = 
+                                `¡Alerta! El consumo (${data.data.kwh.toFixed(4)} kWh) ha superado el límite (${data.limite_consumo} kWh)`;
+                        } else {
+                            document.getElementById('notificationBadge').style.display = 'none';
+                        }
+
+                        // Actualizar tabla
+                        const tabla = document.getElementById('tabla-lecturas');
+                        const nuevaFila = document.createElement('tr');
+                        nuevaFila.className = data.data.limite_superado ? 'alert-limit' : '';
+                        nuevaFila.innerHTML = `
+                            <td>${fecha.toLocaleString()}</td>
+                            <td>${data.data.voltaje.toFixed(2)}</td>
+                            <td>${data.data.corriente.toFixed(4)}</td>
+                            <td>${data.data.potencia.toFixed(2)}</td>
+                            <td>${data.data.kwh.toFixed(4)}</td>
+                            <td>${data.data.mac_address}</td>
+                            <td>
+                                ${data.data.limite_superado ? 
+                                    '<span class="badge bg-warning">Límite superado</span>' : 
+                                    '<span class="badge bg-success">Normal</span>'}
+                            </td>
+                        `;
+                        tabla.insertBefore(nuevaFila, tabla.firstChild);
+
+                        // Mantener solo las últimas 10 filas
+                        while (tabla.children.length > 10) {
+                            tabla.removeChild(tabla.lastChild);
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
         // Inicializar gráficos
         function inicializarGraficos() {
             // Gráfico de consumo
@@ -202,14 +272,10 @@
             distribucionChart = new Chart(ctxDistribucion, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Potencia', 'Voltaje', 'Corriente'],
+                    labels: ['Potencia Activa', 'Potencia Reactiva'],
                     datasets: [{
-                        data: [0, 0, 0],
-                        backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)'
-                        ]
+                        data: [0, 0],
+                        backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)']
                     }]
                 },
                 options: {
@@ -218,65 +284,10 @@
             });
         }
 
-        // Actualizar datos
-        function actualizarDatos() {
-            fetch('/energia/getLatestData')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        console.error('Error:', data.error);
-                        return;
-                    }
-
-                    // Actualizar tarjetas
-                    document.getElementById('potencia-actual').textContent = data.potencia.toFixed(2) + ' W';
-                    document.getElementById('voltaje-actual').textContent = data.voltaje.toFixed(2) + ' V';
-                    document.getElementById('corriente-actual').textContent = data.corriente.toFixed(4) + ' A';
-                    document.getElementById('consumo-total').textContent = data.kwh.toFixed(4) + ' kWh';
-
-                    // Actualizar gráfico de consumo
-                    const fecha = new Date(data.fecha);
-                    consumoChart.data.labels.push(fecha.toLocaleTimeString());
-                    consumoChart.data.datasets[0].data.push(data.kwh);
-
-                    if (consumoChart.data.labels.length > 20) {
-                        consumoChart.data.labels.shift();
-                        consumoChart.data.datasets[0].data.shift();
-                    }
-
-                    // Actualizar gráfico de distribución
-                    distribucionChart.data.datasets[0].data = [
-                        data.potencia,
-                        data.voltaje,
-                        data.corriente
-                    ];
-
-                    consumoChart.update();
-                    distribucionChart.update();
-
-                    // Actualizar tabla
-                    actualizarTabla();
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        // Actualizar tabla
-        function actualizarTabla() {
-            fetch('/energia')
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const nuevaTabla = doc.getElementById('tabla-lecturas');
-                    document.getElementById('tabla-lecturas').innerHTML = nuevaTabla.innerHTML;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        // Inicializar
+        // Inicializar gráficos al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
             inicializarGraficos();
-            actualizarDatos();
+            actualizarDatos(); // Primera actualización
             setInterval(actualizarDatos, 5000); // Actualizar cada 5 segundos
         });
     </script>

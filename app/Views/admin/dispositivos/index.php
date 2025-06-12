@@ -52,8 +52,8 @@
                             <?php foreach ($dispositivos as $dispositivo): ?>
                                 <tr>
                                     <td><?= $dispositivo['id_dispositivo'] ?></td>
-                                    <td><?= $dispositivo['nombre'] ?></td>
-                                    <td><?= $dispositivo['mac_address'] ?></td>
+                                    <td><?= esc($dispositivo['nombre']) ?></td>
+                                    <td><?= esc($dispositivo['mac_address']) ?></td>
                                     <td>
                                         <?php
                                         $estadoClass = '';
@@ -74,7 +74,9 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <?= isset($dispositivo['ultima_conexion']) ? date('d/m/Y H:i', strtotime($dispositivo['ultima_conexion'])) : 'Nunca' ?>
+                                        <?= isset($dispositivo['fecha_actualizacion']) ? 
+                                            date('d/m/Y H:i', strtotime($dispositivo['fecha_actualizacion'])) : 
+                                            'Nunca' ?>
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
@@ -98,6 +100,10 @@
                                                     onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
                                                 <i class="fas fa-trash"></i>
                                             </button>
+                                            <a href="<?= base_url('energia/dispositivo/' . $dispositivo['id_dispositivo']) ?>" 
+                                               class="btn btn-sm btn-info">
+                                                <i class="fas fa-chart-line"></i> Ver Lecturas
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

@@ -320,4 +320,196 @@ class Energia extends BaseController
             return $this->response->setJSON(['error' => 'Error al guardar datos'])->setStatusCode(500);
         }
     }
+
+    public function recibirNuevosDatos()
+    {
+        try {
+            $data = $this->request->getJSON(true);
+            
+            if (!$data) {
+                return $this->response->setJSON(['error' => 'No se recibieron datos'])->setStatusCode(400);
+            }
+
+            // Validar datos requeridos
+            $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
+            foreach ($requiredFields as $field) {
+                if (!isset($data[$field])) {
+                    return $this->response->setJSON(['error' => "Campo requerido faltante: $field"])->setStatusCode(400);
+                }
+            }
+
+            // Formatear la MAC address
+            $mac = $data['mac_address'];
+            $mac = strtoupper($mac);
+            $mac = implode(':', str_split($mac, 2));
+
+            // Buscar el dispositivo por MAC
+            $dispositivo = $this->dispositivoModel->where('mac_address', $mac)->first();
+            
+            if (!$dispositivo) {
+                log_message('error', 'Dispositivo no encontrado con MAC: ' . $mac);
+                return $this->response->setJSON(['error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+            }
+
+            // Preparar datos para guardar
+            $lectura = [
+                'id_dispositivo' => $dispositivo['id_dispositivo'],
+                'id_usuario' => $dispositivo['id_usuario'],
+                'voltaje' => $data['voltaje'],
+                'corriente' => $data['corriente'],
+                'potencia' => $data['potencia'],
+                'kwh' => $data['kwh'],
+                'mac_address' => $mac,
+                'fecha' => date('Y-m-d H:i:s')
+            ];
+
+            // Guardar la lectura
+            $this->energiaModel->insert($lectura);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Datos recibidos correctamente'
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error en recibirNuevosDatos: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'error' => 'Error al procesar los datos',
+                'details' => $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    public function getLatestDataByMac($mac)
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        // Formatear la MAC address
+        $mac = strtoupper($mac);
+        $mac = implode(':', str_split($mac, 2));
+
+        // Buscar el dispositivo por MAC
+        $dispositivo = $this->dispositivoModel->where('mac_address', $mac)->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+        }
+
+        // Obtener la última lectura
+        $ultimaLectura = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                                          ->orderBy('fecha', 'DESC')
+                                          ->first();
+
+        if (!$ultimaLectura) {
+            return $this->response->setJSON(['error' => 'No hay lecturas disponibles'])->setStatusCode(404);
+        }
+
+        // Verificar límite de consumo
+        $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+        if ($limite && $ultimaLectura['kwh'] > $limite['limite_consumo']) {
+            $this->energiaModel->update($ultimaLectura['id'], ['limite_superado' => 1]);
+        }
+
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => $ultimaLectura,
+            'dispositivo' => $dispositivo,
+            'limite_consumo' => $limite ? $limite['limite_consumo'] : 10
+        ]);
+    }
+
+    public function dispositivo($id_dispositivo)
+    {
+        // Verificar si el usuario está autenticado
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
+        }
+
+        // Obtener información del dispositivo
+        $dispositivoModel = new \App\Models\DispositivoModel();
+        $dispositivo = $dispositivoModel->find($id_dispositivo);
+
+        if (!$dispositivo) {
+            return redirect()->to('/admin/dispositivos')->with('error', 'Dispositivo no encontrado');
+        }
+
+        // Verificar si el usuario tiene permiso para ver este dispositivo
+        $idUsuario = session()->get('id_usuario');
+        $idRol = session()->get('id_rol');
+        
+        // Permitir acceso si es el propietario del dispositivo o si es admin/supervisor
+        if ($dispositivo['id_usuario'] !== $idUsuario && $idRol != 1 && $idRol != 3) {
+            return redirect()->to('/admin/dispositivos')->with('error', 'No tienes permiso para ver este dispositivo');
+        }
+
+        return view('energia/dispositivo', [
+            'dispositivo' => $dispositivo
+        ]);
+    }
+
+    public function getLatestDataByDevice($id_dispositivo)
+    {
+        // Verificar si el usuario está autenticado
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'No autorizado'
+            ]);
+        }
+
+        // Obtener información del dispositivo
+        $dispositivoModel = new \App\Models\DispositivoModel();
+        $dispositivo = $dispositivoModel->find($id_dispositivo);
+
+        if (!$dispositivo) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Dispositivo no encontrado'
+            ]);
+        }
+
+        // Verificar si el usuario tiene permiso para ver este dispositivo
+        $idUsuario = session()->get('id_usuario');
+        $idRol = session()->get('id_rol');
+        
+        // Permitir acceso si es el propietario del dispositivo o si es admin/supervisor
+        if ($dispositivo['id_usuario'] !== $idUsuario && $idRol != 1 && $idRol != 3) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'No tienes permiso para ver este dispositivo'
+            ]);
+        }
+
+        // Obtener la última lectura del dispositivo
+        $lecturaModel = new \App\Models\LecturaModel();
+        $lectura = $lecturaModel->where('id_dispositivo', $id_dispositivo)
+                              ->orderBy('fecha', 'DESC')
+                              ->first();
+
+        if (!$lectura) {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'No hay lecturas disponibles'
+            ]);
+        }
+
+        // Obtener el límite de consumo del dispositivo
+        $limiteConsumo = $dispositivo['limite_consumo'] ?? 1000; // Valor por defecto si no está configurado
+
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => [
+                'fecha' => $lectura['fecha'],
+                'voltaje' => $lectura['voltaje'],
+                'corriente' => $lectura['corriente'],
+                'potencia' => $lectura['potencia'],
+                'kwh' => $lectura['kwh'],
+                'mac_address' => $dispositivo['mac_address'],
+                'limite_superado' => $lectura['kwh'] > $limiteConsumo
+            ],
+            'limite_consumo' => $limiteConsumo
+        ]);
+    }
 }
