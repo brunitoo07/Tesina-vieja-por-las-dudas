@@ -1,0 +1,182 @@
+INFO - 2025-06-12 07:57:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-12 08:14:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-12 08:14:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:14:54 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-06-12 08:14:54 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-06-12 08:14:54 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-06-12 08:14:54 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-06-12 08:14:54 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-06-12 08:14:54 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-06-12 08:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:14:54 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-06-12 08:14:54 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-06-12 08:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:14:54 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:14:56 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-06-12 08:14:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:14:56 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:14:56 --> Buscando usuario ID: 1
+DEBUG - 2025-06-12 08:14:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-06-11 23:01:59
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-06-12 08:14:58 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-06-12 08:14:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:14:58 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:14:58 --> Buscando usuario ID: 1
+DEBUG - 2025-06-12 08:14:58 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-06-11 23:01:59
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-06-12 08:15:01 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-06-12 08:15:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:15:01 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos/buscar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:16:29 --> Ruta actual: /Tesina/public/dispositivo/guardar
+INFO - 2025-06-12 08:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:16:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-06-12 08:16:29 --> Iniciando guardado de dispositivo
+INFO - 2025-06-12 08:16:29 --> Datos recibidos: {"csrf_test_name":"b161d04eee4f7b0c733c21bb79aa0466","nombre":"a ver si anda","mac_address":"00:00:00:00:b7:95","descripcion":"adasdad"}
+INFO - 2025-06-12 08:16:29 --> Datos preparados para insertar: {"nombre":"a ver si anda","mac_address":"00:00:00:00:b7:95","id_usuario":"1","estado":"pendiente","created_at":"2025-06-12 08:16:29"}
+INFO - 2025-06-12 08:16:29 --> Intentando insertar dispositivo en la base de datos
+INFO - 2025-06-12 08:16:29 --> Dispositivo guardado exitosamente. ID: 11
+DEBUG - 2025-06-12 08:16:29 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-06-12 08:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:16:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749726883
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:16:29 --> Buscando usuario ID: 1
+DEBUG - 2025-06-12 08:16:29 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-06-11 23:01:59
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-06-12 08:43:13 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-06-12 08:43:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-12 08:43:13 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1749728593
+    [_ci_previous_url] => http://192.168.2.176/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-06-12 08:43:13 --> Buscando usuario ID: 1
+DEBUG - 2025-06-12 08:43:13 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-06-11 23:01:59
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+

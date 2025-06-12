@@ -2,6 +2,7 @@
 #include <WebServer.h>
 #include <DNSServer.h>
 #include <EEPROM.h>
+#include <HTTPClient.h>
 
 // Configuración de la red AP
 const char* AP_SSID = "EcoVolt_Setup";
@@ -52,10 +53,13 @@ void loop() {
 }
 
 void setupAP() {
+  String macAddress = getMacAddress();
+  String apName = "EcoVolt-" + macAddress.substring(0, 5);
+  
   // Configurar el modo AP
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(apIP, gateway, subnet);
-  WiFi.softAP(AP_SSID, AP_PASSWORD);
+  WiFi.softAP(apName.c_str(), AP_PASSWORD);
   
   // Iniciar servidor DNS
   dnsServer.start(DNS_PORT, "*", apIP);
@@ -70,6 +74,7 @@ void setupAP() {
 }
 
 void handleRoot() {
+  String macAddress = getMacAddress(); // Obtener la MAC
   String html = R"(
     <!DOCTYPE html>
     <html>
@@ -204,12 +209,25 @@ void handleRoot() {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
+        .mac-address {
+            background: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+            color: #1565C0;
+        }
       </style>
     </head>
     <body>
       <div class="container">
         <div class="logo">
           <h1>EcoVolt</h1>
+        </div>
+        <div class="mac-address">
+          <strong>Dirección MAC:</strong><br>
+          )" + macAddress + R"(
         </div>
         <div id="networks"></div>
         <div id="connect-form" style="display: none;">
@@ -377,9 +395,30 @@ void handleConnect() {
   if (server.hasArg("ssid") && server.hasArg("password")) {
     ssid = server.arg("ssid");
     password = server.arg("password");
+    String macAddress = getMacAddress();
     
     // Guardar configuración en EEPROM
     saveConfig();
+    
+    // Enviar la MAC al servidor para registro
+    HTTPClient http;
+    String serverURL = "http://192.168.2.176/Tesina/public/registrar_dispositivo";
+    
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/json");
+    
+    String postData = "{\"mac_address\":\"" + macAddress + "\",\"estado\":\"activo\"}";
+    
+    int httpResponseCode = http.POST(postData);
+    
+    if (httpResponseCode > 0) {
+      String response = http.getString();
+      Serial.println("Dispositivo registrado: " + response);
+    } else {
+      Serial.println("Error al registrar dispositivo");
+    }
+    
+    http.end();
     
     // Enviar respuesta al cliente
     server.send(200, "text/html", "<h1>Conectando...</h1><p>El dispositivo se reiniciará para conectarse a la red seleccionada.</p>");
@@ -422,10 +461,62 @@ void connectToWiFi() {
     Serial.println("\nConectado a WiFi");
     Serial.print("Dirección IP: ");
     Serial.println(WiFi.localIP());
+    
+    // Comenzar a enviar datos inmediatamente
+    previousMillis = 0; // Reiniciar el contador para enviar datos inmediatamente
   } else {
     Serial.println("\nError al conectar a WiFi");
-    // Si falla la conexión, volver al modo AP
     isConfigured = false;
     setupAP();
   }
+}
+
+String getMacAddress() {
+    uint8_t mac[6];
+    WiFi.macAddress(mac);
+    char macStr[18];
+    snprintf(macStr, sizeof(macStr), "%02X:%02X:%02X:%02X:%02X:%02X",
+             mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    return String(macStr);
+}
+
+void sendDataToDatabase(float voltage, float current, float power, float kWh) {
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.println("⚠️ Reconectando a WiFi...");
+        WiFi.reconnect();
+        delay(1000);
+        return;
+    }
+
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/json");
+    http.setTimeout(5000);
+
+    String macAddress = getMacAddress();
+    String postData = "{\"voltaje\":" + String(voltage, 2) +
+                     ",\"corriente\":" + String(current, 4) +
+                     ",\"potencia\":" + String(power, 2) +
+                     ",\"kwh\":" + String(kWh, 4) +
+                     ",\"mac_address\":\"" + macAddress + "\"" +
+                     ",\"estado\":\"activo\"" +
+                     ",\"ultima_actualizacion\":\"" + String(millis()) + "\"}";
+
+    Serial.println("\n📤 Enviando datos al servidor...");
+    Serial.println("📝 Datos: " + postData);
+
+    int httpResponseCode = http.POST(postData);
+    
+    if (httpResponseCode > 0) {
+        Serial.print("✅ HTTP Response code: ");
+        Serial.println(httpResponseCode);
+        String response = http.getString();
+        Serial.print(" Respuesta del servidor: ");
+        Serial.println(response);
+    } else {
+        Serial.print("❌ Error en HTTP POST: ");
+        Serial.println(http.errorToString(httpResponseCode).c_str());
+    }
+    
+    http.end();
 } 
