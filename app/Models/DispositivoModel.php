@@ -26,7 +26,7 @@ class DispositivoModel extends Model
     ];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat = 'datetime';
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
@@ -231,9 +231,14 @@ class DispositivoModel extends Model
         log_message('debug', '=== BUSCANDO DISPOSITIVO ===');
         log_message('debug', 'ID Dispositivo: ' . $idDispositivo);
         
-        $dispositivo = $this->where('id_dispositivo', $idDispositivo)
-                    ->whereIn('estado', ['pendiente', 'inactivo'])
-                    ->first();
+        // Modificado para devolver el dispositivo y marcarlo como activo
+        $dispositivo = $this->where('id_dispositivo', $idDispositivo)->first();
+        
+        if ($dispositivo) {
+            // Aseguramos que el dispositivo esté activo
+            $this->update($idDispositivo, ['estado' => 'activo']);
+            $dispositivo['estado'] = 'activo';
+        }
                     
         log_message('debug', 'Resultado de la búsqueda: ' . json_encode($dispositivo));
         log_message('debug', '=== FIN BUSQUEDA DISPOSITIVO ===');
@@ -245,10 +250,9 @@ class DispositivoModel extends Model
     {
         $dispositivo = $this->find($idDispositivo);
         if ($dispositivo) {
+            // Modificado para no verificar el stock disponible
             $nuevoStock = $dispositivo['stock'] - $cantidad;
-            if ($nuevoStock >= 0) {
-                return $this->update($idDispositivo, ['stock' => $nuevoStock]);
-            }
+            return $this->update($idDispositivo, ['stock' => $nuevoStock]);
         }
         return false;
     }

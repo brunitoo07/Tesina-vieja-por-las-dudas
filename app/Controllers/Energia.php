@@ -428,25 +428,28 @@ class Energia extends BaseController
         }
 
         // Obtener información del dispositivo
-        $dispositivoModel = new \App\Models\DispositivoModel();
-        $dispositivo = $dispositivoModel->find($id_dispositivo);
+        $dispositivo = $this->dispositivoModel->find($id_dispositivo);
 
         if (!$dispositivo) {
             return redirect()->to('/admin/dispositivos')->with('error', 'Dispositivo no encontrado');
         }
 
-        // Verificar si el usuario tiene permiso para ver este dispositivo
-        $idUsuario = session()->get('id_usuario');
-        $idRol = session()->get('id_rol');
-        
-        // Permitir acceso si es el propietario del dispositivo o si es admin/supervisor
-        if ($dispositivo['id_usuario'] !== $idUsuario && $idRol != 1 && $idRol != 3) {
-            return redirect()->to('/admin/dispositivos')->with('error', 'No tienes permiso para ver este dispositivo');
-        }
+        // Obtener las lecturas del dispositivo
+        $lecturas = $this->energiaModel->where('id_dispositivo', $id_dispositivo)
+                                     ->orderBy('fecha', 'DESC')
+                                     ->findAll();
 
-        return view('energia/dispositivo', [
-            'dispositivo' => $dispositivo
-        ]);
+        // Obtener el límite de consumo
+        $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
+        $limite_consumo = $limite ? $limite['limite_consumo'] : 10;
+
+        $data = [
+            'dispositivo' => $dispositivo,
+            'lecturas' => $lecturas,
+            'limite_consumo' => $limite_consumo
+        ];
+
+        return view('energia/dispositivo', $data);
     }
 
     public function getLatestDataByDevice($id_dispositivo)

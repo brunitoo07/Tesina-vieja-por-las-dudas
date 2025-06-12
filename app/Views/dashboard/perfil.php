@@ -72,7 +72,7 @@
 
                         <!-- Cambiar Contraseña -->
                         <div class="tab-pane fade" id="password" role="tabpanel">
-                            <form action="<?= base_url('usuario/cambiar-contrasena') ?>" method="post" id="passwordForm">
+                            <form action="<?= base_url('usuario/cambiarContrasena') ?>" method="post" class="needs-validation" novalidate>
                                 <?= csrf_field() ?>
                                 <div class="mb-3">
                                     <label for="current_password" class="form-label">Contraseña Actual</label>
@@ -86,15 +86,13 @@
                                 <div class="mb-3">
                                     <label for="new_password" class="form-label">Nueva Contraseña</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="new_password" name="new_password" required 
-                                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                                               title="La contraseña debe tener al menos 8 caracteres, una letra y un número">
+                                        <input type="password" class="form-control" id="new_password" name="new_password" required>
                                         <button class="btn btn-outline-secondary toggle-password" type="button" data-target="new_password">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                     <small class="form-text text-muted">
-                                        La contraseña debe tener al menos 8 caracteres, una letra y un número
+                                        La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)
                                     </small>
                                 </div>
                                 <div class="mb-3">
@@ -140,31 +138,32 @@ document.querySelectorAll('.toggle-password').forEach(button => {
 
 // Validación del formulario de contraseña
 document.getElementById('passwordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
     const newPassword = document.getElementById('new_password').value;
     const confirmPassword = document.getElementById('confirm_password').value;
     const currentPassword = document.getElementById('current_password').value;
     
     // Validar que la contraseña actual no esté vacía
     if (!currentPassword) {
-        e.preventDefault();
         alert('Por favor ingrese su contraseña actual');
         return;
     }
     
     // Validar que la nueva contraseña cumpla con los requisitos
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!passwordRegex.test(newPassword)) {
-        e.preventDefault();
-        alert('La nueva contraseña debe tener al menos 8 caracteres, una letra y un número');
+    if (newPassword.length < 6 || !/[A-Z]/.test(newPassword) || !/[!@#$%]/.test(newPassword)) {
+        alert('La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)');
         return;
     }
     
     // Validar que las contraseñas coincidan
     if (newPassword !== confirmPassword) {
-        e.preventDefault();
         alert('Las contraseñas no coinciden');
         return;
     }
+    
+    // Si todo está bien, enviar el formulario
+    this.submit();
 });
 </script>
 <?= $this->endSection() ?> 

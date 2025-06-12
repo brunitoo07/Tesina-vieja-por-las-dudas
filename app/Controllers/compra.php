@@ -108,7 +108,10 @@ class Compra extends BaseController
             }
 
             // Actualizar el estado del dispositivo a activo
-            $this->dispositivoModel->update($idDispositivo, ['estado' => 'activo']);
+            $this->dispositivoModel->update($idDispositivo, [
+                'estado' => 'activo',
+                'stock' => $dispositivo['stock'] - 1
+            ]);
 
             // Guardar datos necesarios en sesión antes de limpiar
             $email = $datosCompra['email'];

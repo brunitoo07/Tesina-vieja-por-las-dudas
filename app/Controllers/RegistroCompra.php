@@ -66,11 +66,6 @@ class RegistroCompra extends BaseController
             return redirect()->back()->with('error', 'El dispositivo seleccionado no existe.');
         }
 
-        if (!in_array($dispositivo['estado'], ['pendiente', 'inactivo'])) {
-            log_message('debug', 'Estado del dispositivo incorrecto. Estado actual: ' . $dispositivo['estado']);
-            return redirect()->back()->with('error', 'El dispositivo seleccionado no está disponible para compra.');
-        }
-
         // Generar token de activación
         $token = bin2hex(random_bytes(32));
 

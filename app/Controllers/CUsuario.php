@@ -153,84 +153,47 @@ class CUsuario extends BaseController
 
     public function cambiarContrasena()
     {
-        if (!session()->get('logged_in')) {
-            return redirect()->to('/autenticacion/login');
-        }
-
-        $idUsuario = session()->get('id_usuario');
         log_message('debug', '=== INICIO CAMBIO CONTRASEÑA ===');
-        log_message('debug', 'ID Usuario: ' . $idUsuario);
+        log_message('debug', 'ID Usuario: ' . session()->get('id_usuario'));
 
-        if ($this->request->getMethod() === 'post') {
-            log_message('debug', 'Método POST detectado');
-            $postData = $this->request->getPost();
-            log_message('debug', 'Datos POST recibidos: ' . print_r($postData, true));
-
-            // Validar que los datos no estén vacíos
-            if (empty($postData['contrasena_actual']) || empty($postData['nueva_contrasena']) || empty($postData['confirmar_contrasena'])) {
-                session()->setFlashdata('error', 'Todos los campos son requeridos');
-                return redirect()->to('/usuario/cambiarContrasena');
-            }
-
-            $rules = [
-                'contrasena_actual' => 'required',
-                'nueva_contrasena' => [
-                    'rules' => 'required|min_length[8]',
-                    'errors' => [
-                        'min_length' => 'La nueva contraseña debe tener al menos 8 caracteres'
-                    ]
-                ],
-                'confirmar_contrasena' => [
-                    'rules' => 'required|matches[nueva_contrasena]',
-                    'errors' => [
-                        'matches' => 'Las contraseñas no coinciden'
-                    ]
-                ]
-            ];
-
-            if ($this->validate($rules)) {
-                log_message('debug', 'Validación exitosa');
-                
-                $usuario = $this->usuarioModel->find($idUsuario);
-                log_message('debug', 'Usuario encontrado: ' . ($usuario ? 'true' : 'false'));
-
-                if (password_verify($postData['contrasena_actual'], $usuario['contrasena'])) {
-                    log_message('debug', 'Contraseña actual verificada correctamente');
-                    
-                    $data = [
-                        'contrasena' => $postData['nueva_contrasena'],
-                        'updated_at' => date('Y-m-d H:i:s')
-                    ];
-
-                    log_message('debug', 'Datos preparados para actualización: ' . print_r($data, true));
-
-                    try {
-                        $result = $this->usuarioModel->update($idUsuario, $data);
-                        log_message('debug', 'Resultado de la actualización: ' . ($result ? 'true' : 'false'));
-
-                        if ($result) {
-                            session()->setFlashdata('success', 'Contraseña actualizada correctamente');
-                            log_message('debug', 'Contraseña actualizada exitosamente');
-                        } else {
-                            session()->setFlashdata('error', 'Error al actualizar la contraseña');
-                            log_message('error', 'Error al actualizar la contraseña');
-                        }
-                    } catch (\Exception $e) {
-                        log_message('error', 'Excepción al actualizar contraseña: ' . $e->getMessage());
-                        session()->setFlashdata('error', 'Error al actualizar la contraseña: ' . $e->getMessage());
-                    }
-                } else {
-                    log_message('error', 'Contraseña actual incorrecta');
-                    session()->setFlashdata('error', 'La contraseña actual es incorrecta');
-                }
-            } else {
-                log_message('error', 'Error de validación: ' . print_r($this->validator->getErrors(), true));
-                session()->setFlashdata('error', 'Error al validar los datos');
-            }
-
-            return redirect()->to('/usuario/cambiarContrasena');
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/login');
         }
 
-        return view('usuario/cambiar_contrasena');
+        $current_password = $this->request->getPost('current_password');
+        $new_password = $this->request->getPost('new_password');
+        $confirm_password = $this->request->getPost('confirm_password');
+
+        // Validar campos vacíos
+        if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
+            return redirect()->to('/usuario/perfil')->with('error', 'Todos los campos son obligatorios');
+        }
+
+        // Validar que la nueva contraseña cumpla con los requisitos
+        if (strlen($new_password) < 6 || !preg_match('/[A-Z]/', $new_password) || !preg_match('/[!@#$%]/', $new_password)) {
+            return redirect()->to('/usuario/perfil')->with('error', 'La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)');
+        }
+
+        // Validar que las contraseñas coincidan
+        if ($new_password !== $confirm_password) {
+            return redirect()->to('/usuario/perfil')->with('error', 'Las contraseñas no coinciden');
+        }
+
+        // Obtener el usuario actual
+        $idUsuario = session()->get('id_usuario');
+        $usuario = $this->usuarioModel->find($idUsuario);
+
+        // Verificar la contraseña actual
+        if (!password_verify($current_password, $usuario['contrasena'])) {
+            return redirect()->to('/usuario/perfil')->with('error', 'La contraseña actual es incorrecta');
+        }
+
+        // Actualizar la contraseña
+        $this->usuarioModel->update($idUsuario, [
+            'contrasena' => password_hash($new_password, PASSWORD_DEFAULT)
+        ]);
+
+        log_message('debug', '=== FIN CAMBIO CONTRASEÑA ===');
+        return redirect()->to('/usuario/perfil')->with('success', 'Contraseña actualizada correctamente');
     }
 }
