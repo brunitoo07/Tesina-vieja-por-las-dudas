@@ -109,8 +109,18 @@ class MacValidationModel extends Model
 
     public function actualizarUsuarioMac($macAddress, $idUsuario)
     {
-        return $this->where('mac_address', $macAddress)
-                    ->set(['id_usuario' => $idUsuario])
-                    ->update();
+        try {
+            $data = [
+                'id_usuario' => $idUsuario,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            
+            return $this->where('mac_address', $macAddress)
+                        ->set($data)
+                        ->update();
+        } catch (\Exception $e) {
+            log_message('error', 'Error al actualizar usuario MAC: ' . $e->getMessage());
+            return false;
+        }
     }
 } 

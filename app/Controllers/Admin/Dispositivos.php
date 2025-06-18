@@ -123,8 +123,12 @@ class Dispositivos extends BaseController
 
                 $macAddress = strtoupper($this->request->getPost('mac_address'));
                 
-                // Verificar si la MAC existe en mac_validation
-                if (!$macValidationModel->where('mac_address', $macAddress)->first()) {
+                // Verificar si la MAC está autorizada
+                $macInfo = $macValidationModel->where('mac_address', $macAddress)
+                                            ->where('es_valida', 1)
+                                            ->first();
+
+                if (!$macInfo) {
                     return redirect()->back()->with('error', 'La dirección MAC no está autorizada.');
                 }
 
@@ -136,9 +140,6 @@ class Dispositivos extends BaseController
                 ];
 
                 if ($dispositivoModel->insert($data)) {
-                    // Actualizar el id_usuario en mac_validation
-                    $macValidationModel->actualizarUsuarioMac($macAddress, session()->get('id_usuario'));
-                    
                     return redirect()->to('admin/dispositivos')
                         ->with('success', 'Dispositivo registrado correctamente.');
                 }
