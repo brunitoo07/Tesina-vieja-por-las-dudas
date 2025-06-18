@@ -5,16 +5,19 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\DispositivoModel;
 use App\Models\UsuarioModel;
+use App\Models\MacValidationModel;
 
 class Dispositivos extends BaseController
 {
     protected $dispositivoModel;
     protected $usuarioModel;
+    protected $macValidationModel;
 
     public function __construct()
     {
         $this->dispositivoModel = new DispositivoModel();
         $this->usuarioModel = new UsuarioModel();
+        $this->macValidationModel = new MacValidationModel();
     }
 
     public function index()
@@ -95,25 +98,38 @@ class Dispositivos extends BaseController
 
         $rules = [
             'nombre' => 'required|min_length[3]|max_length[100]',
-            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]'
+            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]|valid_mac_address'
         ];
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $data = [
-            'nombre' => $this->request->getPost('nombre'),
-            'mac_address' => $this->request->getPost('mac_address'),
-            'estado' => 'pendiente',
-            'id_usuario' => $idUsuario // Asignar el dispositivo al usuario actual
-        ];
-
-        if ($this->dispositivoModel->insert($data)) {
-            return redirect()->to('dispositivos')->with('success', 'Dispositivo registrado exitosamente');
+        $macAddress = strtoupper($this->request->getPost('mac_address'));
+        
+        // Verificar si la MAC está en la tabla de validación
+        if (!$this->macValidationModel->esMacValida($macAddress)) {
+            return redirect()->back()->withInput()->with('error', 'La dirección MAC no está registrada en la base de datos de MACs válidas');
         }
 
-        return redirect()->back()->withInput()->with('error', 'Error al registrar el dispositivo');
+        $data = [
+            'nombre' => $this->request->getPost('nombre'),
+            'mac_address' => $macAddress,
+            'id_usuario' => $idUsuario,
+            'estado' => 'pendiente',
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+
+        try {
+            if ($this->dispositivoModel->insert($data)) {
+                return redirect()->to('admin/dispositivos')->with('success', 'Dispositivo registrado correctamente');
+            } else {
+                return redirect()->back()->withInput()->with('error', 'Error al registrar el dispositivo');
+            }
+        } catch (\Exception $e) {
+            log_message('error', 'Error al registrar dispositivo: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Error al registrar el dispositivo');
+        }
     }
 
     public function activar($id)

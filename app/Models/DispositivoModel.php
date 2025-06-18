@@ -36,8 +36,8 @@ class DispositivoModel extends Model
     protected $validationRules = [
         'id_usuario' => 'required|numeric',
         'nombre' => 'required|min_length[3]|max_length[100]',
-        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]',
-        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]',
+        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]|valid_mac_address',
+        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]|valid_mac_address',
         'codigo_activacion' => 'permit_empty|alpha_numeric|min_length[10]|max_length[32]|is_unique[dispositivos.codigo_activacion]',
         'stock' => 'permit_empty|numeric|greater_than_equal_to[0]',
         'precio' => 'permit_empty|numeric|greater_than_equal_to[0]',
@@ -58,11 +58,13 @@ class DispositivoModel extends Model
         'mac_address' => [
             'required' => 'La dirección MAC simulada es requerida',
             'regex_match' => 'La dirección MAC simulada debe tener el formato XX:XX:XX:XX:XX:XX',
-            'is_unique' => 'Esta dirección MAC simulada ya está registrada.'
+            'is_unique' => 'Esta dirección MAC simulada ya está registrada.',
+            'valid_mac_address' => 'La dirección MAC no está registrada en la base de datos de MACs válidas.'
         ],
         'mac_real_esp32' => [
             'regex_match' => 'La dirección MAC física debe tener el formato XX:XX:XX:XX:XX:XX',
-            'is_unique' => 'Esta dirección MAC física ya está vinculada a otro dispositivo.'
+            'is_unique' => 'Esta dirección MAC física ya está vinculada a otro dispositivo.',
+            'valid_mac_address' => 'La dirección MAC no está registrada en la base de datos de MACs válidas.'
         ],
         'codigo_activacion' => [
             'alpha_numeric' => 'El código de activación solo puede contener letras y números.',
@@ -205,20 +207,17 @@ class DispositivoModel extends Model
 
     public function getDispositivoByMacSimulada($macAddress)
     {
-        // Renombrado para mayor claridad, busca por la MAC asignada en el sistema
-        return $this->where('mac_address', $macAddress)->first();
+        return $this->where('mac_address', strtoupper($macAddress))->first();
     }
 
-    public function getDispositivoByMacReal($macReal)
+    public function getDispositivoByMacReal($macAddress)
     {
-        // NUEVO: Para buscar por la MAC física reportada por la ESP32
-        return $this->where('mac_real_esp32', $macReal)->first();
+        return $this->where('mac_real_esp32', strtoupper($macAddress))->first();
     }
 
-    public function getDispositivoByCodigoActivacion($codigoActivacion)
+    public function getDispositivoByCodigoActivacion($codigo)
     {
-        // NUEVO: Para buscar por el código de activación
-        return $this->where('codigo_activacion', $codigoActivacion)->first();
+        return $this->where('codigo_activacion', strtoupper($codigo))->first();
     }
 
     public function getDispositivosActivos()

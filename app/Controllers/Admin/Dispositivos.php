@@ -111,72 +111,45 @@ class Dispositivos extends BaseController
 
     public function registrar()
     {
-        if (!session()->get('logged_in')) {
-            return redirect()->to('/autenticacion/login');
-        }
-
-        $idUsuario = session()->get('id_usuario');
-        $usuario = $this->usuarioModel->find($idUsuario);
-        
-        if (!$usuario) {
-            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
-        }
-
-        // Solo permitir acceso a admin y supervisor
-        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
-            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
-        }
-
-        return view('admin/dispositivos/registrar');
-    }
-
-    public function guardar()
-    {
-        if (!session()->get('logged_in')) {
-            return redirect()->to('/autenticacion/login');
-        }
-
-        $idUsuario = session()->get('id_usuario');
-        $usuario = $this->usuarioModel->find($idUsuario);
-        
-        if (!$usuario) {
-            return redirect()->to('autenticacion/login')->with('error', 'Sesión expirada');
-        }
-
-        // Solo permitir acceso a admin y supervisor
-        if ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3) {
-            return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
-        }
-
-        $rules = [
-            'nombre' => 'required|min_length[3]|max_length[100]',
-            'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]'
-        ];
-
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-        }
-
-        try {
-            $data = [
-                'nombre' => $this->request->getPost('nombre'),
-                'mac_address' => $this->request->getPost('mac_address'),
-                'estado' => 'pendiente',
-                'id_usuario' => $idUsuario
+        if ($this->request->getMethod() === 'post') {
+            $rules = [
+                'nombre' => 'required|min_length[3]|max_length[100]',
+                'mac_address' => 'required|valid_mac_address|is_unique[dispositivos.mac_address]',
             ];
 
-            if ($this->dispositivoModel->insert($data)) {
-                session()->setFlashdata('success', 'Dispositivo registrado exitosamente');
-                return redirect()->to(base_url('admin/dispositivos'));
-            } else {
-                session()->setFlashdata('error', 'Error al registrar el dispositivo');
-                return redirect()->back()->withInput();
+            if ($this->validate($rules)) {
+                $macValidationModel = new \App\Models\MacValidationModel();
+                $dispositivoModel = new \App\Models\DispositivoModel();
+
+                $macAddress = strtoupper($this->request->getPost('mac_address'));
+                
+                // Verificar si la MAC existe en mac_validation
+                if (!$macValidationModel->where('mac_address', $macAddress)->first()) {
+                    return redirect()->back()->with('error', 'La dirección MAC no está autorizada.');
+                }
+
+                $data = [
+                    'nombre' => $this->request->getPost('nombre'),
+                    'mac_address' => $macAddress,
+                    'id_usuario' => session()->get('id_usuario'),
+                    'estado' => 'pendiente'
+                ];
+
+                if ($dispositivoModel->insert($data)) {
+                    // Actualizar el id_usuario en mac_validation
+                    $macValidationModel->actualizarUsuarioMac($macAddress, session()->get('id_usuario'));
+                    
+                    return redirect()->to('admin/dispositivos')
+                        ->with('success', 'Dispositivo registrado correctamente.');
+                }
             }
-        } catch (\Exception $e) {
-            log_message('error', 'Error al guardar dispositivo: ' . $e->getMessage());
-            session()->setFlashdata('error', 'Error al registrar el dispositivo: ' . $e->getMessage());
-            return redirect()->back()->withInput();
+
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
         }
+
+        return view('admin/registrar_dispositivo');
     }
 
     public function activar($id)
