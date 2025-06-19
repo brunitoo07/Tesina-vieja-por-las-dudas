@@ -24,4 +24,12 @@ class Home extends BaseController
     {
         return view('home/manual');
     }
+
+    public function cambiar_idioma($lang)
+    {
+        $session = session();
+        $lang = in_array($lang, ['es', 'en']) ? $lang : 'es';
+        $session->set('locale', $lang);
+        return redirect()->back();
+    }
 }

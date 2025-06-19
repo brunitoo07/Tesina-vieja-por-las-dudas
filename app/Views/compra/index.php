@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar EcoVolt Pro</title>
+    <title><?= lang('App.buy_title') ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://www.paypal.com/sdk/js?client-id=AVc8Jj68sTx6Jv9nb46eoXNfoSgFcAr6C0ZQuogzyFuQ7dDwBPPSnqET1LM3vr1yi0c9tHp4mVuPxZlB&currency=USD"></script>
@@ -53,23 +53,23 @@
 <body>
     <div class="pricing-header">
         <h1 class="display-4">EcoVolt Pro</h1>
-        <p class="lead">Finaliza tu compra de manera segura con PayPal</p>
+        <p class="lead"><?= lang('App.paypal_checkout') ?></p>
     </div>
 
     <div class="container py-5">
         <div class="row">
             <!-- Detalles del Dispositivo -->
             <div class="col-md-6">
-                <h2 class="mb-4">Detalles del Producto</h2>
+                <h2 class="mb-4"><?= lang('App.product_details') ?></h2>
                 <div class="device-card">
                     <img src="<?= base_url('assets/img/eco-monitor-pro.jpg') ?>" alt="EcoVolt Pro" class="device-image">
                     <h3><?= esc($dispositivo['nombre']) ?></h3>
-                    <p class="text-muted"><?= isset($dispositivo['descripcion']) ? esc($dispositivo['descripcion']) : 'Dispositivo de monitoreo de energía' ?></p>
+                    <p class="text-muted"><?= isset($dispositivo['descripcion']) ? esc($dispositivo['descripcion']) : lang('App.energy_monitor_device') ?></p>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Monitoreo en tiempo real</li>
-                        <li><i class="fas fa-check-circle"></i> Análisis detallado de consumo</li>
-                        <li><i class="fas fa-check-circle"></i> Alertas personalizadas</li>
-                        <li><i class="fas fa-check-circle"></i> Compatible con todos los sistemas</li>
+                        <li><i class="fas fa-check-circle"></i> <?= lang('App.real_time_monitoring') ?></li>
+                        <li><i class="fas fa-check-circle"></i> <?= lang('App.detailed_analysis') ?></li>
+                        <li><i class="fas fa-check-circle"></i> <?= lang('App.custom_alerts') ?></li>
+                        <li><i class="fas fa-check-circle"></i> <?= lang('App.compatible_all_systems') ?></li>
                     </ul>
                     <div class="price-tag">$<?= number_format(isset($dispositivo['precio']) ? $dispositivo['precio'] : 99.99, 2) ?></div>
                 </div>
@@ -79,28 +79,28 @@
             <div class="col-md-6">
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h2 class="card-title mb-4">Resumen de Compra</h2>
+                        <h2 class="card-title mb-4"><?= lang('App.purchase_summary') ?></h2>
                         
                         <div class="mb-4">
-                            <h4>Datos de Envío</h4>
-                            <p class="mb-1"><strong>Nombre:</strong> <?= esc($datos_compra['nombre']) ?> <?= esc($datos_compra['apellido']) ?></p>
-                            <p class="mb-1"><strong>Email:</strong> <?= esc($datos_compra['email']) ?></p>
-                            <p class="mb-1"><strong>Dirección:</strong> <?= esc($datos_compra['direccion']) ?></p>
+                            <h4><?= lang('App.shipping_data') ?></h4>
+                            <p class="mb-1"><strong><?= lang('App.name') ?>:</strong> <?= esc($datos_compra['nombre']) ?> <?= esc($datos_compra['apellido']) ?></p>
+                            <p class="mb-1"><strong><?= lang('App.email') ?>:</strong> <?= esc($datos_compra['email']) ?></p>
+                            <p class="mb-1"><strong><?= lang('App.address') ?>:</strong> <?= esc($datos_compra['direccion']) ?></p>
                         </div>
 
                         <hr>
 
                         <div class="d-flex justify-content-between mb-3">
-                            <span>Subtotal:</span>
+                            <span><?= lang('App.subtotal') ?>:</span>
                             <span>$<?= number_format(isset($dispositivo['precio']) ? $dispositivo['precio'] : 99.99, 2) ?></span>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
-                            <span>Envío:</span>
-                            <span>Gratis</span>
+                            <span><?= lang('App.shipping') ?>:</span>
+                            <span><?= lang('App.free') ?></span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between mb-4">
-                            <strong>Total:</strong>
+                            <strong><?= lang('App.total') ?>:</strong>
                             <strong class="price-tag">$<?= number_format(isset($dispositivo['precio']) ? $dispositivo['precio'] : 99.99, 2) ?></strong>
                         </div>
 
@@ -111,7 +111,7 @@
 
                 <div class="text-center mt-4">
                     <p class="text-muted">
-                        <i class="fas fa-lock me-2"></i>Pago 100% seguro con PayPal
+                        <i class="fas fa-lock me-2"></i><?= lang('App.paypal_secure') ?>
                     </p>
                 </div>
             </div>
@@ -169,16 +169,16 @@
                         if (data.success) {
                             document.getElementById("status").innerHTML = `
                                 <div class="alert alert-success" role="alert">
-                                    <h4 class="alert-heading">¡Pago completado con éxito!</h4>
-                                    <p>Gracias por tu compra, ${details.payer.name.given_name} ${details.payer.name.surname}</p>
+                                    <h4 class="alert-heading"><?= lang('App.payment_success') ?></h4>
+                                    <p><?= lang('App.thank_you_purchase') ?>, ${details.payer.name.given_name} ${details.payer.name.surname}</p>
                                     <hr>
-                                    <p class="mb-0">ID de Transacción: ${details.id}</p>
+                                    <p class="mb-0"><?= lang('App.transaction_id') ?>: ${details.id}</p>
                                 </div>`;
                             window.location.href = data.redirect;
                         } else {
                             document.getElementById("status").innerHTML = `
                                 <div class="alert alert-danger" role="alert">
-                                    <h4 class="alert-heading">Error en el proceso</h4>
+                                    <h4 class="alert-heading"><?= lang('App.payment_error') ?></h4>
                                     <p>${data.message}</p>
                                 </div>`;
                         }
@@ -186,8 +186,8 @@
                     .catch(error => {
                         document.getElementById("status").innerHTML = `
                             <div class="alert alert-danger" role="alert">
-                                <h4 class="alert-heading">Error en el proceso</h4>
-                                <p>Ha ocurrido un error al procesar el pago. Por favor, inténtalo de nuevo.</p>
+                                <h4 class="alert-heading"><?= lang('App.payment_error') ?></h4>
+                                <p><?= lang('App.payment_error_retry') ?></p>
                             </div>`;
                     });
                 });
@@ -196,7 +196,7 @@
             onError: function(err) {
                 document.getElementById("status").innerHTML = `
                     <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Error en el pago</h4>
+                        <h4 class="alert-heading"><?= lang('App.payment_error') ?></h4>
                         <p>Lo sentimos, ha ocurrido un error durante el proceso de pago. Por favor, inténtalo de nuevo.</p>
                     </div>`;
             },
@@ -204,8 +204,8 @@
             onCancel: function(data) {
                 document.getElementById("status").innerHTML = `
                     <div class="alert alert-warning" role="alert">
-                        <h4 class="alert-heading">Pago cancelado</h4>
-                        <p>Has cancelado el proceso de pago. Puedes intentarlo nuevamente cuando lo desees.</p>
+                        <h4 class="alert-heading"><?= lang('App.payment_cancelled') ?></h4>
+                        <p><?= lang('App.payment_cancelled_msg') ?></p>
                     </div>`;
             }
         }).render('#paypal-button-container');

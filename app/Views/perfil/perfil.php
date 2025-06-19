@@ -66,9 +66,56 @@
         .btn:hover {
             background: #0056b3;
         }
+
+        [data-theme="dark"] body {
+            background: #181a1b !important;
+            color: #f1f1f1 !important;
+        }
+        [data-theme="dark"] .profile-container {
+            background: #23272b !important;
+            color: #f1f1f1 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+        }
+        [data-theme="dark"] .btn {
+            background: #222e3c !important;
+            color: #fff !important;
+            border: 1px solid #4a90e2 !important;
+        }
+        [data-theme="dark"] .btn:hover {
+            background: #4a90e2 !important;
+            color: #fff !important;
+        }
+        [data-theme="dark"] .theme-switch {
+            background: #23272b !important;
+            color: #ffd700 !important;
+        }
     </style>
+    <script>
+        // Script para modo claro/oscuro
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let theme = localStorage.getItem('theme');
+            if (!theme) {
+                theme = prefersDark ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+            if(themeSwitch) themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            if(themeSwitch) themeSwitch.onclick = function() {
+                theme = (theme === 'dark') ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            };
+        });
+    </script>
 </head>
 <body>
+    <!-- Theme Switch -->
+    <div class="theme-switch" id="themeSwitch" title="Modo claro/oscuro" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <i class="fas fa-moon"></i>
+    </div>
     <div class="profile-container">
         <h1>Perfil del Usuario</h1>
         <p><strong>Nombre:</strong> <?= htmlspecialchars($nombre); ?></p>

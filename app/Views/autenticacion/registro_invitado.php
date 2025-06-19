@@ -4,7 +4,7 @@
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
-        <h2 class="card-title text-center mb-4">Completar Registro</h2>
+        <h2 class="card-title text-center mb-4"><?= lang('App.complete_registration') ?></h2>
 
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
@@ -26,33 +26,33 @@
             <input type="hidden" name="token_invitacion" value="<?= esc($token_invitacion) ?>">
 
             <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
+                <label for="email" class="form-label"><?= lang('App.email') ?></label>
                 <input type="email" class="form-control" id="email" value="<?= esc($email) ?>" readonly disabled>
-                <small class="form-text text-muted">Este es el correo al que se envió la invitación.</small>
+                <small class="form-text text-muted"><?= lang('App.invitation_email_hint') ?></small>
             </div>
 
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
+                <label for="nombre" class="form-label"><?= lang('App.name') ?></label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="<?= old('nombre') ?>" required>
             </div>
 
             <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
+                <label for="apellido" class="form-label"><?= lang('App.lastname') ?></label>
                 <input type="text" class="form-control" id="apellido" name="apellido" value="<?= old('apellido') ?>" required>
             </div>
 
             <div class="mb-3">
-                <label for="contrasena" class="form-label">Contraseña</label>
+                <label for="contrasena" class="form-label"><?= lang('App.password') ?></label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="bi bi-eye"></i> </button>
                 </div>
-                <small class="form-text text-muted">Mínimo 6 caracteres, 1 mayúscula, 1 símbolo (!@#$%)</small>
+                <small class="form-text text-muted"><?= lang('App.password_hint') ?></small>
             </div>
 
             <div class="mb-3">
-                <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
+                <label for="confirmar_contrasena" class="form-label"><?= lang('App.confirm_password') ?></label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
                     <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
@@ -60,7 +60,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            <button type="submit" class="btn btn-primary w-100"><?= lang('App.register_btn') ?></button>
         </form>
     </div>
 </div>

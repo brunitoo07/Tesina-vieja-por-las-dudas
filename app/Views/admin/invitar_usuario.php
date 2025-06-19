@@ -5,7 +5,7 @@
     <?php if (isset($isAdmin) && $isAdmin): ?>
         <div class="card">
             <div class="card-header">
-                <h2>Invitar Usuario</h2>
+                <h2><?= lang('App.invite_user_title') ?></h2>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('success')) : ?>
@@ -23,26 +23,26 @@
                     <?= csrf_field() ?>
                     
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email del usuario a invitar</label>
+                        <label for="email" class="form-label"><?= lang('App.invite_user_email') ?></label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= old('email') ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_rol" class="form-label">Rol</label>
+                        <label for="id_rol" class="form-label"><?= lang('App.role') ?></label>
                         <select class="form-select" id="id_rol" name="id_rol" required>
-                            <option value="">Seleccione un rol</option>
-                            <option value="2" <?= (old('id_rol') == '2') ? 'selected' : '' ?>>Usuario</option>
-                            </select>
+                            <option value=""><?= lang('App.select_role') ?></option>
+                            <option value="2" <?= (old('id_rol') == '2') ? 'selected' : '' ?>><?= lang('App.user') ?></option>
+                        </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Enviar Invitación</button>
+                    <button type="submit" class="btn btn-primary"><?= lang('App.send_invitation') ?></button>
                 </form>
             </div>
         </div>
     <?php else: ?>
         <div class="card">
             <div class="card-header">
-                <h2>Completar Registro</h2>
+                <h2><?= lang('App.complete_registration') ?></h2>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('error')): ?> <div class="alert alert-danger">
@@ -60,28 +60,28 @@
                     <input type="hidden" name="token" value="<?= esc($token) ?>">
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label"><?= lang('App.name') ?></label>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="<?= old('nombre') ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
+                        <label for="apellido" class="form-label"><?= lang('App.lastname') ?></label>
                         <input type="text" class="form-control" id="apellido" name="apellido" value="<?= old('apellido') ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <label for="contrasena" class="form-label"><?= lang('App.password') ?></label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                 <i class="bi bi-eye"></i>
                             </button>
                         </div>
-                        <small class="form-text text-muted">Mínimo 6 caracteres, 1 mayúscula, 1 símbolo (!@#$%)</small>
+                        <small class="form-text text-muted"><?= lang('App.password_hint') ?></small>
                     </div>
 
                     <div class="mb-3">
-                        <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
+                        <label for="confirmar_contrasena" class="form-label"><?= lang('App.confirm_password') ?></label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
                             <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Completar Registro</button>
+                    <button type="submit" class="btn btn-primary"><?= lang('App.complete_registration_btn') ?></button>
                 </form>
             </div>
         </div>

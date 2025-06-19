@@ -168,3 +168,5 @@ $routes->get('energia/exportar', 'Energia::exportar');
 $routes->post('energia/recibirNuevosDatos', 'Energia::recibirNuevosDatos');
 $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
+
+$routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');

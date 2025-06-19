@@ -68,8 +68,32 @@
             background-color: #d9534f;
         }
     </style>
+    <script>
+        // Script para modo claro/oscuro
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let theme = localStorage.getItem('theme');
+            if (!theme) {
+                theme = prefersDark ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+            if(themeSwitch) themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            if(themeSwitch) themeSwitch.onclick = function() {
+                theme = (theme === 'dark') ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            };
+        });
+    </script>
 </head>
 <body>
+    <!-- Theme Switch -->
+    <div class="theme-switch" id="themeSwitch" title="Modo claro/oscuro">
+        <i class="fas fa-moon"></i>
+    </div>
     <!-- Barra de navegación con menú desplegable -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">Medidor de Energía</a>

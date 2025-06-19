@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://192.168.2.176/Tesina/public/';
+    public string $baseURL = 'http://192.168.2.178/Tesina/public/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -95,7 +95,7 @@ class App extends BaseConfig
      * strings (like currency markers, numbers, etc), that your program
      * should run under for this request.
      */
-    public string $defaultLocale = 'en';
+    public string $defaultLocale = 'es';
 
     /**
      * --------------------------------------------------------------------------
@@ -122,7 +122,7 @@ class App extends BaseConfig
      *
      * @var list<string>
      */
-    public array $supportedLocales = ['en'];
+    public array $supportedLocales = ['es', 'en'];
 
     /**
      * --------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva Contraseña - EcoVolt</title>
+    <title><?= lang('App.new_password_title') ?> - EcoVolt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -57,35 +57,35 @@
             <form action="<?= base_url('actualizar-contrasena') ?>" method="post" id="formCambioContrasena">
                 <?= csrf_field() ?>
                 <div class="mb-3">
-                    <label for="codigo" class="form-label">Código de Verificación</label>
+                    <label for="codigo" class="form-label"><?= lang('App.verification_code') ?></label>
                     <input type="text" class="form-control" id="codigo" name="codigo" required 
                            value="<?= old('codigo') ?>">
-                    <small class="text-muted">Ingresa el código que recibiste por correo electrónico.</small>
+                    <small class="text-muted"><?= lang('App.enter_code_email') ?></small>
                 </div>
 
                 <div class="mb-3 password-input">
-                    <label for="nueva_contrasena" class="form-label">Nueva Contraseña</label>
+                    <label for="nueva_contrasena" class="form-label"><?= lang('App.new_password') ?></label>
                     <input type="password" class="form-control" id="nueva_contrasena" name="nueva_contrasena" required>
                     <i class="fas fa-eye password-toggle" onclick="togglePassword('nueva_contrasena')"></i>
-                    <small class="text-muted">La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%).</small>
+                    <small class="text-muted"><?= lang('App.password_hint') ?></small>
                 </div>
 
                 <div class="mb-3 password-input">
-                    <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
+                    <label for="confirmar_contrasena" class="form-label"><?= lang('App.confirm_password') ?></label>
                     <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
                     <i class="fas fa-eye password-toggle" onclick="togglePassword('confirmar_contrasena')"></i>
                 </div>
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-key me-2"></i>Cambiar Contraseña
+                        <i class="fas fa-key me-2"></i><?= lang('App.change_password_btn') ?>
                     </button>
                 </div>
             </form>
 
             <div class="mt-3 text-center">
                 <a href="<?= base_url('autenticacion/login') ?>" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left me-2"></i>Volver al Login
+                    <i class="fas fa-arrow-left me-2"></i><?= lang('App.back_login') ?>
                 </a>
             </div>
         </div>

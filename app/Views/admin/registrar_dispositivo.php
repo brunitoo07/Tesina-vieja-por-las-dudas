@@ -7,7 +7,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="card-title mb-0">Registrar Nuevo Dispositivo</h3>
+                    <h3 class="card-title mb-0"><?= lang('App.register_new_device') ?></h3>
+                    
                 </div>
                 <div class="card-body">
                     <?php if (session()->getFlashdata('error')) : ?>
@@ -20,22 +21,22 @@
                         <?= csrf_field() ?>
                         
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre del Dispositivo</label>
+                            <label for="nombre" class="form-label"><?= lang('App.device_name') ?></label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
+                            <label for="descripcion" class="form-label"><?= lang('App.description') ?></label>
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="stock" class="form-label">Stock Inicial</label>
+                            <label for="stock" class="form-label"><?= lang('App.initial_stock') ?></label>
                             <input type="number" class="form-control" id="stock" name="stock" min="0" value="0" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
+                            <label for="precio" class="form-label"><?= lang('App.price') ?></label>
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
                                 <input type="number" class="form-control" id="precio" name="precio" min="0" step="0.01" required>
@@ -49,18 +50,18 @@
                                        pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" 
                                        placeholder="XX:XX:XX:XX:XX:XX" required>
                                 <button type="button" class="btn btn-outline-secondary" onclick="generarMAC()">
-                                    <i class="fas fa-random"></i> Generar
+                                    <i class="fas fa-random"></i> <?= lang('App.generate') ?>
                                 </button>
                             </div>
-                            <small class="form-text text-muted">Formato: XX:XX:XX:XX:XX:XX (donde X es un número hexadecimal)</small>
+                            <small class="form-text text-muted"><?= lang('App.mac_format') ?></small>
                         </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Registrar Dispositivo
+                                <i class="fas fa-save"></i> <?= lang('App.register_device') ?>
                             </button>
                             <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Volver
+                                <i class="fas fa-arrow-left"></i> <?= lang('App.back') ?>
                             </a>
                         </div>
                     </form>
@@ -92,7 +93,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     
     if (!macRegex.test(mac)) {
         e.preventDefault();
-        alert('Por favor, ingrese una dirección MAC válida en el formato XX:XX:XX:XX:XX:XX');
+        alert('<?= lang('App.enter_valid_mac') ?>');
     }
 });
 </script>

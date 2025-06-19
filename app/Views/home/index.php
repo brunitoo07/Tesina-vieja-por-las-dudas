@@ -22,7 +22,96 @@
             --secondary-color: #50e3c2;
             --accent-color: #ff6b6b;
             --dark-color: #1a1a1a;
-            --light-color: #2d2d2d;
+            --light-color: #23272b;
+            background: #181a1b !important;
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] body {
+            background: #181a1b !important;
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] .container,
+        [data-theme="dark"] .section,
+        [data-theme="dark"] .order-details,
+        [data-theme="dark"] .card,
+        [data-theme="dark"] .feature-card,
+        [data-theme="dark"] .pricing-card {
+            background: #23272b !important;
+            color: #f1f1f1 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+        }
+
+        [data-theme="dark"] .navbar,
+        [data-theme="dark"] .navbar.scrolled {
+            background: #181a1b !important;
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] .btn-primary,
+        [data-theme="dark"] .btn-outline-light {
+            background: #222e3c !important;
+            color: #fff !important;
+            border: 1px solid #4a90e2 !important;
+        }
+
+        [data-theme="dark"] .btn-primary:hover,
+        [data-theme="dark"] .btn-outline-light:hover {
+            background: #4a90e2 !important;
+            color: #fff !important;
+        }
+
+        [data-theme="dark"] .form-control,
+        [data-theme="dark"] input,
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select {
+            background: #23272b !important;
+            color: #f1f1f1 !important;
+            border-color: #4a90e2 !important;
+        }
+
+        [data-theme="dark"] .form-control:focus {
+            background: #23272b !important;
+            color: #fff !important;
+            border-color: #50e3c2 !important;
+            box-shadow: 0 0 0 2px #4a90e2 !important;
+        }
+
+        [data-theme="dark"] .card-body,
+        [data-theme="dark"] .card-header {
+            background: #23272b !important;
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: #23272b !important;
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] .dropdown-item {
+            color: #f1f1f1 !important;
+        }
+
+        [data-theme="dark"] .dropdown-item:hover {
+            background: #4a90e2 !important;
+            color: #fff !important;
+        }
+
+        [data-theme="dark"] .alert {
+            background: #23272b !important;
+            color: #ffd700 !important;
+            border-color: #4a90e2 !important;
+        }
+
+        [data-theme="dark"] .success-header {
+            background: linear-gradient(135deg, #23272b 0%, #181a1b 100%) !important;
+            color: #ffd700 !important;
+        }
+
+        [data-theme="dark"] .theme-switch {
+            background: #23272b !important;
+            color: #ffd700 !important;
         }
 
         body {
@@ -31,18 +120,25 @@
         }
 
         .theme-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
+            position: fixed !important;
+            top: 20px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
+            background: rgba(44,62,80,0.95);
+            color: #fff;
+            padding: 14px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all var(--transition-speed);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
-
         .theme-switch:hover {
+            background: #222;
+            color: #ffd700;
             transform: scale(1.1);
         }
 
@@ -340,10 +436,38 @@
             }
         }
     </style>
+    <script>
+        // Script para modo claro/oscuro
+        document.addEventListener('DOMContentLoaded', function() {
+            let themeSwitch = document.getElementById('themeSwitch');
+            if (!themeSwitch) {
+                themeSwitch = document.createElement('div');
+                themeSwitch.className = 'theme-switch';
+                themeSwitch.id = 'themeSwitch';
+                themeSwitch.title = 'Modo claro/oscuro';
+                themeSwitch.innerHTML = '<i class="fas fa-moon"></i>';
+                document.body.appendChild(themeSwitch);
+            }
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let theme = localStorage.getItem('theme');
+            if (!theme) {
+                theme = prefersDark ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+            themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            themeSwitch.onclick = function() {
+                theme = (theme === 'dark') ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                themeSwitch.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            };
+        });
+    </script>
 </head>
 <body>
     <!-- Theme Switch -->
-    <div class="theme-switch" id="themeSwitch">
+    <div class="theme-switch" id="themeSwitch" title="Modo claro/oscuro">
         <i class="fas fa-moon"></i>
     </div>
 
@@ -357,22 +481,40 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#quienes-somos">Quiénes Somos</a>
+                        <a class="nav-link" href="#quienes-somos"><?= lang('App.quienes_somos') ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#proyecto">Nuestro Proyecto</a>
+                        <a class="nav-link" href="#proyecto"><?= lang('App.nuestro_proyecto') ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#por-que">Por qué lo hicimos</a>
+                        <a class="nav-link" href="#por-que"><?= lang('App.por_que') ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#manual">Manual</a>
+                        <a class="nav-link" href="#manual"><?= lang('App.manual') ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#comprar">Comprar</a>
+                        <a class="nav-link" href="#comprar"><?= lang('App.comprar') ?></a>
+                    </li>
+                    <?php $idioma = service('request')->getLocale(); ?>
+                    <li class="nav-item dropdown ms-2">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="idiomaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?= base_url('imagenes/' . ($idioma === 'en' ? 'en' : 'es') . '.png') ?>" alt="Idioma" style="width:24px;">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="idiomaDropdown">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('cambiar-idioma/es') ?>">
+                                    <img src="<?= base_url('imagenes/es.png') ?>" alt="Español" style="width:24px;" class="me-2"> Español
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('cambiar-idioma/en') ?>">
+                                    <img src="<?= base_url('imagenes/en.png') ?>" alt="English" style="width:24px;" class="me-2"> English
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-light" href="<?php echo base_url('autenticacion/login'); ?>">Iniciar Sesión</a>
+                        <a class="btn btn-outline-light" href="<?php echo base_url('autenticacion/login'); ?>"><?= lang('App.iniciar_sesion') ?></a>
                     </li>
                 </ul>
             </div>
@@ -388,9 +530,9 @@
             <div class="shape"></div>
         </div>
         <div class="container text-center hero-content" data-aos="fade-up">
-            <h1 class="display-4 fw-bold mb-4">Monitoreo Inteligente de Energía</h1>
-            <p class="lead mb-5">Controla y optimiza el consumo de energía en tu hogar con nuestra solución innovadora</p>
-            <a href="#comprar" class="btn btn-primary btn-lg">Comprar Ahora</a>
+            <h1 class="display-4 fw-bold mb-4"><?= lang('App.monitoreo_inteligente') ?></h1>
+            <p class="lead mb-5"><?= lang('App.controla_optimiza') ?></p>
+            <a href="#comprar" class="btn btn-primary btn-lg"><?= lang('App.comprar_ahora') ?></a>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down fa-2x"></i>
@@ -400,7 +542,7 @@
     <!-- Quiénes Somos -->
     <section id="quienes-somos" class="section">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Quiénes Somos</h2>
+            <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.quienes_somos') ?></h2>
             <div class="row align-items-center">
                 <div class="col-md-6" data-aos="fade-right">
                     <p class="lead">Somos un equipo apasionado por la tecnología y la sostenibilidad, comprometidos con el desarrollo de soluciones innovadoras para el monitoreo y control del consumo de energía.</p>
@@ -416,7 +558,7 @@
     <!-- Nuestro Proyecto -->
     <section id="proyecto" class="section bg-light">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Nuestro Proyecto</h2>
+            <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.nuestro_proyecto') ?></h2>
             <div class="row">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card feature-card mb-4">
@@ -455,7 +597,7 @@
     <!-- Por qué lo hicimos -->
     <section id="por-que" class="section">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Por qué lo hicimos</h2>
+            <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.por_que') ?></h2>
             <div class="row">
                 <div class="col-md-6" data-aos="fade-right">
                     <div class="card feature-card h-100">
@@ -487,19 +629,19 @@
     <!-- Manual -->
     <section id="manual" class="section bg-light">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Manual de Usuario</h2>
+            <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.manual_usuario') ?></h2>
             <div class="row align-items-center">
                 <div class="col-md-6" data-aos="fade-right">
                     <div class="card feature-card h-100">
                         <div class="card-overlay"></div>
                         <div class="card-body">
-                            <h3 class="mb-4">Primeros Pasos</h3>
+                            <h3 class="mb-4"><?= lang('App.primeros_pasos') ?></h3>
                             <ol class="mb-4">
-                                <li class="mb-2">Registro de cuenta</li>
-                                <li class="mb-2">Configuración del dispositivo</li>
-                                <li class="mb-2">Asignación de roles</li>
+                                <li class="mb-2"><?= lang('App.registro_cuenta') ?></li>
+                                <li class="mb-2"><?= lang('App.configuracion_dispositivo') ?></li>
+                                <li class="mb-2"><?= lang('App.asignacion_roles') ?></li>
                             </ol>
-                            <a href="home/manual" class="btn btn-primary">Ver Manual Completo</a>
+                            <a href="home/manual" class="btn btn-primary"><?= lang('App.ver_manual') ?></a>
                         </div>
                     </div>
                 </div>
@@ -513,21 +655,21 @@
     <!-- Comprar -->
     <section id="comprar" class="section">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Adquiere Nuestro Proyecto</h2>
+            <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.adquiere_proyecto') ?></h2>
             <div class="row justify-content-center">
                 <div class="col-md-6" data-aos="zoom-in">
                     <div class="card pricing-card">
                         <div class="card-body text-center">
-                            <h3 class="mb-4">Plan Premium</h3>
+                            <h3 class="mb-4"><?= lang('App.plan_premium') ?></h3>
                             <p class="price mb-4">$99.99</p>
                             <ul class="list-unstyled mb-4">
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Monitoreo ilimitado</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Soporte prioritario</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Actualizaciones gratuitas</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Acceso como administrador</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.monitoreo_ilimitado') ?></li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.soporte_prioritario') ?></li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.actualizaciones_gratis') ?></li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.acceso_admin') ?></li>
                             </ul>
                             <a href="<?= base_url('registro-compra') ?>" class="btn btn-primary btn-lg">
-                                <i class="fas fa-credit-card me-2"></i> Comprar Ahora
+                                <i class="fas fa-credit-card me-2"></i> <?= lang('App.comprar_ahora_btn') ?>
                             </a>
                         </div>
                     </div>
