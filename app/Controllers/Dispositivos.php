@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Controlador para la gestión global de dispositivos.
+ * Usado por administradores y supervisores para ver, activar, desactivar o eliminar cualquier dispositivo.
+ * NO es para usuarios comunes.
+ */
 namespace App\Controllers;
 
 use App\Controllers\BaseController;

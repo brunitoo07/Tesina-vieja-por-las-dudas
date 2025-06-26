@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Controlador para la gestión de dispositivos del usuario común.
+* Permite ver, buscar, configurar y eliminar los dispositivos propios.
+* NO es para administración global.
+*/      
 namespace App\Controllers;
 
 use App\Controllers\BaseController;

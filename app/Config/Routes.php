@@ -61,17 +61,6 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
 
-    // Rutas para el medidor de energía
-    $routes->get('energy', 'EnergyController::index');
-    $routes->get('energy/setup', 'EnergyController::setup');
-    $routes->post('energy/save-config', 'EnergyController::saveConfig');
-    $routes->post('energy/nuevos_datos', 'EnergyController::nuevos_datos');
-    $routes->get('energy/ultimos_datos', 'EnergyController::getLatestData');
-    $routes->get('energy/datos_dispositivo/(:segment)', 'EnergyController::getDeviceData/$1');
-    $routes->get('energy/dispositivo/ver/(:segment)', 'EnergyController::verDetalles/$1');
-    $routes->get('energy/get-mac', 'EnergyController::getMacAddress');
-    $routes->get('energy/scan-wifi', 'EnergyController::scanWifiNetworks');
-
     // Rutas para el perfil de usuario
     $routes->get('usuario/perfil', 'Usuario::perfil');
     $routes->post('usuario/actualizar-perfil', 'Usuario::actualizarPerfil');
@@ -142,13 +131,6 @@ $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
 $routes->match(['get', 'post'], '/nuevos_datos', 'Energia::recibirNuevosDatos');
-
-// Rutas de API para dispositivos
-$routes->group('api/dispositivo', ['namespace' => 'App\Controllers\Api'], function($routes) {
-    $routes->get('buscar', 'Dispositivo::buscar');
-    $routes->get('redes', 'Dispositivo::redes');
-    $routes->post('configurar', 'Dispositivo::configurar');
-});
 
 // Rutas para dispositivos
 $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
