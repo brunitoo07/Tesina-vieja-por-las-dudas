@@ -120,7 +120,7 @@ class Dispositivos extends BaseController
             'nombre' => $this->request->getPost('nombre'),
             'mac_address' => $macAddress,
             'id_usuario' => $idUsuario,
-            'estado' => 'pendiente',
+            'estado' => 'activo',
             'created_at' => date('Y-m-d H:i:s')
         ];
 

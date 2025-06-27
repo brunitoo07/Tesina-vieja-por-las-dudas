@@ -38,6 +38,8 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>MAC Address</th>
+                            <th>Admin Dueño</th>
+                            <th>Usuarios Invitados</th>
                             <th>Estado</th>
                             <th>Última Actualización</th>
                             <th>Acciones</th>
@@ -46,7 +48,7 @@
                     <tbody>
                         <?php if (empty($dispositivos)): ?>
                             <tr>
-                                <td colspan="6" class="text-center">No hay dispositivos registrados</td>
+                                <td colspan="8" class="text-center">No hay dispositivos registrados</td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($dispositivos as $dispositivo): ?>
@@ -54,6 +56,19 @@
                                     <td><?= $dispositivo['id_dispositivo'] ?></td>
                                     <td><?= esc($dispositivo['nombre']) ?></td>
                                     <td><?= esc($dispositivo['mac_address']) ?></td>
+                                    <td>
+                                        <?= esc($dispositivo['nombre_admin'] ?? '-') ?><br>
+                                        <small><?= esc($dispositivo['email_admin'] ?? '-') ?></small>
+                                    </td>
+                                    <td>
+                                        <?php if (!empty($dispositivo['usuarios_invitados'])): ?>
+                                            <?php foreach ($dispositivo['usuarios_invitados'] as $u): ?>
+                                                <span><?= esc($u['nombre'] . ' ' . $u['apellido']) ?> (<?= esc($u['email']) ?>)</span><br>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <span>-</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <?php
                                         $estadoClass = '';

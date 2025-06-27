@@ -36,10 +36,31 @@ class Dispositivos extends BaseController
             return redirect()->to('dashboard')->with('error', 'No tienes permiso para acceder a esta sección');
         }
 
-        // Obtener todos los dispositivos del admin
-        $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)
-                                             ->orderBy('created_at', 'DESC')
-                                             ->findAll();
+        if ($usuario['id_rol'] == 3) {
+            // Supervisor: ver todos los dispositivos, con info del usuario dueño y admin que lo invitó
+            $db = \Config\Database::connect();
+            $builder = $db->table('dispositivos d');
+            $builder->select('d.*, a.nombre as nombre_admin, a.email as email_admin');
+            $builder->join('usuario a', 'a.id_usuario = d.id_usuario');
+            $builder->orderBy('d.created_at', 'DESC');
+            $dispositivos = $builder->get()->getResultArray();
+
+            // Para cada dispositivo, obtener los usuarios invitados por el admin dueño
+            foreach ($dispositivos as &$disp) {
+                $usuariosInvitados = $db->table('usuario')
+                    ->select('nombre, apellido, email')
+                    ->where('invitado_por', $disp['id_usuario'])
+                    ->get()->getResultArray();
+                $disp['usuarios_invitados'] = $usuariosInvitados;
+            }
+            unset($disp);
+        } else {
+            // Admin: solo ve sus dispositivos
+            $dispositivos = $this->dispositivoModel
+                ->where('id_usuario', $idUsuario)
+                ->orderBy('created_at', 'DESC')
+                ->findAll();
+        }
 
         $data = [
             'dispositivos' => $dispositivos,
@@ -75,82 +96,9 @@ class Dispositivos extends BaseController
         return view('admin/dispositivos/buscar', $data);
     }
 
-    public function scanWifiNetworks()
-    {
-        if (!session()->get('logged_in')) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'No autorizado'
-            ]);
-        }
-
-        try {
-            // Buscar dispositivos en la base de datos
-            $dispositivos = $this->dispositivoModel->where('estado', 'activo')->findAll();
-            
-            if (empty($dispositivos)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => 'No se encontraron dispositivos. Asegúrate de que el ESP32 esté en la misma red que el servidor (192.168.2.xxx)'
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => 'success',
-                'networks' => $dispositivos
-            ]);
-
-        } catch (\Exception $e) {
-            log_message('error', 'Error al escanear redes: ' . $e->getMessage());
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Error al buscar dispositivos: ' . $e->getMessage()
-            ]);
-        }
-    }
-
     public function registrar()
     {
-        if ($this->request->getMethod() === 'post') {
-            $rules = [
-                'nombre' => 'required|min_length[3]|max_length[100]',
-                'mac_address' => 'required|valid_mac_address|is_unique[dispositivos.mac_address]',
-            ];
-
-            if ($this->validate($rules)) {
-                $macValidationModel = new \App\Models\MacValidationModel();
-                $dispositivoModel = new \App\Models\DispositivoModel();
-
-                $macAddress = strtoupper($this->request->getPost('mac_address'));
-                
-                // Verificar si la MAC está autorizada
-                $macInfo = $macValidationModel->where('mac_address', $macAddress)
-                                            ->where('es_valida', 1)
-                                            ->first();
-
-                if (!$macInfo) {
-                    return redirect()->back()->with('error', 'La dirección MAC no está autorizada.');
-                }
-
-                $data = [
-                    'nombre' => $this->request->getPost('nombre'),
-                    'mac_address' => $macAddress,
-                    'id_usuario' => session()->get('id_usuario'),
-                    'estado' => 'pendiente'
-                ];
-
-                if ($dispositivoModel->insert($data)) {
-                    return redirect()->to('admin/dispositivos')
-                        ->with('success', 'Dispositivo registrado correctamente.');
-                }
-            }
-
-            return redirect()->back()
-                ->withInput()
-                ->with('errors', $this->validator->getErrors());
-        }
-
-        return view('admin/registrar_dispositivo');
+        // ... existing code ...
     }
 
     public function activar($id)

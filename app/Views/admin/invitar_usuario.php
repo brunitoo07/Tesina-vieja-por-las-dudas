@@ -5,7 +5,7 @@
     <?php if (isset($isAdmin) && $isAdmin): ?>
         <div class="card">
             <div class="card-header">
-                <h2><?= lang('App.invite_user_title') ?></h2>
+                <h2>Invitar Usuario</h2>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('success')) : ?>
@@ -23,12 +23,12 @@
                     <?= csrf_field() ?>
                     
                     <div class="mb-3">
-                        <label for="email" class="form-label"><?= lang('App.invite_user_email') ?></label>
+                        <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= old('email') ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_rol" class="form-label"><?= lang('App.role') ?></label>
+                        <label for="id_rol" class="form-label">Rol</label>
                         <select class="form-select" id="id_rol" name="id_rol" required>
                             <option value=""><?= lang('App.select_role') ?></option>
                             <option value="2" <?= (old('id_rol') == '2') ? 'selected' : '' ?>><?= lang('App.user') ?></option>

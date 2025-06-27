@@ -68,14 +68,14 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h4 class="mb-0"><?= lang('App.energy') ?></h4>
-                            <p class="mb-0"><?= lang('App.monitor_consumption') ?></p>
+                            <h4 class="mb-0">Energía</h4>
+                            <p class="mb-0">Monitorea el consumo de tus dispositivos.</p>
                         </div>
                         <i class="fas fa-bolt fa-2x"></i>
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<?= base_url('energia') ?>"><?= lang('App.view_details') ?></a>
+                    <a class="small text-white stretched-link" href="<?= base_url('admin/dispositivos') ?>">Ver Dispositivos</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -108,8 +108,8 @@
                             </a>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <a href="<?= base_url('energia') ?>" class="btn btn-danger w-100">
-                                <i class="fas fa-chart-line me-1"></i> <?= lang('App.view_consumption') ?>
+                            <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-danger w-100">
+                                <i class="fas fa-chart-line me-1"></i> Ver Dispositivos
                             </a>
                         </div>
                     </div>

@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?= strpos(current_url(), 'energia') !== false ? 'active' : '' ?>" href="<?= base_url('energia') ?>">
+                            <a class="nav-link <?= strpos(current_url(), 'admin/dispositivos') !== false ? 'active' : '' ?>" href="<?= base_url('admin/dispositivos') ?>">
                                 <i class="fas fa-bolt"></i> Energía
                             </a>
                         </li>

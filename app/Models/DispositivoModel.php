@@ -13,13 +13,13 @@ class DispositivoModel extends Model
     protected $allowedFields = [
         'id_usuario',
         'nombre',
-        'mac_address',       // MAC Simulada
-        'mac_real_esp32',    // NUEVO: MAC Física de la ESP32
-        'codigo_activacion', // NUEVO: Código para vincular ESP32
+        'mac_address',    // Dirección MAC real del ESP32
+        'mac_real_esp32', // (si no se usa, considerar eliminar en el futuro)
+        'codigo_activacion',
         'stock',
         'precio',
         'descripcion',
-        'estado',            // Ahora incluirá 'pendiente_configuracion'
+        'estado',
         'created_at',
         'updated_at',
         'ultima_lectura'
@@ -42,7 +42,7 @@ class DispositivoModel extends Model
         'stock' => 'permit_empty|numeric|greater_than_equal_to[0]',
         'precio' => 'permit_empty|numeric|greater_than_equal_to[0]',
         'descripcion' => 'permit_empty|max_length[255]',
-        'estado' => 'required|in_list[pendiente,activo,inactivo,pendiente_configuracion]'
+        'estado' => 'required|in_list[activo,inactivo]'
     ];
 
     protected $validationMessages = [
@@ -87,7 +87,7 @@ class DispositivoModel extends Model
         ],
         'estado' => [
             'required' => 'El estado es requerido',
-            'in_list' => 'El estado debe ser pendiente, activo, inactivo o pendiente_configuracion'
+            'in_list' => 'El estado debe ser activo o inactivo'
         ]
     ];
 

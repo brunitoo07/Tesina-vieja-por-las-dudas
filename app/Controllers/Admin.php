@@ -444,7 +444,7 @@ class Admin extends BaseController
             'stock'             => $stock,
             'precio'            => $precio,
             'descripcion'       => $descripcion,
-            'estado'            => 'pendiente_configuracion', // Nuevo estado
+            'estado'            => 'activo',
         ];
 
         if ($this->dispositivoModel->insert($data)) {

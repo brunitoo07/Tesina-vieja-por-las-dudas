@@ -66,9 +66,6 @@ class RegistroCompra extends BaseController
             return redirect()->back()->with('error', 'El dispositivo seleccionado no existe.');
         }
 
-        // Generar token de activación
-        $token = bin2hex(random_bytes(32));
-
         // Crear usuario (rol admin, estado pendiente)
         $usuarioData = [
             'nombre' => $nombre,
@@ -77,7 +74,6 @@ class RegistroCompra extends BaseController
             'contrasena' => $contrasena,
             'id_rol' => 1, // admin
             'estado' => 'pendiente',
-            'token_activacion' => $token
         ];
 
         log_message('debug', 'Creando usuario con datos: ' . json_encode([
@@ -116,7 +112,6 @@ class RegistroCompra extends BaseController
         session()->set('datos_compra', $datosCompra);
         session()->set('id_usuario_registro', $idUsuario);
         session()->set('id_dispositivo', $id_dispositivo);
-        session()->set('token_activacion', $token);
 
         log_message('debug', 'Datos guardados en sesión: ' . json_encode([
             'id_usuario' => $idUsuario,
@@ -131,12 +126,11 @@ class RegistroCompra extends BaseController
     public function pagoExitoso()
     {
         $idUsuario = session()->get('id_usuario_registro');
-        $token = session()->get('token_activacion');
         $idDispositivo = session()->get('id_dispositivo');
 
         log_message('debug', 'Procesando pago exitoso para usuario: ' . $idUsuario);
 
-        if (!$idUsuario || !$token || !$idDispositivo) {
+        if (!$idUsuario || !$idDispositivo) {
             log_message('debug', 'Sesión expirada o datos faltantes');
             return redirect()->to(base_url('registro-compra'))->with('error', 'Sesión expirada. Intenta de nuevo.');
         }
@@ -155,14 +149,6 @@ class RegistroCompra extends BaseController
             'estado' => $usuario['estado'],
             'rol' => $usuario['id_rol']
         ]));
-
-        // Activar cuenta automáticamente
-        $this->usuarioModel->update($idUsuario, [
-            'estado' => 'activo',
-            'token_activacion' => null
-        ]);
-
-        log_message('debug', 'Usuario activado correctamente');
 
         // Actualizar estado de la compra
         $this->compraModel->where('id_usuario', $idUsuario)
@@ -183,7 +169,7 @@ class RegistroCompra extends BaseController
         ];
 
         // Limpiar sesión
-        session()->remove(['id_usuario_registro', 'token_activacion', 'id_dispositivo', 'datos_compra']);
+        session()->remove(['id_usuario_registro', 'id_dispositivo', 'datos_compra']);
 
         log_message('debug', 'Redirigiendo a página de pago exitoso');
 
@@ -196,23 +182,6 @@ class RegistroCompra extends BaseController
         return view('registro_compra/error', [
             'mensaje' => 'Ha ocurrido un error al procesar tu pago. Por favor, intenta de nuevo.'
         ]);
-    }
-
-    protected function enviarEmailBienvenida($email, $nombre, $token)
-    {
-        $emailService = \Config\Services::email();
-        
-        $emailService->setTo($email);
-        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
-        $emailService->setSubject('¡Bienvenido a EcoVolt!');
-        
-        $mensaje = view('emails/bienvenida', [
-            'nombre' => $nombre,
-            'enlace_activacion' => base_url("registro-compra/activar/$token")
-        ]);
-        
-        $emailService->setMessage($mensaje);
-        $emailService->send();
     }
 
     protected function enviarEmailConfirmacionCompra($email, $nombre, $dispositivo)
@@ -233,31 +202,5 @@ class RegistroCompra extends BaseController
         
         $emailService->setMessage($mensaje);
         $emailService->send();
-    }
-
-    public function activar($token)
-    {
-        $usuario = $this->usuarioModel->where('token_activacion', $token)->first();
-        
-        if ($usuario) {
-            // Activar cuenta
-            $this->usuarioModel->update($usuario['id_usuario'], [
-                'estado' => 'activo',
-                'token_activacion' => null
-            ]);
-            
-            return view('registro/activacion_exitosa', ['nombre' => $usuario['nombre']]);
-        } else {
-            // Buscar si el usuario ya está activado
-            $usuarioYaActivo = $this->usuarioModel->where('estado', 'activo')
-                                                 ->where('token_activacion', null)
-                                                 ->first();
-            
-            if ($usuarioYaActivo) {
-                return view('registro/activacion_ya_activada', ['nombre' => $usuarioYaActivo['nombre']]);
-            } else {
-                return view('registro/activacion_invalida');
-            }
-        }
     }
 } 

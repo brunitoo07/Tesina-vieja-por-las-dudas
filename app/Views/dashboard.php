@@ -19,21 +19,6 @@
             </div>
         </div>
 
-        <!-- Tarjeta de Energía -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-bolt"></i> Consumo de Energía
-                    </h5>
-                    <p class="card-text">Monitorea el consumo de energía de tus dispositivos.</p>
-                    <a href="<?= base_url('energia') ?>" class="btn btn-primary">
-                        <i class="fas fa-chart-line"></i> Ver Consumo
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <!-- Tarjeta de Perfil -->
         <div class="col-md-4 mb-4">
             <div class="card h-100">

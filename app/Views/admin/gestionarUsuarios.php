@@ -2,7 +2,7 @@
 
 <?= $this->section('contenido') ?>
 
-<h2 class="mb-4 text-primary"><?= lang('App.invited_users') ?></h2>
+<h2 class="mb-4 text-primary">Usuarios invitados</h2>
 
 <?php if (session()->getFlashdata('success')) : ?>
     <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
@@ -13,17 +13,17 @@
 <?php endif; ?>
 
 <?php if (empty($usuarios)) : ?>
-    <div class="alert alert-info"><?= lang('App.no_invited_users') ?></div>
+    <div class="alert alert-info">No hay usuarios invitados</div>
 <?php else : ?>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>ID</th>
-            <th><?= lang('App.name') ?></th>
-            <th><?= lang('App.email') ?></th>
-            <th><?= lang('App.current_role') ?></th>
-            <th><?= lang('App.change_role') ?></th>
-            <th><?= lang('App.delete') ?></th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol actual</th>
+            <th>Cambiar rol</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
@@ -38,8 +38,8 @@
                     <form action="<?= base_url('admin/cambiarRol') ?>" method="post">
                         <input type="hidden" name="usuario_id" value="<?= $usuario['id_usuario'] ?>">
                         <select name="id_rol" class="form-control" onchange="this.form.submit()">
-                            <option value="1" <?= $usuario['id_rol'] == 1 ? 'selected' : '' ?>><?= lang('App.admin') ?></option>
-                            <option value="2" <?= $usuario['id_rol'] == 2 ? 'selected' : '' ?>><?= lang('App.user') ?></option>
+                            <option value="1" <?= $usuario['id_rol'] == 1 ? 'selected' : '' ?>>Administrador</option>
+                            <option value="2" <?= $usuario['id_rol'] == 2 ? 'selected' : '' ?>>Usuario</option>
                         </select>
                     </form>
                 </td>
@@ -47,7 +47,7 @@
                 <td>
                     <form action="<?= base_url('admin/eliminarUsuario') ?>" method="post" class="d-inline">
                         <input type="hidden" name="usuario_id" value="<?= $usuario['id_usuario'] ?>">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('<?= lang('App.confirm_delete_user') ?>')">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>

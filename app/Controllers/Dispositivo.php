@@ -51,89 +51,6 @@ class Dispositivo extends BaseController
         return view('dispositivo/buscar', $data);
     }
 
-    public function getMacAddress()
-    {
-        log_message('debug', 'Obteniendo dirección MAC...');
-        // Por ahora, generamos una MAC aleatoria para pruebas
-        $mac = sprintf('%02X:%02X:%02X:%02X:%02X:%02X',
-            rand(0, 255), rand(0, 255), rand(0, 255),
-            rand(0, 255), rand(0, 255), rand(0, 255)
-        );
-        
-        return $this->response->setJSON([
-            'status' => 'success',
-            'mac_address' => $mac
-        ]);
-    }
-
-    public function scanWifiNetworks()
-    {
-        log_message('debug', 'Iniciando búsqueda de dispositivos...');
-        
-        try {
-            // Primero, buscar dispositivos en la base de datos
-            $dispositivos = $this->dispositivoModel->where('estado', 'activo')->findAll();
-            log_message('debug', 'Dispositivos encontrados en BD: ' . print_r($dispositivos, true));
-
-            if (!empty($dispositivos)) {
-                return $this->response->setJSON([
-                    'status' => 'success',
-                    'networks' => $dispositivos
-                ]);
-            }
-
-            // Si no hay dispositivos en la BD, intentar buscar en la red
-            log_message('debug', 'Intentando buscar dispositivo ESP32 en la red...');
-            
-            // Intentar obtener la dirección MAC del dispositivo ESP32
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://192.168.4.1/status");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-            $response = curl_exec($ch);
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $error = curl_error($ch);
-            curl_close($ch);
-
-            log_message('debug', 'Código de respuesta HTTP: ' . $httpCode);
-            log_message('debug', 'Error de cURL: ' . $error);
-            log_message('debug', 'Respuesta del dispositivo: ' . $response);
-
-            if ($httpCode === 200 && $response) {
-                $data = json_decode($response, true);
-                if ($data) {
-                    return $this->response->setJSON([
-                        'status' => 'success',
-                        'networks' => [
-                            [
-                                'mac_address' => $data['mac_address'] ?? '00:00:00:00:00:00',
-                                'nombre' => 'ESP32 Medidor',
-                                'ultima_lectura' => date('Y-m-d H:i:s'),
-                                'voltage' => $data['voltage'] ?? 0,
-                                'current' => $data['current'] ?? 0,
-                                'power' => $data['power'] ?? 0,
-                                'energy' => $data['energy'] ?? 0
-                            ]
-                        ]
-                    ]);
-                }
-            }
-
-            // Si no se encuentra ningún dispositivo
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'No se encontraron dispositivos. Asegúrate de que el ESP32 esté encendido y conectado a la red.'
-            ]);
-
-        } catch (\Exception $e) {
-            log_message('error', 'Error al escanear redes: ' . $e->getMessage());
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Error al buscar dispositivos: ' . $e->getMessage()
-            ]);
-        }
-    }
-
     public function saveConfig()
     {
         if (!session()->get('logged_in')) {
@@ -184,7 +101,7 @@ class Dispositivo extends BaseController
             'nombre' => $this->request->getPost('nombre'),
             'mac_address' => $this->request->getPost('mac_address'),
             'id_usuario' => session()->get('id_usuario'),
-            'estado' => 'pendiente',
+            'estado' => 'activo',
             'created_at' => date('Y-m-d H:i:s')
         ];
     
