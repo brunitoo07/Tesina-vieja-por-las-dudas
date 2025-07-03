@@ -98,6 +98,7 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
     $routes->post('enviarInvitacion', 'Supervisor::enviarInvitacion');
     $routes->get('misUsuarios', 'Supervisor::misUsuarios');
     $routes->get('dispositivosUsuarios/(:num)', 'Supervisor::dispositivosUsuarios/$1');
+    $routes->get('dispositivosGlobal', 'Supervisor::dispositivosGlobal');
     $routes->get('supervisor/verLecturasDispositivo/(:num)', 'Supervisor::verLecturasDispositivo/$1');
     $routes->get('supervisor/obtenerLecturasDispositivo/(:num)', 'Supervisor::obtenerLecturasDispositivo/$1');
     $routes->post('dispositivo/cambiarEstado', 'Supervisor::cambiarEstadoDispositivo');
@@ -106,6 +107,7 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
     $routes->post('cambiarRol', 'Supervisor::cambiarRol');
     $routes->post('eliminarUsuario', 'Supervisor::eliminarUsuario');
     $routes->get('usuario', 'Supervisor::gestionarUsuarios');
+    $routes->post('eliminarDispositivo/(:num)', 'Supervisor::eliminarDispositivo/$1');
 });
 
 $routes->get('home/manual', 'Home::manual');

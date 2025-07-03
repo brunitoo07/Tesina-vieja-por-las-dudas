@@ -27,6 +27,7 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Rol</th>
+                            <th>Invitado por</th>
                             <th>Fecha Registro</th>
                             <th>Acciones</th>
                         </tr>
@@ -45,6 +46,14 @@
                                         <option value="1" <?= $usuario['id_rol'] == 1 ? 'selected' : '' ?>>Administrador</option>
                                     </select>
                                 </form>
+                            </td>
+                            <td>
+                                <?php if (!empty($usuario['nombre_admin'])): ?>
+                                    <?= esc($usuario['nombre_admin'] . ' ' . $usuario['apellido_admin']) ?><br>
+                                    <small><?= esc($usuario['email_admin']) ?></small>
+                                <?php else: ?>
+                                    <span class="text-muted">-</span>
+                                <?php endif; ?>
                             </td>
                             <td><?= date('d/m/Y H:i', strtotime($usuario['created_at'])) ?></td>
                             <td>

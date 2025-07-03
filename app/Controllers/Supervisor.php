@@ -72,9 +72,11 @@ class Supervisor extends BaseController
             return redirect()->to('/autenticacion/login');
         }
         
-        $usuarios = $this->usuarioModel->select('usuario.*, roles.nombre_rol as nombre_rol')
-                                     ->join('roles', 'roles.id_rol = usuario.id_rol')
-                                     ->findAll();
+        $usuarios = $this->usuarioModel
+            ->select('usuario.*, roles.nombre_rol as nombre_rol, admin_invitador.nombre as nombre_admin, admin_invitador.apellido as apellido_admin, admin_invitador.email as email_admin')
+            ->join('roles', 'roles.id_rol = usuario.id_rol')
+            ->join('usuario as admin_invitador', 'admin_invitador.id_usuario = usuario.invitado_por', 'left')
+            ->findAll();
 
         return view('supervisor/gestionarUsuarios', ['usuarios' => $usuarios]);
     }
@@ -164,19 +166,22 @@ class Supervisor extends BaseController
         // Obtener dispositivos del usuario
         $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)->findAll();
 
+        // Si el usuario no tiene dispositivos y fue invitado por alguien, mostrar los dispositivos del admin que lo invitó
+        if (empty($dispositivos) && !empty($usuario['invitado_por'])) {
+            $dispositivos = $this->dispositivoModel->where('id_usuario', $usuario['invitado_por'])->findAll();
+        }
+
         // Calcular consumo total en las últimas 24 horas
         $consumoTotal24h = 0;
         $promedioDiario = 0;
         
         if (!empty($dispositivos)) {
             $idsDispositivos = array_column($dispositivos, 'id_dispositivo');
-            
             // Consumo total en las últimas 24 horas
             $consumoTotal24h = $this->energiaModel->select('SUM(kwh) as total')
                                                 ->whereIn('id_dispositivo', $idsDispositivos)
                                                 ->where('fecha >=', date('Y-m-d H:i:s', strtotime('-24 hours')))
                                                 ->first()['total'] ?? 0;
-
             // Promedio diario (últimos 7 días)
             $promedioDiario = $this->energiaModel->select('AVG(consumo_diario) as promedio')
                                                ->from("(
@@ -195,16 +200,26 @@ class Supervisor extends BaseController
                                               ->where('id_dispositivo', $dispositivo['id_dispositivo'])
                                               ->orderBy('fecha', 'DESC')
                                               ->first();
-            
             $dispositivo['ultima_lectura'] = $ultimaLectura ? $ultimaLectura['fecha'] : null;
             $dispositivo['ultimo_consumo'] = $ultimaLectura ? $ultimaLectura['kwh'] : 0;
+        }
+
+        // Para cada dispositivo, obtener los usuarios invitados por el dueño de ese dispositivo
+        $usuariosInvitadosPorDispositivo = [];
+        foreach ($dispositivos as $dispositivo) {
+            $usuariosInvitados = $this->usuarioModel
+                ->select('nombre, apellido, email')
+                ->where('invitado_por', $dispositivo['id_usuario'])
+                ->findAll();
+            $usuariosInvitadosPorDispositivo[$dispositivo['id_dispositivo']] = $usuariosInvitados;
         }
 
         return view('supervisor/dispositivosUsuario', [
             'usuario' => $usuario,
             'dispositivos' => $dispositivos,
             'consumoTotal24h' => $consumoTotal24h,
-            'promedioDiario' => $promedioDiario
+            'promedioDiario' => $promedioDiario,
+            'usuariosInvitadosPorDispositivo' => $usuariosInvitadosPorDispositivo
         ]);
     }
 
@@ -307,6 +322,79 @@ class Supervisor extends BaseController
         return $this->response->setJSON([
             'status' => 'success',
             'lecturas' => $lecturas
+        ]);
+    }
+
+    /**
+     * Vista global de dispositivos para el supervisor
+     */
+    public function dispositivosGlobal()
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'supervisor') {
+            return redirect()->to('/autenticacion/login');
+        }
+
+        // Obtener todos los dispositivos con info del usuario dueño
+        $dispositivos = $this->dispositivoModel
+            ->select('dispositivos.*, usuario.nombre as nombre_admin, usuario.apellido as apellido_admin, usuario.email as email_admin')
+            ->join('usuario', 'usuario.id_usuario = dispositivos.id_usuario', 'left')
+            ->findAll();
+
+        // Para cada dispositivo, obtener los usuarios invitados (usuarios cuyo invitado_por sea el admin dueño)
+        $usuariosInvitadosPorDispositivo = [];
+        foreach ($dispositivos as &$dispositivo) {
+            $usuariosInvitados = $this->usuarioModel
+                ->select('nombre, apellido, email')
+                ->where('invitado_por', $dispositivo['id_usuario'])
+                ->findAll();
+            $usuariosInvitadosPorDispositivo[$dispositivo['id_dispositivo']] = $usuariosInvitados;
+
+            // Obtener la última lectura real de energía
+            $ultimaLectura = $this->energiaModel
+                ->select('fecha')
+                ->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                ->orderBy('fecha', 'DESC')
+                ->first();
+            $dispositivo['ultima_lectura'] = $ultimaLectura ? $ultimaLectura['fecha'] : null;
+        }
+        unset($dispositivo);
+
+        return view('supervisor/dispositivosUsuarios', [
+            'dispositivos' => $dispositivos,
+            'usuariosInvitadosPorDispositivo' => $usuariosInvitadosPorDispositivo
+        ]);
+    }
+
+    /**
+     * Permite al supervisor eliminar un dispositivo
+     */
+    public function eliminarDispositivo($id)
+    {
+        if (!session()->get('logged_in') || session()->get('rol') !== 'supervisor') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'No tienes permiso para realizar esta acción'
+            ]);
+        }
+
+        $dispositivo = $this->dispositivoModel->find($id);
+        if (!$dispositivo) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Dispositivo no encontrado'
+            ]);
+        }
+
+        if ($this->dispositivoModel->delete($id)) {
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Dispositivo eliminado correctamente'
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Error al eliminar el dispositivo'
         ]);
     }
 } 

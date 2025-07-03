@@ -143,6 +143,19 @@
                                     <canvas id="chart<?= $dispositivo['id_dispositivo'] ?>" width="200" height="100"></canvas>
                                 </div>
                             </div>
+                            <!-- Invitados -->
+                            <div class="mt-3">
+                                <strong>Usuarios invitados por el dueño de este dispositivo:</strong>
+                                <?php if (!empty($usuariosInvitadosPorDispositivo[$dispositivo['id_dispositivo']])): ?>
+                                    <ul class="mb-0">
+                                    <?php foreach ($usuariosInvitadosPorDispositivo[$dispositivo['id_dispositivo']] as $usuario): ?>
+                                        <li><?= esc($usuario['nombre'] . ' ' . $usuario['apellido']) ?> <small>(<?= esc($usuario['email']) ?>)</small></li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <span class="text-muted">Ningún usuario invitado para este dispositivo.</span>
+                                <?php endif; ?>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">

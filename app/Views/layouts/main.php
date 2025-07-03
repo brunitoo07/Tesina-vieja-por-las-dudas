@@ -134,7 +134,7 @@
                                 <a class="nav-link" href="<?= base_url('supervisor/gestionarUsuarios') ?>">Mis Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('supervisor') ?>">Dispositivos</a>
+                                <a class="nav-link" href="<?= base_url('supervisor/dispositivosGlobal') ?>">Dispositivos</a>
                             </li>
                         <?php else: ?>
                             <li class="nav-item">

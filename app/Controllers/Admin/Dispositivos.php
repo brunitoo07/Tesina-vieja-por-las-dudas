@@ -55,10 +55,12 @@ class Dispositivos extends BaseController
             }
             unset($disp);
         } else {
-            // Admin: solo ve sus dispositivos
+            // Admin: solo ve sus dispositivos, pero mostrar nombre y email del admin dueño
             $dispositivos = $this->dispositivoModel
-                ->where('id_usuario', $idUsuario)
-                ->orderBy('created_at', 'DESC')
+                ->select('dispositivos.*, usuario.nombre as nombre_admin, usuario.email as email_admin')
+                ->join('usuario', 'usuario.id_usuario = dispositivos.id_usuario', 'left')
+                ->where('dispositivos.id_usuario', $idUsuario)
+                ->orderBy('dispositivos.created_at', 'DESC')
                 ->findAll();
         }
 
