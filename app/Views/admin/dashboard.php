@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<?= base_url('admin/dispositivos') ?>"><?= lang('App.view_details') ?></a>
+                    <a class="small text-white stretched-link" href="<?= base_url('admin/dispositivos') ?>">Ver detalles</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<?= base_url('admin/gestionarUsuarios') ?>"><?= lang('App.view_details') ?></a>
+                    <a class="small text-white stretched-link" href="<?= base_url('admin/gestionarUsuarios') ?>">Ver detalles</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<?= base_url('admin/invitar') ?>"><?= lang('App.view_details') ?></a>
+                    <a class="small text-white stretched-link" href="<?= base_url('admin/invitar') ?>">Ver detalles</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="<?= base_url('admin/dispositivos') ?>">Ver Dispositivos</a>
+                    <a class="small text-white stretched-link" href="<?= base_url('admin/dispositivos') ?>">Ver dispositivos</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -94,22 +94,22 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <a href="<?= base_url('admin/dispositivos/buscar') ?>" class="btn btn-primary w-100">
-                                <i class="fas fa-search me-1"></i> <?= lang('App.search_devices') ?>
+                                <i class="fas fa-search me-1"></i> Buscar dispositivos
                             </a>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <a href="<?= base_url('admin/dispositivos/registrar') ?>" class="btn btn-success w-100">
-                                <i class="fas fa-plus me-1"></i> <?= lang('App.register_device') ?>
+                            <a href="http://192.168.2.178/Tesina/public/dispositivo/agregar" class="btn btn-success w-100">
+                                <i class="fas fa-plus me-1"></i> Registrar dispositivo
                             </a>
                         </div>
                         <div class="col-md-6 mb-3">
                             <a href="<?= base_url('admin/invitar') ?>" class="btn btn-warning w-100">
-                                <i class="fas fa-user-plus me-1"></i> <?= lang('App.invite_user') ?>
+                                <i class="fas fa-user-plus me-1"></i> Invitar usuario
                             </a>
                         </div>
                         <div class="col-md-6 mb-3">
                             <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-danger w-100">
-                                <i class="fas fa-chart-line me-1"></i> Ver Dispositivos
+                                <i class="fas fa-chart-line me-1"></i> Ver dispositivos
                             </a>
                         </div>
                     </div>
