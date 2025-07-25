@@ -65,6 +65,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('usuario/perfil', 'Usuario::perfil');
     $routes->post('usuario/actualizar-perfil', 'Usuario::actualizarPerfil');
     $routes->post('usuario/cambiar-contrasena', 'Usuario::cambiarContrasena');
+    $routes->get('dispositivo/control/(:num)', 'Dispositivo::control/$1');
 });
 
 // Rutas del panel de administración

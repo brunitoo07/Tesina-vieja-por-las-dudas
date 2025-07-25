@@ -294,4 +294,27 @@ class Dispositivo extends BaseController
             ]);
         }
     }
+
+    /**
+     * Vista de control de relé para un dispositivo
+     */
+    public function control($idDispositivo)
+    {
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/autenticacion/login');
+        }
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
+        if (!$dispositivo) {
+            return redirect()->to('dispositivo')->with('error', 'Dispositivo no encontrado');
+        }
+        // TODO: Obtener la IP real del dispositivo desde la base de datos si la tienes guardada
+        // Por ahora, puedes ponerla manualmente para pruebas
+        $ip = isset($dispositivo['ip']) ? $dispositivo['ip'] : '192.168.2.200'; // Cambia por la IP real
+        $data = [
+            'mac' => $dispositivo['mac_address'],
+            'ip' => $ip,
+            'titulo' => 'Control de Foco'
+        ];
+        return view('dispositivo/control', $data);
+    }
 }

@@ -36,6 +36,10 @@ const int EEPROM_SIZE = 512;
 const int EEPROM_SSID_ADDR = 0;
 const int EEPROM_PASS_ADDR = 100;
 
+// === Control de Relé ===
+const int relePin = 25; // Pin GPIO para el relé
+bool releState = false;
+
 // ====================================================================
 // --- Configuración AP ---
 // ====================================================================
@@ -127,6 +131,9 @@ void setupAPMode() {
   server.on("/", HTTP_GET, handleRoot);
   server.on("/scan", HTTP_GET, handleScan);
   server.on("/connect", HTTP_POST, handleConnect);
+  server.on("/rele/on", HTTP_GET, handleReleOn);
+  server.on("/rele/off", HTTP_GET, handleReleOff);
+  server.on("/rele/status", HTTP_GET, handleReleStatus);
     server.begin();
     
     Serial.println("Servidor web AP iniciado.");
@@ -256,6 +263,23 @@ void handleConnect() {
     } else {
         server.send(400, "text/plain", "Faltan parámetros (SSID o Password).");
     }
+}
+
+void handleReleOn() {
+    digitalWrite(relePin, HIGH);
+    releState = true;
+    server.send(200, "text/plain", "Rele encendido");
+}
+
+void handleReleOff() {
+    digitalWrite(relePin, LOW);
+    releState = false;
+    server.send(200, "text/plain", "Rele apagado");
+}
+
+void handleReleStatus() {
+    String status = releState ? "on" : "off";
+    server.send(200, "application/json", "{\"status\":\"" + status + "\"}");
 }
 
 // ====================================================================
@@ -400,6 +424,9 @@ void setup() {
 
     loadConfig();
     
+    pinMode(relePin, OUTPUT);
+    digitalWrite(relePin, LOW); // Apagado por defecto
+
     if (!isConfigured) {
         Serial.println("No hay configuración guardada. Iniciando modo AP.");
         setupAPMode();

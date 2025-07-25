@@ -66,6 +66,9 @@
                                         <a href="<?= base_url('dispositivo/editar/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
+                                        <a href="<?= base_url('dispositivo/control/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-success btn-sm" title="Controlar Foco">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </a>
                                         <button type="button" class="btn btn-danger btn-sm" onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
                                             <i class="fas fa-trash"></i>
                                         </button>

@@ -86,6 +86,9 @@
                                             <button type="button" class="btn btn-sm btn-primary" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
                                                 <i class="fas fa-eye"></i>
                                             </button>
+                                            <a href="<?= base_url('dispositivo/control/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-success btn-sm" title="Controlar Foco">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </a>
                                             <?php if (in_array($dispositivo['estado'], ['pendiente', 'inactivo'])): ?>
                                                 <a href="<?= base_url('admin/dispositivos/activar/' . $dispositivo['id_dispositivo']) ?>" 
                                                    class="btn btn-sm btn-success" 
