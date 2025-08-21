@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Control de Focos</title>
+  <title>Control de Focos de la casa</title>
   <style>
     body {
       background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
