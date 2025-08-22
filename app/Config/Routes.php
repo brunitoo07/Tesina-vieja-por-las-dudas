@@ -66,6 +66,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('usuario/actualizar-perfil', 'Usuario::actualizarPerfil');
     $routes->post('usuario/cambiar-contrasena', 'Usuario::cambiarContrasena');
     $routes->get('dispositivo/control/(:num)', 'Dispositivo::control/$1');
+    $routes->post('register_ip', 'Dispositivo::registerIP');
+    $routes->get('obtener_ip/(:segment)', 'Dispositivo::getIP/$1');
 });
 
 // Rutas del panel de administración

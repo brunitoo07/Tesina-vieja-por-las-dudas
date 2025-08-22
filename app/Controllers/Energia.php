@@ -283,21 +283,35 @@ class Energia extends BaseController
         $email->send();
     }
 
-    public function recibirDatos()
-    {
-        $json = $this->request->getJSON();
+   /* public function recibirDatos()
+{
+    $json = $this->request->getJSON();
 
-        if (!$json) {
-            log_message('error', 'Datos recibidos no son JSON válido');
-            return $this->response->setJSON(['error' => 'Datos inválidos'])->setStatusCode(400);
-        }
+    if (!$json) {
+        log_message('error', 'Datos recibidos no son JSON válido');
+        return $this->response->setJSON(['error' => 'Datos inválidos'])->setStatusCode(400);
+    }
 
-        $dispositivo = $this->dispositivoModel->where('mac_address', $json->mac_address)->first();
+    // No buscamos la MAC, la guardamos directamente
+    $data = [
+        'mac_address' => strtoupper($json->mac_address),
+        'voltaje' => $json->voltaje,
+        'corriente' => $json->corriente,
+        'potencia' => $json->potencia,
+        'kwh' => $json->kwh,
+        'fecha' => date('Y-m-d H:i:s')
+    ];
 
-        if (!$dispositivo) {
-            log_message('error', 'Dispositivo no encontrado: ' . $json->mac_address);
-            return $this->response->setJSON(['error' => 'Dispositivo no registrado'])->setStatusCode(404);
-        }
+    try {
+        $this->energiaModel->insert($data);
+        log_message('info', 'Datos guardados correctamente para MAC: ' . $data['mac_address']);
+        return $this->response->setJSON(['success' => true]);
+    } catch (\Exception $e) {
+        log_message('error', 'Error al guardar datos: ' . $e->getMessage());
+        return $this->response->setJSON(['error' => 'Error al guardar datos'])->setStatusCode(500);
+    }
+}
+
 
         $data = [
             'id_dispositivo' => $dispositivo['id_dispositivo'],
@@ -319,66 +333,72 @@ class Energia extends BaseController
             log_message('error', 'Error al guardar datos: ' . $e->getMessage());
             return $this->response->setJSON(['error' => 'Error al guardar datos'])->setStatusCode(500);
         }
-    }
+    }*/
 
     public function recibirNuevosDatos()
-    {
-        try {
-            $data = $this->request->getJSON(true);
-            
-            if (!$data) {
-                return $this->response->setJSON(['error' => 'No se recibieron datos'])->setStatusCode(400);
-            }
+{
+    try {
+        $data = $this->request->getJSON(true);
 
-            // Validar datos requeridos
-            $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
-            foreach ($requiredFields as $field) {
-                if (!isset($data[$field])) {
-                    return $this->response->setJSON(['error' => "Campo requerido faltante: $field"])->setStatusCode(400);
-                }
-            }
-
-            // Formatear la MAC address
-            $mac = $data['mac_address'];
-            $mac = strtoupper($mac);
-            $mac = implode(':', str_split($mac, 2));
-
-            // Buscar el dispositivo por MAC
-            $dispositivo = $this->dispositivoModel->where('mac_address', $mac)->first();
-            
-            if (!$dispositivo) {
-                log_message('error', 'Dispositivo no encontrado con MAC: ' . $mac);
-                return $this->response->setJSON(['error' => 'Dispositivo no encontrado'])->setStatusCode(404);
-            }
-
-            // Preparar datos para guardar
-            $lectura = [
-                'id_dispositivo' => $dispositivo['id_dispositivo'],
-                'id_usuario' => $dispositivo['id_usuario'],
-                'voltaje' => $data['voltaje'],
-                'corriente' => $data['corriente'],
-                'potencia' => $data['potencia'],
-                'kwh' => $data['kwh'],
-                'mac_address' => $mac,
-                'fecha' => date('Y-m-d H:i:s')
-            ];
-
-            // Guardar la lectura
-            $this->energiaModel->insert($lectura);
-
-            return $this->response->setJSON([
-                'success' => true,
-                'message' => 'Datos recibidos correctamente'
-            ]);
-
-        } catch (\Exception $e) {
-            log_message('error', 'Error en recibirNuevosDatos: ' . $e->getMessage());
-            return $this->response->setJSON([
-                'error' => 'Error al procesar los datos',
-                'details' => $e->getMessage()
-            ])->setStatusCode(500);
+        if (!$data) {
+            return $this->response->setJSON(['error' => 'No se recibieron datos'])->setStatusCode(400);
         }
+
+        // Campos requeridos
+        $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
+        foreach ($requiredFields as $field) {
+            if (!isset($data[$field])) {
+                return $this->response->setJSON(['error' => "Campo requerido faltante: $field"])->setStatusCode(400);
+            }
+        }
+
+        // Formatear la MAC address - convertir de AABBCCDDEEFF a AA:BB:CC:DD:EE:FF
+        $mac_sin_formato = strtoupper($data['mac_address']);
+        $mac_formateada = implode(':', str_split($mac_sin_formato, 2));
+        
+        log_message('info', 'MAC sin formato recibida: ' . $mac_sin_formato);
+        log_message('info', 'MAC formateada: ' . $mac_formateada);
+        
+        // Buscar dispositivo con MAC formateada
+        $dispositivo = $this->dispositivoModel->where('mac_address', $mac_formateada)->first();
+
+        if (!$dispositivo) {
+            log_message('error', 'Dispositivo no encontrado con MAC: ' . $mac_formateada);
+            return $this->response->setJSON(['error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+        }
+
+        // Preparar datos para guardar
+        $lectura = [
+            'id_dispositivo' => $dispositivo['id_dispositivo'],
+            'id_usuario' => $dispositivo['id_usuario'],
+            'voltaje' => $data['voltaje'],
+            'corriente' => $data['corriente'],
+            'potencia' => $data['potencia'],
+            'kwh' => $data['kwh'],
+            'mac_address' => $mac_formateada,
+            'fecha' => date('Y-m-d H:i:s'),
+            'limite_superado' => 0
+        ];
+
+        // Guardar la lectura
+        $this->energiaModel->insert($lectura);
+
+        log_message('info', 'Datos guardados correctamente para dispositivo: ' . $mac_formateada);
+
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => 'Datos recibidos correctamente'
+        ]);
+
+    } catch (\Exception $e) {
+        log_message('error', 'Error en recibirNuevosDatos: ' . $e->getMessage());
+        return $this->response->setJSON([
+            'error' => 'Error al procesar los datos',
+            'details' => $e->getMessage()
+        ])->setStatusCode(500);
     }
+}
+
 
     public function getLatestDataByMac($mac)
     {

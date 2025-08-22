@@ -7,435 +7,504 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <style>
-        :root {
-            --primary-color: #0066cc;
-            --secondary-color: #00cc66;
-            --accent-color: #ff6b6b;
-            --dark-color: #2c3e50;
-            --light-color: #f8f9fa;
-            --transition-speed: 0.3s;
-        }
+  <style>
+    /* 
+    ===============================
+    VARIABLES CSS (CUSTOM PROPERTIES)
+    ===============================
+    Las variables en :root definen los colores principales que se usarán en todo el sitio
+    */
+    :root {
+        --primary-color: rgb(244, 248, 3);       /* Color principal (amarillo) */
+        --secondary-color: rgb(0, 0, 0);         /* Color secundario (negro) */
+        --accent-color: #ff6b6b;                 /* Color de acento (rojo coral) */
+        --dark-color: rgb(119, 119, 119);        /* Color oscuro (gris) */
+        --light-color: rgb(248, 250, 248);       /* Color claro (blanco verdoso) */
+        --transition-speed: 0.3s;                /* Velocidad de las transiciones */
+    }
 
-        [data-theme="dark"] {
-            --primary-color: #4a90e2;
-            --secondary-color: #50e3c2;
-            --accent-color: #ff6b6b;
-            --dark-color: #1a1a1a;
-            --light-color: #23272b;
-            background: #181a1b !important;
-            color: #f1f1f1 !important;
-        }
+    /* 
+    ===============================
+    TEMA OSCURO
+    ===============================
+    Estos estilos se aplican cuando el elemento tiene data-theme="dark"
+    */
+    [data-theme="dark"] {
+        --primary-color: rgb(236, 240, 1);      /* Verde en modo oscuro */
+        --secondary-color: rgb(239, 243, 6);    /* Verde claro en modo oscuro */
+        --accent-color: #ff6b6b;                 /* Mismo color de acento */
+        --dark-color: #1a1a1a;                   /* Negro más oscuro */
+        --light-color: rgb(0, 0, 0);             /* Negro como color claro */
+        background: #181a1b !important;          /* Fondo general oscuro */
+        color: #f1f1f1 !important;               /* Texto claro */
+    }
 
-        [data-theme="dark"] body {
-            background: #181a1b !important;
-            color: #f1f1f1 !important;
-        }
+    /* Aplica el fondo oscuro específicamente al body en modo oscuro */
+    [data-theme="dark"] body {
+        background: #181a1b !important;
+        color:rgb(241, 241, 241) !important;
+    }
 
-        [data-theme="dark"] .container,
-        [data-theme="dark"] .section,
-        [data-theme="dark"] .order-details,
-        [data-theme="dark"] .card,
-        [data-theme="dark"] .feature-card,
-        [data-theme="dark"] .pricing-card {
-            background: #23272b !important;
-            color: #f1f1f1 !important;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
-        }
+    /* Estilos para contenedores y cards en modo oscuro */
+    [data-theme="dark"] .container,
+    [data-theme="dark"] .section,
+    [data-theme="dark"] .order-details,
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .feature-card,
+    [data-theme="dark"] .pricing-card {
+        background:rgb(35, 38, 43) !important;          /* Fondo gris oscuro */
+        color:rgb(241, 241, 241) !important;               /* Texto blanco */
+        box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important; /* Sombra más pronunciada */
+    }
 
-        [data-theme="dark"] .navbar,
-        [data-theme="dark"] .navbar.scrolled {
-            background: #181a1b !important;
-            color: #f1f1f1 !important;
-        }
+    /* Barra de navegación en modo oscuro */
+    [data-theme="dark"] .navbar,
+    [data-theme="dark"] .navbar.scrolled {
+        background: #181a1b !important;
+        color: #f1f1f1 !important;
+    }
 
-        [data-theme="dark"] .btn-primary,
-        [data-theme="dark"] .btn-outline-light {
-            background: #222e3c !important;
-            color: #fff !important;
-            border: 1px solid #4a90e2 !important;
-        }
+    /* Botones en modo oscuro */
+    [data-theme="dark"] .btn-primary,
+    [data-theme="dark"] .btn-outline-light {
+        background:rgb(214, 218, 9) !important;          /* Fondo azul oscuro */
+        color: #fff !important;                  /* Texto blanco */
+        border: 1px solid #4a90e2 !important;    /* Borde azul */
+    }
 
-        [data-theme="dark"] .btn-primary:hover,
-        [data-theme="dark"] .btn-outline-light:hover {
-            background: #4a90e2 !important;
-            color: #fff !important;
-        }
+    /* Efecto hover para botones en modo oscuro */
+    [data-theme="dark"] .btn-primary:hover,
+    [data-theme="dark"] .btn-outline-light:hover {
+        background: #4a90e2 !important;          /* Fondo azul al pasar mouse */
+        color: #fff !important;
+    }
 
-        [data-theme="dark"] .form-control,
-        [data-theme="dark"] input,
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] select {
-            background: #23272b !important;
-            color: #f1f1f1 !important;
-            border-color: #4a90e2 !important;
-        }
+    /* Campos de formulario en modo oscuro */
+    [data-theme="dark"] .form-control,
+    [data-theme="dark"] input,
+    [data-theme="dark"] textarea,
+    [data-theme="dark"] select {
+        background: #23272b !important;          /* Fondo oscuro */
+        color: #f1f1f1 !important;               /* Texto claro */
+        border-color: #4a90e2 !important;        /* Borde azul */
+    }
 
-        [data-theme="dark"] .form-control:focus {
-            background: #23272b !important;
-            color: #fff !important;
-            border-color: #50e3c2 !important;
-            box-shadow: 0 0 0 2px #4a90e2 !important;
-        }
+    /* Campos de formulario enfocados en modo oscuro */
+    [data-theme="dark"] .form-control:focus {
+        background: #23272b !important;
+        color: #fff !important;
+        border-color: rgb(56, 55, 3) !important; /* Borde amarillo oscuro */
+        box-shadow: 0 0 0 2pxrgb(216, 226, 74) !important; /* Sombra azul */
+    }
 
-        [data-theme="dark"] .card-body,
-        [data-theme="dark"] .card-header {
-            background: #23272b !important;
-            color: #f1f1f1 !important;
-        }
+    /* Partes de cards en modo oscuro */
+    [data-theme="dark"] .card-body,
+    [data-theme="dark"] .card-header {
+        background: #23272b !important;
+        color: #f1f1f1 !important;
+    }
 
-        [data-theme="dark"] .dropdown-menu {
-            background: #23272b !important;
-            color: #f1f1f1 !important;
-        }
+    /* Menús desplegables en modo oscuro */
+    [data-theme="dark"] .dropdown-menu {
+        background: #23272b !important;
+        color: #f1f1f1 !important;
+    }
 
-        [data-theme="dark"] .dropdown-item {
-            color: #f1f1f1 !important;
-        }
+    /* Items de menú desplegable en modo oscuro */
+    [data-theme="dark"] .dropdown-item {
+        color: #f1f1f1 !important;
+    }
 
-        [data-theme="dark"] .dropdown-item:hover {
-            background: #4a90e2 !important;
-            color: #fff !important;
-        }
+    /* Efecto hover para items de menú */
+    [data-theme="dark"] .dropdown-item:hover {
+        background: #4a90e2 !important;          /* Fondo azul al pasar mouse */
+        color: #fff !important;
+    }
 
-        [data-theme="dark"] .alert {
-            background: #23272b !important;
-            color: #ffd700 !important;
-            border-color: #4a90e2 !important;
-        }
+    /* Alertas en modo oscuro */
+    [data-theme="dark"] .alert {
+        background: #23272b !important;
+        color: #ffd700 !important;               /* Texto amarillo dorado */
+        border-color: #4a90e2 !important;        /* Borde azul */
+    }
 
-        [data-theme="dark"] .success-header {
-            background: linear-gradient(135deg, #23272b 0%, #181a1b 100%) !important;
-            color: #ffd700 !important;
-        }
+    /* Encabezado de éxito en modo oscuro */
+    [data-theme="dark"] .success-header {
+        background: linear-gradient(135deg, #23272b 0%, #181a1b 100%) !important;
+        color: #ffd700 !important;               /* Texto amarillo dorado */
+    }
 
-        [data-theme="dark"] .theme-switch {
-            background: #23272b !important;
-            color: #ffd700 !important;
-        }
+    /* Interruptor de tema en modo oscuro */
+    [data-theme="dark"] .theme-switch {
+        background: #23272b !important;
+        color: #ffd700 !important;               /* Icono amarillo dorado */
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color var(--transition-speed);
-        }
+    /* 
+    ===============================
+    ESTILOS GENERALES
+    ===============================
+    */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: background-color var(--transition-speed); /* Transición suave */
+    }
 
-        .theme-switch {
-            position: fixed !important;
-            top: 20px !important;
-            right: 20px !important;
-            z-index: 9999 !important;
-            background: rgba(44,62,80,0.95);
-            color: #fff;
-            padding: 14px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        .theme-switch:hover {
-            background: #222;
-            color: #ffd700;
-            transform: scale(1.1);
-        }
+    /* Interruptor para cambiar entre temas */
+    .theme-switch {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999 !important;                /* Siempre visible */
+        background: rgba(44,62,80,0.95);        /* Azul/gris semitransparente */
+        color: #fff;
+        padding: 14px;
+        border-radius: 50%;                      /* Forma circular */
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+    
+    /* Efecto hover para el interruptor */
+    .theme-switch:hover {
+        background: #222;
+        color: #ffd700;                          /* Amarillo dorado */
+        transform: scale(1.1);                   /* Ligero agrandamiento */
+    }
 
-        .hero-section {
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9), rgba(0, 204, 102, 0.9)), url('/assets/img/energy-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
+    /* Sección hero (principal) */
+    .hero-section {
+        background: linear-gradient(135deg, rgb(5, 5, 5), rgba(248, 244, 8, 0.98)), url('/assets/img/energy-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;                           /* Altura completa de la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
 
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+    /* Contenedor de partículas (efecto decorativo) */
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;                              /* Detrás del contenido */
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+    /* Contenido de la sección hero */
+    .hero-content {
+        position: relative;
+        z-index: 2;                              /* Delante de las partículas */
+    }
 
-        .section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Secciones generales */
+    .section {
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.1;
-        }
+    /* Patrón de fondo SVG para las secciones */
+    .section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.1;                            /* Muy transparente */
+    }
 
-        .feature-card {
-            transition: all var(--transition-speed) ease;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background: white;
-            height: 100%;
-            position: relative;
-        }
+    /* Tarjetas de características */
+    .feature-card {
+        transition: all var(--transition-speed) ease;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background: white;
+        height: 100%;
+        position: relative;
+    }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
+    /* Barra superior decorativa de las tarjetas */
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
 
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
+    /* Efecto hover para tarjetas */
+    .feature-card:hover {
+        transform: translateY(-10px) scale(1.02); /* Levanta y agranda ligeramente */
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
 
-        .feature-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: transform var(--transition-speed);
-        }
+    /* Iconos dentro de las tarjetas */
+    .feature-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;           /* Aplica gradiente al texto */
+        -webkit-text-fill-color: transparent;    /* Hace el texto transparente */
+        transition: transform var(--transition-speed);
+    }
 
-        .feature-card:hover i {
-            transform: scale(1.2);
-        }
+    /* Efecto hover para iconos */
+    .feature-card:hover i {
+        transform: scale(1.2);                   /* Agranda el icono */
+    }
 
-        .navbar {
-            background: rgba(44, 62, 80, 0.95) !important;
-            backdrop-filter: blur(10px);
-            transition: all var(--transition-speed) ease;
-        }
+    /* Barra de navegación */
+    .navbar {
+        background: rgba(44, 62, 80, 0.95) !important; /* Azul/gris semitransparente */
+        backdrop-filter: blur(10px);             /* Efecto de desenfoque */
+        transition: all var(--transition-speed) ease;
+    }
 
-        .navbar.scrolled {
-            background: var(--dark-color) !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Barra de navegación cuando se hace scroll */
+    .navbar.scrolled {
+        background: var(--dark-color) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .navbar-brand {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all var(--transition-speed);
-        }
+    /* Logo/marca de la navegación */
+    .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all var(--transition-speed);
+    }
 
-        .navbar-brand:hover {
-            transform: scale(1.05);
-        }
+    /* Efecto hover para el logo */
+    .navbar-brand:hover {
+        transform: scale(1.05);                  /* Ligero agrandamiento */
+    }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            padding: 0.8rem 2rem;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Botón principal */
+    .btn-primary {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+        transition: all var(--transition-speed) ease;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.5s ease;
-        }
+    /* Efecto de brillo al pasar mouse sobre botones */
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: all 0.5s ease;
+    }
 
-        .btn-primary:hover::before {
-            left: 100%;
-        }
+    /* Animación del efecto de brillo */
+    .btn-primary:hover::before {
+        left: 100%;
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    /* Efecto hover completo para botones */
+    .btn-primary:hover {
+        transform: translateY(-2px);             /* Levanta el botón */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-speed);
-            z-index: 1000;
-        }
+    /* Botón para volver arriba */
+    .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-speed);
+        z-index: 1000;
+    }
 
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+    /* Cuando el botón es visible */
+    .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
 
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-        }
+    /* Efecto hover para el botón de volver arriba */
+    .scroll-to-top:hover {
+        transform: translateY(-5px);
+    }
 
-        .section-title {
-            position: relative;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
+    /* Títulos de sección */
+    .section-title {
+        position: relative;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-        }
+    /* Línea decorativa bajo los títulos */
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    }
 
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
+    /* Contenedor de formas flotantes decorativas */
+    .floating-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;                    /* No interfiere con clicks */
+    }
 
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
+    /* Formas individuales flotantes */
+    .shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 15s infinite linear;
+    }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-            }
+    /* Animación de flotación para las formas */
+    @keyframes float {
+        0% {
+            transform: translateY(0) rotate(0deg);
         }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+        }
+    }
 
-        .feature-card .card-body {
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
+    /* Cuerpo de las tarjetas de características */
+    .feature-card .card-body {
+        padding: 2rem;
+        position: relative;
+        z-index: 1;                              /* Delante del overlay */
+    }
 
-        .feature-card .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-            z-index: 0;
-        }
+    /* Overlay para efecto hover en tarjetas */
+    .feature-card .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        opacity: 0;
+        transition: opacity var(--transition-speed);
+        z-index: 0;                              /* Detrás del contenido */
+    }
 
-        .feature-card:hover .card-overlay {
-            opacity: 0.1;
-        }
+    /* Muestra el overlay al hacer hover */
+    .feature-card:hover .card-overlay {
+        opacity: 0.1;                            /* Muy transparente */
+    }
 
-        .pricing-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all var(--transition-speed) ease;
-            position: relative;
-        }
+    /* Tarjetas de precios */
+    .pricing-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all var(--transition-speed) ease;
+        position: relative;
+    }
 
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
+    /* Barra superior decorativa de tarjetas de precio */
+    .pricing-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
 
-        .pricing-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
+    /* Efecto hover para tarjetas de precio */
+    .pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
 
-        .pricing-card .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* Precio con estilo de gradiente */
+    .pricing-card .price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-        .floating-shapes .shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            left: 10%;
-            animation-duration: 20s;
-        }
+    /* Posicionamiento específico de formas flotantes */
+    .floating-shapes .shape:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-duration: 20s;
+    }
 
-        .floating-shapes .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            top: 40%;
-            right: 10%;
-            animation-duration: 25s;
-        }
+    .floating-shapes .shape:nth-child(2) {
+        width: 150px;
+        height: 150px;
+        top: 40%;
+        right: 10%;
+        animation-duration: 25s;
+    }
 
-        .floating-shapes .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            top: 60%;
-            left: 20%;
-            animation-duration: 15s;
-        }
+    .floating-shapes .shape:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        top: 60%;
+        left: 20%;
+        animation-duration: 15s;
+    }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
+    /* Para usuarios que prefieren reducir el movimiento */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
         }
-    </style>
+    }
+</style>
     <script>
         // Script para modo claro/oscuro
         document.addEventListener('DOMContentLoaded', function() {

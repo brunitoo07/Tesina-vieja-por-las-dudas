@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Control de Focos de la casa</title>
@@ -17,7 +17,6 @@
     .volver-btn {
       display: inline-block;
       margin-top: 32px;
-      margin-bottom: 0;
       background: linear-gradient(90deg, #64748b 0%, #38bdf8 100%);
       color: #fff;
       border: none;
@@ -27,13 +26,12 @@
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(100,116,139,0.10);
-      transition: background 0.2s, transform 0.1s;
       text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
     }
     .volver-btn:hover {
       background: linear-gradient(90deg, #334155 0%, #0ea5e9 100%);
       transform: translateY(-2px) scale(1.04);
-      color: #fff;
     }
     .container {
       background: #fff;
@@ -67,8 +65,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 32px;
-      margin-top: 10px;
+      margin: 10px 0 32px 0;
       position: relative;
     }
     .foco-svg {
@@ -126,25 +123,14 @@
       justify-content: center;
       gap: 8px;
     }
-    .estado-encendido {
-      color: #facc15;
-      animation: popIn 0.4s;
-    }
-    .estado-apagado {
-      color: #64748b;
-      animation: popIn 0.4s;
-    }
+    .estado-encendido { color: #facc15; animation: popIn 0.4s; }
+    .estado-apagado { color: #64748b; animation: popIn 0.4s; }
     @keyframes popIn {
       0% { transform: scale(0.7); opacity: 0; }
       80% { transform: scale(1.1); opacity: 1; }
       100% { transform: scale(1); }
     }
-    .btn-row {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
+    .btn-row { display: flex; gap: 16px; justify-content: center; margin-bottom: 8px; }
     .foco-btn {
       border: none;
       border-radius: 8px;
@@ -156,20 +142,10 @@
       transition: background 0.2s, transform 0.1s;
       color: #fff;
     }
-    .foco-on {
-      background: linear-gradient(90deg, #22c55e 0%, #facc15 100%);
-    }
-    .foco-on:hover {
-      background: linear-gradient(90deg, #16a34a 0%, #fde047 100%);
-      transform: translateY(-2px) scale(1.04);
-    }
-    .foco-off {
-      background: linear-gradient(90deg, #ef4444 0%, #64748b 100%);
-    }
-    .foco-off:hover {
-      background: linear-gradient(90deg, #b91c1c 0%, #334155 100%);
-      transform: translateY(-2px) scale(1.04);
-    }
+    .foco-on { background: linear-gradient(90deg, #22c55e 0%, #facc15 100%); }
+    .foco-on:hover { background: linear-gradient(90deg, #16a34a 0%, #fde047 100%); transform: translateY(-2px) scale(1.04); }
+    .foco-off { background: linear-gradient(90deg, #ef4444 0%, #64748b 100%); }
+    .foco-off:hover { background: linear-gradient(90deg, #b91c1c 0%, #334155 100%); transform: translateY(-2px) scale(1.04); }
     @media (max-width: 500px) {
       .container { padding: 20px 5px; }
       .foco-btn { padding: 12px 10px; font-size: 1rem; }
@@ -181,9 +157,18 @@
 </head>
 <body>
   <a href="<?= base_url('dispositivo') ?>" class="volver-btn">&larr; Volver a Dispositivos</a>
+
   <div class="container">
     <h2>Control de Focos desde Web</h2>
     <div class="mac">MAC: <?= htmlspecialchars(isset($mac) ? $mac : '') ?></div>
+
+    <div style="margin: 20px 0; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+      <label for="espIP" style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">IP del ESP32:</label>
+      <input type="text" id="espIP" placeholder="192.168.1.100" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; font-family: monospace;">
+      <button onclick="actualizarIP()" style="margin-top: 8px; padding: 6px 12px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;">Actualizar IP</button>
+    </div>
+
+    <!-- Foco 1 -->
     <div class="foco-control">
       <svg id="svg-foco-1" class="foco-svg foco-apagado" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="32" cy="40" rx="22" ry="28" fill="#facc15" fill-opacity="0.7"/>
@@ -199,10 +184,12 @@
       </svg>
       <div id="estadoFoco1" class="estado estado-apagado">LUZ APAGADA</div>
       <div class="btn-row">
-        <button id="btn-on-1" class="foco-btn foco-on" onclick="controlarFoco(1, 'on')">Encender Foco 1</button>
-        <button id="btn-off-1" class="foco-btn foco-off" onclick="controlarFoco(1, 'off')">Apagar Foco 1</button>
+        <button id="btn-on-1" class="foco-btn foco-on" onclick="controlarFoco(1,'on')">Encender Foco 1</button>
+        <button id="btn-off-1" class="foco-btn foco-off" onclick="controlarFoco(1,'off')">Apagar Foco 1</button>
       </div>
     </div>
+
+    <!-- Foco 2 -->
     <div class="foco-control">
       <svg id="svg-foco-2" class="foco-svg foco-apagado" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="32" cy="40" rx="22" ry="28" fill="#facc15" fill-opacity="0.7"/>
@@ -218,66 +205,98 @@
       </svg>
       <div id="estadoFoco2" class="estado estado-apagado">LUZ APAGADA</div>
       <div class="btn-row">
-        <button id="btn-on-2" class="foco-btn foco-on" onclick="controlarFoco(2, 'on')">Encender Foco 2</button>
-        <button id="btn-off-2" class="foco-btn foco-off" onclick="controlarFoco(2, 'off')">Apagar Foco 2</button>
+        <button id="btn-on-2" class="foco-btn foco-on" onclick="controlarFoco(2,'on')">Encender Foco 2</button>
+        <button id="btn-off-2" class="foco-btn foco-off" onclick="controlarFoco(2,'off')">Apagar Foco 2</button>
       </div>
     </div>
   </div>
+
   <script>
-    // Estado por foco
-    let estadoFocos = {1: false, 2: false};
-    function controlarFoco(foco, estado) {
-      fetch(`http://192.168.2.109/rele?foco=${foco}&estado=${estado}`)
-        .then(response => response.text())
-        .then(data => {
-          estadoFocos[foco] = (estado === 'on');
-          actualizarFoco(foco);
-        });
-    }
-    function actualizarFoco(foco) {
-      const svg = document.getElementById('svg-foco-' + foco);
-      const haz = document.getElementById('haz-luz-' + foco);
-      const estadoDiv = document.getElementById('estadoFoco' + foco);
-      if (estadoFocos[foco]) {
-        svg.classList.add('foco-encendido');
-        svg.classList.remove('foco-apagado');
-        haz.classList.add('haz-encendido');
-        estadoDiv.textContent = 'LUZ ENCENDIDA';
-        estadoDiv.classList.add('estado-encendido');
-        estadoDiv.classList.remove('estado-apagado');
-      } else {
-        svg.classList.remove('foco-encendido');
-        svg.classList.add('foco-apagado');
-        haz.classList.remove('haz-encendido');
-        estadoDiv.textContent = 'LUZ APAGADA';
-        estadoDiv.classList.remove('estado-encendido');
-        estadoDiv.classList.add('estado-apagado');
+    let estadoFocos = {1:false,2:false};
+    let esp32IP = null;
+
+    async function obtenerIPDelServidor() {
+      const mac = '<?= htmlspecialchars(isset($mac) ? $mac : '') ?>';
+      if (!mac) return console.error('❌ No hay MAC disponible');
+
+      try {
+        const resp = await fetch(`/obtener_ip/${mac}`);
+        const data = await resp.json();
+        if (data.success && data.ip_address) {
+          esp32IP = data.ip_address;
+          document.getElementById('espIP').value = esp32IP;
+          console.log('✅ IP obtenida:', esp32IP);
+          obtenerEstado();
+        } else esp32IP = '192.168.2.109';
+      } catch(err) { 
+        console.error('❌ Error al obtener IP:', err); 
+        esp32IP = '192.168.2.109'; 
       }
     }
 
-    
-    // Inicializar estados
-    actualizarFoco(1);
-    actualizarFoco(2);
-    
-    function obtenerEstado() {
-  fetch('http://192.168.2.109/estado')
-    .then(response => response.json())
-    .then(data => {
-      estadoFocos[1] = data.foco1;
-      estadoFocos[2] = data.foco2;
-      actualizarFoco(1);
-      actualizarFoco(2);
-    })
-    .catch(err => console.log('Error al obtener estado:', err));
-}
+    function getESP32IP() {
+      const ip = document.getElementById('espIP').value.trim();
+      return ip || esp32IP || '192.168.2.109';
+    }
 
-// Consultar al cargar
-obtenerEstado();
+    function actualizarIP() {
+      const nuevaIP = document.getElementById('espIP').value.trim();
+      if (!nuevaIP) return alert('Por favor ingresa una IP válida');
+      esp32IP = nuevaIP;
+      console.log('🔄 IP actualizada a:', esp32IP);
+      obtenerEstado();
+    }
 
-// Consultar cada 5 segundos (opcional para tiempo real)
-setInterval(obtenerEstado, 5000);
+    function controlarFoco(foco, estado) {
+      const ip = getESP32IP();
+      console.log(`🎛️ Foco ${foco} -> ${estado} (ESP32: ${ip})`);
+      fetch(`http://${ip}/rele?foco=${foco}&estado=${estado}`)
+        .then(r => r.text())
+        .then(d => {
+          console.log('📩 Respuesta:', d);
+          estadoFocos[foco] = (estado==='on');
+          actualizarFoco(foco);
+        })
+        .catch(err => {
+          console.error('❌ Error:', err);
+          alert(`Error al controlar foco ${foco}: ${err.message}`);
+        });
+    }
 
+    function actualizarFoco(foco){
+      const svg = document.getElementById('svg-foco-'+foco);
+      const haz = document.getElementById('haz-luz-'+foco);
+      const estadoDiv = document.getElementById('estadoFoco'+foco);
+
+      if(estadoFocos[foco]){
+        svg.classList.add('foco-encendido'); svg.classList.remove('foco-apagado');
+        haz.classList.add('haz-encendido');
+        estadoDiv.textContent='LUZ ENCENDIDA';
+        estadoDiv.classList.add('estado-encendido'); estadoDiv.classList.remove('estado-apagado');
+      } else {
+        svg.classList.remove('foco-encendido'); svg.classList.add('foco-apagado');
+        haz.classList.remove('haz-encendido');
+        estadoDiv.textContent='LUZ APAGADA';
+        estadoDiv.classList.remove('estado-encendido'); estadoDiv.classList.add('estado-apagado');
+      }
+    }
+
+    function obtenerEstado(){
+      const ip = getESP32IP();
+      fetch(`http://${ip}/estado`)
+        .then(r => r.json())
+        .then(data => {
+          estadoFocos[1] = data.foco1;
+          estadoFocos[2] = data.foco2;
+          actualizarFoco(1); actualizarFoco(2);
+        })
+        .catch(err => console.error('❌ Error al obtener estado:', err));
+    }
+
+    document.addEventListener('DOMContentLoaded', obtenerIPDelServidor);
+    setInterval(obtenerEstado, 5000);
+
+    actualizarFoco(1); actualizarFoco(2);
   </script>
 </body>
 </html>

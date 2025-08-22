@@ -295,6 +295,108 @@ class Dispositivo extends BaseController
         }
     }
 
+    public function registerIP() {
+        // Verificar si es una petición POST
+        if ($this->request->getMethod() !== 'post') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Método no permitido'
+            ])->setStatusCode(405);
+        }
+
+        // Obtener datos del JSON
+        $json = $this->request->getJSON();
+        $macAddress = $json->mac_address ?? null;
+        $ipAddress = $json->ip_address ?? null;
+
+        if (!$macAddress || !$ipAddress) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'MAC address e IP address son requeridos'
+            ])->setStatusCode(400);
+        }
+
+        // Formatear la MAC address
+        $mac_sin_formato = strtoupper($macAddress);
+        $mac_formateada = implode(':', str_split($mac_sin_formato, 2));
+
+        try {
+            // Buscar el dispositivo por MAC
+            $dispositivo = $this->dispositivoModel->where('mac_address', $mac_formateada)->first();
+
+            if (!$dispositivo) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Dispositivo no encontrado'
+                ])->setStatusCode(404);
+            }
+
+            // Actualizar la IP del dispositivo
+            $this->dispositivoModel->update($dispositivo['id'], [
+                'ip_address' => $ipAddress,
+                'ultima_conexion' => date('Y-m-d H:i:s')
+            ]);
+
+            log_message('info', "IP registrada para dispositivo MAC {$mac_formateada}: {$ipAddress}");
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'IP registrada correctamente',
+                'data' => [
+                    'mac_address' => $mac_formateada,
+                    'ip_address' => $ipAddress
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error registrando IP: ' . $e->getMessage());
+            
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Error interno del servidor'
+            ])->setStatusCode(500);
+        }
+    }
+
+    public function getIP($mac = null) {
+        if (!$mac) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'MAC address es requerida'
+            ])->setStatusCode(400);
+        }
+
+        try {
+            // Formatear la MAC address
+            $mac_sin_formato = strtoupper($mac);
+            $mac_formateada = implode(':', str_split($mac_sin_formato, 2));
+
+            // Buscar el dispositivo
+            $dispositivo = $this->dispositivoModel->where('mac_address', $mac_formateada)->first();
+
+            if (!$dispositivo) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Dispositivo no encontrado'
+                ])->setStatusCode(404);
+            }
+
+            return $this->response->setJSON([
+                'success' => true,
+                'ip_address' => $dispositivo['ip_address'] ?? null,
+                'ultima_conexion' => $dispositivo['ultima_conexion'] ?? null
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error obteniendo IP: ' . $e->getMessage());
+            
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Error interno del servidor'
+            ])->setStatusCode(500);
+        }
+    }
+
     /**
      * Vista de control de relé para un dispositivo
      */
