@@ -472,6 +472,60 @@ class Energia extends BaseController
         return view('energia/dispositivo', $data);
     }
 
+
+    public function ultimaLectura($id_dispositivo)
+{
+    // Verificar si el usuario está autenticado
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'No autorizado'
+        ])->setStatusCode(401);
+    }
+
+    // Obtener el dispositivo
+    $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+
+    if (!$dispositivo) {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'Dispositivo no encontrado'
+        ])->setStatusCode(404);
+    }
+
+    // Verificar si el usuario tiene permiso (propietario o admin/supervisor)
+    $idUsuario = session()->get('id_usuario');
+    $idRol = session()->get('id_rol');
+    if ($dispositivo['id_usuario'] !== $idUsuario && $idRol != 1 && $idRol != 3) {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'No tienes permiso para este dispositivo'
+        ])->setStatusCode(403);
+    }
+
+    // Obtener la última lectura
+    $ultimaLectura = $this->energiaModel->where('id_dispositivo', $id_dispositivo)
+                                      ->orderBy('fecha', 'DESC')
+                                      ->first();
+
+    if (!$ultimaLectura) {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'No hay lecturas disponibles'
+        ])->setStatusCode(404);
+    }
+
+    return $this->response->setJSON([
+        'success' => true,
+        'fecha' => $ultimaLectura['fecha'],
+        'voltaje' => $ultimaLectura['voltaje'],
+        'corriente' => $ultimaLectura['corriente'],
+        'potencia' => $ultimaLectura['potencia'],
+        'kwh' => $ultimaLectura['kwh']
+    ]);
+}
+
+
     public function getLatestDataByDevice($id_dispositivo)
     {
         // Verificar si el usuario está autenticado

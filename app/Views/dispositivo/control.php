@@ -162,12 +162,6 @@
     <h2>Control de Focos desde Web</h2>
     <div class="mac">MAC: <?= htmlspecialchars(isset($mac) ? $mac : '') ?></div>
 
-    <div style="margin: 20px 0; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-      <label for="espIP" style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">IP del ESP32:</label>
-      <input type="text" id="espIP" placeholder="192.168.1.100" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; font-family: monospace;">
-      <button onclick="actualizarIP()" style="margin-top: 8px; padding: 6px 12px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;">Actualizar IP</button>
-    </div>
-
     <!-- Foco 1 -->
     <div class="foco-control">
       <svg id="svg-foco-1" class="foco-svg foco-apagado" viewBox="0 0 64 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,91 +206,64 @@
   </div>
 
   <script>
-    let estadoFocos = {1:false,2:false};
-    let esp32IP = null;
+  
+// CAMBIO 1: La IP ya no es fija. La obtenemos desde PHP.
+    // La variable $ip_dispositivo debe venir de tu controlador PHP.
+ const IP_ESP32 = '<?= isset($ip_dispositivo) ? $ip_dispositivo : "" ?>';
 
-    async function obtenerIPDelServidor() {
-      const mac = '<?= htmlspecialchars(isset($mac) ? $mac : '') ?>';
-      if (!mac) return console.error('❌ No hay MAC disponible');
-
-      try {
-        const resp = await fetch(`/obtener_ip/${mac}`);
-        const data = await resp.json();
-        if (data.success && data.ip_address) {
-          esp32IP = data.ip_address;
-          document.getElementById('espIP').value = esp32IP;
-          console.log('✅ IP obtenida:', esp32IP);
-          obtenerEstado();
-        } else esp32IP = '192.168.2.109';
-      } catch(err) { 
-        console.error('❌ Error al obtener IP:', err); 
-        esp32IP = '192.168.2.109'; 
-      }
+    // Chequeo de seguridad por si la IP no se encontró
+    if (!IP_ESP32) {
+        alert('ERROR: No se pudo obtener la dirección IP del dispositivo. No se podrán enviar comandos.');
+        // Deshabilitar botones para evitar errores
+        document.querySelectorAll('.foco-btn').forEach(btn => btn.disabled = true);
     }
 
-    function getESP32IP() {
-      const ip = document.getElementById('espIP').value.trim();
-      return ip || esp32IP || '192.168.2.109';
-    }
-
-    function actualizarIP() {
-      const nuevaIP = document.getElementById('espIP').value.trim();
-      if (!nuevaIP) return alert('Por favor ingresa una IP válida');
-      esp32IP = nuevaIP;
-      console.log('🔄 IP actualizada a:', esp32IP);
-      obtenerEstado();
-    }
-
-    function controlarFoco(foco, estado) {
-      const ip = getESP32IP();
-      console.log(`🎛️ Foco ${foco} -> ${estado} (ESP32: ${ip})`);
-      fetch(`http://${ip}/rele?foco=${foco}&estado=${estado}`)
-        .then(r => r.text())
-        .then(d => {
-          console.log('📩 Respuesta:', d);
-          estadoFocos[foco] = (estado==='on');
-          actualizarFoco(foco);
-        })
-        .catch(err => {
-          console.error('❌ Error:', err);
-          alert(`Error al controlar foco ${foco}: ${err.message}`);
-        });
-    }
-
-    function actualizarFoco(foco){
-      const svg = document.getElementById('svg-foco-'+foco);
-      const haz = document.getElementById('haz-luz-'+foco);
-      const estadoDiv = document.getElementById('estadoFoco'+foco);
-
-      if(estadoFocos[foco]){
-        svg.classList.add('foco-encendido'); svg.classList.remove('foco-apagado');
+    function actualizarEstadoFoco(id, encendido) {
+      const svg = document.getElementById(`svg-foco-${id}`);
+      const haz = document.getElementById(`haz-luz-${id}`);
+      const estado = document.getElementById(`estadoFoco${id}`);
+      if (encendido) {
+        svg.classList.remove('foco-apagado'); svg.classList.add('foco-encendido');
         haz.classList.add('haz-encendido');
-        estadoDiv.textContent='LUZ ENCENDIDA';
-        estadoDiv.classList.add('estado-encendido'); estadoDiv.classList.remove('estado-apagado');
+        estado.textContent = 'LUZ ENCENDIDA';
+        estado.classList.remove('estado-apagado'); estado.classList.add('estado-encendido');
       } else {
         svg.classList.remove('foco-encendido'); svg.classList.add('foco-apagado');
         haz.classList.remove('haz-encendido');
-        estadoDiv.textContent='LUZ APAGADA';
-        estadoDiv.classList.remove('estado-encendido'); estadoDiv.classList.add('estado-apagado');
+        estado.textContent = 'LUZ APAGADA';
+        estado.classList.remove('estado-encendido'); estado.classList.add('estado-apagado');
       }
     }
 
-    function obtenerEstado(){
-      const ip = getESP32IP();
-      fetch(`http://${ip}/estado`)
-        .then(r => r.json())
-        .then(data => {
-          estadoFocos[1] = data.foco1;
-          estadoFocos[2] = data.foco2;
-          actualizarFoco(1); actualizarFoco(2);
-        })
-        .catch(err => console.error('❌ Error al obtener estado:', err));
-    }
+    async function controlarFoco(foco, accion) {
+ try {
+        // CAMBIO 2: El ESP32 espera el parámetro 'estado', no 'accion'.
+ const response = await fetch(`http://${IP_ESP32}/rele?foco=${foco}&estado=${accion}`);
+ if (!response.ok) throw new Error('Error en la comunicación con ESP32');
+ actualizarEstadoFoco(foco, accion === 'on');
+  } catch (err) { console.error(err);
+alert('No se pudo cambiar el estado del foco. Revisa la conexión con el ESP32.');
+ } }
 
-    document.addEventListener('DOMContentLoaded', obtenerIPDelServidor);
-    setInterval(obtenerEstado, 5000);
+async function obtenerEstado() {
+        if (!IP_ESP32) return; // No intentar si no hay IP
 
-    actualizarFoco(1); actualizarFoco(2);
+ try {
+ const response = await fetch(`http://${IP_ESP32}/estado`);
+ if (!response.ok) throw new Error('Error en la comunicación con ESP32');
+ const data = await response.json();
+        // CAMBIO 3: El ESP32 devuelve un booleano (true/false), no el string "on".
+ actualizarEstadoFoco(1, data.foco1);
+ actualizarEstadoFoco(2, data.foco2);
+ } catch (err) {
+ console.error('Error al obtener estado:', err);
+ }
+ }
+
+ setInterval(obtenerEstado, 2500); // Aumenté un poco el intervalo para no saturar
+ window.onload = obtenerEstado;
+
+  
   </script>
 </body>
 </html>

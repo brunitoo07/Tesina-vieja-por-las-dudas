@@ -60,6 +60,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
+    
 
     // Rutas para el perfil de usuario
     $routes->get('usuario/perfil', 'Usuario::perfil');
