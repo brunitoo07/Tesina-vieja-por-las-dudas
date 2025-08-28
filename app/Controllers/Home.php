@@ -30,6 +30,7 @@ class Home extends BaseController
         $session = session();
         $lang = in_array($lang, ['es', 'en']) ? $lang : 'es';
         $session->set('locale', $lang);
-        return redirect()->back();
+        return redirect()->to('/');
+
     }
 }

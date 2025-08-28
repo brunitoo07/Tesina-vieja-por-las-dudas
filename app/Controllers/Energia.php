@@ -560,8 +560,7 @@ class Energia extends BaseController
         }
 
         // Obtener la última lectura del dispositivo
-        $lecturaModel = new \App\Models\LecturaModel();
-        $lectura = $lecturaModel->where('id_dispositivo', $id_dispositivo)
+        $lectura = $this->energiaModel->where('id_dispositivo', $id_dispositivo)
                               ->orderBy('fecha', 'DESC')
                               ->first();
 
@@ -573,7 +572,8 @@ class Energia extends BaseController
         }
 
         // Obtener el límite de consumo del dispositivo
-        $limiteConsumo = $dispositivo['limite_consumo'] ?? 1000; // Valor por defecto si no está configurado
+        $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
+        $limiteConsumo = $limite ? $limite['limite_consumo'] : 10; // Valor por defecto si no está configurado
 
         return $this->response->setJSON([
             'success' => true,

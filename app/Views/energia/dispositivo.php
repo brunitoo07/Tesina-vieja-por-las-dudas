@@ -14,38 +14,97 @@
 
     <!-- Gráfico general de consumo -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Gráfico de Consumo</h6>
+            <div class="d-flex align-items-center">
+                <div id="estadoActualizacion" class="badge badge-success mr-2">
+                    <i class="fas fa-check-circle"></i> Conectado
+                </div>
+                <small class="text-muted">Actualización automática cada 5s</small>
+            </div>
         </div>
         <div class="card-body">
-            <canvas id="graficoConsumo"></canvas>
+            <!-- Alerta de sin energía -->
+            <div id="alertaSinEnergia" class="alert alert-danger text-center mb-3" style="display: none;">
+                <h4 class="alert-heading">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i><br>
+                    ¡SIN ENERGÍA!
+                </h4>
+                <p class="mb-0" style="font-size: 1.2em; font-weight: bold;">
+                    No hay consumo en el sistema. Verifique la conexión eléctrica.
+                </p>
+            </div>
+           
+            <canvas id="graficoConsumo" width="400" height="200"></canvas>
         </div>
     </div>
 
-    <!-- Gauges de variables -->
-    <div class="row">
-        <?php
-        $gauges = [
-            ['id'=>'Voltaje','unidad'=>'V','max'=>300,'alert'=>null],
-            ['id'=>'Corriente','unidad'=>'A','max'=>25,'alert'=>['yellow'=>14,'red'=>18]],
-            ['id'=>'Potencia','unidad'=>'W','max'=>4400,'alert'=>['yellow'=>3000,'red'=>4000]],
-            ['id'=>'Kwh','unidad'=>'kWh','max'=>100,'alert'=>null]
-        ];
-        foreach($gauges as $g):
-        ?>
-        <div class="col-md-6 mb-4">
-            <div class="card shadow">
-                <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary"><?= $g['id'] ?> (<?= $g['unidad'] ?>)</h6></div>
-                <div class="card-body text-center">
-                    <div id="gauge<?= $g['id'] ?>" style="height: 300px;"></div>
-                    <div id="valor<?= $g['id'] ?>" data-unidad="<?= $g['unidad'] ?>" class="mt-2" style="font-size: 24px; font-weight: bold;">
-                        0 <?= $g['unidad'] ?> <span id="trend<?= $g['id'] ?>"></span>
+    <!-- Valores actuales -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Voltaje</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorVoltaje">0 V</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bolt fa-2x text-gray-300"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+        <div class="col-md-3">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Corriente</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorCorriente">0 A</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-wave-square fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Potencia</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorPotencia">0 W</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tachometer-alt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Energía</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorKwh">0 kWh</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-battery-half fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Mensajes de estado en tiempo real -->
+    <div id="logsEstado" class="mb-3"></div>
 
     <!-- Tabla de Lecturas -->
     <div class="card shadow mb-4">
@@ -84,85 +143,216 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     <?php if (!empty($lecturas)): ?>
-    const lecturas = <?= json_encode($lecturas) ?>;
-    function ultimoValor(variable) { return lecturas.length ? lecturas[lecturas.length-1][variable] : 0; }
-    function valorAnterior(variable) { return lecturas.length > 1 ? lecturas[lecturas.length-2][variable] : 0; }
+    
+    let lecturas = <?= json_encode($lecturas) ?>;
 
-    // Gráfico de consumo
-    const ctxConsumo = document.getElementById('graficoConsumo').getContext('2d');
-    const labels = lecturas.map(l => new Date(l.fecha).toLocaleString());
-    const datosPotencia = lecturas.map(l => l.potencia);
-    new Chart(ctxConsumo,{
-        type:'line',
-        data:{labels:labels,datasets:[{label:'Potencia (W)',data:datosPotencia,borderColor:'rgb(75,192,192)',tension:0.1,fill:false}]},
-        options:{responsive:true,scales:{y:{beginAtZero:true}}}
+    function ultimoValor(variable) {
+        return lecturas.length ? lecturas[0][variable] : 0;
+    }
+
+    function mostrarMensaje(tipo, texto) {
+        const mensajesEstado = document.getElementById('logsEstado');
+        let clase = 'alert-secondary';
+
+        switch (tipo) {
+            case 'error': clase = 'alert-danger'; break;
+            case 'alerta': clase = 'alert-warning'; break;
+            case 'ok': clase = 'alert-success'; break;
+            case 'info': clase = 'alert-info'; break;
+        }
+
+        mensajesEstado.innerHTML = `
+            <div class="alert ${clase} text-center">
+                ${texto}
+            </div>
+        `;
+        console.log(`Mensaje tipo "${tipo}": ${texto}`);
+    }
+
+    function verificarEnergia() {
+        const alerta = document.getElementById('alertaSinEnergia');
+        const graficoCanvas = document.getElementById('graficoConsumo');
+        const volt = ultimoValor('voltaje');
+        const corr = ultimoValor('corriente');
+        const pot = ultimoValor('potencia');
+        const kwh = ultimoValor('kwh');
+
+        const sinEnergia = volt < 0.1 && corr < 0.1 && pot < 0.1 && kwh < 0.1;
+
+        if (sinEnergia) {
+            alerta.style.display = 'block';
+            graficoCanvas.style.display = 'none';
+        } else {
+            alerta.style.display = 'none';
+            graficoCanvas.style.display = 'block';
+        }
+    }
+
+    function actualizarValoresActuales() {
+        document.getElementById('valorVoltaje').textContent = Number(ultimoValor('voltaje')).toFixed(2) + ' V';
+        document.getElementById('valorCorriente').textContent = Number(ultimoValor('corriente')).toFixed(2) + ' A';
+        document.getElementById('valorPotencia').textContent = Number(ultimoValor('potencia')).toFixed(2) + ' W';
+        document.getElementById('valorKwh').textContent = Number(ultimoValor('kwh')).toFixed(2) + ' kWh';
+        verificarEnergia();
+    }
+
+    // Crear gráfico de consumo
+    const ctx = document.getElementById('graficoConsumo').getContext('2d');
+    const graficoConsumo = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: lecturas.map(l => new Date(l.fecha).toLocaleString()),
+            datasets: [{
+                label: 'Potencia (W)', 
+                data: lecturas.map(l => l.potencia), 
+                borderColor: 'rgb(75,192,192)', 
+                backgroundColor: 'rgba(75,192,192,0.2)', 
+                tension: 0.1, 
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Potencia (W)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Fecha y Hora'
+                    }
+                }
+            }
+        }
     });
 
-    function crearGauge(id,label,max,valor,alertLimits=null){
-        const chart = echarts.init(document.getElementById(id));
-        const option = {
-            series:[{
-                type:'gauge',
-                startAngle:200,endAngle:-20,
-                min:0,max:max,splitNumber:10,
-                progress:{show:true,width:30},
-                pointer:{show:true,length:80,radius:'60%',width:8},
-                axisLine:{lineStyle:{width:30,color:alertLimits?[[alertLimits.red[0]/max,'#FF4C4C'],[alertLimits.yellow[0]/max,'#FFEB3B'],[1,'#4CAF50']]:[[1,'#4CAF50']]}},
-                axisTick:{distance:-45,splitNumber:5,lineStyle:{width:2,color:'#999'}},
-                splitLine:{distance:-52,length:14,lineStyle:{width:3,color:'#999'}},
-                axisLabel:{distance:-20,color:'#999',fontSize:16},
-                title:{show:true,offsetCenter:[0,'70%'],fontSize:16,color:'#333',text:label},
-                detail:{valueAnimation:true,fontSize:30,fontWeight:'bolder',formatter:'{value}',color: function(v){
-                    if(!alertLimits) return '#333';
-                    if(v>=alertLimits.red[0]) return '#FF4C4C';
-                    if(v>=alertLimits.yellow[0]) return '#FFEB3B';
-                    return '#4CAF50';
-                }},
-                data:[{value:valor}]
-            }]
-        };
-        chart.setOption(option);
-        return chart;
+    function actualizarGrafico() {
+        const labels = lecturas.map(l => new Date(l.fecha).toLocaleString());
+        const datosPotencia = lecturas.map(l => l.potencia);
+        
+        graficoConsumo.data.labels = labels;
+        graficoConsumo.data.datasets[0].data = datosPotencia;
+        graficoConsumo.update();
     }
 
-    const gaugeVoltaje = crearGauge('gaugeVoltaje','Voltaje (V)',300,ultimoValor('voltaje'));
-    const gaugeCorriente = crearGauge('gaugeCorriente','Corriente (A)',25,ultimoValor('corriente'),{yellow:14,red:18});
-    const gaugePotencia = crearGauge('gaugePotencia','Potencia (W)',4400,ultimoValor('potencia'),{yellow:3000,red:4000});
-    const gaugeKwh = crearGauge('gaugeKwh','kWh',100,ultimoValor('kwh'));
-
-    function actualizarGauge(chart,valor,alertLimits,elemento,trendEl){
-        chart.setOption({
-            series:[{data:[{value:valor}]}],
-            detail:{fontSize: valor>=alertLimits?.red?50:30, color: function(v){
-                if(!alertLimits) return '#333';
-                if(valor>=alertLimits.red) return '#FF4C4C';
-                if(valor>=alertLimits.yellow) return '#FFEB3B';
-                return '#4CAF50';
-            }}
+    function actualizarTabla() {
+        const tbody = document.querySelector('#tablaLecturas tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        lecturas.forEach(l => {
+            tbody.innerHTML += `<tr>
+                <td>${new Date(l.fecha).toLocaleString()}</td>
+                <td>${Number(l.voltaje).toFixed(2)}</td>
+                <td>${Number(l.corriente).toFixed(2)}</td>
+                <td>${Number(l.potencia).toFixed(2)}</td>
+                <td>${Number(l.kwh).toFixed(2)}</td>
+            </tr>`;
         });
-
-        if(elemento){
-            elemento.textContent = valor.toFixed(2)+' '+elemento.dataset.unidad;
-            elemento.style.color = (alertLimits && valor>=alertLimits.red) ? '#FF4C4C' :
-                                   (alertLimits && valor>=alertLimits.yellow) ? '#FFEB3B' : '#4CAF50';
-        }
-        if(trendEl){
-            const diff = valor - valorAnterior(elemento.dataset.unidad.toLowerCase());
-            trendEl.innerHTML = diff>0?' &#9650;':(diff<0?' &#9660;':' &#8212;');
-        }
     }
 
-    setInterval(()=>{
-        actualizarGauge(gaugeVoltaje,ultimoValor('voltaje'),null,document.getElementById('valorVoltaje'),document.getElementById('trendVoltaje'));
-        actualizarGauge(gaugeCorriente,ultimoValor('corriente'),{yellow:14,red:18},document.getElementById('valorCorriente'),document.getElementById('trendCorriente'));
-        actualizarGauge(gaugePotencia,ultimoValor('potencia'),{yellow:3000,red:4000},document.getElementById('valorPotencia'),document.getElementById('trendPotencia'));
-        actualizarGauge(gaugeKwh,ultimoValor('kwh'),null,document.getElementById('valorKwh'),document.getElementById('trendKwh'));
-    },2000);
+    // Función para obtener datos en tiempo real
+    function obtenerDatosTiempoReal() {
+        // Mostrar estado de actualización
+        const estadoElement = document.getElementById('estadoActualizacion');
+        estadoElement.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Actualizando...';
+        estadoElement.className = 'badge badge-info mr-2';
+        
+        fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success && data.data) {
+                    // Obtener la nueva lectura
+                    const nuevaLectura = data.data;
+
+                    // Verificar si es una lectura nueva (comparar fecha)
+                    const ultimaLecturaExistente = lecturas[0];
+                    
+                    if (!ultimaLecturaExistente || new Date(nuevaLectura.fecha) > new Date(ultimaLecturaExistente.fecha)) {
+                        
+                        // Agregar nueva lectura al inicio
+                        lecturas.unshift(nuevaLectura);
+                        
+                        // Mantener solo las últimas 50 lecturas
+                        if (lecturas.length > 50) {
+                            lecturas = lecturas.slice(0, 50);
+                        }
+                        
+                        // Actualizar todo
+                        actualizarValoresActuales();
+                        actualizarGrafico();
+                        actualizarTabla();
+                        
+                        // Mostrar estado exitoso
+                        estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
+                        estadoElement.className = 'badge badge-success mr-2';
+                        
+                        console.log('Datos actualizados correctamente:', nuevaLectura);
+                    } else {
+                        // Mostrar estado conectado (sin cambios)
+                        estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
+                        estadoElement.className = 'badge badge-success mr-2';
+                        console.log('No hay nuevas lecturas disponibles');
+                    }
+
+                    // Lógica para mensajes de estado
+                    if (nuevaLectura.voltaje < 1 && nuevaLectura.corriente < 0.1) {
+                        mostrarMensaje('error', '🚫 SIN ENERGÍA EN EL SISTEMA → Voltaje crítico, no hay consumo.');
+                    } else if (nuevaLectura.potencia < 1) {
+                        mostrarMensaje('info', '❌ NO HAY CONSUMO EN EL SISTEMA (0V, 0A, 0W, 0kWh).');
+                    } else if (nuevaLectura.voltaje < 200) {
+                        mostrarMensaje('alerta', '⚠️ Voltaje bajo detectado, verificar conexión eléctrica.');
+                    } else if (nuevaLectura.potencia > 1000) {
+                        mostrarMensaje('ok', '✅ Consumo dentro del límite: ambas líneas activas.');
+                    } else {
+                        mostrarMensaje('alerta', '⚠️ Límite de consumo alcanzado: línea NO esencial desconectada.ELECTRODOMESTICOS FUNCIONANDO.');
+                    }
+
+                } else {
+                    throw new Error('Respuesta del servidor no exitosa');
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener datos en tiempo real:', error);
+                // Mostrar estado de error
+                estadoElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                estadoElement.className = 'badge badge-danger mr-2';
+                mostrarMensaje('error', '❌ Error al conectar con el servidor. Verificando conexión...');
+            });
+    }
+
+    // Inicializar todo
+    actualizarValoresActuales();
+    actualizarTabla();
+    
+    // Mostrar mensaje inicial
+    mostrarMensaje('info', '🔄 Sistema iniciado. Conectando con el dispositivo...');
+    
+    // Configurar actualización automática
+    console.log('Iniciando actualización automática cada 5 segundos...');
+    const intervaloActualizacion = setInterval(obtenerDatosTiempoReal, 5000);
+    
+    // Primera actualización después de 1 segundo
+    setTimeout(obtenerDatosTiempoReal, 1000);
+    
+    // Limpiar intervalo al cerrar la página
+    window.addEventListener('beforeunload', function() {
+        clearInterval(intervaloActualizacion);
+    });
+    
     <?php endif; ?>
 });
 </script>
