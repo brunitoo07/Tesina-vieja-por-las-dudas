@@ -433,6 +433,47 @@
             animation-duration: 15s;
         }
 
+        .chat-preview {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .chat-bubble {
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: bubbleSlide 0.5s ease-out;
+        }
+        
+        .chat-bubble.bot {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-right: auto;
+            text-align: left;
+        }
+        
+        .chat-bubble.user {
+            background: #f8f9fa;
+            color: #333;
+            margin-left: auto;
+            text-align: right;
+            border: 1px solid #e9ecef;
+        }
+        
+        @keyframes bubbleSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation: none !important;
@@ -495,6 +536,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#manual"><?= lang('App.manual') ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#asistente">🤖 Asistente</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#comprar"><?= lang('App.comprar') ?></a>
@@ -656,6 +700,43 @@
         </div>
     </section>
 
+    <!-- Asistente Virtual -->
+    <section id="asistente" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center section-title" data-aos="fade-up">🤖 Asistente Virtual Inteligente</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="card feature-card h-100">
+                        <div class="card-overlay"></div>
+                        <div class="card-body">
+                            <h3 class="mb-4">💬 Chat Inteligente</h3>
+                            <p class="mb-4">Nuestro asistente virtual está disponible 24/7 para ayudarte con:</p>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Consultas sobre dispositivos y MAC</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Información del sistema en tiempo real</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Datos de consumo de energía</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Ayuda técnica y soporte</li>
+                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Información del proyecto EcoVolt</li>
+                            </ul>
+                            <button onclick="toggleChat()" class="btn btn-primary btn-lg">
+                                <i class="fas fa-comments me-2"></i> Probar Asistente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="text-center">
+                        <div class="chat-preview">
+                            <div class="chat-bubble bot">👋 ¡Hola! Soy tu asistente virtual de EcoVolt</div>
+                            <div class="chat-bubble user">¿Puedes mostrarme el estado del sistema?</div>
+                            <div class="chat-bubble bot">📊 **Estado del Sistema EcoVolt**<br>✅ Sistema operativo<br>🔌 5 MACs validadas<br>⚡ 1,247 lecturas de energía</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Comprar -->
     <section id="comprar" class="section">
         <div class="container">
@@ -693,6 +774,9 @@
     <div class="scroll-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Asistente Virtual -->
+    <?= $this->include('chat_profesional') ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

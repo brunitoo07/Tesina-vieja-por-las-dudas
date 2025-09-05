@@ -9,6 +9,20 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('manual', 'Home::manual');
 $routes->get('home/index', 'Home::index');
+
+// Rutas del chat asistente
+$routes->get('chat', 'Chat::index');
+$routes->post('chat/process', 'Chat::process');
+$routes->get('chat/estado', 'Chat::estado');
+$routes->get('chat/dispositivos', 'Chat::dispositivos');
+$routes->get('chat/consumo', 'Chat::consumo');
+$routes->get('chat/proyecto', 'Chat::proyecto');
+$routes->get('chat/ayuda', 'Chat::ayuda');
+
+// Ruta de información del proyecto
+$routes->get('info-proyecto', function() {
+    return view('info_proyecto');
+});
 $routes->get('autenticacion/login', 'CAutenticacion::login');
 $routes->get('autenticacion/register', 'CAutenticacion::register');
 $routes->get('autenticacion/correo', 'CCorreo::index');
@@ -53,14 +67,14 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dispositivo/eliminar/(:num)', 'Dispositivo::eliminar/$1');
     $routes->get('energia/verDatos/(:num)', 'Consumo::verDatos/$1');
     $routes->get('home', 'Home::index');
-    $routes->get('home/bienvenida', 'Home::bienvenida');
     $routes->get('energia', 'Energia::index');
     $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
-    
+    $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
+
 
     // Rutas para el perfil de usuario
     $routes->get('usuario/perfil', 'Usuario::perfil');
@@ -158,3 +172,6 @@ $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
 
 $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');
+$routes->post('telegram/webhook', 'TelegramSimple::webhook');
+// Rutas para generar factura
+$routes->get('facturas/generarPDF/(:num)', 'Facturas::generarPDF/$1');

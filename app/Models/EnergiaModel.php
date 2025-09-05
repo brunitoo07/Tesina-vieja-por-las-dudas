@@ -11,7 +11,7 @@ class EnergiaModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh', 'fecha', 'mac_address', 'limite_superado'];
+    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh','limite_superado', 'fecha', 'mac_address'];
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
@@ -26,18 +26,18 @@ class EnergiaModel extends Model
     }
 
     public function getConsumoDiario($id_usuario = null)
-    {
-        $builder = $this->builder();
-        if ($id_usuario) {
-            $builder->where('id_usuario', $id_usuario);
-        }
-        $hoy = date('Y-m-d');
-        $consumo = $builder->select('SUM(kwh) as total')
-                            ->where('DATE(fecha)', $hoy)
-                            ->get()
-                            ->getRow()->kwh ?? 0;
-        return $consumo ? $consumo->total : 0;
+{
+    $builder = $this->builder();
+    if ($id_usuario) {
+        $builder->where('id_usuario', $id_usuario);
     }
+    $hoy = date('Y-m-d');
+    $resultado = $builder->select('SUM(kwh) as total')
+                         ->where('DATE(fecha)', $hoy)
+                         ->get()
+                         ->getRow();
+    return $resultado ? $resultado->total : 0;
+}
 
     public function getAllDataDesc()
     {

@@ -33,7 +33,25 @@
                 </div>
             </div>
         </div>
+
+        <!-- Tarjeta de Asistente Virtual -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-robot"></i> Asistente Virtual
+                    </h5>
+                    <p class="card-text">Consulta información del sistema, dispositivos y consumo de energía.</p>
+                    <button onclick="toggleChat()" class="btn btn-success">
+                        <i class="fas fa-comments"></i> Abrir Chat
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Asistente Virtual -->
+<?= $this->include('chat_profesional') ?>
 
 <?= $this->endSection() ?> 

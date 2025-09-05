@@ -102,9 +102,64 @@
             </div>
         </div>
     </div>
+<!-- Formulario para comparar valor de kWh -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">💰 Calcular Costo de Energía</h6>
+    </div>
+    <div class="card-body">
+        <form id="formKwh" class="row g-3">
+            <div class="col-md-4">
+                <label for="valorKwh" class="form-label">Valor de kWh ($)</label>
+                <input type="number" step="0.01" class="form-control" id="inputKwh" placeholder="Ej: 150.50" required>
+                </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-calculator me-2"></i> Calcular
+                </button>
+            </div>
+        </form>
 
+        <div id="resultadoCosto" class="mt-3" style="display:none;">
+            <h6 class="fw-bold">Resultado:</h6>
+            <p>Total de Energía consumida: <span id="totalKwh"></span> kWh</p>
+            <p>Costo estimado: <span id="costoTotal"></span> $</p>
+            <a href="<?= base_url('facturas/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
+               class="btn btn-primary" target="_blank">
+                <i class="fas fa-file-pdf me-2"></i> Descargar Informe PDF
+            </a>
+        
+        </div>
+    </div>
+</div>
     <!-- Mensajes de estado en tiempo real -->
     <div id="logsEstado" class="mb-3"></div>
+
+    <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">⚡ Configuración de Límite de Consumo</h6>
+    </div>
+    <div class="card-body">
+    <form id="formLimite" action="<?= base_url('energia/actualizarLimite') ?>" method="post">
+        <div class="form-group">
+            <label for="limite_consumo">Límite de Consumo (kWh)</label>
+            <input type="number" step="0.01" class="form-control" 
+                   id="limite_consumo" name="limite_consumo" 
+                   value="<?= esc($limite_consumo) ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email de notificación (opcional)</label>
+            <input type="email" class="form-control" 
+                   id="email" name="email" 
+                   value="<?= esc(session()->get('email')) ?>">
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Guardar Configuración
+        </button>
+    </form>
+    <div id="msgLimite" class="mt-3"></div>
+</div>
+
 
     <!-- Tabla de Lecturas -->
     <div class="card shadow mb-4">
@@ -309,16 +364,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     // Lógica para mensajes de estado
+                    const limiteConsumo = (typeof data.limite_consumo !== 'undefined' && data.limite_consumo !== null)
+                        ? Number(data.limite_consumo)
+                        : (Number(document.getElementById('limite_consumo')?.value) || 10);
+
                     if (nuevaLectura.voltaje < 1 && nuevaLectura.corriente < 0.1) {
                         mostrarMensaje('error', '🚫 SIN ENERGÍA EN EL SISTEMA → Voltaje crítico, no hay consumo.');
                     } else if (nuevaLectura.potencia < 1) {
                         mostrarMensaje('info', '❌ NO HAY CONSUMO EN EL SISTEMA (0V, 0A, 0W, 0kWh).');
                     } else if (nuevaLectura.voltaje < 200) {
                         mostrarMensaje('alerta', '⚠️ Voltaje bajo detectado, verificar conexión eléctrica.');
-                    } else if (nuevaLectura.potencia > 1000) {
-                        mostrarMensaje('ok', '✅ Consumo dentro del límite: ambas líneas activas.');
+                    } else if (Number(nuevaLectura.kwh) > limiteConsumo) {
+                        mostrarMensaje('alerta', `⚠️ Límite de consumo superado (${Number(nuevaLectura.kwh).toFixed(2)} kWh > ${limiteConsumo} kWh). Línea NO esencial desconectada.`);
                     } else {
-                        mostrarMensaje('alerta', '⚠️ Límite de consumo alcanzado: línea NO esencial desconectada.ELECTRODOMESTICOS FUNCIONANDO.');
+                        mostrarMensaje('ok', '✅ Consumo dentro del límite.');
                     }
 
                 } else {
@@ -355,6 +414,86 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <?php endif; ?>
 });
+
 </script>
+<<!-- 🚀 SCRIPT PARA CALCULAR COSTO DE ENERGÍA -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const formKwh = document.getElementById('formKwh');
+    const resultado = document.getElementById('resultadoCosto');
+    const inputValorKwh = document.getElementById('inputKwh'); // ahora apunta al input correcto
+
+    if (formKwh) {
+        formKwh.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const valorKwhUnitario = parseFloat(inputValorKwh.value);
+            if (isNaN(valorKwhUnitario)) {
+                alert('Ingrese un valor válido para el kWh');
+                return;
+            }
+
+            // Calcular total de kWh consumidos
+            let totalKwh = 0;
+            <?php if (!empty($lecturas)): ?>
+                <?php foreach ($lecturas as $lectura): ?>
+                    totalKwh += <?= $lectura['kwh'] ?>;
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            const costoTotal = (totalKwh * valorKwhUnitario).toFixed(2);
+
+            document.getElementById('totalKwh').textContent = totalKwh.toFixed(2);
+            document.getElementById('costoTotal').textContent = costoTotal;
+
+            resultado.style.display = 'block';
+        });
+    }
+});
+</script>
+<!-- 🚀 SCRIPT PARA GUARDAR LÍMITE DE CONSUMO -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formLimite');
+    const msg = document.getElementById('msgLimite');
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const data = {
+    limite_consumo: document.getElementById('limite_consumo').value,
+    email: document.getElementById('email').value,
+    id_dispositivo: <?= $dispositivo['id_dispositivo'] ?>
+};
+
+           fetch("<?= base_url('energia/actualizarLimite') ?>", {
+
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.success) {
+                    msg.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
+                } else {
+                    msg.innerHTML = `<div class="alert alert-danger">${response.error || 'Error desconocido'}</div>`;
+                }
+            })
+            .catch(err => {
+                msg.innerHTML = `<div class="alert alert-danger">Error al guardar configuración: ${err}</div>`;
+            });
+        });
+    }
+});
+</script>
+
+<!-- Se eliminó la suscripción a notificaciones push -->
+
+<!-- Asistente Virtual -->
+<?= $this->include('chat_asistente') ?>
 
 <?= $this->endSection() ?>
