@@ -1,3 +1,5 @@
+
+  <!-- ESTE ES EL REMUNEN DE COMPRA QUE TE MANDA AÑL BOTON DE PAGAR CON PAYPAL-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,7 +54,7 @@
 </head>
 <body>
     <div class="pricing-header">
-        <h1 class="display-4">EcoVolt Pro</h1>
+        <h1 class="display-4">EcoVolt</h1>
         <p class="lead">Paga de forma segura con PayPal y recibe tu dispositivo en casa.</p>
     </div>
 
@@ -62,8 +64,8 @@
             <div class="col-md-6">
                 <h2 class="mb-4">Detalles del Producto</h2>
                 <div class="device-card">
-                    <img src="<?= base_url('assets/img/eco-monitor-pro.jpg') ?>" alt="EcoVolt Pro" class="device-image">
-                    <h3><?= esc($dispositivo['nombre']) ?></h3>
+                
+                    <h3>Medidor de energia inteligente EcoVolt</h3>
                     <p class="text-muted">Dispositivo de monitoreo de energía inteligente para tu hogar.</p>
                     <ul class="feature-list">
                         <li><i class="fas fa-check-circle"></i> Monitoreo en tiempo real</li>

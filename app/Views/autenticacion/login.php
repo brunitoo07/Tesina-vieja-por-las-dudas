@@ -362,7 +362,7 @@
                     </a>
                 </div>
                 <div class="mt-3 text-center">
-                    <a href="<?= base_url('/') ?>" class="btn btn-secondary">
+                <a href="<?= site_url() ?>" class="btn btn-secondary">
                         <i class="fas fa-home me-2"></i><?= lang('App.back_home') ?>
                     </a>
                 </div>

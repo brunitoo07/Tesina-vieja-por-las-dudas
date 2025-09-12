@@ -494,6 +494,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Se eliminó la suscripción a notificaciones push -->
 
 <!-- Asistente Virtual -->
-<?= $this->include('chat_asistente') ?>
+<?= $this->include('chat_profesional') ?>
 
 <?= $this->endSection() ?>

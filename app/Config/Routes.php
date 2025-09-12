@@ -8,21 +8,13 @@ use CodeIgniter\Router\RouteCollection;
 // Rutas públicas (sin autenticación)
 $routes->get('/', 'Home::index');
 $routes->get('manual', 'Home::manual');
-$routes->get('home/index', 'Home::index');
+
 
 // Rutas del chat asistente
 $routes->get('chat', 'Chat::index');
 $routes->post('chat/process', 'Chat::process');
-$routes->get('chat/estado', 'Chat::estado');
-$routes->get('chat/dispositivos', 'Chat::dispositivos');
-$routes->get('chat/consumo', 'Chat::consumo');
-$routes->get('chat/proyecto', 'Chat::proyecto');
-$routes->get('chat/ayuda', 'Chat::ayuda');
 
-// Ruta de información del proyecto
-$routes->get('info-proyecto', function() {
-    return view('info_proyecto');
-});
+
 $routes->get('autenticacion/login', 'CAutenticacion::login');
 $routes->get('autenticacion/register', 'CAutenticacion::register');
 $routes->get('autenticacion/correo', 'CCorreo::index');
@@ -49,6 +41,8 @@ $routes->get('compra/completada', 'Compra::completada');
 $routes->get('compra/error', 'Compra::error');
 
 // Rutas de registro de compra
+
+//recordar que el formulario de compra esta en la carpeta registro/compra.php y el registro de la compra con mensjaes y eso es registro-compra...
 $routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
 $routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
 $routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
@@ -150,7 +144,7 @@ $routes->get('mediciones/(:num)', 'Mediciones::index/$1');
 $routes->get('energia', 'Energia::index');
 
 // NUEVA RUTA DE PRUEBA
-$routes->match(['get', 'post'], '/nuevos_datos', 'Energia::recibirNuevosDatos');
+$routes->match(['GET', 'POST'], '/nuevos_datos', 'Energia::recibirNuevosDatos');
 
 // Rutas para dispositivos
 $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {

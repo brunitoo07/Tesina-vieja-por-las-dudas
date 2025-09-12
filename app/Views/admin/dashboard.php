@@ -173,43 +173,7 @@
     </div>
 </div>
 
-<!-- Registro de Service Worker y solicitud de notificaciones -->
-<script>
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('<?= base_url('sw.js') ?>')
-    .then(reg => console.log('Service Worker registrado', reg))
-    .catch(err => console.error('Error al registrar SW:', err));
-}
-
-function urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-        .replace(/\-/g, '+')
-        .replace(/_/g, '/');
-    const rawData = atob(base64);
-    return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
-}
-
-// Solicitar permiso de notificaciones
-Notification.requestPermission().then(permission => {
-    if(permission === 'granted') {
-        console.log('Notificaciones permitidas');
-        navigator.serviceWorker.ready.then(reg => {
-            reg.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: urlBase64ToUint8Array('BB1mtNOXwA6q8vz3nbJ1IudGvkEjX7Yl1ZlxVAo0HWN_HyuOhFUUj0Cc_UQ1qUJ1wB1x4a9JxII3Sz5FlZbvxyE')
-            }).then(subscription => {
-                fetch('<?= base_url("energia/saveSubscription") ?>', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(subscription)
-                });
-            });
-        });
-    }
-});
-</script>
 
 
-
+<?= $this->include('chat_profesional') ?>
 <?= $this->endSection() ?>

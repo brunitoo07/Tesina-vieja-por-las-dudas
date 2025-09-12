@@ -77,21 +77,10 @@
     <div class="theme-switch" id="themeSwitch" title="Modo claro/oscuro" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
         <i class="fas fa-moon"></i>
     </div>
-    <!-- Selector de idioma solo si no está autenticado -->
-    <?php if (!session()->get('logged_in')): ?>
-    <div style="position: fixed; top: 20px; right: 60px; z-index: 1000;">
-        <?php $idioma = service('request')->getLocale(); ?>
-        <a href="<?= base_url('cambiar-idioma/es') ?>" title="Español">
-            <img src="<?= base_url('imagenes/' . ($idioma === 'es' ? 'es' : 'es') . '.png') ?>" alt="Español" style="width:24px;<?= $idioma === 'es' ? 'border:2px solid #333;border-radius:50%;' : '' ?>">
-        </a>
-        <a href="<?= base_url('cambiar-idioma/en') ?>" title="English">
-            <img src="<?= base_url('imagenes/' . ($idioma === 'en' ? 'en' : 'en') . '.png') ?>" alt="English" style="width:24px;<?= $idioma === 'en' ? 'border:2px solid #333;border-radius:50%;' : '' ?>">
-        </a>
-    </div>
-    <?php endif; ?>
+
     <div class="success-header">
-        <h1 class="display-4"><?= lang('App.pago_exitoso') ?></h1>
-        <p class="lead"><?= lang('App.gracias_compra') ?></p>
+        <h1 class="display-4">¡Pago Exitoso!</h1>
+        <p class="lead">Gracias por tu compra en EcoVolt</p>
     </div>
 
     <div class="container py-5">
@@ -99,30 +88,30 @@
             <div class="col-md-8">
                 <div class="text-center mb-5">
                     <i class="fas fa-check-circle success-icon"></i>
-                    <h2><?= lang('App.gracias_por_tu_compra', [esc($nombre)]) ?></h2>
-                    <p class="lead"><?= lang('App.pedido_procesado') ?></p>
+                    <h2>Gracias por tu compra, <?= esc($nombre) ?>!</h2>
+                    <p class="lead">Tu pedido ha sido procesado correctamente.</p>
                 </div>
 
                 <div class="order-details">
-                    <h3 class="mb-4"><?= lang('App.detalles_pedido') ?></h3>
+                    <h3 class="mb-4">Detalles del pedido</h3>
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong><?= lang('App.producto') ?>:</strong> <?= esc($dispositivo['nombre']) ?></p>
-                            <p><strong><?= lang('App.precio') ?>:</strong> $<?= number_format($dispositivo['precio'], 2) ?></p>
-                            <p><strong><?= lang('App.fecha_compra') ?>:</strong> <?= $fecha ?></p>
+                            <p><strong>Producto:</strong> <?= esc($dispositivo['nombre']) ?></p>
+                            <p><strong>Precio:</strong> $<?= number_format($dispositivo['precio'], 2) ?></p>
+                            <p><strong>Fecha de compra:</strong> <?= $fecha ?></p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong><?= lang('App.direccion_envio') ?>:</strong></p>
+                            <p><strong>Dirección de envío:</strong></p>
                             <p><?= esc($direccion) ?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-5">
-                    <p><?= lang('App.recibiras_email') ?></p>
-                    <p><?= lang('App.pregunta_contacto') ?></p>
+                    <p>Recibirás un correo electrónico con la confirmación y los detalles de tu compra.</p>
+                    <p>Si tienes alguna pregunta, contáctanos a nuestro soporte.</p>
                     <a href="<?= base_url('autenticacion/login') ?>" class="btn btn-primary btn-lg mt-3">
-                        <i class="fas fa-sign-in-alt me-2"></i><?= lang('App.iniciar_sesion') ?>
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar sesión
                     </a>
                 </div>
             </div>
@@ -131,4 +120,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>

@@ -21,7 +21,7 @@
         }
         
         .chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,rgb(234, 210, 102) 0%,rgb(0, 0, 0) 100%);
             color: white;
             padding: 20px;
             border-radius: 20px 20px 0 0;
@@ -101,7 +101,7 @@
             overflow-y: auto;
             background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
             scrollbar-width: thin;
-            scrollbar-color: #667eea #f1f1f1;
+            scrollbar-color:rgb(8, 8, 8) #f1f1f1;
         }
         
         .chat-messages::-webkit-scrollbar {
@@ -114,7 +114,7 @@
         }
         
         .chat-messages::-webkit-scrollbar-thumb {
-            background: #667eea;
+            background:rgb(184, 172, 14);
             border-radius: 3px;
         }
         
@@ -140,7 +140,7 @@
         }
         
         .user-message {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,rgb(0, 0, 0) 0%,rgb(231, 210, 23) 100%);
             color: white;
             margin-left: auto;
             text-align: right;
@@ -182,12 +182,12 @@
         }
         
         .chat-input input:focus {
-            border-color: #667eea;
+            border-color:rgb(207, 195, 25);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
         .chat-input button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,rgb(168, 166, 11) 0%, rgb(0, 0, 0)100%);
             color: white;
             border: none;
             padding: 15px 25px;
@@ -213,7 +213,7 @@
             right: 20px;
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,rgb(184, 187, 13) 0%,rgb(0, 0, 0) 100%);
             border: none;
             border-radius: 50%;
             color: white;
@@ -256,7 +256,7 @@
         }
         
         .quick-btn:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,rgb(176, 179, 11) 0%,rgb(0, 0, 0) 100%);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
@@ -265,7 +265,7 @@
         .loading {
             display: none;
             text-align: center;
-            color: #667eea;
+            color:rgb(184, 167, 17);
             font-style: italic;
             padding: 20px;
         }
@@ -275,7 +275,7 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 2px solid #667eea;
+            border: 2px solidrgb(0, 0, 0);
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 1s linear infinite;
@@ -311,7 +311,7 @@
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: #667eea;
+            background:rgb(196, 163, 19);
             border-radius: 50%;
             animation: typing 1.4s infinite ease-in-out;
         }
@@ -337,7 +337,7 @@
         .action-btn {
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.3);
-            color: #667eea;
+            color:rgb(181, 184, 12);
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 11px;
@@ -346,7 +346,7 @@
         }
         
         .action-btn:hover {
-            background: #667eea;
+            background:rgb(0, 0, 0);
             color: white;
         }
     </style>
@@ -371,27 +371,27 @@
         </div>
         
         <div class="chat-messages" id="chatMessages">
-            <div class="message bot-message">
-                <strong>👋 ¡Hola! Soy tu asistente virtual de EcoVolt</strong><br><br>
-                ¿En qué puedo ayudarte? Puedo:
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>Mostrar datos de dispositivos</li>
-                    <li>Buscar por MAC</li>
-                    <li>Consultar consumo de energía</li>
-                    <li>Ver estado del sistema</li>
-                    <li>Información del proyecto</li>
-                </ul>
-                
-                <div class="quick-actions">
-                    <button class="quick-btn" onclick="sendQuickMessage('Estado del sistema')">📊 Estado</button>
-                    <button class="quick-btn" onclick="sendQuickMessage('Mostrar dispositivos')">🔌 Dispositivos</button>
-                    <button class="quick-btn" onclick="sendQuickMessage('Ver consumo')">⚡ Consumo</button>
-                    <button class="quick-btn" onclick="sendQuickMessage('Proyecto')">🚀 Proyecto</button>
-                    <button class="quick-btn" onclick="sendQuickMessage('Ayuda')">❓ Ayuda</button>
-                </div>
-                
-                <div class="timestamp"><?= date('H:i') ?></div>
-            </div>
+        <div class="message bot-message">
+    <strong>👋 ¡Hola! Soy tu asistente virtual de EcoVolt</strong><br><br>
+    ¿En qué puedo ayudarte? Puedo:
+    <ul style="margin: 10px 0; padding-left: 20px;">
+        <li>Responder consultas sobre el proyecto EcoVolt</li>
+        <li>Compartir ideas para mejorar tu sistema</li>
+        <li>Explicarte cómo funciona la plataforma</li>
+        <li>Darte información general</li>
+        <li>Si necesitas soporte técnico de dispositivos, te derivo a nuestro equipo</li>
+    </ul>
+    
+    <div class="quick-actions">
+        <button class="quick-btn" onclick="sendQuickMessage('Información del proyecto')">📘 Proyecto</button>
+        <button class="quick-btn" onclick="sendQuickMessage('Ideas de mejora')">💡 Ideas</button>
+        <button class="quick-btn" onclick="sendQuickMessage('Ayuda general')">❓ Ayuda</button>
+        <button class="quick-btn" onclick="sendQuickMessage('Contacto técnico')">☎️ Servicio Técnico</button>
+    </div>
+    
+    <div class="timestamp"><?= date('H:i') ?></div>
+</div>
+
         </div>
         
         <div class="typing-indicator" id="typingIndicator">
@@ -443,68 +443,68 @@
         }
         
         function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            // Mostrar mensaje del usuario
-            addMessage(message, 'user');
-            input.value = '';
-            
-            // Mostrar indicador de escritura
-            showTypingIndicator(true);
-            
-            // Enviar al servidor
-            fetch('<?= base_url('chat/process') ?>', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                showTypingIndicator(false);
-                addMessage(data.response, 'bot');
-            })
-            .catch(error => {
-                showTypingIndicator(false);
-                addMessage('❌ Error al procesar tu mensaje. Intenta de nuevo.', 'bot');
-                console.error('Error:', error);
-            });
-        }
-        
-        function addMessage(text, type) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}-message`;
-            
-            // Formatear el texto
-            let formattedText = text.replace(/\n/g, '<br>');
-            
-            // Agregar botones rápidos si es un mensaje del bot
-            if (type === 'bot' && text.includes('Puedo ayudarte')) {
-                formattedText += '<div class="quick-actions" style="margin-top: 15px;">' +
-                    '<button class="quick-btn" onclick="sendQuickMessage(\'Estado del sistema\')">📊 Estado</button>' +
-                    '<button class="quick-btn" onclick="sendQuickMessage(\'Mostrar dispositivos\')">🔌 Dispositivos</button>' +
-                    '<button class="quick-btn" onclick="sendQuickMessage(\'Ver consumo\')">⚡ Consumo</button>' +
-                    '<button class="quick-btn" onclick="sendQuickMessage(\'Proyecto\')">🚀 Proyecto</button>' +
-                    '<button class="quick-btn" onclick="sendQuickMessage(\'Ayuda\')">❓ Ayuda</button>' +
-                    '</div>';
-            }
-            
-            // Agregar timestamp
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-            formattedText += `<div class="timestamp">${timeString}</div>`;
-            
-            messageDiv.innerHTML = formattedText;
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            messageCount++;
-        }
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Mostrar mensaje del usuario
+    addMessage(message, 'user');
+    input.value = '';
+    
+    // Mostrar indicador de escritura
+    showTypingIndicator(true);
+    
+    // Enviar al servidor
+    fetch('<?= base_url('chat/process') ?>', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        showTypingIndicator(false);
+        // Muestra el texto y los botones
+        addMessage(data.text, 'bot', data.options);
+    })
+    .catch(error => {
+        showTypingIndicator(false);
+        addMessage('❌ Error al procesar tu mensaje. Intenta de nuevo.', 'bot');
+        console.error('Error:', error);
+    });
+}
+
+function addMessage(text, type, options = []) {
+    const messagesContainer = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}-message`;
+    
+    // Formatear el texto
+    let formattedText = text.replace(/\n/g, '<br>');
+    
+    // Si es respuesta del bot y trae opciones → mostrar botones
+    if (type === 'bot' && options.length > 0) {
+        formattedText += '<div class="quick-actions" style="margin-top: 15px;">';
+        options.forEach(opt => {
+            formattedText += `<button class="quick-btn" onclick="sendQuickMessage('${opt}')">${opt}</button>`;
+        });
+        formattedText += '</div>';
+    }
+    
+    // Agregar timestamp
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    formattedText += `<div class="timestamp">${timeString}</div>`;
+    
+    messageDiv.innerHTML = formattedText;
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    messageCount++;
+}
+
         
         function showTypingIndicator(show) {
             document.getElementById('typingIndicator').style.display = show ? 'block' : 'none';

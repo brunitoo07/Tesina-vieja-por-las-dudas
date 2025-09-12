@@ -1,0 +1,672 @@
+INFO - 2025-09-12 07:56:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:05:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:40 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:06:40 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-12 08:06:40 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-12 08:06:40 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-12 08:06:40 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-12 08:06:40 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:06:40 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-12 08:06:40 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675134
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:45 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-09-12 08:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675134
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:06:45 --> Buscando usuario ID: 1
+DEBUG - 2025-09-12 08:06:45 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-07-24 14:07:31
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-12 08:06:47 --> Ruta actual: /Tesina/public/energia/dispositivo/29
+INFO - 2025-09-12 08:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:47 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675134
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:49 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:06:49 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-12 08:06:49 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-12 08:06:49 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-12 08:06:49 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-12 08:06:49 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:06:49 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-12 08:06:49 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675202
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:06:51 --> Ruta actual: /Tesina/public/energia/dispositivo/2
+INFO - 2025-09-12 08:06:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:06:51 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675134
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/energia/dispositivo/29
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:06:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:07:07 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-09-12 08:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:07:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675202
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:07:07 --> Buscando usuario ID: 1
+DEBUG - 2025-09-12 08:07:07 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-07-24 14:07:31
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-09-12 08:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:07:08 --> Ruta actual: /Tesina/public/energia/dispositivo/2
+INFO - 2025-09-12 08:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:07:08 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675202
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-12 08:07:37 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: facturas/generarPDF/2]
+in APPPATH\Controllers\Facturas.php on line 36.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Facturas->generarPDF('2')
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Facturas))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-12 08:07:37 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:07:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:07:37 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757675202
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/energia/dispositivo/2
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:07:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:07:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:09:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:10:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:11:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:13:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:13:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:14:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:15:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:16:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-12 08:18:38 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: facturas/generarPDF/2]
+in APPPATH\Controllers\Facturas.php on line 36.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Facturas->generarPDF('2')
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Facturas))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-09-12 08:18:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:19:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:20:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:21:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:22:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-12 08:23:03 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: facturas/generarPDF/2]
+in APPPATH\Controllers\Facturas.php on line 36.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Facturas->generarPDF('2')
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Facturas))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2025-09-12 08:23:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:26:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-09-12 08:26:45 --> Error: Class "Dompdf\Dompdf" not found
+[Method: GET, Route: facturas/generarPDF/2]
+in APPPATH\Controllers\Facturas.php on line 36.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Facturas->generarPDF('2')
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Facturas))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-09-12 08:26:49 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:26:49 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:26:52 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:26:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:26:52 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:28:01 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:28:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:28:01 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:29:29 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:29:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:29:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:30:31 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:30:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:30:31 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:31:26 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:31:26 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676409
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:32:06 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:32:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:32:06 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:33:43 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:33:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:33:43 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:33:59 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:33:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:33:59 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:34:07 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:34:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:34:07 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:34:40 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:34:40 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-12 08:34:42 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:34:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:34:42 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757676726
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:36:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:37:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:40:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:45:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:45:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:45:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:45:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:46:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:47:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:47:32 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:47:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:47:32 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757677508
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:47:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:48:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:48:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:48:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:49:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:49:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:49:26 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:49:26 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-12 08:49:26 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-12 08:49:26 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-12 08:49:26 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-12 08:49:26 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:49:26 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-12 08:49:26 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:49:26 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757677733
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:49:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:49:28 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:49:28 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-12 08:49:28 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-12 08:49:28 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-12 08:49:28 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-12 08:49:28 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:49:28 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-12 08:49:29 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:49:29 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757677733
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:50:20 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:50:20 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-12 08:50:20 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-12 08:50:20 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-12 08:50:20 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-12 08:50:20 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-12 08:50:20 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-12 08:50:21 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-12 08:50:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:50:21 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1757677798
+    [_ci_previous_url] => http://192.168.2.182/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-12 08:50:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:51:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:51:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:51:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:51:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:53:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:53:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:53:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:54:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:57:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:58:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 08:58:48 --> === INICIO PROCESO DE COMPRA ===
+DEBUG - 2025-09-12 08:58:48 --> Datos recibidos: {"nombre":"federicooo","email":"federico07@gmail.com","id_dispositivo":"1"}
+DEBUG - 2025-09-12 08:58:48 --> Dispositivo encontrado: {"id_dispositivo":"1","nombre":"medidor de ecovolt","id_usuario":"1","mac_address":"00:1A:2B:3C:4D:5E","ip_address":null,"ultima_conexion":null,"estado":"activo","created_at":"2025-04-10 22:26:34","stock":"43","precio":"85","descripcion":"","fecha_actualizacion":"2025-06-27 08:44:59","updated_at":"2025-06-12 15:06:14","codigo_activacion":null,"fecha_activacion":null}
+DEBUG - 2025-09-12 08:58:48 --> Creando usuario con datos: {"email":"federico07@gmail.com","rol":1,"estado":"pendiente"}
+DEBUG - 2025-09-12 08:58:48 --> Iniciando hashPassword con datos: {"data":{"nombre":"federicooo","apellido":"dadadada","email":"federico07@gmail.com","contrasena":"Federico_07$","id_rol":1,"estado":"pendiente","created_at":"2025-09-12 08:58:48","updated_at":"2025-09-12 08:58:48"}}
+DEBUG - 2025-09-12 08:58:48 --> Contraseña original: Federico_07$
+DEBUG - 2025-09-12 08:58:48 --> Longitud de la contraseña original: 12
+DEBUG - 2025-09-12 08:58:48 --> Hash generado: $2y$10$DbpTtDnttnppSVPmNNUvPeSnkpVaG4axagcVnvhxz6ZjYJqm6OW72
+DEBUG - 2025-09-12 08:58:48 --> Usuario creado con ID: 80
+DEBUG - 2025-09-12 08:58:48 --> Dirección creada con ID: 22
+DEBUG - 2025-09-12 08:58:48 --> Datos guardados en sesión: {"id_usuario":80,"id_dispositivo":"1"}
+DEBUG - 2025-09-12 08:58:48 --> === FIN PROCESO DE COMPRA ===
+INFO - 2025-09-12 08:58:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 08:59:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:01:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:01:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:02:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:02:04 --> Procesando pago exitoso para usuario: 80
+DEBUG - 2025-09-12 09:02:04 --> Buscando usuario ID: 80
+DEBUG - 2025-09-12 09:02:04 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 80
+    [nombre] => federicooo
+    [apellido] => dadadada
+    [email] => federico07@gmail.com
+    [contrasena] => $2y$10$DbpTtDnttnppSVPmNNUvPeSnkpVaG4axagcVnvhxz6ZjYJqm6OW72
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-09-12 08:58:48
+    [updated_at] => 2025-09-12 08:58:48
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-12 09:02:04 --> Datos del usuario antes de activación: {"id":"80","email":"federico07@gmail.com","estado":"pendiente","rol":"1"}
+DEBUG - 2025-09-12 09:02:04 --> Compra marcada como completada
+DEBUG - 2025-09-12 09:02:08 --> Redirigiendo a página de pago exitoso
+INFO - 2025-09-12 09:04:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:04:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:04:12 --> Procesando pago exitoso para usuario: 
+DEBUG - 2025-09-12 09:04:12 --> Sesión expirada o datos faltantes
+INFO - 2025-09-12 09:04:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:04:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:04:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:32:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:32:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:33:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:33:05 --> === INICIO PROCESO DE COMPRA ===
+DEBUG - 2025-09-12 09:33:05 --> Datos recibidos: {"nombre":"lucho","email":"lucho07@gmail.com","id_dispositivo":"1"}
+DEBUG - 2025-09-12 09:33:05 --> Dispositivo encontrado: {"id_dispositivo":"1","nombre":"medidor de ecovolt","id_usuario":"1","mac_address":"00:1A:2B:3C:4D:5E","ip_address":null,"ultima_conexion":null,"estado":"activo","created_at":"2025-04-10 22:26:34","stock":"42","precio":"85","descripcion":"","fecha_actualizacion":"2025-09-12 09:01:58","updated_at":"2025-06-12 15:06:14","codigo_activacion":null,"fecha_activacion":null}
+DEBUG - 2025-09-12 09:33:05 --> Creando usuario con datos: {"email":"lucho07@gmail.com","rol":1,"estado":"pendiente"}
+DEBUG - 2025-09-12 09:33:06 --> Iniciando hashPassword con datos: {"data":{"nombre":"lucho","apellido":"kakak","email":"lucho07@gmail.com","contrasena":"Lucho_07$","id_rol":1,"estado":"pendiente","created_at":"2025-09-12 09:33:06","updated_at":"2025-09-12 09:33:06"}}
+DEBUG - 2025-09-12 09:33:06 --> Contraseña original: Lucho_07$
+DEBUG - 2025-09-12 09:33:06 --> Longitud de la contraseña original: 9
+DEBUG - 2025-09-12 09:33:06 --> Hash generado: $2y$10$PRN/BchANV8HjCZ7ndoAGOMi2FulqfdXAydbf/JOa2wviXnO4Zr7u
+DEBUG - 2025-09-12 09:33:06 --> Usuario creado con ID: 81
+DEBUG - 2025-09-12 09:33:06 --> Dirección creada con ID: 23
+DEBUG - 2025-09-12 09:33:06 --> Datos guardados en sesión: {"id_usuario":81,"id_dispositivo":"1"}
+DEBUG - 2025-09-12 09:33:06 --> === FIN PROCESO DE COMPRA ===
+INFO - 2025-09-12 09:33:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:33:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:33:52 --> Procesando pago exitoso para usuario: 81
+DEBUG - 2025-09-12 09:33:52 --> Buscando usuario ID: 81
+DEBUG - 2025-09-12 09:33:53 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 81
+    [nombre] => lucho
+    [apellido] => kakak
+    [email] => lucho07@gmail.com
+    [contrasena] => $2y$10$PRN/BchANV8HjCZ7ndoAGOMi2FulqfdXAydbf/JOa2wviXnO4Zr7u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-09-12 09:33:06
+    [updated_at] => 2025-09-12 09:33:06
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-12 09:33:53 --> Datos del usuario antes de activación: {"id":"81","email":"lucho07@gmail.com","estado":"pendiente","rol":"1"}
+DEBUG - 2025-09-12 09:33:53 --> Compra marcada como completada
+DEBUG - 2025-09-12 09:33:56 --> Redirigiendo a página de pago exitoso
+INFO - 2025-09-12 09:35:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:35:52 --> Procesando pago exitoso para usuario: 
+DEBUG - 2025-09-12 09:35:52 --> Sesión expirada o datos faltantes
+INFO - 2025-09-12 09:35:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:36:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:36:59 --> === INICIO PROCESO DE COMPRA ===
+DEBUG - 2025-09-12 09:36:59 --> Datos recibidos: {"nombre":"quehacee","email":"quehace07@gmail.com","id_dispositivo":"1"}
+DEBUG - 2025-09-12 09:36:59 --> Dispositivo encontrado: {"id_dispositivo":"1","nombre":"medidor de ecovolt","id_usuario":"1","mac_address":"00:1A:2B:3C:4D:5E","ip_address":null,"ultima_conexion":null,"estado":"activo","created_at":"2025-04-10 22:26:34","stock":"41","precio":"85","descripcion":"","fecha_actualizacion":"2025-09-12 09:33:48","updated_at":"2025-06-12 15:06:14","codigo_activacion":null,"fecha_activacion":null}
+DEBUG - 2025-09-12 09:36:59 --> Creando usuario con datos: {"email":"quehace07@gmail.com","rol":1,"estado":"pendiente"}
+DEBUG - 2025-09-12 09:36:59 --> Iniciando hashPassword con datos: {"data":{"nombre":"quehacee","apellido":"sdad","email":"quehace07@gmail.com","contrasena":"Quehace_07$","id_rol":1,"estado":"pendiente","created_at":"2025-09-12 09:36:59","updated_at":"2025-09-12 09:36:59"}}
+DEBUG - 2025-09-12 09:36:59 --> Contraseña original: Quehace_07$
+DEBUG - 2025-09-12 09:36:59 --> Longitud de la contraseña original: 11
+DEBUG - 2025-09-12 09:36:59 --> Hash generado: $2y$10$w.AqudFNoRwbTNtU1elACuUtCIoulSAJcDqQfJHwwBJGaHFGU66DC
+DEBUG - 2025-09-12 09:36:59 --> Usuario creado con ID: 82
+DEBUG - 2025-09-12 09:36:59 --> Dirección creada con ID: 24
+DEBUG - 2025-09-12 09:36:59 --> Datos guardados en sesión: {"id_usuario":82,"id_dispositivo":"1"}
+DEBUG - 2025-09-12 09:36:59 --> === FIN PROCESO DE COMPRA ===
+INFO - 2025-09-12 09:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-12 09:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-12 09:37:17 --> Procesando pago exitoso para usuario: 82
+DEBUG - 2025-09-12 09:37:17 --> Buscando usuario ID: 82
+DEBUG - 2025-09-12 09:37:17 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 82
+    [nombre] => quehacee
+    [apellido] => sdad
+    [email] => quehace07@gmail.com
+    [contrasena] => $2y$10$w.AqudFNoRwbTNtU1elACuUtCIoulSAJcDqQfJHwwBJGaHFGU66DC
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-09-12 09:36:59
+    [updated_at] => 2025-09-12 09:36:59
+    [invitado_por] => 
+    [estado] => pendiente
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-12 09:37:17 --> Datos del usuario antes de activación: {"id":"82","email":"quehace07@gmail.com","estado":"pendiente","rol":"1"}
+DEBUG - 2025-09-12 09:37:17 --> Compra marcada como completada
+DEBUG - 2025-09-12 09:37:21 --> Redirigiendo a página de pago exitoso
+INFO - 2025-09-12 09:37:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

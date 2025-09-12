@@ -12,7 +12,7 @@ class Energia extends BaseController
     protected $energiaModel;
     protected $dispositivoModel;
     protected $limiteModel;
-    protected $UsuarioModel;
+    protected $userModel; 
 
     public function __construct()
     {
