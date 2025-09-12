@@ -132,6 +132,62 @@ class EnergiaModel extends Model
         return $resultado ? $resultado->promedio_diario : 0;
     }
 
+
+
+
+    public function obtenerResumenMensualPorDispositivo($idDispositivo, $mes = null, $anio = null)
+{
+    $db = \Config\Database::connect();
+
+    $mes = $mes ?? date('m');
+    $anio = $anio ?? date('Y');
+
+    // Consulta: promedio diario de V, A, W y suma de kWh por día
+    $query = $db->table('energia')
+                ->select('
+                    DATE(fecha) as dia,
+                    AVG(voltaje) as voltaje_prom,
+                    AVG(corriente) as corriente_prom,
+                    AVG(potencia) as potencia_prom,
+                    SUM(kwh) as kwh_total
+                ')
+                ->where('id_dispositivo', $idDispositivo)
+                ->where('MONTH(fecha)', $mes)
+                ->where('YEAR(fecha)', $anio)
+                ->groupBy('dia')
+                ->get();
+
+    $resultadoDiario = $query->getResultArray();
+
+    if (empty($resultadoDiario)) {
+        return [
+            'voltaje' => 0,
+            'corriente' => 0,
+            'potencia' => 0,
+            'kwh' => 0
+        ];
+    }
+
+    // Calculamos promedio mensual de voltaje, corriente, potencia
+    $sumaVoltaje = $sumaCorriente = $sumaPotencia = $sumaKwh = 0;
+    $dias = count($resultadoDiario);
+
+    foreach($resultadoDiario as $dia) {
+        $sumaVoltaje += $dia['voltaje_prom'];
+        $sumaCorriente += $dia['corriente_prom'];
+        $sumaPotencia += $dia['potencia_prom'];
+        $sumaKwh += $dia['kwh_total'];
+    }
+
+    return [
+        'voltaje' => $sumaVoltaje / $dias,
+        'corriente' => $sumaCorriente / $dias,
+        'potencia' => $sumaPotencia / $dias,
+        'kwh' => $sumaKwh
+    ];
+}
+
+
     public function obtenerUltimosDatos($idDispositivo, $limite = 10)
     {
         return $this->where('id_dispositivo', $idDispositivo)

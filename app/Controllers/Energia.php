@@ -7,6 +7,10 @@ use App\Models\DispositivoModel;
 use App\Models\LimiteConsumoModel;
 use App\Models\UsuarioModel;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+
 class Energia extends BaseController
 {
     protected $energiaModel;
@@ -396,6 +400,91 @@ class Energia extends BaseController
         // ----------------------------------------------------------------
     }
 }
+
+
+
+// Dentro de la clase Energia existente
+public function generarPDF($dispositivo_id)
+{
+    $db = \Config\Database::connect();
+
+    // Obtener datos del usuario y dispositivo
+    $usuario = $db->table('usuario')
+        ->join('dispositivos', 'dispositivos.id_usuario = usuario.id_usuario')
+        ->where('dispositivos.id_dispositivo', $dispositivo_id)
+        ->select('usuario.*, dispositivos.nombre as nombre_dispositivo, dispositivos.precio')
+        ->get()
+        ->getRowArray();
+
+    // Obtener lecturas del mes actual
+    $lecturas = $db->table('energia')
+        ->where('id_dispositivo', $dispositivo_id)
+        ->where('MONTH(fecha)', date('m'))
+        ->where('YEAR(fecha)', date('Y'))
+        ->orderBy('fecha', 'ASC')
+        ->get()
+        ->getResultArray();
+
+    $totalLecturas = count($lecturas);
+
+    $promedios = [
+        'voltaje' => 0,
+        'corriente' => 0,
+        'potencia' => 0
+    ];
+
+    $total_kwh = 0;
+
+    if ($totalLecturas > 0) {
+        foreach ($lecturas as $l) {
+            $promedios['voltaje'] += $l['voltaje'];
+            $promedios['corriente'] += $l['corriente'];
+            $promedios['potencia'] += $l['potencia'];
+            $total_kwh += $l['kwh']; // Sumatoria total de kWh
+        }
+        foreach ($promedios as $key => $value) {
+            $promedios[$key] = $value / $totalLecturas; // promedio
+        }
+    }
+
+    // Calcular precio aproximado
+    $precioTotal = $usuario['precio'] * $total_kwh;
+
+    // Generar informe textual profesional
+    $informeTexto = "Durante el mes actual, el dispositivo <b>'{$usuario['nombre_dispositivo']}'</b> ha mostrado un consumo energético ";
+    if ($totalLecturas > 0) {
+        $voltProm = number_format($promedios['voltaje'], 2);
+        $corrProm = number_format($promedios['corriente'], 2);
+        $potProm = number_format($promedios['potencia'], 2);
+        $total_kwh_fmt = number_format($total_kwh, 2);
+        $precio_fmt = number_format($precioTotal, 2);
+
+        $informeTexto .= "estable con un voltaje promedio de <b>$voltProm V</b>, corriente promedio de <b>$corrProm A</b> y potencia promedio de <b>$potProm W</b>. ";
+        $informeTexto .= "La energía total consumida fue de <b>$total_kwh_fmt kWh</b>, lo que equivale aproximadamente a <b>$$precio_fmt</b> según el precio ingresado por el usuario.";
+        $informeTexto .= " Se recomienda revisar los picos de consumo para optimizar el uso de energía y reducir costos.";
+    } else {
+        $informeTexto .= "y no se registraron lecturas durante este período.";
+    }
+
+    // Generar HTML del PDF
+    $html = view('energia/pdf', [
+        'usuario' => $usuario,
+        'lecturas' => $lecturas,
+        'promedios' => $promedios,
+        'total_kwh' => $total_kwh,
+        'precioTotal' => $precioTotal,
+        'informeTexto' => $informeTexto
+    ]);
+
+    // Crear PDF
+    $dompdf = new \Dompdf\Dompdf();
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    $dompdf->stream("Informe_{$usuario['nombre']}_{$usuario['nombre_dispositivo']}.pdf", ["Attachment" => true]);
+}
+
+
 
 
     private function enviarNotificacionEmail($idUsuario, $consumoActual, $limite)

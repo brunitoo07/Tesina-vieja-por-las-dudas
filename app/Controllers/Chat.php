@@ -48,7 +48,7 @@ Podemos asistirte con instalación, calibración y mantenimiento de tu medidor E
         } 
         elseif (strpos($message, 'contacto') !== false) {
             $response = [
-                "text" => "📞 Para más información comunicate al 0800-123-EcoVolt o escribinos por WhatsApp al +54 9 11 5555 5555.",
+                "text" => "📞 Para más información comunicate al 0800-123-EcoVolt o escribinos por WhatsApp al +54 9 3571-623139 o por mail a ecovolt@gmail.com.",
                 "options" => ["Proyecto", "Consumo", "Ideas", "Servicio"]
             ];
         }

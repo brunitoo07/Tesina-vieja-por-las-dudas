@@ -124,9 +124,11 @@
             <h6 class="fw-bold">Resultado:</h6>
             <p>Total de Energía consumida: <span id="totalKwh"></span> kWh</p>
             <p>Costo estimado: <span id="costoTotal"></span> $</p>
-            <a href="<?= base_url('facturas/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
-               class="btn btn-primary" target="_blank">
-                <i class="fas fa-file-pdf me-2"></i> Descargar Informe PDF
+            <a href="<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
+   class="btn btn-primary" target="_blank">
+    Descargar PDF
+</a>
+
             </a>
         
         </div>
@@ -493,7 +495,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Se eliminó la suscripción a notificaciones push -->
 
-<!-- Asistente Virtual -->
-<?= $this->include('chat_profesional') ?>
+
 
 <?= $this->endSection() ?>

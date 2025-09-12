@@ -68,6 +68,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
     $routes->get('usuario', 'CUsuario::index');
     $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
+    $routes->get('energia/generarPDF/(:num)', 'Energia::generarPDF/$1');
 
 
     // Rutas para el perfil de usuario
@@ -100,6 +101,8 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->post('dispositivos/eliminar/(:num)', 'Admin\Dispositivos::eliminar/$1');
     $routes->get('dispositivos/detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
     $routes->get('dispositivos/desactivar/(:num)', 'Dispositivos::desactivar/$1');
+
+    
 });
 
 // Rutas del supervisor
