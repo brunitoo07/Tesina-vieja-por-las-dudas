@@ -102,6 +102,30 @@
             </div>
         </div>
     </div>
+
+    <!-- Editar nombre y descripción del dispositivo -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">✏️ Editar dispositivo</h6>
+        </div>
+        <div class="card-body">
+            <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="row g-3">
+                <input type="hidden" name="id_dispositivo" value="<?= esc($dispositivo['id_dispositivo']) ?>">
+                <div class="col-md-6">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="<?= esc($dispositivo['nombre']) ?>" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripción del dispositivo..."><?= esc($dispositivo['descripcion'] ?? '') ?></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" id="btnGuardarDispositivo"><i class="fas fa-save me-2"></i>Guardar</button>
+                    <span id="msgEditarDispositivo" class="ms-2"></span>
+                </div>
+            </form>
+        </div>
+    </div>
 <!-- Formulario para comparar valor de kWh -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -124,7 +148,7 @@
             <h6 class="fw-bold">Resultado:</h6>
             <p>Total de Energía consumida: <span id="totalKwh"></span> kWh</p>
             <p>Costo estimado: <span id="costoTotal"></span> $</p>
-            <a href="<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
+            <a id="btnPdf" href="<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
    class="btn btn-primary" target="_blank">
     Descargar PDF
 </a>
@@ -415,6 +439,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     <?php endif; ?>
+
+    // Guardado AJAX de dispositivo
+    const formEditar = document.getElementById('formEditarDispositivo');
+    if (formEditar) {
+        formEditar.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('msgEditarDispositivo');
+            const btn = document.getElementById('btnGuardarDispositivo');
+            msg.innerHTML = '';
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Guardando...';
+
+            const formData = new FormData(formEditar);
+            fetch(formEditar.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) {
+                    msg.innerHTML = '<span class="text-success">Dispositivo actualizado</span>';
+                } else {
+                    msg.innerHTML = '<span class="text-danger">' + (res.error || 'Error al actualizar') + '</span>';
+                }
+            })
+            .catch(err => {
+                msg.innerHTML = '<span class="text-danger">Error: ' + err + '</span>';
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-save me-2"></i>Guardar';
+            });
+        });
+    }
 });
 
 </script>
@@ -426,7 +484,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputValorKwh = document.getElementById('inputKwh'); // ahora apunta al input correcto
 
     if (formKwh) {
-        formKwh.addEventListener('submit', function(e) {
+        // Actualiza tarifa y link del PDF al escribir, sin necesidad de enviar el form
+        inputValorKwh.addEventListener('input', async function() {
+            const valor = parseFloat(inputValorKwh.value);
+            if (isNaN(valor)) return;
+            try {
+                await fetch('<?= base_url('energia/setTarifa') ?>', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tarifa_kwh: valor })
+                });
+            } catch(e) { /* noop */ }
+            const btnPdf = document.getElementById('btnPdf');
+            if (btnPdf) {
+                const url = new URL(btnPdf.href, window.location.origin);
+                url.searchParams.set('tarifa', valor.toString());
+                btnPdf.href = url.toString();
+            }
+        });
+
+        formKwh.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const valorKwhUnitario = parseFloat(inputValorKwh.value);
@@ -449,6 +526,24 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('costoTotal').textContent = costoTotal;
 
             resultado.style.display = 'block';
+
+            try {
+                // Guardar tarifa en sesión para que el PDF la use
+                await fetch('<?= base_url('energia/setTarifa') ?>', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tarifa_kwh: valorKwhUnitario })
+                });
+                // Actualizar link del PDF para incluir tarifa explícita por si falla la sesión
+                const btnPdf = document.getElementById('btnPdf');
+                if (btnPdf) {
+                    const url = new URL(btnPdf.href, window.location.origin);
+                    url.searchParams.set('tarifa', valorKwhUnitario.toString());
+                    btnPdf.href = url.toString();
+                }
+            } catch(err) {
+                console.error('No se pudo guardar la tarifa en sesión', err);
+            }
         });
     }
 });

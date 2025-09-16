@@ -201,4 +201,40 @@ class Dispositivos extends BaseController
             ]);
         }
     }
+
+    public function actualizar()
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        $id = $this->request->getPost('id_dispositivo');
+        $nombre = trim((string)$this->request->getPost('nombre'));
+        $descripcion = (string)$this->request->getPost('descripcion');
+
+        if (!$id || $nombre === '') {
+            return $this->response->setJSON(['success' => false, 'error' => 'Datos inválidos'])->setStatusCode(400);
+        }
+
+        $dispositivo = $this->dispositivoModel->find($id);
+        if (!$dispositivo) {
+            return $this->response->setJSON(['success' => false, 'error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+        }
+
+        // Admin o supervisor pueden editar
+        $idUsuario = session()->get('id_usuario');
+        $usuario = $this->usuarioModel->find($idUsuario);
+        if (!$usuario || ($usuario['id_rol'] != 1 && $usuario['id_rol'] != 3)) {
+            return $this->response->setJSON(['success' => false, 'error' => 'Sin permisos'])->setStatusCode(403);
+        }
+
+        $this->dispositivoModel->update($id, [
+            'nombre' => $nombre,
+            'descripcion' => $descripcion,
+            'fecha_actualizacion' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
+        return $this->response->setJSON(['success' => true]);
+    }
 } 

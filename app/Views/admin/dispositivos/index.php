@@ -36,6 +36,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>Descripción</th>
                             <th>MAC Address</th>
                             <th>Admin Dueño</th>
                             <th>Estado</th>
@@ -52,6 +53,7 @@
                             <?php foreach ($dispositivos as $dispositivo): ?>
                                 <tr>
                                     <td><?= esc($dispositivo['nombre']) ?></td>
+                                    <td><?= esc($dispositivo['descripcion'] ?? '') ?></td>
                                     <td><?= esc($dispositivo['mac_address']) ?></td>
                                     <td>
                                         <?= esc($dispositivo['nombre_admin'] ?? '-') ?><br>
@@ -85,6 +87,9 @@
                                         <div class="btn-group" role="group">
                                             <button type="button" class="btn btn-sm btn-primary" onclick="verDetalles(<?= $dispositivo['id_dispositivo'] ?>)">
                                                 <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-secondary" onclick="editarDispositivo(<?= $dispositivo['id_dispositivo'] ?>, '<?= esc($dispositivo['nombre'], 'js') ?>', '<?= esc($dispositivo['descripcion'] ?? '', 'js') ?>')" title="Editar">
+                                                <i class="fas fa-edit"></i>
                                             </button>
                                             <a href="<?= base_url('dispositivo/control/' . $dispositivo['id_dispositivo']) ?>" class="btn btn-success btn-sm" title="Controlar Foco">
                                                 <i class="fas fa-lightbulb"></i>
@@ -137,6 +142,36 @@
     </div>
 </div>
 
+<!-- Modal para editar dispositivo -->
+<div class="modal fade" id="editarModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar dispositivo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarAdmin" action="<?= base_url('admin/dispositivos/actualizar') ?>" method="post">
+                    <input type="hidden" name="id_dispositivo" id="editId">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="editNombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" name="descripcion" id="editDescripcion" rows="3"></textarea>
+                    </div>
+                </form>
+                <div id="msgEditarAdmin"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 function verDetalles(id) {
     fetch(`<?= base_url('admin/dispositivos/detalles/') ?>${id}`)
@@ -183,6 +218,33 @@ function eliminarDispositivo(id) {
             alert('Error al eliminar el dispositivo');
         });
     }
+}
+
+function editarDispositivo(id, nombre, descripcion) {
+    document.getElementById('editId').value = id;
+    document.getElementById('editNombre').value = nombre || '';
+    document.getElementById('editDescripcion').value = descripcion || '';
+    new bootstrap.Modal(document.getElementById('editarModal')).show();
+}
+
+function guardarEdicion() {
+    const form = document.getElementById('formEditarAdmin');
+    const msg = document.getElementById('msgEditarAdmin');
+    msg.innerHTML = '';
+    const formData = new FormData(form);
+    fetch(form.action, { method: 'POST', body: formData })
+        .then(r => r.json())
+        .then(res => {
+            if (res.success) {
+                msg.innerHTML = '<div class="alert alert-success">Dispositivo actualizado</div>';
+                setTimeout(() => { location.reload(); }, 800);
+            } else {
+                msg.innerHTML = '<div class="alert alert-danger">' + (res.error || 'Error') + '</div>';
+            }
+        })
+        .catch(err => {
+            msg.innerHTML = '<div class="alert alert-danger">Error: ' + err + '</div>';
+        });
 }
 </script>
 

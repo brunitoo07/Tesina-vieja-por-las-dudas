@@ -69,6 +69,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('usuario', 'CUsuario::index');
     $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
     $routes->get('energia/generarPDF/(:num)', 'Energia::generarPDF/$1');
+    $routes->post('energia/actualizarDispositivo', 'Energia::actualizarDispositivo');
 
 
     // Rutas para el perfil de usuario
@@ -100,6 +101,7 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('dispositivos/desactivar/(:num)', 'Admin\Dispositivos::desactivar/$1');
     $routes->post('dispositivos/eliminar/(:num)', 'Admin\Dispositivos::eliminar/$1');
     $routes->get('dispositivos/detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
+    $routes->post('dispositivos/actualizar', 'Admin\Dispositivos::actualizar');
     $routes->get('dispositivos/desactivar/(:num)', 'Dispositivos::desactivar/$1');
 
     
@@ -167,6 +169,7 @@ $routes->get('energia/exportar', 'Energia::exportar');
 $routes->post('energia/recibirNuevosDatos', 'Energia::recibirNuevosDatos');
 $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
+$routes->post('energia/setTarifa', 'Energia::setTarifa');
 
 $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');
 $routes->post('telegram/webhook', 'TelegramSimple::webhook');
