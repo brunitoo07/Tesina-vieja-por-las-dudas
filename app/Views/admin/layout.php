@@ -11,27 +11,115 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <style>
+        :root {
+            --gold: #d4af37;
+            --gold-600: #c39a2f;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #2a2a2a;
+            --gray-600: #343a40;
+            --gray-500: #6c757d;
+            --white: #ffffff;
+            --black: #000000;
+            --surface: #f5f5f5;
+        }
+
+        /* Fondo y tipografía base */
+        body {
+            background-color: var(--surface);
+            color: var(--gray-900);
+        }
+
+        a { color: var(--gold); }
+        a:hover { color: var(--gold-600); }
+
+        /* Sidebar */
         .sidebar {
             min-height: 100vh;
-            background-color: #212529;
+            background-color: var(--gray-900);
         }
         .sidebar .nav-link {
-            color: #fff;
-            padding: 0.5rem 1rem;
-        }
-        .sidebar .nav-link:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            border-left: 3px solid transparent;
         }
         .sidebar .nav-link i {
             margin-right: 0.5rem;
         }
+        .sidebar .nav-link:hover {
+            background-color: var(--gray-800);
+            border-left-color: var(--gray-600);
+            color: var(--white);
+        }
+        .sidebar .nav-link.active {
+            background-color: var(--gray-800);
+            border-left-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Área de contenido */
         .content {
             min-height: 100vh;
-            background-color: #f8f9fa;
+            background-color: var(--surface);
         }
+
+        /* Cards */
+        .card {
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            border-radius: 0.5rem;
+        }
+        .card .card-header {
+            background: var(--white);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-weight: 600;
+        }
+
+        /* Sobrescribir paleta contextual de Bootstrap a dorado/grises/negro */
+        .bg-primary { background-color: var(--gold) !important; }
+        .border-primary { border-color: var(--gold) !important; }
+        .text-primary { color: var(--gold) !important; }
+
+        .bg-success { background-color: var(--gray-600) !important; }
+        .bg-warning { background-color: var(--gray-500) !important; }
+        .bg-danger { background-color: var(--black) !important; }
+
+        .badge.bg-success,
+        .badge.bg-warning,
+        .badge.bg-danger,
+        .badge.bg-primary {
+            color: var(--white) !important;
+        }
+
+        /* Botones principales en dorado y grises */
+        .btn-primary {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: var(--black);
+        }
+        .btn-primary:hover { background-color: var(--gold-600); border-color: var(--gold-600); }
+
+        .btn-secondary { background-color: var(--gray-600); border-color: var(--gray-600); }
+        .btn-secondary:hover { background-color: var(--gray-700); border-color: var(--gray-700); }
+
+        .btn-dark { background-color: var(--black); border-color: var(--black); }
+        .btn-dark:hover { background-color: var(--gray-900); border-color: var(--gray-900); }
+
+        .btn-outline-primary { color: var(--gold); border-color: var(--gold); }
+        .btn-outline-primary:hover { background-color: var(--gold); color: var(--black); }
+
+        /* Tablas */
+        .table thead th {
+            background-color: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        .table tbody tr:hover { background-color: rgba(0,0,0,0.03); }
+
+        /* Utilidades */
+        .text-gold { color: var(--gold) !important; }
+        .bg-gold { background-color: var(--gold) !important; }
+        .border-gold { border-color: var(--gold) !important; }
     </style>
 </head>
 <body>
