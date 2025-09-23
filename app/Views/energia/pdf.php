@@ -149,7 +149,7 @@ $logoData = base64_encode(file_get_contents($logoPath));
     <div class="logo-container" style="text-align:center; margin-bottom:15px;">
         <img src="data:image/png;base64,<?= $logoData ?>" 
              alt="Logo" 
-             style="height:100px; display:block; margin:0 auto;">
+             style="height:200px; display:block; margin:0 auto;">
     </div>
     <h1>Informe de Consumo de Energía</h1>
     <div class="user-info" style="text-align:center; margin-top:10px;">
