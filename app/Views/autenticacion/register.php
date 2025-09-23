@@ -193,7 +193,7 @@
         <div class="container-register">
             <h2><?= lang('App.register') ?></h2>
             
-            <?php if (isset($purchase) && $purchase)): ?>
+            <?php if (isset($purchase) && $purchase): ?>
                 <div class="admin-badge">
                     <i class="fas fa-crown me-1"></i><?= lang('App.admin_register') ?>
                 </div>

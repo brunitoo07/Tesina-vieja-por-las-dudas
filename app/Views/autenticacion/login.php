@@ -7,280 +7,294 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <style>
-        :root {
-            --primary-color: #FFD700;
-            --secondary-color: #6c757d;
-            --accent-color: #FFD700;
-            --dark-color: #000000;
-            --light-color: rgba(245, 196, 0, 0.48);
-            --transition-speed: 0.3s;
-        }
-        /* Background with elegant gradients + subtle grid */
-        body {
-            min-height: 100vh;
-            background:
-                radial-gradient(800px 400px at -10% -10%, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0) 60%),
-                radial-gradient(700px 420px at 110% 110%, rgba(108, 117, 125, 0.18) 0%, rgba(108, 117, 125, 0) 60%),
-                linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-            position: relative;
-        }
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) 1px),
-                linear-gradient(90deg, transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) 1px);
-            background-size: 60px 60px;
-            mix-blend-mode: multiply;
-        }
+    /* ===============================
+       VARIABLES DE COLORES Y ESTILOS
+       =============================== */
+    :root {
+        --primary-color: #FFD700;       /* Dorado principal */
+        --secondary-color: #6c757d;     /* Gris secundario */
+        --accent-color: #FFD700;        /* Acento (igual que el dorado) */
+        --dark-color: #000000;          /* Negro para contrastes */
+        --light-color: rgba(245, 196, 0, 0.48); /* Dorado translúcido */
+        --transition-speed: 0.3s;       /* Velocidad para transiciones */
+    }
 
-        /* Animated aurora background */
-        .bg-aurora {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            pointer-events: none;
-            background:
-                radial-gradient(60% 80% at 10% 10%, rgba(255, 215, 0, 0.18), transparent 60%),
-                radial-gradient(60% 80% at 90% 90%, rgba(108, 117, 125, 0.18), transparent 60%),
-                radial-gradient(50% 60% at 70% 20%, rgba(0, 0, 0, 0.08), transparent 60%);
-            filter: saturate(110%);
-            animation: moveAurora 18s ease-in-out infinite alternate;
-        }
-        @keyframes moveAurora {
-            0% { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
-            50% { transform: translateY(-10px) scale(1.02); filter: hue-rotate(-8deg); }
-            100% { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
-        }
+    /* ===============================
+       FONDO GENERAL DE LA PÁGINA
+       Gradientes suaves + grilla sutil
+       =============================== */
+    body {
+        min-height: 100vh;
+        background:
+            radial-gradient(800px 400px at -10% -10%, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0) 60%),
+            radial-gradient(700px 420px at 110% 110%, rgba(108, 117, 125, 0.18) 0%, rgba(108, 117, 125, 0) 60%),
+            linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+        position: relative;
+    }
+    /* Rejilla cuadriculada encima del fondo */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) 1px),
+            linear-gradient(90deg, transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) 1px);
+        background-size: 60px 60px;
+        mix-blend-mode: multiply;
+    }
 
-        /* Floating gold sparkles */
-        .bg-sparkles {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .bg-sparkles span {
-            position: absolute;
-            display: block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe88a 35%, #ffd700 70%, rgba(255,215,0,0.0) 71%);
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 215, 0, 0.35);
-            opacity: 0.85;
-            animation: floatSparkle calc(9s + var(--i) * 0.7s) linear infinite;
-        }
-        @keyframes floatSparkle {
-            0% { transform: translateY(110vh) translateX(0) scale(0.9); opacity: 0; }
-            10% { opacity: 0.9; }
-            50% { transform: translateY(50vh) translateX(20px) scale(1); }
-            90% { opacity: 0.9; }
-            100% { transform: translateY(-10vh) translateX(-20px) scale(0.9); opacity: 0; }
-        }
-        .bg-sparkles span:nth-child(1) { left: 5%;  --i: 1; }
-        .bg-sparkles span:nth-child(2) { left: 15%; --i: 2; }
-        .bg-sparkles span:nth-child(3) { left: 25%; --i: 3; }
-        .bg-sparkles span:nth-child(4) { left: 35%; --i: 4; }
-        .bg-sparkles span:nth-child(5) { left: 45%; --i: 5; }
-        .bg-sparkles span:nth-child(6) { left: 55%; --i: 6; }
-        .bg-sparkles span:nth-child(7) { left: 65%; --i: 7; }
-        .bg-sparkles span:nth-child(8) { left: 75%; --i: 8; }
-        .bg-sparkles span:nth-child(9) { left: 85%; --i: 9; }
-        .bg-sparkles span:nth-child(10) { left: 30%; --i: 10; }
-        .bg-sparkles span:nth-child(11) { left: 60%; --i: 11; }
-        .bg-sparkles span:nth-child(12) { left: 90%; --i: 12; }
+    /* ===============================
+       EFECTO AURORA ANIMADA
+       =============================== */
+    .bg-aurora {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background:
+            radial-gradient(60% 80% at 10% 10%, rgba(255, 215, 0, 0.18), transparent 60%),
+            radial-gradient(60% 80% at 90% 90%, rgba(108, 117, 125, 0.18), transparent 60%),
+            radial-gradient(50% 60% at 70% 20%, rgba(0, 0, 0, 0.08), transparent 60%);
+        filter: saturate(110%);
+        animation: moveAurora 18s ease-in-out infinite alternate;
+    }
+    @keyframes moveAurora {
+        0%   { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
+        50%  { transform: translateY(-10px) scale(1.02); filter: hue-rotate(-8deg); }
+        100% { transform: translateY(0) scale(1); filter: hue-rotate(0deg); }
+    }
 
-        .login-container {
-            max-width: 420px;
-            margin: 100px auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 14px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(255, 215, 0, 0.10) inset, 0 0 24px rgba(255, 215, 0, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-        .login-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), #bfa100, var(--secondary-color));
-        }
-        /* Dynamic sheen across the card */
-        .login-container::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(closest-side, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 70%);
-            transform: rotate(15deg);
-            animation: sheen 6s ease-in-out infinite;
-            pointer-events: none;
-        }
+    /* ===============================
+       BRILLOS/DESTELLOS FLOTANTES
+       =============================== */
+    .bg-sparkles {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+    }
+    .bg-sparkles span {
+        position: absolute;
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe88a 35%, #ffd700 70%, rgba(255,215,0,0.0) 71%);
+        box-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 215, 0, 0.35);
+        opacity: 0.85;
+        animation: floatSparkle calc(9s + var(--i) * 0.7s) linear infinite;
+    }
+    @keyframes floatSparkle {
+        0%   { transform: translateY(110vh) translateX(0) scale(0.9); opacity: 0; }
+        10%  { opacity: 0.9; }
+        50%  { transform: translateY(50vh) translateX(20px) scale(1); }
+        90%  { opacity: 0.9; }
+        100% { transform: translateY(-10vh) translateX(-20px) scale(0.9); opacity: 0; }
+    }
+    /* Posiciones distintas para cada partícula */
+    .bg-sparkles span:nth-child(1) { left: 5%;  --i: 1; }
+    .bg-sparkles span:nth-child(2) { left: 15%; --i: 2; }
+    .bg-sparkles span:nth-child(3) { left: 25%; --i: 3; }
+    .bg-sparkles span:nth-child(4) { left: 35%; --i: 4; }
+    .bg-sparkles span:nth-child(5) { left: 45%; --i: 5; }
+    .bg-sparkles span:nth-child(6) { left: 55%; --i: 6; }
+    .bg-sparkles span:nth-child(7) { left: 65%; --i: 7; }
+    .bg-sparkles span:nth-child(8) { left: 75%; --i: 8; }
+    .bg-sparkles span:nth-child(9) { left: 85%; --i: 9; }
+    .bg-sparkles span:nth-child(10) { left: 30%; --i: 10; }
+    .bg-sparkles span:nth-child(11) { left: 60%; --i: 11; }
+    .bg-sparkles span:nth-child(12) { left: 90%; --i: 12; }
 
-        .login-container .text-muted {
-            color: var(--primary-color) !important;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .login-container .text-muted:hover {
-            color: #bfa100 !important;
-        }
-        @keyframes sheen {
-            0% { transform: translateX(-20%) translateY(-10%) rotate(15deg); opacity: 0.25; }
-            50% { transform: translateX(10%) translateY(0%) rotate(15deg); opacity: 0.4; }
-            100% { transform: translateX(40%) translateY(10%) rotate(15deg); opacity: 0.25; }
-        }
+    /* ===============================
+       TARJETA DE LOGIN (contenedor)
+       =============================== */
+    .login-container {
+        max-width: 420px;
+        margin: 100px auto;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.10), 
+            0 0 0 1px rgba(255, 215, 0, 0.10) inset, 
+            0 0 24px rgba(255, 215, 0, 0.15);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+    /* Línea superior dorada en el card */
+    .login-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), #bfa100, var(--secondary-color));
+    }
+    /* Efecto de brillo en movimiento */
+    .login-container::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 70%);
+        transform: rotate(15deg);
+        animation: sheen 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+    @keyframes sheen {
+        0%   { transform: translateX(-20%) translateY(-10%) rotate(15deg); opacity: 0.25; }
+        50%  { transform: translateX(10%) translateY(0%) rotate(15deg); opacity: 0.4; }
+        100% { transform: translateX(40%) translateY(10%) rotate(15deg); opacity: 0.25; }
+    }
 
-        .password-input {
-            position: relative;
-        }
-        .password-toggle {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: var(--secondary-color);
-        }
+    /* ===============================
+       INPUTS Y TOGGLE DE PASSWORD
+       =============================== */
+    .password-input { position: relative; }
+    .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: var(--secondary-color);
+    }
 
-        /* Dark theme enhancements */
-        [data-theme="dark"] body {
-            background:
-                radial-gradient(800px 400px at -10% -10%, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0) 60%),
-                radial-gradient(700px 420px at 110% 110%, rgba(108, 117, 125, 0.15) 0%, rgba(108, 117, 125, 0) 60%),
-                linear-gradient(180deg, #0f0f0f 0%, #0b0b0b 100%) !important;
-            color: #f1f1f1 !important;
-        }
-        [data-theme="dark"] body::after {
-            background-image:
-                linear-gradient(transparent calc(100% - 1px), rgba(255, 215, 0, 0.05) 1px),
-                linear-gradient(90deg, transparent calc(100% - 1px), rgba(255, 215, 0, 0.05) 1px);
-            mix-blend-mode: normal;
-        }
-        [data-theme="dark"] .login-container {
-            background: rgba(15, 15, 15, 0.65) !important;
-            color: #f1f1f1 !important;
-            border: 1px solid rgba(255, 215, 0, 0.25) !important;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 215, 0, 0.12) inset !important;
-            backdrop-filter: blur(10px);
-        }
-        [data-theme="dark"] .form-control {
-            background: #121212 !important;
-            color: #f1f1f1 !important;
-            border-color: var(--primary-color) !important;
-        }
-        [data-theme="dark"] .form-control:focus {
-            background: #121212 !important;
-            color: #fff !important;
-            border-color: var(--primary-color) !important;
-            box-shadow: 0 0 0 2px var(--primary-color) !important;
-        }
-        [data-theme="dark"] .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) !important;
-            color: #000 !important;
-            border: 1px solid var(--primary-color) !important;
-        }
-        [data-theme="dark"] .btn-primary:hover {
-            background: var(--primary-color) !important;
-            color: #000 !important;
-        }
-        [data-theme="dark"] .alert-danger {
-            background: #121212 !important;
-            color: var(--primary-color) !important;
-            border-color: var(--primary-color) !important;
-        }
-        [data-theme="dark"] .theme-switch {
-            background: #1a1a1a !important;
-            color: var(--primary-color) !important;
-        }
+    /* ===============================
+       ESTILO MODO OSCURO
+       =============================== */
+    [data-theme="dark"] body {
+        background:
+            radial-gradient(800px 400px at -10% -10%, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0) 60%),
+            radial-gradient(700px 420px at 110% 110%, rgba(108, 117, 125, 0.15) 0%, rgba(108, 117, 125, 0) 60%),
+            linear-gradient(180deg, #0f0f0f 0%, #0b0b0b 100%) !important;
+        color: #f1f1f1 !important;
+    }
+    [data-theme="dark"] body::after {
+        background-image:
+            linear-gradient(transparent calc(100% - 1px), rgba(255, 215, 0, 0.05) 1px),
+            linear-gradient(90deg, transparent calc(100% - 1px), rgba(255, 215, 0, 0.05) 1px);
+        mix-blend-mode: normal;
+    }
+    [data-theme="dark"] .login-container {
+        background: rgba(15, 15, 15, 0.65) !important;
+        color: #f1f1f1 !important;
+        border: 1px solid rgba(255, 215, 0, 0.25) !important;
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.6), 
+            0 0 0 1px rgba(255, 215, 0, 0.12) inset !important;
+    }
+    [data-theme="dark"] .form-control {
+        background: #121212 !important;
+        color: #f1f1f1 !important;
+        border-color: var(--primary-color) !important;
+    }
+    [data-theme="dark"] .form-control:focus {
+        background: #121212 !important;
+        color: #fff !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px var(--primary-color) !important;
+    }
+    [data-theme="dark"] .btn-primary {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) !important;
+        color: #000 !important;
+        border: 1px solid var(--primary-color) !important;
+    }
+    [data-theme="dark"] .btn-primary:hover {
+        background: var(--primary-color) !important;
+        color: #000 !important;
+    }
 
-        /* Buttons and accents */
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            color: #000;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-        .btn-primary:hover {
-            background: var(--primary-color);
-            color: #000;
-            box-shadow: 0 8px 22px rgba(255, 215, 0, 0.35), 0 0 0 1px rgba(255, 215, 0, 0.35) inset;
-            transform: translateY(-1px);
-        }
-        /* Button shine */
-        .btn-primary {
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 40%;
-            height: 200%;
-            background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0));
-            transform: skewX(-20deg);
-            animation: btnShine 3.2s ease-in-out infinite;
-        }
-        @keyframes btnShine {
-            0% { left: -60%; }
-            60% { left: 120%; }
-            100% { left: 120%; }
-        }
+    /* ===============================
+       BOTONES
+       =============================== */
+    .btn-primary {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        color: #000;
+        transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-primary:hover {
+        background: var(--primary-color);
+        color: #000;
+        box-shadow: 0 8px 22px rgba(255, 215, 0, 0.35), 0 0 0 1px rgba(255, 215, 0, 0.35) inset;
+        transform: translateY(-1px);
+    }
+    /* Brillo animado en los botones */
+    .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 40%;
+        height: 200%;
+        background: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0));
+        transform: skewX(-20deg);
+        animation: btnShine 3.2s ease-in-out infinite;
+    }
+    @keyframes btnShine {
+        0%   { left: -60%; }
+        60%  { left: 120%; }
+        100% { left: 120%; }
+    }
 
-        .theme-switch {
-            position: fixed !important;
-            top: 20px !important;
-            right: 20px !important;
-            z-index: 9999 !important;
-            background: rgba(0,0,0,0.9);
-            color: #fff;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-        .theme-switch:hover {
-            background: #000;
-            color: var(--primary-color);
-            transform: scale(1.05);
-        }
+    /* ===============================
+       SWITCH DE TEMA (modo oscuro)
+       =============================== */
+    .theme-switch {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999 !important;
+        background: rgba(0,0,0,0.9);
+        color: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s;
+    }
+    .theme-switch:hover {
+        background: #000;
+        color: var(--primary-color);
+        transform: scale(1.05);
+    }
 
-        /* Heading polish */
-        h2.text-center {
-            letter-spacing: 0.3px;
-            text-transform: none;
-        }
-        /* Dark theme variants for new layers */
-        [data-theme="dark"] .bg-aurora {
-            background:
-                radial-gradient(60% 80% at 10% 10%, rgba(255, 215, 0, 0.12), transparent 60%),
-                radial-gradient(60% 80% at 90% 90%, rgba(108, 117, 125, 0.12), transparent 60%),
-                radial-gradient(50% 60% at 70% 20%, rgba(255, 255, 255, 0.04), transparent 60%);
-            filter: saturate(120%);
-        }
-        [data-theme="dark"] .bg-sparkles span {
-            box-shadow: 0 0 16px rgba(255, 215, 0, 0.75), 0 0 30px rgba(255, 215, 0, 0.45);
-        }
-        [data-theme="dark"] .login-container::after {
-            background: radial-gradient(closest-side, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 70%);
-        }
-    </style>
+    /* ===============================
+       DETALLES DE TEXTO
+       =============================== */
+    h2.text-center {
+        letter-spacing: 0.3px;
+        text-transform: none;
+    }
+
+    /* ===============================
+       VARIANTES OSCURAS PARA AURORA Y DESTELLOS
+       =============================== */
+    [data-theme="dark"] .bg-aurora {
+        background:
+            radial-gradient(60% 80% at 10% 10%, rgba(255, 215, 0, 0.12), transparent 60%),
+            radial-gradient(60% 80% at 90% 90%, rgba(108, 117, 125, 0.12), transparent 60%),
+            radial-gradient(50% 60% at 70% 20%, rgba(255, 255, 255, 0.04), transparent 60%);
+        filter: saturate(120%);
+    }
+    [data-theme="dark"] .bg-sparkles span {
+        box-shadow: 0 0 16px rgba(255, 215, 0, 0.75), 0 0 30px rgba(255, 215, 0, 0.45);
+    }
+    [data-theme="dark"] .login-container::after {
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 70%);
+    }
+</style>
+
         <script>
             // Script para modo claro/oscuro
             document.addEventListener('DOMContentLoaded', function() {

@@ -1,0 +1,181 @@
+INFO - 2025-09-23 11:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-23 11:08:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-23 11:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-23 11:09:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:09:26 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-23 11:09:26 --> Longitud de la contraseña ingresada: 16
+DEBUG - 2025-09-23 11:09:28 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-23 11:09:28 --> Resultado de verificación de contraseña: false
+DEBUG - 2025-09-23 11:09:28 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-23 11:09:28 --> Contraseña incorrecta para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-09-23 11:09:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:09:29 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-23 11:09:29 --> Longitud de la contraseña ingresada: 16
+DEBUG - 2025-09-23 11:09:29 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-23 11:09:29 --> Resultado de verificación de contraseña: false
+DEBUG - 2025-09-23 11:09:29 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-23 11:09:29 --> Contraseña incorrecta para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-09-23 11:09:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-23 11:09:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:09:43 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-23 11:09:43 --> Longitud de la contraseña ingresada: 1
+DEBUG - 2025-09-23 11:09:44 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-23 11:09:44 --> Resultado de verificación de contraseña: false
+DEBUG - 2025-09-23 11:09:44 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-23 11:09:44 --> Contraseña incorrecta para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-09-23 11:09:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-23 11:10:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:11 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-23 11:10:12 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-09-23 11:10:12 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-09-23 11:10:12 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-09-23 11:10:12 --> Hash almacenado en la base de datos: $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+DEBUG - 2025-09-23 11:10:12 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-09-23 11:10:12 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-09-23 11:10:15 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-23 11:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:10:42 --> Ruta actual: /Tesina/public/admin/invitar
+INFO - 2025-09-23 11:10:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:42 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:10:45 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-23 11:10:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin/invitar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:10:48 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-09-23 11:10:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:48 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:10:48 --> Buscando usuario ID: 1
+DEBUG - 2025-09-23 11:10:48 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-07-24 14:07:31
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-23 11:10:50 --> Ruta actual: /Tesina/public/energia/dispositivo/2
+INFO - 2025-09-23 11:10:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:10:50 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-09-23 11:10:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:11:16 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-23 11:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:11:16 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/energia/dispositivo/2
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:11:45 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-09-23 11:11:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:11:45 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-09-23 11:11:45 --> Buscando usuario ID: 1
+DEBUG - 2025-09-23 11:11:45 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$F4xQfULyrVhG1JD8Y21QR.vgn9Fzd257acxjmQqHQ3OYfEqBaAPb6
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-07-24 14:07:31
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-09-23 11:12:01 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-09-23 11:12:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-09-23 11:12:01 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1758636507
+    [_ci_previous_url] => http://192.168.2.190/Tesina/public/admin/dispositivos/buscar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
