@@ -159,6 +159,14 @@ class Energia extends BaseController
 
     public function actualizarLimite()
 {
+        // Solo admin o supervisor
+        $rol = session()->get('rol');
+        if ($rol !== 'admin' && $rol !== 'supervisor') {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'No autorizado'
+            ])->setStatusCode(403);
+        }
     helper('email');
 
     $limite = $this->request->getVar('limite_consumo');
@@ -630,6 +638,8 @@ public function generarPDF($dispositivo_id)
             return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
         }
 
+        // Solo dueño, admin o supervisor
+        $rol = session()->get('rol');
         $id = $this->request->getPost('id_dispositivo');
         $nombre = trim((string)$this->request->getPost('nombre'));
         $descripcion = (string)$this->request->getPost('descripcion');
@@ -645,8 +655,7 @@ public function generarPDF($dispositivo_id)
 
         // Verificar permiso: dueño o admin/supervisor
         $idUsuario = session()->get('id_usuario');
-        $idRol = session()->get('id_rol');
-        if ($dispositivo['id_usuario'] != $idUsuario && $idRol != 1 && $idRol != 3) {
+        if ($dispositivo['id_usuario'] != $idUsuario && $rol !== 'admin' && $rol !== 'supervisor') {
             return $this->response->setJSON(['success' => false, 'error' => 'Sin permisos'])->setStatusCode(403);
         }
 

@@ -7,7 +7,17 @@
             <i class="fas fa-chart-line me-2"></i>
             Lecturas de Energía - <?= esc($dispositivo['nombre']) ?>
         </h1>
-        <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-secondary">
+        <?php 
+            $rol = session()->get('rol');
+            $volverUrl = base_url('energia');
+            if ($rol === 'admin') {
+                $volverUrl = base_url('admin/dispositivos');
+            } elseif ($rol === 'supervisor') {
+                // si viene del supervisor, idealmente volver a la lista de dispositivos del usuario dueño
+                $volverUrl = base_url('supervisor/dispositivosUsuarios/' . ($dispositivo['id_usuario'] ?? ''));
+            }
+        ?>
+        <a href="<?= $volverUrl ?>" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-2"></i>Volver
         </a>
     </div>

@@ -7,7 +7,18 @@
             <i class="fas fa-chart-line me-2"></i>
             Lecturas de Energía - <?= esc($dispositivo['nombre']) ?>
         </h1>
-        <a href="<?= base_url('admin/dispositivos') ?>" class="btn btn-secondary">
+        <?php 
+            $rol = session()->get('rol');
+            $volverUrl = base_url('energia');
+            if ($rol === 'admin') {
+                $volverUrl = base_url('admin/dispositivos');
+            } elseif ($rol === 'supervisor') {
+                $volverUrl = base_url('supervisor/dispositivosGlobal');
+            } else {
+                $volverUrl = base_url('usuario');
+            }
+        ?>
+        <a href="<?= $volverUrl ?>" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-2"></i>Volver
         </a>
     </div>
@@ -103,7 +114,8 @@
         </div>
     </div>
 
-    <!-- Editar nombre y descripción del dispositivo -->
+    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
+    <!-- Editar nombre y descripción del dispositivo (solo admin/supervisor) -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">✏️ Editar dispositivo</h6>
@@ -126,6 +138,7 @@
             </form>
         </div>
     </div>
+    <?php endif; ?>
 <!-- Formulario para comparar valor de kWh -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -161,6 +174,7 @@
     <!-- Mensajes de estado en tiempo real -->
     <div id="logsEstado" class="mb-3"></div>
 
+    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
     <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h6 class="m-0 font-weight-bold text-primary">⚡ Configuración de Límite de Consumo</h6>
@@ -185,6 +199,7 @@
     </form>
     <div id="msgLimite" class="mt-3"></div>
 </div>
+    <?php endif; ?>
 
 
     <!-- Tabla de Lecturas -->

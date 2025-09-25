@@ -57,7 +57,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Dispositivos Activos</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($dispositivos ?? []) ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= (int)($activosPropios ?? 0) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-plug fa-2x text-gray-300"></i>
@@ -77,11 +77,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <a href="<?= base_url('dispositivo/agregar') ?>" class="btn btn-primary btn-block">
-                                <i class="fas fa-plus"></i> Agregar Dispositivo
-                            </a>
-                        </div>
+                        
                         <div class="col-md-3 mb-3">
                             <a href="<?= base_url('perfil/perfil') ?>" class="btn btn-info btn-block">
                                 <i class="fas fa-user"></i> Ver Perfil
@@ -103,21 +99,17 @@
         </div>
     </div>
 
-    <!-- Lista de dispositivos -->
+    <!-- Lista de dispositivos propios -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">Mis Dispositivos</h6>
-                    <a href="<?= base_url('dispositivo/agregar') ?>" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i> Nuevo Dispositivo
-                    </a>
                 </div>
                 <div class="card-body">
-                    <?php if (empty($dispositivos)): ?>
+                    <?php if (empty($dispositivos_propios)): ?>
                         <div class="alert alert-info">
-                            No tienes dispositivos registrados. 
-                            <a href="<?= base_url('dispositivo/agregar') ?>" class="alert-link">Agrega tu primer dispositivo</a>
+                            No tienes dispositivos propios registrados.
                         </div>
                     <?php else: ?>
                         <div class="table-responsive">
@@ -131,7 +123,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($dispositivos as $dispositivo): ?>
+                                    <?php foreach ($dispositivos_propios as $dispositivo): ?>
                                     <tr>
                                         <td><?= esc($dispositivo['nombre']) ?></td>
                                         <td>
@@ -141,14 +133,9 @@
                                         </td>
                                         <td><?= number_format($dispositivo['consumo_actual'] ?? 0, 2) ?> kWh</td>
                                         <td>
-                                            <a href="<?= base_url('energia/verDatos/' . $dispositivo['id_dispositivo']) ?>" 
+                                            <a href="<?= base_url('energia/dispositivo/' . $dispositivo['id_dispositivo']) ?>" 
                                                class="btn btn-info btn-sm">
                                                 <i class="fas fa-chart-bar"></i> Ver Consumo
-                                            </a>
-                                            <a href="<?= base_url('dispositivo/eliminar/' . $dispositivo['id_dispositivo']) ?>" 
-                                               class="btn btn-danger btn-sm"
-                                               onclick="return confirm('¿Estás seguro de eliminar este dispositivo?')">
-                                                <i class="fas fa-trash"></i> Eliminar
                                             </a>
                                         </td>
                                     </tr>

@@ -33,23 +33,38 @@ class CUsuario extends BaseController
         $usuario = $this->usuarioModel->find($idUsuario);
         log_message('debug', 'Datos del usuario: ' . print_r($usuario, true));
         
-        // Obtener dispositivos del usuario
+        // Obtener dispositivos del usuario (propios y compartidos)
         $dispositivos = $this->dispositivoModel->obtenerDispositivosUsuario($idUsuario);
         log_message('debug', 'Dispositivos encontrados: ' . print_r($dispositivos, true));
+
+        $dispositivosPropios = array_values(array_filter($dispositivos, function($d) use ($idUsuario) {
+            return isset($d['id_usuario']) && (int)$d['id_usuario'] === (int)$idUsuario;
+        }));
+        $dispositivosCompartidos = array_values(array_filter($dispositivos, function($d) use ($idUsuario) {
+            return isset($d['id_usuario']) && (int)$d['id_usuario'] !== (int)$idUsuario;
+        }));
         
-        // Obtener consumo total de los últimos 24 horas
+        // Consumo total de las últimas 24 horas (propios)
         $consumo24h = $this->energiaModel->obtenerConsumo24Horas($idUsuario);
         log_message('debug', 'Consumo 24h: ' . $consumo24h);
         
-        // Obtener consumo promedio diario
+        // Consumo promedio diario últimos 30 días (propios)
         $consumoPromedio = $this->energiaModel->obtenerConsumoPromedioDiario($idUsuario);
         log_message('debug', 'Consumo promedio: ' . $consumoPromedio);
+
+        // Contar dispositivos propios activos
+        $activosPropios = array_reduce($dispositivosPropios, function($acc, $d) {
+            return $acc + ((isset($d['estado']) && $d['estado'] === 'activo') ? 1 : 0);
+        }, 0);
 
         $data = [
             'usuario' => $usuario,
             'dispositivos' => $dispositivos,
+            'dispositivos_propios' => $dispositivosPropios,
+            'dispositivos_compartidos' => $dispositivosCompartidos,
             'consumo24h' => $consumo24h,
-            'consumoPromedio' => $consumoPromedio
+            'consumoPromedio' => $consumoPromedio,
+            'activosPropios' => $activosPropios
         ];
 
         log_message('debug', 'Datos enviados a la vista: ' . print_r($data, true));

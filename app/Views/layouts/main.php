@@ -141,11 +141,9 @@
                             </li>
                         <?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('dispositivo') ?>">Mis Dispositivos</a>
+                                <a class="nav-link" href="<?= base_url('usuario') ?>">Mis Dispositivos</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('energia') ?>">Energía</a>
-                            </li>
+                            <!-- Ocultamos Energía en el header para usuario normal -->
                         <?php endif; ?>
                     <?php endif; ?>
                 </ul>

@@ -120,16 +120,27 @@ class EnergiaModel extends Model
             return 0;
         }
 
-        $fechaInicio = date('Y-m-d H:i:s', strtotime('-30 days'));
+        $fechaInicio = date('Y-m-d 00:00:00', strtotime('-30 days'));
 
-        $query = $db->table('energia')
-                    ->select('AVG(kwh) as promedio_diario')
-                    ->whereIn('id_dispositivo', $idsDispositivos)
-                    ->where('fecha >=', $fechaInicio)
-                    ->get();
+        // Calcular SUM(kwh) por día y luego promediar esos totales diarios
+        $sub = $db->table('energia')
+                  ->select('DATE(fecha) as dia, SUM(kwh) as kwh_dia')
+                  ->whereIn('id_dispositivo', $idsDispositivos)
+                  ->where('fecha >=', $fechaInicio)
+                  ->groupBy('DATE(fecha)')
+                  ->get()
+                  ->getResultArray();
 
-        $resultado = $query->getRow();
-        return $resultado ? $resultado->promedio_diario : 0;
+        if (empty($sub)) {
+            return 0;
+        }
+
+        $totalDias = count($sub);
+        $sumaDias = 0;
+        foreach ($sub as $fila) {
+            $sumaDias += (float)($fila['kwh_dia'] ?? 0);
+        }
+        return $totalDias > 0 ? $sumaDias / $totalDias : 0;
     }
 
 

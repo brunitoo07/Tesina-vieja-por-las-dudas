@@ -109,7 +109,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton<?= $dispositivo['id_dispositivo'] ?>">
                                     <li>
-                                        <a class="dropdown-item" href="<?= base_url('consumo/ver/' . $dispositivo['id_dispositivo']) ?>">
+                                        <a class="dropdown-item" href="<?= base_url('supervisor/verLecturasDispositivo/' . $dispositivo['id_dispositivo']) ?>">
                                             <i class="fas fa-chart-line"></i> Ver Consumo
                                         </a>
                                     </li>
@@ -121,6 +121,11 @@
                                     <li>
                                         <a class="dropdown-item" href="#" onclick="editarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
                                             <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" href="#" onclick="eliminarDispositivo(<?= $dispositivo['id_dispositivo'] ?>)">
+                                            <i class="fas fa-trash"></i> Eliminar
                                         </a>
                                     </li>
                                 </ul>
@@ -265,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function cambiarEstado(idDispositivo, estadoActual) {
     const nuevoEstado = estadoActual === 'activo' ? 'inactivo' : 'activo';
     if (confirm(`¿Estás seguro de que deseas cambiar el estado del dispositivo a ${nuevoEstado}?`)) {
-        fetch('<?= base_url("dispositivo/cambiarEstado") ?>', {
+        fetch('<?= base_url("supervisor/dispositivo/cambiarEstado") ?>', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -288,7 +293,9 @@ function cambiarEstado(idDispositivo, estadoActual) {
 }
 
 function editarDispositivo(idDispositivo) {
-    fetch(`<?= base_url("dispositivo/obtener/") ?>${idDispositivo}`)
+    fetch(`<?= base_url("supervisor/dispositivo/obtener/") ?>${idDispositivo}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
         .then(response => response.json())
         .then(data => {
             document.getElementById('id_dispositivo').value = data.id_dispositivo;
@@ -300,8 +307,9 @@ function editarDispositivo(idDispositivo) {
 
 function guardarCambios() {
     const formData = new FormData(document.getElementById('editarDispositivoForm'));
-    fetch('<?= base_url("dispositivo/actualizar") ?>', {
+    fetch('<?= base_url("supervisor/dispositivo/actualizar") ?>', {
         method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
         body: formData
     })
     .then(response => response.json())
@@ -312,6 +320,23 @@ function guardarCambios() {
             alert('Error al actualizar el dispositivo');
         }
     });
+}
+
+function eliminarDispositivo(idDispositivo) {
+    if (!confirm('¿Seguro que deseas eliminar este dispositivo? Esta acción no se puede deshacer.')) return;
+    fetch('<?= base_url("supervisor/eliminarDispositivo/") ?>' + idDispositivo, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(r => r.json())
+    .then(res => {
+        if (res.success) {
+            location.reload();
+        } else {
+            alert(res.message || 'Error al eliminar el dispositivo');
+        }
+    })
+    .catch(() => alert('Error de red al eliminar el dispositivo'));
 }
 </script>
 

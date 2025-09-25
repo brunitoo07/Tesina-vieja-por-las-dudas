@@ -122,7 +122,7 @@
         <p><strong>Apellido:</strong> <?= htmlspecialchars($apellido); ?></p>
         <p><strong>Email:</strong> <?= htmlspecialchars($email); ?></p>
         
-        <a href="<?= base_url('home/bienvenida') ?>" class="btn">Volver</a>
+        <a href="<?= base_url('usuario') ?>" class="btn">Volver</a>
     </div>
 </body>
 </html>

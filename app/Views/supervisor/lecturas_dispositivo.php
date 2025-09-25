@@ -69,11 +69,11 @@
                     <tbody>
                         <?php foreach ($lecturas as $lectura): ?>
                             <tr>
-                                <td><?= date('d/m/Y H:i:s', strtotime($lectura['fecha_hora'])) ?></td>
+                                <td><?= date('d/m/Y H:i:s', strtotime($lectura['fecha'])) ?></td>
                                 <td><?= number_format($lectura['voltaje'], 2) ?></td>
                                 <td><?= number_format($lectura['corriente'], 2) ?></td>
                                 <td><?= number_format($lectura['potencia'], 2) ?></td>
-                                <td><?= number_format($lectura['energia'], 2) ?></td>
+                                <td><?= number_format($lectura['kwh'], 2) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -124,15 +124,23 @@ document.addEventListener('DOMContentLoaded', function() {
 function cargarLecturas() {
     const fechaInicio = document.getElementById('fecha_inicio').value;
     const fechaFin = document.getElementById('fecha_fin').value;
-    
-    fetch(`<?= base_url('supervisor/obtenerLecturasDispositivo/' . $dispositivo['id_dispositivo']) ?>?fecha_inicio=${fechaInicio}&fecha_fin=${fechaFin}`)
+
+    const baseUrl = `<?= base_url('supervisor/obtenerLecturasDispositivo/' . $dispositivo['id_dispositivo']) ?>`;
+    const params = new URLSearchParams();
+    if (fechaInicio) params.set('fecha_inicio', fechaInicio);
+    if (fechaFin) params.set('fecha_fin', fechaFin);
+
+    fetch(`${baseUrl}?${params.toString()}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                actualizarTabla(data.lecturas);
-                actualizarGrafico(data.lecturas);
+                const lecturas = Array.isArray(data.lecturas) ? data.lecturas : [];
+                actualizarTabla(lecturas);
+                actualizarGrafico(lecturas);
             } else {
-                alert('Error al cargar las lecturas');
+                alert(data.message || 'Error al cargar las lecturas');
             }
         })
         .catch(error => {
@@ -148,18 +156,18 @@ function actualizarTabla(lecturas) {
     lecturas.forEach(lectura => {
         tbody.innerHTML += `
             <tr>
-                <td>${new Date(lectura.fecha_hora).toLocaleString()}</td>
+                <td>${new Date(lectura.fecha).toLocaleString()}</td>
                 <td>${Number(lectura.voltaje).toFixed(2)}</td>
                 <td>${Number(lectura.corriente).toFixed(2)}</td>
                 <td>${Number(lectura.potencia).toFixed(2)}</td>
-                <td>${Number(lectura.energia).toFixed(2)}</td>
+                <td>${Number(lectura.kwh).toFixed(2)}</td>
             </tr>
         `;
     });
 }
 
 function actualizarGrafico(lecturas) {
-    const labels = lecturas.map(l => new Date(l.fecha_hora).toLocaleString());
+    const labels = lecturas.map(l => new Date(l.fecha).toLocaleString());
     const datos = lecturas.map(l => l.potencia);
 
     graficoConsumo.data.labels = labels;

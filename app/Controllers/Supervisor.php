@@ -283,9 +283,9 @@ class Supervisor extends BaseController
             return redirect()->back()->with('error', 'Dispositivo no encontrado');
         }
 
-        // Obtener las lecturas de energía del dispositivo
+        // Obtener las lecturas de energía del dispositivo (alineado con EnergiaModel: campo 'fecha' y 'kwh')
         $lecturas = $this->energiaModel->where('id_dispositivo', $idDispositivo)
-                                     ->orderBy('fecha_hora', 'DESC')
+                                     ->orderBy('fecha', 'DESC')
                                      ->limit(100)
                                      ->find();
 
@@ -312,11 +312,11 @@ class Supervisor extends BaseController
         $builder = $this->energiaModel->where('id_dispositivo', $idDispositivo);
 
         if ($fechaInicio && $fechaFin) {
-            $builder->where('fecha_hora >=', $fechaInicio . ' 00:00:00')
-                   ->where('fecha_hora <=', $fechaFin . ' 23:59:59');
+            $builder->where('fecha >=', $fechaInicio . ' 00:00:00')
+                   ->where('fecha <=', $fechaFin . ' 23:59:59');
         }
 
-        $lecturas = $builder->orderBy('fecha_hora', 'DESC')
+        $lecturas = $builder->orderBy('fecha', 'DESC')
                           ->findAll();
 
         return $this->response->setJSON([

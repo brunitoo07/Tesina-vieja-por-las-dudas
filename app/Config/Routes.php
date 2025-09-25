@@ -62,7 +62,6 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('energia/verDatos/(:num)', 'Consumo::verDatos/$1');
     $routes->get('home', 'Home::index');
     $routes->get('energia', 'Energia::index');
-    $routes->get('energia/verDatos/(:num)', 'Energia::verDatos/$1');
     $routes->post('/energia/recibirDatos', 'Energia::recibirDatos');
     $routes->get('energia/getLatestData', 'Energia::getLatestData');
     $routes->post('energia/actualizarLimite', 'Energia::actualizarLimite');
@@ -116,8 +115,8 @@ $routes->group('supervisor', ['filter' => 'auth'], function($routes) {
     $routes->get('misUsuarios', 'Supervisor::misUsuarios');
     $routes->get('dispositivosUsuarios/(:num)', 'Supervisor::dispositivosUsuarios/$1');
     $routes->get('dispositivosGlobal', 'Supervisor::dispositivosGlobal');
-    $routes->get('supervisor/verLecturasDispositivo/(:num)', 'Supervisor::verLecturasDispositivo/$1');
-    $routes->get('supervisor/obtenerLecturasDispositivo/(:num)', 'Supervisor::obtenerLecturasDispositivo/$1');
+    $routes->get('verLecturasDispositivo/(:num)', 'Supervisor::verLecturasDispositivo/$1');
+    $routes->get('obtenerLecturasDispositivo/(:num)', 'Supervisor::obtenerLecturasDispositivo/$1');
     $routes->post('dispositivo/cambiarEstado', 'Supervisor::cambiarEstadoDispositivo');
     $routes->get('dispositivo/obtener/(:num)', 'Supervisor::obtenerDispositivo/$1');
     $routes->post('dispositivo/actualizar', 'Supervisor::actualizarDispositivo');
