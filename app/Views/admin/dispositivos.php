@@ -40,12 +40,12 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th><?= lang('App.name') ?></th>
-                                <th><?= lang('App.mac_address') ?></th>
-                                <th><?= lang('App.stock') ?></th>
-                                <th><?= lang('App.price') ?></th>
-                                <th><?= lang('App.status') ?></th>
-                                <th><?= lang('App.actions') ?></th>
+                                <th>Nombre ?></th>
+                                <th>MAC Address ?></th>
+                                <th>Stock ?></th>
+                                <th>Precio ?></th>
+                                <th>Estado ?></th>
+                                <th>Acciones ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,14 +96,14 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th><?= lang('App.name') ?></th>
-                                <th><?= lang('App.mac_address') ?></th>
-                                <th><?= lang('App.stock') ?></th>
-                                <th><?= lang('App.price') ?></th>
-                                <th><?= lang('App.description') ?></th>
-                                <th><?= lang('App.last_update') ?></th>
-                                <th><?= lang('App.status') ?></th>
-                                <th><?= lang('App.actions') ?></th>
+                                <th>Nombre ?></th>
+                                <th>MAC Address ?></th>
+                                <th>Stock ?></th>
+                                <th>Precio ?></th>
+                                <th>Descripción ?></th>
+                                <th>Última Actualización ?></th>
+                                <th>Estado ?></th>
+                                <th>Acciones ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -149,7 +149,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><?= lang('App.device_details') ?></h5>
+                <h5 class="modal-title">Detalles del Dispositivo ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -164,12 +164,12 @@
 <script>
 function copiarMAC(mac) {
     navigator.clipboard.writeText(mac).then(() => {
-        alert('<?= lang('App.mac_copied') ?>');
+        alert('MAC copiado al portapapeles');
     });
 }
 
 function activarDispositivo(macAddress) {
-    if (confirm('<?= lang('App.confirm_activate_device') ?>')) {
+    if (confirm('¿Estás seguro de querer activar este dispositivo?')) {
         fetch('<?= base_url('api/dispositivo/activar') ?>', {
             method: 'POST',
             headers: {
@@ -184,18 +184,18 @@ function activarDispositivo(macAddress) {
             if (data.status === 'success') {
                 location.reload();
             } else {
-                alert('<?= lang('App.error_activate_device') ?>: ' + data.message);
+                alert('Error al activar el dispositivo: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('<?= lang('App.error_server') ?>');
+            alert('Error al comunicarse con el servidor');
         });
     }
 }
 
 function desactivarDispositivo(macAddress) {
-    if (confirm('<?= lang('App.confirm_deactivate_device') ?>')) {
+    if (confirm('¿Estás seguro de querer desactivar este dispositivo?')) {
         fetch('<?= base_url('api/dispositivo/actualizarEstado') ?>', {
             method: 'POST',
             headers: {
@@ -211,18 +211,18 @@ function desactivarDispositivo(macAddress) {
             if (data.status === 'success') {
                 location.reload();
             } else {
-                alert('<?= lang('App.error_deactivate_device') ?>: ' + data.message);
+                alert('Error al desactivar el dispositivo: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('<?= lang('App.error_server') ?>');
+            alert('Error al comunicarse con el servidor');
         });
     }
 }
 
 function eliminarDispositivo(macAddress) {
-    if (confirm('<?= lang('App.confirm_delete_device') ?>')) {
+    if (confirm('¿Estás seguro de querer eliminar este dispositivo?')) {
         fetch('<?= base_url('api/dispositivo/eliminar') ?>', {
             method: 'POST',
             headers: {
@@ -237,12 +237,12 @@ function eliminarDispositivo(macAddress) {
             if (data.status === 'success') {
                 location.reload();
             } else {
-                alert('<?= lang('App.error_delete_device') ?>: ' + data.message);
+                alert('Error al eliminar el dispositivo: ' + data.message);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('<?= lang('App.error_server') ?>');
+            alert('Error al comunicarse con el servidor');
         });
     }
 }
