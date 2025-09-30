@@ -346,6 +346,8 @@ body {
     backdrop-filter: blur(10px);
 }
 
+/* (Se eliminó sección mensual) */
+
 /* === ESTADO DE CONEXIÓN PREMIUM === */
 .status-badge {
     padding: 8px 15px;
@@ -462,6 +464,21 @@ body {
         <div class="premium-card-header d-flex justify-content-between align-items-center">
             <h6>📊 Gráfico de Consumo</h6>
             <div class="d-flex align-items-center">
+                <div class="me-2 d-none d-md-block">
+                    <select id="seleccionMetrica" class="form-select form-select-sm" style="background:rgba(255,255,255,0.1);color:#F7E98E;border:1px solid rgba(212,175,55,0.3);">
+                        <option value="potencia" selected>Potencia (W)</option>
+                        <option value="kwh">Energía (kWh)</option>
+                    </select>
+                </div>
+                <div class="me-3 d-none d-md-block">
+                    <select id="seleccionRango" class="form-select form-select-sm" style="background:rgba(255,255,255,0.1);color:#F7E98E;border:1px solid rgba(212,175,55,0.3);">
+                        <option value="2">Últimas 2 h</option>
+                        <option value="6">Últimas 6 h</option>
+                        <option value="12">Últimas 12 h</option>
+                        <option value="24" selected>Últimas 24 h</option>
+                        <option value="all">Todo</option>
+                    </select>
+                </div>
                 <div id="estadoActualizacion" class="status-badge status-connected">
                     <i class="fas fa-check-circle"></i> Conectado
                 </div>
@@ -526,63 +543,10 @@ body {
         </div>
     </div>
 
-    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
-    <!-- Editar nombre y descripción del dispositivo (solo admin/supervisor) -->
-    <div class="premium-card mb-4">
-        <div class="premium-card-header">
-            <h6>✏️ Editar dispositivo</h6>
-        </div>
-        <div class="premium-card-body">
-            <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="premium-form row g-3">
-                <input type="hidden" name="id_dispositivo" value="<?= esc($dispositivo['id_dispositivo']) ?>">
-                <div class="col-md-6">
-                    <label class="form-label">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" value="<?= esc($dispositivo['nombre']) ?>" required>
-                </div>
-                <div class="col-md-12">
-                    <label class="form-label">Descripción</label>
-                    <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripción del dispositivo..."><?= esc($dispositivo['descripcion'] ?? '') ?></textarea>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn-premium" id="btnGuardarDispositivo"><i class="fas fa-save me-2"></i>Guardar</button>
-                    <span id="msgEditarDispositivo" class="ms-2"></span>
-                </div>
-            </form>
-        </div>
-    </div>
-    <?php endif; ?>
-<!-- Formulario para comparar valor de kWh -->
-<div class="premium-card mb-4">
-    <div class="premium-card-header">
-        <h6>💰 Calcular Costo de Energía</h6>
-    </div>
-    <div class="premium-card-body">
-        <form id="formKwh" class="premium-form row g-3">
-            <div class="col-md-4">
-                <label for="valorKwh" class="form-label">Valor de kWh ($)</label>
-                <input type="number" step="0.01" class="form-control" id="inputKwh" placeholder="Ej: 150.50" required>
-                </div>
-            <div class="col-md-4 d-flex align-items-end">
-                <button type="submit" class="btn-premium">
-                    <i class="fas fa-calculator me-2"></i> Calcular
-                </button>
-            </div>
-        </form>
 
-        <div id="resultadoCosto" class="mt-3" style="display:none;">
-            <div class="alert-premium alert-premium-success">
-            <h6 class="fw-bold">Resultado:</h6>
-                <p>Total de Energía consumida: <span id="totalKwh" class="text-warning fw-bold"></span> kWh</p>
-                <p>Costo estimado: <span id="costoTotal" class="text-warning fw-bold"></span> $</p>
-                <button id="btnPdf" onclick="descargarPDF()" class="btn-premium mt-2">
-                    <i class="fas fa-file-pdf me-2"></i>Descargar PDF
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
     <!-- Mensajes de estado en tiempo real -->
     <div id="logsEstado" class="mb-3"></div>
+  
 
     <!-- Estado del Límite en Tiempo Real -->
     <div class="premium-card mb-4">
@@ -672,6 +636,64 @@ body {
     <?php endif; ?>
 
 
+    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
+    <!-- Editar nombre y descripción del dispositivo (solo admin/supervisor) -->
+    <div class="premium-card mb-4">
+        <div class="premium-card-header">
+            <h6>✏️ Editar dispositivo</h6>
+        </div>
+        <div class="premium-card-body">
+            <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="premium-form row g-3">
+                <input type="hidden" name="id_dispositivo" value="<?= esc($dispositivo['id_dispositivo']) ?>">
+                <div class="col-md-6">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="<?= esc($dispositivo['nombre']) ?>" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripción del dispositivo..."><?= esc($dispositivo['descripcion'] ?? '') ?></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn-premium" id="btnGuardarDispositivo"><i class="fas fa-save me-2"></i>Guardar</button>
+                    <span id="msgEditarDispositivo" class="ms-2"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <?php endif; ?>
+<!-- Formulario para comparar valor de kWh -->
+<div class="premium-card mb-4">
+    <div class="premium-card-header">
+        <h6>💰 Calcular Costo de Energía</h6>
+    </div>
+    <div class="premium-card-body">
+        <form id="formKwh" class="premium-form row g-3">
+            <div class="col-md-4">
+                <label for="valorKwh" class="form-label">Valor de kWh ($)</label>
+                <input type="number" step="0.01" class="form-control" id="inputKwh" placeholder="Ej: 150.50" required>
+                </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn-premium">
+                    <i class="fas fa-calculator me-2"></i> Calcular
+                </button>
+            </div>
+        </form>
+
+        <div id="resultadoCosto" class="mt-3" style="display:none;">
+            <div class="alert-premium alert-premium-success">
+            <h6 class="fw-bold">Resultado:</h6>
+                <p>Total de Energía consumida: <span id="totalKwh" class="text-warning fw-bold"></span> kWh</p>
+                <p>Costo estimado: <span id="costoTotal" class="text-warning fw-bold"></span> $</p>
+                <button id="btnPdf" onclick="descargarPDF()" class="btn-premium mt-2">
+                    <i class="fas fa-file-pdf me-2"></i>Descargar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
     <!-- Tabla de Lecturas con Filtros -->
     <div class="premium-card mb-4">
         <div class="premium-card-header d-flex justify-content-between align-items-center">
@@ -718,7 +740,7 @@ body {
                         <i class="fas fa-times"></i> Limpiar
                     </button>
                 </div>
-            </form>
+            </form>y
         </div>
         
         <div class="premium-card-body">
@@ -730,11 +752,11 @@ body {
             </div>
             
             <div id="contenidoLecturas">
-            <?php if (empty($lecturas)): ?>
-                    <div class="alert-premium">No hay lecturas disponibles para este dispositivo.</div>
-            <?php else: ?>
-                    <div class="premium-table">
-                        <table id="tablaLecturas">
+                <div class="alert-premium">
+                    Usa los <strong>Filtros</strong> para consultar el historial de lecturas sin cargar toda la página.
+                </div>
+                <div class="premium-table" style="display:none;" id="wrapperTablaLecturas">
+                    <table id="tablaLecturas">
                         <thead>
                             <tr>
                                 <th>Fecha y Hora</th>
@@ -744,32 +766,21 @@ body {
                                 <th>Energía (kWh)</th>
                             </tr>
                         </thead>
-                        <tbody>
-                                <?php 
-                                // Mostrar solo las primeras 25 lecturas por defecto
-                                $lecturasMostradas = array_slice($lecturas, 0, 25);
-                                foreach ($lecturasMostradas as $lectura): 
-                                ?>
-                                <tr>
-                                    <td><?= date('d/m/Y H:i:s', strtotime($lectura['fecha'])) ?></td>
-                                    <td><?= number_format($lectura['voltaje'], 2) ?></td>
-                                    <td><?= number_format($lectura['corriente'], 2) ?></td>
-                                    <td><?= number_format($lectura['potencia'], 2) ?></td>
-                                    <td><?= number_format($lectura['kwh'], 2) ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
-                    <div class="text-center mt-3">
-                        <small class="text-muted">
-                            Mostrando <?= count($lecturasMostradas) ?> de <?= count($lecturas) ?> lecturas totales
-                        </small>
-                    </div>
-            <?php endif; ?>
+                <div class="text-center mt-3" id="contadorLecturas" style="display:none;">
+                    <small class="text-muted"></small>
+                </div>
+                <div class="d-flex justify-content-center gap-2" id="paginacionLecturas" style="display:none;">
+                    <button class="btn-premium-secondary" id="btnPrevPage"><i class="fas fa-chevron-left"></i></button>
+                    <span class="mx-2" id="paginaActual" style="align-self:center;color:#C0C0C0;">1 / 1</span>
+                    <button class="btn-premium-secondary" id="btnNextPage"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -829,65 +840,91 @@ document.addEventListener('DOMContentLoaded', function() {
         verificarEnergia();
     }
 
-    // Crear gráfico de consumo
+    // Crear gráfico de consumo (tema premium)
     const ctx = document.getElementById('graficoConsumo').getContext('2d');
-    const graficoConsumo = new Chart(ctx, {
+    const gradient = ctx.createLinearGradient(0, 0, 0, 240);
+    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.35)');
+    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.05)');
+
+    let graficoConsumo = new Chart(ctx, {
         type: 'line',
         data: {
             labels: lecturas.map(l => new Date(l.fecha).toLocaleString()),
             datasets: [{
-                label: 'Potencia (W)', 
-                data: lecturas.map(l => l.potencia), 
-                borderColor: 'rgb(75,192,192)', 
-                backgroundColor: 'rgba(75,192,192,0.2)', 
-                tension: 0.1, 
-                fill: true
+                label: 'Potencia (W)',
+                data: lecturas.map(l => l.potencia),
+                borderColor: '#D4AF37',
+                backgroundColor: gradient,
+                tension: 0.25,
+                fill: true,
+                pointRadius: 2,
+                pointHoverRadius: 4,
+                pointBackgroundColor: '#D4AF37',
+                pointBorderColor: '#1a1a1a',
+                pointBorderWidth: 1
             }]
         },
         options: {
-            responsive: true, 
+            responsive: true,
             maintainAspectRatio: false,
+            interaction: { intersect: false, mode: 'index' },
+            plugins: {
+                legend: {
+                    labels: { color: '#F7E98E', boxWidth: 12, usePointStyle: true, pointStyle: 'circle' }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(26,26,26,0.9)',
+                    borderColor: '#D4AF37',
+                    borderWidth: 1,
+                    titleColor: '#F7E98E',
+                    bodyColor: '#ffffff',
+                    callbacks: {
+                        label: (ctx) => ` ${Number(ctx.parsed.y).toFixed(2)} W`
+                    }
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Potencia (W)'
-                    }
+                    grid: { color: 'rgba(212,175,55,0.15)' },
+                    ticks: { color: '#E8E8E8' },
+                    title: { display: true, text: 'Potencia (W)', color: '#C0C0C0' }
                 },
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Fecha y Hora'
-                    }
+                    grid: { color: 'rgba(192,192,192,0.08)' },
+                    ticks: { color: '#E8E8E8', maxRotation: 0, autoSkip: true, maxTicksLimit: 6 },
+                    title: { display: true, text: 'Fecha y Hora', color: '#C0C0C0' }
                 }
+            },
+            elements: { line: { borderWidth: 2 } },
+            animations: {
+                tension: { duration: 600, easing: 'easeOutCubic', from: 0.5, to: 0.25, loop: false }
             }
         }
     });
 
+    function filtrarPorRango(horas) {
+        if (horas === 'all') return lecturas;
+        const limite = Date.now() - (Number(horas) * 60 * 60 * 1000);
+        return lecturas.filter(l => new Date(l.fecha).getTime() >= limite);
+    }
+
     function actualizarGrafico() {
-        const labels = lecturas.map(l => new Date(l.fecha).toLocaleString());
-        const datosPotencia = lecturas.map(l => l.potencia);
-        
+        const metrica = document.getElementById('seleccionMetrica')?.value || 'potencia';
+        const rango = document.getElementById('seleccionRango')?.value || '24';
+        const datos = filtrarPorRango(rango);
+
+        const labels = datos.map(l => new Date(l.fecha).toLocaleString());
+        const valores = datos.map(l => metrica === 'kwh' ? l.kwh : l.potencia);
+
         graficoConsumo.data.labels = labels;
-        graficoConsumo.data.datasets[0].data = datosPotencia;
+        graficoConsumo.data.datasets[0].label = metrica === 'kwh' ? 'Energía (kWh)' : 'Potencia (W)';
+        graficoConsumo.data.datasets[0].data = valores;
+        graficoConsumo.options.scales.y.title.text = metrica === 'kwh' ? 'Energía (kWh)' : 'Potencia (W)';
         graficoConsumo.update();
     }
 
-    function actualizarTabla() {
-        const tbody = document.querySelector('#tablaLecturas tbody');
-        if (!tbody) return;
-        tbody.innerHTML = '';
-        lecturas.forEach(l => {
-            tbody.innerHTML += `<tr>
-                <td>${new Date(l.fecha).toLocaleString()}</td>
-                <td>${Number(l.voltaje).toFixed(2)}</td>
-                <td>${Number(l.corriente).toFixed(2)}</td>
-                <td>${Number(l.potencia).toFixed(2)}</td>
-                <td>${Number(l.kwh).toFixed(2)}</td>
-            </tr>`;
-        });
-    }
+    function actualizarTabla() { /* rendering deshabilitado por defecto; usar filtros */ }
 
     // Función para obtener datos en tiempo real
     function obtenerDatosTiempoReal() {
@@ -981,6 +1018,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Primera actualización después de 1 segundo
     setTimeout(obtenerDatosTiempoReal, 1000);
+
+    // Listeners de controles del gráfico
+    const selMetrica = document.getElementById('seleccionMetrica');
+    const selRango = document.getElementById('seleccionRango');
+    if (selMetrica) selMetrica.addEventListener('change', actualizarGrafico);
+    if (selRango) selRango.addEventListener('change', actualizarGrafico);
+
+    // (Se eliminó carga de totales mensuales)
     
     // Limpiar intervalo al cerrar la página
     window.addEventListener('beforeunload', function() {
@@ -1025,7 +1070,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-<<!-- 🚀 SCRIPT PARA CALCULAR COSTO DE ENERGÍA -->
+<!-- 🚀 SCRIPT PARA CALCULAR COSTO DE ENERGÍA -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const formKwh = document.getElementById('formKwh');
@@ -1254,6 +1299,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnLimpiarFiltros = document.getElementById('btnLimpiarFiltros');
     const loadingLecturas = document.getElementById('loadingLecturas');
     const contenidoLecturas = document.getElementById('contenidoLecturas');
+    const paginacionLecturas = document.getElementById('paginacionLecturas');
+    const btnPrevPage = document.getElementById('btnPrevPage');
+    const btnNextPage = document.getElementById('btnNextPage');
+    const paginaActual = document.getElementById('paginaActual');
+    let currentPage = 1;
 
     // Mostrar/ocultar filtros
     if (btnMostrarFiltros) {
@@ -1279,10 +1329,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Limpiar filtros
     if (btnLimpiarFiltros) {
         btnLimpiarFiltros.addEventListener('click', function() {
+            // Reset UI
             formFiltros.reset();
             document.getElementById('filtroLimite').value = '25';
             document.getElementById('filtroOrden').value = 'DESC';
-            aplicarFiltros();
+            // Reset tabla y mensajes
+            const tbody = document.querySelector('#tablaLecturas tbody');
+            if (tbody) tbody.innerHTML = '';
+            document.getElementById('wrapperTablaLecturas').style.display = 'none';
+            document.getElementById('contadorLecturas').style.display = 'none';
+            const existentes = contenidoLecturas.querySelectorAll('.alert');
+            existentes.forEach(n => n.remove());
+            // Mostrar aviso inicial
+            const aviso = document.createElement('div');
+            aviso.className = 'alert-premium';
+            aviso.innerHTML = 'Usa los <strong>Filtros</strong> para consultar el historial de lecturas sin cargar toda la página.';
+            contenidoLecturas.prepend(aviso);
         });
     }
 
@@ -1293,6 +1355,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let [key, value] of formData.entries()) {
             if (value) params.append(key, value);
         }
+        params.set('page', String(currentPage));
         
         // Mostrar loading
         loadingLecturas.style.display = 'block';
@@ -1307,19 +1370,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (data.success) {
                     actualizarTablaLecturas(data.lecturas, data.total);
-                    
-                    // Mostrar mensaje de éxito
-                    const mensaje = document.createElement('div');
-                    mensaje.className = 'alert alert-success';
-                    mensaje.innerHTML = `Filtros aplicados correctamente. Mostrando ${data.total} lecturas.`;
-                    contenidoLecturas.insertBefore(mensaje, contenidoLecturas.firstChild);
-                    
-                    // Remover mensaje después de 3 segundos
-                    setTimeout(() => {
-                        if (mensaje.parentNode) {
-                            mensaje.parentNode.removeChild(mensaje);
-                        }
-                    }, 3000);
+                    document.getElementById('wrapperTablaLecturas').style.display = '';
+                    const cont = document.querySelector('#contadorLecturas small.text-muted');
+                    if (cont) {
+                        cont.textContent = `Mostrando ${data.total} lecturas`;
+                        document.getElementById('contadorLecturas').style.display = '';
+                    }
+                    // paginación
+                    if (paginaActual) {
+                        paginaActual.textContent = `${data.page} / ${data.pages}`;
+                        paginacionLecturas.style.display = (data.pages > 1) ? '' : 'none';
+                        if (btnPrevPage) btnPrevPage.disabled = data.page <= 1;
+                        if (btnNextPage) btnNextPage.disabled = data.page >= data.pages;
+                    }
                 } else {
                     throw new Error(data.error || 'Error al filtrar lecturas');
                 }
@@ -1340,6 +1403,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 5000);
             });
     }
+
+    // Eventos paginación
+    if (btnPrevPage) btnPrevPage.addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage -= 1;
+            aplicarFiltros();
+        }
+    });
+    if (btnNextPage) btnNextPage.addEventListener('click', function() {
+        currentPage += 1;
+        aplicarFiltros();
+    });
 
     function actualizarTablaLecturas(lecturas, total) {
         const tbody = document.querySelector('#tablaLecturas tbody');

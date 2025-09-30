@@ -445,6 +445,8 @@ public function generarPDF($dispositivo_id)
         ];
         
         $total_kwh = 0;
+        $consumoDiario = [];
+        $picoPotencia = ['valor' => 0.0, 'fecha' => null];
         if (!empty($lecturas)) {
             $suma_voltaje = 0;
             $suma_corriente = 0;
@@ -455,11 +457,26 @@ public function generarPDF($dispositivo_id)
                 $suma_corriente += (float)$l['corriente'];
                 $suma_potencia += (float)$l['potencia'];
                 $total_kwh += (float)$l['kwh'];
+
+                // Agrupar por día para consumo diario
+                $dia = date('Y-m-d', strtotime($l['fecha']));
+                if (!isset($consumoDiario[$dia])) {
+                    $consumoDiario[$dia] = 0.0;
+                }
+                $consumoDiario[$dia] += (float)$l['kwh'];
+
+                // Detectar pico de potencia
+                if ((float)$l['potencia'] > $picoPotencia['valor']) {
+                    $picoPotencia['valor'] = (float)$l['potencia'];
+                    $picoPotencia['fecha'] = $l['fecha'];
+                }
             }
             
             $promedios['voltaje'] = $suma_voltaje / count($lecturas);
             $promedios['corriente'] = $suma_corriente / count($lecturas);
             $promedios['potencia'] = $suma_potencia / count($lecturas);
+            // Ordenar consumo diario por fecha ascendente
+            ksort($consumoDiario);
         }
 
         // Obtener tarifa
@@ -467,6 +484,32 @@ public function generarPDF($dispositivo_id)
         $tarifaParam = $this->request->getGet('tarifa');
         $precioKwh = is_numeric($tarifaParam) ? (float)$tarifaParam : (is_numeric($tarifaSession) ? (float)$tarifaSession : 150.0);
         $precioTotal = $precioKwh * $total_kwh;
+
+        // Totales mensuales (para comparativo en PDF)
+        $rowsMensuales = $db->table('energia')
+            ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, SUM(kwh) AS total_kwh", false)
+            ->where('id_dispositivo', $dispositivo_id)
+            ->groupBy("DATE_FORMAT(fecha, '%Y-%m')", false)
+            ->orderBy("DATE_FORMAT(fecha, '%Y-%m')", 'ASC', false)
+            ->get()->getResultArray();
+
+        $totalesMensuales = [];
+        $prev = null;
+        foreach ($rowsMensuales as $r) {
+            $label = date('m/Y', strtotime($r['ym'].'-01'));
+            $kwhMes = (float)$r['total_kwh'];
+            $variacion = null;
+            if ($prev !== null && $prev > 0) {
+                $variacion = (($kwhMes - $prev) / $prev) * 100.0;
+            }
+            $totalesMensuales[] = [
+                'ym' => $r['ym'],
+                'label' => $label,
+                'kwh' => $kwhMes,
+                'variacion' => $variacion,
+            ];
+            $prev = $kwhMes;
+        }
 
         // Generar texto del informe
         $informeTexto = "Informe de consumo energético para el dispositivo <b>{$usuario['nombre_dispositivo']}</b>. ";
@@ -477,9 +520,33 @@ public function generarPDF($dispositivo_id)
             $informeTexto .= "No se encontraron lecturas para este dispositivo.";
         }
 
-        // Crear PDF simple
-        $dompdf = new \Dompdf\Dompdf();
-        
+        // Recomendaciones básicas basadas en patrones
+        $recomendaciones = [];
+        $promedioDiario = 0.0;
+        if (!empty($consumoDiario)) {
+            $promedioDiario = array_sum($consumoDiario) / max(1, count($consumoDiario));
+            $maxDia = max($consumoDiario);
+            if ($maxDia > $promedioDiario * 1.5) {
+                $recomendaciones[] = 'Se detectan días con consumo significativamente superior al promedio. Revise dispositivos de alto consumo en esas fechas.';
+            }
+        }
+        if ($picoPotencia['valor'] > 0 && $picoPotencia['valor'] > ($promedios['potencia'] ?: 0) * 1.8) {
+            $recomendaciones[] = 'Hubo picos de potencia elevados. Considere distribuir el uso de equipos para evitar sobrecargas.';
+        }
+        if ($precioKwh >= 0.01 && $total_kwh > 0 && $precioTotal > 0) {
+            $recomendaciones[] = 'Para reducir costos, ajuste horarios de uso a períodos de menor tarifa si su proveedor ofrece tarifa variable.';
+        }
+        if (empty($recomendaciones)) {
+            $recomendaciones[] = 'El consumo se mantiene estable. Continúe monitoreando y manteniendo hábitos eficientes.';
+        }
+
+        // Crear PDF con opciones y metadatos
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf($options);
+
         $dompdf->loadHtml(view('energia/pdf', [
             'usuario' => $usuario,
             'lecturas' => $lecturas,
@@ -488,10 +555,19 @@ public function generarPDF($dispositivo_id)
             'precioTotal' => $precioTotal,
             'precioKwh' => $precioKwh,
             'informeTexto' => $informeTexto,
+            'consumoDiario' => $consumoDiario,
+            'promedioDiario' => $promedioDiario,
+            'picoPotencia' => $picoPotencia,
+            'recomendaciones' => $recomendaciones,
+            'totalesMensuales' => $totalesMensuales,
         ]));
         
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+        // Metadatos PDF
+        $dompdf->addInfo('Title', 'EcoVolt - Informe de Energía');
+        $dompdf->addInfo('Author', 'EcoVolt');
+        $dompdf->addInfo('Subject', 'Consumo energético y estimación de factura');
         
         $nombreArchivo = "Informe_" . date('Y_m_d') . ".pdf";
         $dompdf->stream($nombreArchivo, ["Attachment" => true]);
@@ -633,8 +709,10 @@ public function generarPDF($dispositivo_id)
         try {
             $fechaDesde = $this->request->getGet('fecha_desde');
             $fechaHasta = $this->request->getGet('fecha_hasta');
-            $limite = $this->request->getGet('limite') ?? 25;
+            $limite = (int)($this->request->getGet('limite') ?? 25);
             $orden = $this->request->getGet('orden') ?? 'DESC';
+            $page = max(1, (int)($this->request->getGet('page') ?? 1));
+            $offset = ($page - 1) * $limite;
 
             $query = $this->energiaModel->where('id_dispositivo', $id_dispositivo);
 
@@ -646,9 +724,13 @@ public function generarPDF($dispositivo_id)
                 $query->where('DATE(fecha) <=', $fechaHasta);
             }
 
-            // Aplicar límite y orden
+            // Total para paginación
+            $totalQuery = clone $query;
+            $total = $totalQuery->countAllResults(false);
+
+            // Aplicar límite, offset y orden
             $lecturas = $query->orderBy('fecha', $orden)
-                            ->limit(intval($limite))
+                            ->limit($limite, $offset)
                             ->findAll();
 
             // Formatear datos para la respuesta
@@ -665,11 +747,13 @@ public function generarPDF($dispositivo_id)
             return $this->response->setJSON([
                 'success' => true,
                 'lecturas' => $lecturasFormateadas,
-                'total' => count($lecturas),
+                'total' => (int)$total,
+                'page' => (int)$page,
+                'pages' => (int)ceil(max(1,$total)/max(1,$limite)),
                 'filtros' => [
                     'fecha_desde' => $fechaDesde,
                     'fecha_hasta' => $fechaHasta,
-                    'limite' => $limite,
+                    'limite' => (int)$limite,
                     'orden' => $orden
                 ]
             ]);
@@ -680,6 +764,45 @@ public function generarPDF($dispositivo_id)
                 'success' => false,
                 'error' => 'Error al filtrar lecturas'
             ])->setStatusCode(500);
+        }
+    }
+
+    public function getMonthlyTotals($id_dispositivo)
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        try {
+            $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+            if (!$dispositivo) {
+                return $this->response->setJSON(['success' => false, 'error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+            }
+
+            $db = \Config\Database::connect();
+            // Agrupación por año-mes
+            $rows = $db->table('energia')
+                ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, SUM(kwh) AS total_kwh", false)
+                ->where('id_dispositivo', $id_dispositivo)
+                ->groupBy("DATE_FORMAT(fecha, '%Y-%m')", false)
+                ->orderBy("DATE_FORMAT(fecha, '%Y-%m')", 'ASC', false)
+                ->get()->getResultArray();
+
+            $data = array_map(function($r) {
+                return [
+                    'ym' => $r['ym'],
+                    'label' => date('m/Y', strtotime($r['ym'].'-01')),
+                    'total_kwh' => (float)$r['total_kwh']
+                ];
+            }, $rows);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'data' => $data
+            ]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error getMonthlyTotals: '.$e->getMessage());
+            return $this->response->setJSON(['success' => false, 'error' => 'Error al obtener totales mensuales'])->setStatusCode(500);
         }
     }
 

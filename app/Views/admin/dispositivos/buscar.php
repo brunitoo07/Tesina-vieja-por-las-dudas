@@ -197,13 +197,13 @@
                             <strong>Preparación y Conexión</strong>
                             <ul>
                                 <li>Conecta tu EcoVolt y espera el parpadeo del LED.</li>
-                                <li>Desde tu teléfono, conéctate a la red WiFi <strong>"EcoVolt-Config"</strong> (Pass: 12345678).</li>
+                                <li>Desde tu teléfono, conéctate a la red WiFi <strong>"EcoVolt-Config"</strong> (contraseña:12345678).</li>
                             </ul>
                         </li>
                         <li>
                             <strong>Configuración de Red</strong>
                             <ul>
-                                <li>Una vez conectado, se abrirá un portal en tu navegador.</li>
+                                <li>Una vez conectado, se abrirá un portal en tu navegador,si no es asi, en tu navegador con la red conectada busca https://192.168.4.1 ...
                                 <li>Selecciona tu red WiFi de casa e ingresa la contraseña.</li>
                             </ul>
                         </li>
@@ -217,7 +217,7 @@
                     </ol>
 
                     <div class="device-showcase">
-                        <img src="<?= base_url('assets/img/device-icon.png') ?>" alt="Medidor" class="img-fluid" style="max-width: 100px;">
+                        <img src="<?= base_url('imagenes/logo.png') ?>" alt="Logo EcoVolt" class="img-fluid" style="max-width: 100px;">
                         <h4 class="mt-3">EcoVolt</h4>
                         <p>Sigue los pasos para configurar tu medidor inteligente.</p>
                     </div>
