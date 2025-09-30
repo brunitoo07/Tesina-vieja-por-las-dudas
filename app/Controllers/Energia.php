@@ -411,158 +411,96 @@ class Energia extends BaseController
 
 
 
-// Dentro de la clase Energia existente
 public function generarPDF($dispositivo_id)
 {
-    $db = \Config\Database::connect();
-    
-    // Parámetros: mes=YYYY-MM y tarifa=0.15 (opcional)
-    $mesParam = $this->request->getGet('mes');
-    // Prioridad de tarifa: sesión -> GET -> por defecto
-    $tarifaSession = session()->get('tarifa_kwh');
-    $tarifaParam = $this->request->getGet('tarifa');
+    try {
+        $db = \Config\Database::connect();
+        
+        // Obtener datos básicos del dispositivo
+        $usuario = $db->table('usuario')
+            ->join('dispositivos', 'dispositivos.id_usuario = usuario.id_usuario')
+            ->where('dispositivos.id_dispositivo', $dispositivo_id)
+            ->select('usuario.*, dispositivos.nombre as nombre_dispositivo')
+            ->get()
+            ->getRowArray();
 
-    // Rango de fechas basado en el mes solicitado o el mes actual
-    if ($mesParam && preg_match('/^\\d{4}-\\d{2}$/', $mesParam)) {
-        $inicioMes = date('Y-m-01 00:00:00', strtotime($mesParam . '-01'));
-        $finMes = date('Y-m-t 23:59:59', strtotime($mesParam . '-01'));
-    } else {
-        // Mes actual por defecto
-        $inicioMes = date('Y-m-01 00:00:00');
-        $finMes = date('Y-m-t 23:59:59');
-    }
+        if (!$usuario) {
+            return redirect()->to(base_url('energia/dispositivo/' . $dispositivo_id))
+                ->with('error', 'Dispositivo no encontrado.');
+        }
 
-    // Obtener datos del usuario y dispositivo
-    $usuario = $db->table('usuario')
-        ->join('dispositivos', 'dispositivos.id_usuario = usuario.id_usuario')
-        ->where('dispositivos.id_dispositivo', $dispositivo_id)
-        ->select('usuario.*, dispositivos.nombre as nombre_dispositivo')
-        ->get()
-        ->getRowArray();
-
-    log_message('info', "PDF: dispositivo={$dispositivo_id} mes={$mesParam} rango={$inicioMes} -> {$finMes}");
-
-    // Obtener lecturas dentro del rango del mes solicitado
-    $lecturas = $db->table('energia')
-        ->where('id_dispositivo', $dispositivo_id)
-        ->where('fecha >=', $inicioMes)
-        ->where('fecha <=', $finMes)
-        ->orderBy('fecha', 'ASC')
-        ->get()
-        ->getResultArray();
-
-    $totalLecturas = count($lecturas);
-    log_message('info', 'PDF: totalLecturas=' . $totalLecturas);
-
-    // Fallback: si no hay lecturas y no se especificó mes, usar el último mes con datos
-    if ($totalLecturas === 0 && empty($mesParam)) {
-        $ultima = $db->table('energia')
-            ->select('fecha')
+        // Obtener lecturas recientes (limitado)
+        $lecturas = $db->table('energia')
             ->where('id_dispositivo', $dispositivo_id)
             ->orderBy('fecha', 'DESC')
-            ->get(1)
-            ->getRowArray();
-        if ($ultima) {
-            $mesUltimo = date('Y-m', strtotime($ultima['fecha']));
-            $inicioMes = date('Y-m-01 00:00:00', strtotime($mesUltimo . '-01'));
-            $finMes = date('Y-m-t 23:59:59', strtotime($mesUltimo . '-01'));
-            log_message('info', "PDF: sin datos en mes actual, fallback a mes={$mesUltimo} rango={$inicioMes} -> {$finMes}");
+            ->limit(30)
+            ->get()
+            ->getResultArray();
 
-            $lecturas = $db->table('energia')
-                ->where('id_dispositivo', $dispositivo_id)
-                ->where('fecha >=', $inicioMes)
-                ->where('fecha <=', $finMes)
-                ->orderBy('fecha', 'ASC')
-                ->get()
-                ->getResultArray();
-            $totalLecturas = count($lecturas);
-            log_message('info', 'PDF: totalLecturas (fallback)=' . $totalLecturas);
+        // Calcular promedios
+        $promedios = [
+            'voltaje' => 0,
+            'corriente' => 0,
+            'potencia' => 0
+        ];
+        
+        $total_kwh = 0;
+        if (!empty($lecturas)) {
+            $suma_voltaje = 0;
+            $suma_corriente = 0;
+            $suma_potencia = 0;
+            
+            foreach ($lecturas as $l) {
+                $suma_voltaje += (float)$l['voltaje'];
+                $suma_corriente += (float)$l['corriente'];
+                $suma_potencia += (float)$l['potencia'];
+                $total_kwh += (float)$l['kwh'];
+            }
+            
+            $promedios['voltaje'] = $suma_voltaje / count($lecturas);
+            $promedios['corriente'] = $suma_corriente / count($lecturas);
+            $promedios['potencia'] = $suma_potencia / count($lecturas);
         }
-    }
 
-    $promedios = [
-        'voltaje' => 0,
-        'corriente' => 0,
-        'potencia' => 0
-    ];
+        // Obtener tarifa
+        $tarifaSession = session()->get('tarifa_kwh');
+        $tarifaParam = $this->request->getGet('tarifa');
+        $precioKwh = is_numeric($tarifaParam) ? (float)$tarifaParam : (is_numeric($tarifaSession) ? (float)$tarifaSession : 150.0);
+        $precioTotal = $precioKwh * $total_kwh;
 
-    $total_kwh = 0;
-
-    if ($totalLecturas > 0) {
-        foreach ($lecturas as $l) {
-            $promedios['voltaje'] += (float)$l['voltaje'];
-            $promedios['corriente'] += (float)$l['corriente'];
-            $promedios['potencia'] += (float)$l['potencia'];
-            $total_kwh += (float)$l['kwh'];
+        // Generar texto del informe
+        $informeTexto = "Informe de consumo energético para el dispositivo <b>{$usuario['nombre_dispositivo']}</b>. ";
+        if (!empty($lecturas)) {
+            $informeTexto .= "Se registraron " . count($lecturas) . " lecturas con un consumo total de <b>" . number_format($total_kwh, 2) . " kWh</b>, ";
+            $informeTexto .= "equivalente a <b>$" . number_format($precioTotal, 2) . "</b> según la tarifa configurada.";
+        } else {
+            $informeTexto .= "No se encontraron lecturas para este dispositivo.";
         }
-        foreach ($promedios as $key => $value) {
-            $promedios[$key] = $value / $totalLecturas; // promedio
-        }
-    }
-    log_message('info', 'PDF: total_kwh=' . $total_kwh . ' v_prom=' . ($promedios['voltaje'] ?: 0) . ' i_prom=' . ($promedios['corriente'] ?: 0) . ' p_prom=' . ($promedios['potencia'] ?: 0));
 
-    // Resumen diario (SUM kWh y promedios diarios básicos)
-    $resumenDiario = $db->table('energia')
-        ->select("DATE(fecha) as dia, SUM(kwh) as kwh_dia, AVG(voltaje) as voltaje_prom, AVG(corriente) as corriente_prom, AVG(potencia) as potencia_prom")
-        ->where('id_dispositivo', $dispositivo_id)
-        ->where('fecha >=', $inicioMes)
-        ->where('fecha <=', $finMes)
-        ->groupBy('DATE(fecha)')
-        ->orderBy('dia', 'ASC')
-        ->get()
-        ->getResultArray();
-
-    // Calcular precio aproximado con precio por kWh
-    // Prioridad: GET -> sesión. Si no hay, se bloquea la generación.
-    if (is_numeric($tarifaParam)) {
-        $precioKwh = (float)$tarifaParam;
-    } elseif (is_numeric($tarifaSession)) {
-        $precioKwh = (float)$tarifaSession;
-    } else {
-        // Sin tarifa: obligar a ingresar precio de kWh antes de generar
+        // Crear PDF simple
+        $dompdf = new \Dompdf\Dompdf();
+        
+        $dompdf->loadHtml(view('energia/pdf', [
+            'usuario' => $usuario,
+            'lecturas' => $lecturas,
+            'promedios' => $promedios,
+            'total_kwh' => $total_kwh,
+            'precioTotal' => $precioTotal,
+            'precioKwh' => $precioKwh,
+            'informeTexto' => $informeTexto,
+        ]));
+        
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        
+        $nombreArchivo = "Informe_" . date('Y_m_d') . ".pdf";
+        $dompdf->stream($nombreArchivo, ["Attachment" => true]);
+        
+    } catch (\Exception $e) {
+        log_message('error', 'Error generando PDF: ' . $e->getMessage());
         return redirect()->to(base_url('energia/dispositivo/' . $dispositivo_id))
-            ->with('error', 'Debes ingresar el precio del kWh antes de descargar el PDF.');
+            ->with('error', 'Error al generar el PDF: ' . $e->getMessage());
     }
-    $precioTotal = $precioKwh * $total_kwh;
-    log_message('info', 'PDF: tarifaParam=' . var_export($tarifaParam, true) . ' tarifaSession=' . var_export($tarifaSession, true));
-    log_message('info', 'PDF: precioKwh=' . $precioKwh . ' precioTotal=' . $precioTotal);
-
-    // Generar informe textual profesional
-    $mesTitulo = date('F Y', strtotime($inicioMes));
-    $informeTexto = "Durante el mes de <b>{$mesTitulo}</b>, el dispositivo <b>'{$usuario['nombre_dispositivo']}'</b> ha mostrado un consumo energético ";
-    if ($totalLecturas > 0) {
-        $voltProm = number_format($promedios['voltaje'], 2);
-        $corrProm = number_format($promedios['corriente'], 2);
-        $potProm = number_format($promedios['potencia'], 2);
-        $total_kwh_fmt = number_format($total_kwh, 2);
-        $precio_fmt = number_format($precioTotal, 2);
-
-        $informeTexto .= "estable con un voltaje promedio de <b>$voltProm V</b>, corriente promedio de <b>$corrProm A</b> y potencia promedio de <b>$potProm W</b>. ";
-        $informeTexto .= "La energía total consumida fue de <b>$total_kwh_fmt kWh</b>, lo que equivale aproximadamente a <b>$$precio_fmt</b> según el precio por kWh configurado.";
-        $informeTexto .= " Se recomienda revisar los picos de consumo para optimizar el uso de energía y reducir costos.";
-    } else {
-        $informeTexto .= "y no se registraron lecturas durante este período.";
-    }
-
-    // Generar HTML del PDF
-    $html = view('energia/pdf', [
-        'usuario' => $usuario,
-        'lecturas' => $lecturas,
-        'promedios' => $promedios,
-        'total_kwh' => $total_kwh,
-        'precioTotal' => $precioTotal,
-        'precioKwh' => $precioKwh,
-        'informeTexto' => $informeTexto,
-        'resumenDiario' => $resumenDiario,
-    ]);
-
-    // Crear PDF
-    $dompdf = new \Dompdf\Dompdf();
-    $dompdf->loadHtml($html);
-    $dompdf->setPaper('A4', 'portrait');
-    $dompdf->render();
-    $nombreMes = date('Y_m', strtotime($inicioMes));
-    $dompdf->stream("Informe_{$usuario['nombre']}_{$usuario['nombre_dispositivo']}_{$nombreMes}.pdf", ["Attachment" => true]);
 }
 
 
@@ -630,6 +568,119 @@ public function generarPDF($dispositivo_id)
         }
         session()->set('tarifa_kwh', (float)$data['tarifa_kwh']);
         return $this->response->setJSON(['success' => true]);
+    }
+
+    public function getlimite()
+    {
+        // Endpoint público para que el ESP32 obtenga el límite de consumo
+        // No requiere autenticación ya que es para dispositivos IoT
+        
+        try {
+            $limiteModel = new \App\Models\LimiteConsumoModel();
+            
+            // Obtener parámetros opcionales
+            $mac_address = $this->request->getGet('mac') ?? null;
+            $ip_address = $this->request->getIPAddress();
+            
+            // Buscar límite específico por MAC si se proporciona
+            if ($mac_address) {
+                $dispositivo = $this->dispositivoModel->where('mac_address', $mac_address)->first();
+                if ($dispositivo) {
+                    $limite = $limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+                    if ($limite) {
+                        log_message('info', "Límite obtenido para dispositivo MAC: $mac_address, límite: {$limite['limite_consumo']}");
+                        return $this->response->setJSON([
+                            'success' => true,
+                            'limite_consumo' => $limite['limite_consumo'],
+                            'dispositivo_id' => $dispositivo['id_dispositivo'],
+                            'mac_address' => $mac_address,
+                            'timestamp' => date('Y-m-d H:i:s')
+                        ]);
+                    }
+                }
+            }
+            
+            // Si no hay MAC o no se encuentra dispositivo específico, usar el límite más reciente
+            $limite = $limiteModel->orderBy('created_at', 'DESC')->first();
+            $limite_consumo = $limite ? $limite['limite_consumo'] : 0.004; // Valor por defecto como en tu código
+            
+            log_message('info', "Límite obtenido (general): $limite_consumo kWh, IP: $ip_address");
+            
+            return $this->response->setJSON([
+                'success' => true,
+                'limite_consumo' => $limite_consumo,
+                'timestamp' => date('Y-m-d H:i:s'),
+                'ip_address' => $ip_address
+            ]);
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Error en getlimite: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Error al obtener límite',
+                'limite_consumo' => 0.004, // Valor por defecto en caso de error
+                'timestamp' => date('Y-m-d H:i:s')
+            ])->setStatusCode(500);
+        }
+    }
+
+    public function filtrarLecturas($id_dispositivo)
+    {
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        try {
+            $fechaDesde = $this->request->getGet('fecha_desde');
+            $fechaHasta = $this->request->getGet('fecha_hasta');
+            $limite = $this->request->getGet('limite') ?? 25;
+            $orden = $this->request->getGet('orden') ?? 'DESC';
+
+            $query = $this->energiaModel->where('id_dispositivo', $id_dispositivo);
+
+            // Aplicar filtros de fecha
+            if ($fechaDesde) {
+                $query->where('DATE(fecha) >=', $fechaDesde);
+            }
+            if ($fechaHasta) {
+                $query->where('DATE(fecha) <=', $fechaHasta);
+            }
+
+            // Aplicar límite y orden
+            $lecturas = $query->orderBy('fecha', $orden)
+                            ->limit(intval($limite))
+                            ->findAll();
+
+            // Formatear datos para la respuesta
+            $lecturasFormateadas = array_map(function($lectura) {
+                return [
+                    'fecha' => date('d/m/Y H:i:s', strtotime($lectura['fecha'])),
+                    'voltaje' => number_format($lectura['voltaje'], 2),
+                    'corriente' => number_format($lectura['corriente'], 2),
+                    'potencia' => number_format($lectura['potencia'], 2),
+                    'kwh' => number_format($lectura['kwh'], 2)
+                ];
+            }, $lecturas);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'lecturas' => $lecturasFormateadas,
+                'total' => count($lecturas),
+                'filtros' => [
+                    'fecha_desde' => $fechaDesde,
+                    'fecha_hasta' => $fechaHasta,
+                    'limite' => $limite,
+                    'orden' => $orden
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error filtrando lecturas: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'Error al filtrar lecturas'
+            ])->setStatusCode(500);
+        }
     }
 
     public function actualizarDispositivo()

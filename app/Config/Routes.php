@@ -150,6 +150,9 @@ $routes->get('energia', 'Energia::index');
 // NUEVA RUTA DE PRUEBA
 $routes->match(['GET', 'POST'], '/nuevos_datos', 'Energia::recibirNuevosDatos');
 
+// Endpoint público para que el ESP32 obtenga el límite de consumo
+$routes->get('energia/getlimite', 'Energia::getlimite');
+
 // Rutas para dispositivos
 $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Admin\Dispositivos::index');
@@ -168,6 +171,7 @@ $routes->get('energia/exportar', 'Energia::exportar');
 $routes->post('energia/recibirNuevosDatos', 'Energia::recibirNuevosDatos');
 $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
+$routes->get('energia/filtrarLecturas/(:num)', 'Energia::filtrarLecturas/$1');
 $routes->post('energia/setTarifa', 'Energia::setTarifa');
 
 $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');

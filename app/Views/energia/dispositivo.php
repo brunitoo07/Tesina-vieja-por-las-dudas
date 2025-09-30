@@ -1,9 +1,442 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('contenido') ?>
+
+<style>
+/* === PALETA DE COLORES PREMIUM === */
+:root {
+    --gold-primary: #D4AF37;
+    --gold-secondary: #B8860B;
+    --gold-light: #F7E98E;
+    --gold-dark: #8B7355;
+    --silver-primary: #C0C0C0;
+    --silver-secondary: #A8A8A8;
+    --silver-light: #E8E8E8;
+    --black-primary: #1a1a1a;
+    --black-secondary: #2d2d2d;
+    --black-light: #404040;
+    --white-primary: #ffffff;
+    --white-secondary: #f8f9fa;
+    --white-dark: #e9ecef;
+    --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+    --gradient-silver: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --shadow-premium: 0 10px 30px rgba(212, 175, 55, 0.3);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --border-radius: 15px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === ESTILOS GLOBALES PREMIUM === */
+body {
+    background: var(--gradient-dark);
+    color: var(--white-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.container-fluid {
+    background: transparent;
+    padding: 20px;
+}
+
+/* === HEADER PREMIUM === */
+.premium-header {
+    background: var(--gradient-gold);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-premium);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.premium-header h1 {
+    color: var(--black-primary);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.premium-header .btn {
+    background: var(--black-primary);
+    border: none;
+    color: var(--gold-primary);
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.premium-header .btn:hover {
+    background: var(--gold-primary);
+    color: var(--black-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* === CARDS PREMIUM === */
+.premium-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-dark);
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
+}
+
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gold);
+}
+
+.premium-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    border-color: var(--gold-primary);
+}
+
+.premium-card-header {
+    background: rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 20px 25px;
+    position: relative;
+}
+
+.premium-card-header h6 {
+    color: var(--gold-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.premium-card-body {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* === MÉTRICAS PREMIUM === */
+.metric-card {
+    background: var(--gradient-dark);
+    border: 1px solid var(--gold-primary);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-premium);
+    border-color: var(--gold-light);
+}
+
+.metric-card .metric-label {
+    color: var(--silver-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.metric-card .metric-value {
+    color: var(--gold-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.metric-card .metric-icon {
+    color: var(--gold-primary);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+/* === FORMULARIOS PREMIUM === */
+.premium-form .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    color: var(--white-primary);
+    padding: 12px 15px;
+    transition: var(--transition);
+}
+
+.premium-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    color: var(--white-primary);
+}
+
+.premium-form .form-control::placeholder {
+    color: var(--silver-secondary);
+}
+
+.premium-form label {
+    color: var(--gold-primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* === BOTONES PREMIUM === */
+.btn-premium {
+    background: var(--gradient-gold);
+    border: none;
+    color: var(--black-primary);
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-premium:hover::before {
+    left: 100%;
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    color: var(--black-primary);
+}
+
+.btn-premium-secondary {
+    background: var(--gradient-silver);
+    color: var(--black-primary);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-premium-secondary:hover {
+    background: var(--gold-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* === TABLAS PREMIUM === */
+.premium-table {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-dark);
+}
+
+.premium-table table {
+    margin: 0;
+    background: transparent;
+}
+
+.premium-table thead th {
+    background: var(--gradient-gold);
+    color: var(--black-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 20px 15px;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.premium-table tbody td {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--white-primary);
+    padding: 15px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    transition: var(--transition);
+}
+
+.premium-table tbody tr:hover td {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-light);
+}
+
+/* === ALERTAS PREMIUM === */
+.alert-premium {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold-primary);
+    border-radius: var(--border-radius);
+    color: var(--gold-light);
+    padding: 20px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.alert-premium-success {
+    background: rgba(40, 167, 69, 0.1);
+    border-color: #28a745;
+    color: #90EE90;
+}
+
+.alert-premium-danger {
+    background: rgba(220, 53, 69, 0.1);
+    border-color: #dc3545;
+    color: #ff6b6b;
+}
+
+.alert-premium-warning {
+    background: rgba(255, 193, 7, 0.1);
+    border-color: #ffc107;
+    color: #ffd700;
+}
+
+/* === GRÁFICO PREMIUM === */
+.premium-chart {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* === ESTADO DE CONEXIÓN PREMIUM === */
+.status-badge {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-connected {
+    background: var(--gradient-gold);
+    color: var(--black-primary);
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+}
+
+.status-error {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: var(--white-primary);
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+}
+
+.status-updating {
+    background: var(--gradient-silver);
+    color: var(--black-primary);
+    box-shadow: 0 3px 10px rgba(192, 192, 192, 0.3);
+}
+
+/* === ANIMACIONES PREMIUM === */
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 2s infinite;
+}
+
+/* === RESPONSIVE PREMIUM === */
+@media (max-width: 768px) {
+    .premium-header h1 {
+        font-size: 2rem;
+    }
+    
+    .metric-card .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .premium-card-body {
+        padding: 20px;
+    }
+}
+
+/* === EFECTOS ESPECIALES === */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+    to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+}
+
+.pulse-effect {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+</style>
+
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0 text-gray-800">
+    <div class="premium-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>
             <i class="fas fa-chart-line me-2"></i>
             Lecturas de Energía - <?= esc($dispositivo['nombre']) ?>
         </h1>
@@ -18,25 +451,26 @@
                 $volverUrl = base_url('usuario');
             }
         ?>
-        <a href="<?= $volverUrl ?>" class="btn btn-secondary">
+            <a href="<?= $volverUrl ?>" class="btn">
             <i class="fas fa-arrow-left me-2"></i>Volver
         </a>
+        </div>
     </div>
 
     <!-- Gráfico general de consumo -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Gráfico de Consumo</h6>
+    <div class="premium-card mb-4">
+        <div class="premium-card-header d-flex justify-content-between align-items-center">
+            <h6>📊 Gráfico de Consumo</h6>
             <div class="d-flex align-items-center">
-                <div id="estadoActualizacion" class="badge badge-success mr-2">
+                <div id="estadoActualizacion" class="status-badge status-connected">
                     <i class="fas fa-check-circle"></i> Conectado
                 </div>
-                <small class="text-muted">Actualización automática cada 5s</small>
+                <small class="text-muted ms-2">Actualización automática cada 5s</small>
             </div>
         </div>
-        <div class="card-body">
+        <div class="premium-card-body">
             <!-- Alerta de sin energía -->
-            <div id="alertaSinEnergia" class="alert alert-danger text-center mb-3" style="display: none;">
+            <div id="alertaSinEnergia" class="alert-premium alert-premium-danger text-center mb-3" style="display: none;">
                 <h4 class="alert-heading">
                     <i class="fas fa-exclamation-triangle fa-2x mb-2"></i><br>
                     ¡SIN ENERGÍA!
@@ -46,82 +480,60 @@
                 </p>
             </div>
            
+            <div class="premium-chart">
             <canvas id="graficoConsumo" width="400" height="200"></canvas>
+            </div>
         </div>
     </div>
 
     <!-- Valores actuales -->
     <div class="row mb-4">
-        <div class="col-md-3">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Voltaje</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorVoltaje">0 V</div>
+        <div class="col-md-3 mb-3">
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-bolt"></i>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-bolt fa-2x text-gray-300"></i>
+                <div class="metric-label">Voltaje</div>
+                <div class="metric-value" id="valorVoltaje">0 V</div>
                         </div>
                     </div>
+        <div class="col-md-3 mb-3">
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-wave-square"></i>
                 </div>
+                <div class="metric-label">Corriente</div>
+                <div class="metric-value" id="valorCorriente">0 A</div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Corriente</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorCorriente">0 A</div>
+        <div class="col-md-3 mb-3">
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-tachometer-alt"></i>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-wave-square fa-2x text-gray-300"></i>
+                <div class="metric-label">Potencia</div>
+                <div class="metric-value" id="valorPotencia">0 W</div>
                         </div>
                     </div>
+        <div class="col-md-3 mb-3">
+            <div class="metric-card glow-effect">
+                <div class="metric-icon">
+                    <i class="fas fa-battery-half"></i>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Potencia</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorPotencia">0 W</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-tachometer-alt fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Energía</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="valorKwh">0 kWh</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-battery-half fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
+                <div class="metric-label">Energía</div>
+                <div class="metric-value" id="valorKwh">0 kWh</div>
             </div>
         </div>
     </div>
 
     <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
     <!-- Editar nombre y descripción del dispositivo (solo admin/supervisor) -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">✏️ Editar dispositivo</h6>
+    <div class="premium-card mb-4">
+        <div class="premium-card-header">
+            <h6>✏️ Editar dispositivo</h6>
         </div>
-        <div class="card-body">
-            <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="row g-3">
+        <div class="premium-card-body">
+            <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="premium-form row g-3">
                 <input type="hidden" name="id_dispositivo" value="<?= esc($dispositivo['id_dispositivo']) ?>">
                 <div class="col-md-6">
                     <label class="form-label">Nombre</label>
@@ -132,7 +544,7 @@
                     <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripción del dispositivo..."><?= esc($dispositivo['descripcion'] ?? '') ?></textarea>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary" id="btnGuardarDispositivo"><i class="fas fa-save me-2"></i>Guardar</button>
+                    <button type="submit" class="btn-premium" id="btnGuardarDispositivo"><i class="fas fa-save me-2"></i>Guardar</button>
                     <span id="msgEditarDispositivo" class="ms-2"></span>
                 </div>
             </form>
@@ -140,77 +552,189 @@
     </div>
     <?php endif; ?>
 <!-- Formulario para comparar valor de kWh -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">💰 Calcular Costo de Energía</h6>
+<div class="premium-card mb-4">
+    <div class="premium-card-header">
+        <h6>💰 Calcular Costo de Energía</h6>
     </div>
-    <div class="card-body">
-        <form id="formKwh" class="row g-3">
+    <div class="premium-card-body">
+        <form id="formKwh" class="premium-form row g-3">
             <div class="col-md-4">
                 <label for="valorKwh" class="form-label">Valor de kWh ($)</label>
                 <input type="number" step="0.01" class="form-control" id="inputKwh" placeholder="Ej: 150.50" required>
                 </div>
             <div class="col-md-4 d-flex align-items-end">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn-premium">
                     <i class="fas fa-calculator me-2"></i> Calcular
                 </button>
             </div>
         </form>
 
         <div id="resultadoCosto" class="mt-3" style="display:none;">
+            <div class="alert-premium alert-premium-success">
             <h6 class="fw-bold">Resultado:</h6>
-            <p>Total de Energía consumida: <span id="totalKwh"></span> kWh</p>
-            <p>Costo estimado: <span id="costoTotal"></span> $</p>
-            <a id="btnPdf" href="<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>" 
-   class="btn btn-primary" target="_blank">
-    Descargar PDF
-</a>
-
-            </a>
-        
+                <p>Total de Energía consumida: <span id="totalKwh" class="text-warning fw-bold"></span> kWh</p>
+                <p>Costo estimado: <span id="costoTotal" class="text-warning fw-bold"></span> $</p>
+                <button id="btnPdf" onclick="descargarPDF()" class="btn-premium mt-2">
+                    <i class="fas fa-file-pdf me-2"></i>Descargar PDF
+                </button>
+            </div>
         </div>
     </div>
 </div>
     <!-- Mensajes de estado en tiempo real -->
     <div id="logsEstado" class="mb-3"></div>
 
-    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
-    <div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">⚡ Configuración de Límite de Consumo</h6>
+    <!-- Estado del Límite en Tiempo Real -->
+    <div class="premium-card mb-4">
+        <div class="premium-card-header d-flex justify-content-between align-items-center">
+            <h6>📊 Estado del Límite de Consumo</h6>
+            <div class="d-flex align-items-center">
+                <span class="status-badge status-updating" id="estadoLimite">
+                    <i class="fas fa-sync-alt fa-spin"></i> Verificando...
+                </span>
+                <small class="text-muted ms-2">Actualización automática</small>
+            </div>
+        </div>
+        <div class="premium-card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="alert-premium">
+                        <h6><i class="fas fa-info-circle me-2"></i>Límite Actual</h6>
+                        <p class="mb-0">
+                            <strong id="limiteActual" class="text-warning"><?= esc($limite_consumo) ?></strong> kWh
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="alert-premium" id="alertaEstadoLimite">
+                        <h6><i class="fas fa-chart-line me-2"></i>Estado del Consumo</h6>
+                        <p class="mb-0 fw-bold" id="textoEstadoLimite">
+                            Verificando consumo actual...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-    <form id="formLimite" action="<?= base_url('energia/actualizarLimite') ?>" method="post">
-        <div class="form-group">
+
+    <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
+    <div class="premium-card mb-4">
+    <div class="premium-card-header">
+        <h6>⚡ Configuración de Límite de Consumo</h6>
+    </div>
+    <div class="premium-card-body">
+    <form id="formLimite" action="<?= base_url('energia/actualizarLimite') ?>" method="post" class="premium-form">
+        <div class="form-group mb-3">
             <label for="limite_consumo">Límite de Consumo (kWh)</label>
-            <input type="number" step="0.01" class="form-control" 
+            <input type="number" step="0.001" min="0.001" class="form-control" 
                    id="limite_consumo" name="limite_consumo" 
                    value="<?= esc($limite_consumo) ?>" required>
+            <small class="form-text text-muted">
+                Este límite se aplicará automáticamente al dispositivo ESP32.
+            </small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="email">Email de notificación (opcional)</label>
             <input type="email" class="form-control" 
                    id="email" name="email" 
                    value="<?= esc(session()->get('email')) ?>">
         </div>
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-save"></i> Guardar Configuración
+        <button type="submit" class="btn-premium">
+            <i class="fas fa-save me-2"></i> Guardar Configuración
         </button>
     </form>
     <div id="msgLimite" class="mt-3"></div>
+    
+    <!-- Información técnica oculta (solo para desarrolladores) -->
+    <?php if (session()->get('rol') === 'admin'): ?>
+    <div class="mt-4" id="infoTecnica" style="display: none;">
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleInfoTecnica()">
+            <i class="fas fa-code me-1"></i> Ver Info Técnica
+        </button>
+        <div id="contenidoTecnico" class="mt-3" style="display: none;">
+            <div class="alert alert-light">
+                <p><strong>URL del Endpoint:</strong> <code><?= base_url('energia/getlimite') ?></code></p>
+                <p><strong>Método:</strong> GET</p>
+                <p><strong>Respuesta JSON:</strong></p>
+                <pre class="bg-dark text-light p-2 rounded"><code>{
+  "success": true,
+  "limite_consumo": <?= esc($limite_consumo) ?>,
+  "timestamp": "2024-01-01 12:00:00"
+}</code></pre>
+                <button type="button" class="btn btn-sm btn-outline-info mt-2" id="btnProbarEndpoint">
+                    <i class="fas fa-wifi me-1"></i> Probar Endpoint
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 </div>
     <?php endif; ?>
 
 
-    <!-- Tabla de Lecturas -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Historial de Lecturas</h6></div>
-        <div class="card-body">
+    <!-- Tabla de Lecturas con Filtros -->
+    <div class="premium-card mb-4">
+        <div class="premium-card-header d-flex justify-content-between align-items-center">
+            <h6>📊 Historial de Lecturas</h6>
+            <div class="d-flex align-items-center">
+                <button type="button" class="btn-premium-secondary" id="btnMostrarFiltros">
+                    <i class="fas fa-filter me-1"></i> Filtros
+                </button>
+            </div>
+        </div>
+        
+        <!-- Panel de Filtros (oculto por defecto) -->
+        <div class="premium-card-body border-bottom" id="panelFiltros" style="display: none;">
+            <form id="formFiltros" class="premium-form row g-3">
+                <div class="col-md-3">
+                    <label for="filtroFechaDesde" class="form-label">Desde:</label>
+                    <input type="date" class="form-control" id="filtroFechaDesde" name="fecha_desde">
+                </div>
+                <div class="col-md-3">
+                    <label for="filtroFechaHasta" class="form-label">Hasta:</label>
+                    <input type="date" class="form-control" id="filtroFechaHasta" name="fecha_hasta">
+                </div>
+                <div class="col-md-2">
+                    <label for="filtroLimite" class="form-label">Mostrar:</label>
+                    <select class="form-control" id="filtroLimite" name="limite">
+                        <option value="10">Últimas 10</option>
+                        <option value="25" selected>Últimas 25</option>
+                        <option value="50">Últimas 50</option>
+                        <option value="100">Últimas 100</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="filtroOrden" class="form-label">Orden:</label>
+                    <select class="form-control" id="filtroOrden" name="orden">
+                        <option value="DESC" selected>Más recientes</option>
+                        <option value="ASC">Más antiguos</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn-premium me-2">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                    <button type="button" class="btn-premium-secondary" id="btnLimpiarFiltros">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="premium-card-body">
+            <div id="loadingLecturas" class="text-center" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando lecturas...</p>
+            </div>
+            
+            <div id="contenidoLecturas">
             <?php if (empty($lecturas)): ?>
-                <div class="alert alert-info">No hay lecturas disponibles para este dispositivo.</div>
+                    <div class="alert-premium">No hay lecturas disponibles para este dispositivo.</div>
             <?php else: ?>
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="tablaLecturas">
+                    <div class="premium-table">
+                        <table id="tablaLecturas">
                         <thead>
                             <tr>
                                 <th>Fecha y Hora</th>
@@ -221,7 +745,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($lecturas as $lectura): ?>
+                                <?php 
+                                // Mostrar solo las primeras 25 lecturas por defecto
+                                $lecturasMostradas = array_slice($lecturas, 0, 25);
+                                foreach ($lecturasMostradas as $lectura): 
+                                ?>
                                 <tr>
                                     <td><?= date('d/m/Y H:i:s', strtotime($lectura['fecha'])) ?></td>
                                     <td><?= number_format($lectura['voltaje'], 2) ?></td>
@@ -233,7 +761,13 @@
                         </tbody>
                     </table>
                 </div>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">
+                            Mostrando <?= count($lecturasMostradas) ?> de <?= count($lecturas) ?> lecturas totales
+                        </small>
+                    </div>
             <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>
@@ -251,17 +785,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function mostrarMensaje(tipo, texto) {
         const mensajesEstado = document.getElementById('logsEstado');
-        let clase = 'alert-secondary';
+        let clase = 'alert-premium';
 
         switch (tipo) {
-            case 'error': clase = 'alert-danger'; break;
-            case 'alerta': clase = 'alert-warning'; break;
-            case 'ok': clase = 'alert-success'; break;
-            case 'info': clase = 'alert-info'; break;
+            case 'error': clase = 'alert-premium alert-premium-danger'; break;
+            case 'alerta': clase = 'alert-premium alert-premium-warning'; break;
+            case 'ok': clase = 'alert-premium alert-premium-success'; break;
+            case 'info': clase = 'alert-premium'; break;
         }
 
         mensajesEstado.innerHTML = `
-            <div class="alert ${clase} text-center">
+            <div class="${clase} text-center">
                 ${texto}
             </div>
         `;
@@ -360,7 +894,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostrar estado de actualización
         const estadoElement = document.getElementById('estadoActualizacion');
         estadoElement.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Actualizando...';
-        estadoElement.className = 'badge badge-info mr-2';
+        estadoElement.className = 'status-badge status-updating';
         
         fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
             .then(response => {
@@ -394,13 +928,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Mostrar estado exitoso
                         estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
-                        estadoElement.className = 'badge badge-success mr-2';
+                        estadoElement.className = 'status-badge status-connected';
                         
                         console.log('Datos actualizados correctamente:', nuevaLectura);
                     } else {
                         // Mostrar estado conectado (sin cambios)
                         estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
-                        estadoElement.className = 'badge badge-success mr-2';
+                        estadoElement.className = 'status-badge status-connected';
                         console.log('No hay nuevas lecturas disponibles');
                     }
 
@@ -429,7 +963,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error al obtener datos en tiempo real:', error);
                 // Mostrar estado de error
                 estadoElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
-                estadoElement.className = 'badge badge-danger mr-2';
+                estadoElement.className = 'status-badge status-error';
                 mostrarMensaje('error', '❌ Error al conectar con el servidor. Verificando conexión...');
             });
     }
@@ -563,12 +1097,81 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-<!-- 🚀 SCRIPT PARA GUARDAR LÍMITE DE CONSUMO -->
+<!-- 🚀 SCRIPT PARA GUARDAR LÍMITE DE CONSUMO Y FUNCIONALIDADES EN TIEMPO REAL -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('formLimite');
     const msg = document.getElementById('msgLimite');
+    const btnProbarEndpoint = document.getElementById('btnProbarEndpoint');
+    const btnActualizarTiempoReal = document.getElementById('btnActualizarTiempoReal');
+    const estadoLimite = document.getElementById('estadoLimite');
+    const limiteActual = document.getElementById('limiteActual');
+    const alertaEstadoLimite = document.getElementById('alertaEstadoLimite');
+    const textoEstadoLimite = document.getElementById('textoEstadoLimite');
 
+    // Función para actualizar el estado del límite
+    function actualizarEstadoLimite() {
+        const limiteConsumo = parseFloat(document.getElementById('limite_consumo').value) || 0;
+        const consumoActual = parseFloat(document.getElementById('valorKwh').textContent) || 0;
+        
+        // Actualizar límite actual
+        limiteActual.textContent = limiteConsumo.toFixed(3);
+        
+        // Determinar estado
+        if (consumoActual > limiteConsumo) {
+            alertaEstadoLimite.className = 'alert alert-danger';
+            textoEstadoLimite.innerHTML = `<strong>⚠️ LÍMITE SUPERADO</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh > Límite: ${limiteConsumo.toFixed(3)} kWh`;
+            estadoLimite.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Límite Superado';
+            estadoLimite.className = 'badge badge-danger mr-2';
+        } else if (consumoActual > limiteConsumo * 0.8) {
+            alertaEstadoLimite.className = 'alert alert-warning';
+            textoEstadoLimite.innerHTML = `<strong>⚠️ CERCANO AL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
+            estadoLimite.innerHTML = '<i class="fas fa-exclamation-circle"></i> Cerca del Límite';
+            estadoLimite.className = 'badge badge-warning mr-2';
+        } else {
+            alertaEstadoLimite.className = 'alert alert-success';
+            textoEstadoLimite.innerHTML = `<strong>✅ DENTRO DEL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
+            estadoLimite.innerHTML = '<i class="fas fa-check-circle"></i> Dentro del Límite';
+            estadoLimite.className = 'badge badge-success mr-2';
+        }
+    }
+
+    // Función para probar el endpoint
+    function probarEndpoint() {
+        if (btnProbarEndpoint) {
+            btnProbarEndpoint.disabled = true;
+            btnProbarEndpoint.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Probando...';
+            
+            fetch('<?= base_url('energia/getlimite') ?>')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        msg.innerHTML = `<div class="alert alert-success">
+                            <strong>✅ Endpoint funcionando correctamente</strong><br>
+                            Límite actual: ${data.limite_consumo} kWh<br>
+                            Timestamp: ${data.timestamp}
+                        </div>`;
+                    } else {
+                        msg.innerHTML = `<div class="alert alert-warning">
+                            <strong>⚠️ Endpoint respondió con error</strong><br>
+                            Error: ${data.error || 'Desconocido'}
+                        </div>`;
+                    }
+                })
+                .catch(error => {
+                    msg.innerHTML = `<div class="alert alert-danger">
+                        <strong>❌ Error al probar endpoint</strong><br>
+                        Error: ${error.message}
+                    </div>`;
+                })
+                .finally(() => {
+                    btnProbarEndpoint.disabled = false;
+                    btnProbarEndpoint.innerHTML = '<i class="fas fa-wifi me-1"></i> Probar Endpoint ESP32';
+                });
+        }
+    }
+
+    // Event listeners
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -580,7 +1183,6 @@ document.addEventListener('DOMContentLoaded', function() {
 };
 
            fetch("<?= base_url('energia/actualizarLimite') ?>", {
-
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -591,6 +1193,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 if (response.success) {
                     msg.innerHTML = `<div class="alert alert-success">${response.message}</div>`;
+                    // Actualizar el estado después de guardar
+                    setTimeout(actualizarEstadoLimite, 500);
                 } else {
                     msg.innerHTML = `<div class="alert alert-danger">${response.error || 'Error desconocido'}</div>`;
                 }
@@ -600,7 +1204,182 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    if (btnProbarEndpoint) {
+        btnProbarEndpoint.addEventListener('click', probarEndpoint);
+    }
+
+    if (btnActualizarTiempoReal) {
+        btnActualizarTiempoReal.addEventListener('click', function() {
+            // Simular actualización de datos en tiempo real
+            if (typeof obtenerDatosTiempoReal === 'function') {
+                obtenerDatosTiempoReal();
+            }
+            actualizarEstadoLimite();
+        });
+    }
+
+    // Actualizar estado del límite cada vez que cambien los valores
+    const inputLimite = document.getElementById('limite_consumo');
+    if (inputLimite) {
+        inputLimite.addEventListener('input', actualizarEstadoLimite);
+    }
+
+    // Actualizar estado inicial
+    actualizarEstadoLimite();
+    
+    // Actualizar estado cada 10 segundos
+    setInterval(actualizarEstadoLimite, 10000);
 });
+
+// Función para mostrar/ocultar información técnica
+function toggleInfoTecnica() {
+    const contenido = document.getElementById('contenidoTecnico');
+    const boton = event.target;
+    
+    if (contenido.style.display === 'none') {
+        contenido.style.display = 'block';
+        boton.innerHTML = '<i class="fas fa-code me-1"></i> Ocultar Info Técnica';
+    } else {
+        contenido.style.display = 'none';
+        boton.innerHTML = '<i class="fas fa-code me-1"></i> Ver Info Técnica';
+    }
+}
+
+// Funcionalidad de filtros para lecturas
+document.addEventListener('DOMContentLoaded', function() {
+    const btnMostrarFiltros = document.getElementById('btnMostrarFiltros');
+    const panelFiltros = document.getElementById('panelFiltros');
+    const formFiltros = document.getElementById('formFiltros');
+    const btnLimpiarFiltros = document.getElementById('btnLimpiarFiltros');
+    const loadingLecturas = document.getElementById('loadingLecturas');
+    const contenidoLecturas = document.getElementById('contenidoLecturas');
+
+    // Mostrar/ocultar filtros
+    if (btnMostrarFiltros) {
+        btnMostrarFiltros.addEventListener('click', function() {
+            if (panelFiltros.style.display === 'none') {
+                panelFiltros.style.display = 'block';
+                btnMostrarFiltros.innerHTML = '<i class="fas fa-filter me-1"></i> Ocultar Filtros';
+            } else {
+                panelFiltros.style.display = 'none';
+                btnMostrarFiltros.innerHTML = '<i class="fas fa-filter me-1"></i> Filtros';
+            }
+        });
+    }
+
+    // Aplicar filtros
+    if (formFiltros) {
+        formFiltros.addEventListener('submit', function(e) {
+            e.preventDefault();
+            aplicarFiltros();
+        });
+    }
+
+    // Limpiar filtros
+    if (btnLimpiarFiltros) {
+        btnLimpiarFiltros.addEventListener('click', function() {
+            formFiltros.reset();
+            document.getElementById('filtroLimite').value = '25';
+            document.getElementById('filtroOrden').value = 'DESC';
+            aplicarFiltros();
+        });
+    }
+
+    function aplicarFiltros() {
+        const formData = new FormData(formFiltros);
+        const params = new URLSearchParams();
+        
+        for (let [key, value] of formData.entries()) {
+            if (value) params.append(key, value);
+        }
+        
+        // Mostrar loading
+        loadingLecturas.style.display = 'block';
+        contenidoLecturas.style.display = 'none';
+        
+        // Llamada AJAX real al endpoint
+        fetch(`<?= base_url('energia/filtrarLecturas/' . $dispositivo['id_dispositivo']) ?>?${params.toString()}`)
+            .then(response => response.json())
+            .then(data => {
+                loadingLecturas.style.display = 'none';
+                contenidoLecturas.style.display = 'block';
+                
+                if (data.success) {
+                    actualizarTablaLecturas(data.lecturas, data.total);
+                    
+                    // Mostrar mensaje de éxito
+                    const mensaje = document.createElement('div');
+                    mensaje.className = 'alert alert-success';
+                    mensaje.innerHTML = `Filtros aplicados correctamente. Mostrando ${data.total} lecturas.`;
+                    contenidoLecturas.insertBefore(mensaje, contenidoLecturas.firstChild);
+                    
+                    // Remover mensaje después de 3 segundos
+                    setTimeout(() => {
+                        if (mensaje.parentNode) {
+                            mensaje.parentNode.removeChild(mensaje);
+                        }
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Error al filtrar lecturas');
+                }
+            })
+            .catch(error => {
+                loadingLecturas.style.display = 'none';
+                contenidoLecturas.style.display = 'block';
+                
+                const mensaje = document.createElement('div');
+                mensaje.className = 'alert alert-danger';
+                mensaje.innerHTML = `Error al aplicar filtros: ${error.message}`;
+                contenidoLecturas.insertBefore(mensaje, contenidoLecturas.firstChild);
+                
+                setTimeout(() => {
+                    if (mensaje.parentNode) {
+                        mensaje.parentNode.removeChild(mensaje);
+                    }
+                }, 5000);
+            });
+    }
+
+    function actualizarTablaLecturas(lecturas, total) {
+        const tbody = document.querySelector('#tablaLecturas tbody');
+        if (!tbody) return;
+        
+        tbody.innerHTML = '';
+        
+        lecturas.forEach(lectura => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${lectura.fecha}</td>
+                <td>${lectura.voltaje}</td>
+                <td>${lectura.corriente}</td>
+                <td>${lectura.potencia}</td>
+                <td>${lectura.kwh}</td>
+            `;
+            tbody.appendChild(row);
+        });
+        
+        // Actualizar contador
+        const contador = document.querySelector('.text-muted');
+        if (contador) {
+            contador.textContent = `Mostrando ${total} lecturas`;
+        }
+    }
+});
+
+// Función para descargar PDF
+function descargarPDF() {
+    const url = '<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>';
+    
+    // Crear un enlace temporal para forzar la descarga
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'Informe_EcoVolt_' + new Date().toISOString().slice(0,10) + '.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
 
 <!-- Se eliminó la suscripción a notificaciones push -->
