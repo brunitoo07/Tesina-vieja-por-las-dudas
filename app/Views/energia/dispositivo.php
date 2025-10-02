@@ -233,6 +233,10 @@ body {
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-premium::before {
@@ -260,16 +264,60 @@ body {
     background: var(--gradient-silver);
     color: var(--black-primary);
     border: none;
-    padding: 10px 25px;
+    padding: 15px 25px;
     border-radius: 20px;
     font-weight: 600;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .btn-premium-secondary:hover {
     background: var(--gold-primary);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    color: var(--black-primary);
+}
+
+/* === MEJORAS EN SELECT Y OPTIONS === */
+.form-control, .form-select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--gold-primary);
+    color: var(--white-primary);
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--gold-light);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+    color: var(--white-primary);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Opciones del select con mejor contraste */
+.form-select option {
+    background: var(--black-secondary);
+    color: var(--white-primary);
+    padding: 10px;
+}
+
+.form-select option:hover {
+    background: var(--gold-primary);
+    color: var(--black-primary);
+}
+
+.form-select option:checked {
+    background: var(--gold-primary);
+    color: var(--black-primary);
+    font-weight: bold;
 }
 
 /* === TABLAS PREMIUM === */
@@ -450,7 +498,7 @@ body {
             } elseif ($rol === 'supervisor') {
                 $volverUrl = base_url('supervisor/dispositivosGlobal');
             } else {
-                $volverUrl = base_url('usuario');
+                $volverUrl = base_url('perfil/perfil');
             }
         ?>
             <a href="<?= $volverUrl ?>" class="btn">
@@ -462,7 +510,7 @@ body {
     <!-- Gráfico general de consumo -->
     <div class="premium-card mb-4">
         <div class="premium-card-header d-flex justify-content-between align-items-center">
-            <h6>📊 Gráfico de Consumo</h6>
+            <h6><i class="fas fa-chart-area me-2"></i>Gráfico de Consumo</h6>
             <div class="d-flex align-items-center">
                 <div class="me-2 d-none d-md-block">
                     <select id="seleccionMetrica" class="form-select form-select-sm" style="background:rgba(255,255,255,0.1);color:#F7E98E;border:1px solid rgba(212,175,55,0.3);">
@@ -489,7 +537,7 @@ body {
             <!-- Alerta de sin energía -->
             <div id="alertaSinEnergia" class="alert-premium alert-premium-danger text-center mb-3" style="display: none;">
                 <h4 class="alert-heading">
-                    <i class="fas fa-exclamation-triangle fa-2x mb-2"></i><br>
+                    <i class="fas fa-power-off fa-2x mb-2"></i><br>
                     ¡SIN ENERGÍA!
                 </h4>
                 <p class="mb-0" style="font-size: 1.2em; font-weight: bold;">
@@ -551,7 +599,7 @@ body {
     <!-- Estado del Límite en Tiempo Real -->
     <div class="premium-card mb-4">
         <div class="premium-card-header d-flex justify-content-between align-items-center">
-            <h6>📊 Estado del Límite de Consumo</h6>
+            <h6><i class="fas fa-shield-alt me-2"></i>Estado del Límite de Consumo</h6>
             <div class="d-flex align-items-center">
                 <span class="status-badge status-updating" id="estadoLimite">
                     <i class="fas fa-sync-alt fa-spin"></i> Verificando...
@@ -563,7 +611,7 @@ body {
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="alert-premium">
-                        <h6><i class="fas fa-info-circle me-2"></i>Límite Actual</h6>
+                        <h6><i class="fas fa-tachometer-alt me-2"></i>Límite Actual</h6>
                         <p class="mb-0">
                             <strong id="limiteActual" class="text-warning"><?= esc($limite_consumo) ?></strong> kWh
                         </p>
@@ -571,7 +619,7 @@ body {
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="alert-premium" id="alertaEstadoLimite">
-                        <h6><i class="fas fa-chart-line me-2"></i>Estado del Consumo</h6>
+                        <h6><i class="fas fa-chart-bar me-2"></i>Estado del Consumo</h6>
                         <p class="mb-0 fw-bold" id="textoEstadoLimite">
                             Verificando consumo actual...
                         </p>
@@ -584,7 +632,7 @@ body {
     <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
     <div class="premium-card mb-4">
     <div class="premium-card-header">
-        <h6>⚡ Configuración de Límite de Consumo</h6>
+        <h6><i class="fas fa-cog me-2"></i>Configuración de Límite de Consumo</h6>
     </div>
     <div class="premium-card-body">
     <form id="formLimite" action="<?= base_url('energia/actualizarLimite') ?>" method="post" class="premium-form">
@@ -640,7 +688,7 @@ body {
     <!-- Editar nombre y descripción del dispositivo (solo admin/supervisor) -->
     <div class="premium-card mb-4">
         <div class="premium-card-header">
-            <h6>✏️ Editar dispositivo</h6>
+            <h6><i class="fas fa-edit me-2"></i>Editar dispositivo</h6>
         </div>
         <div class="premium-card-body">
             <form id="formEditarDispositivo" action="<?= base_url('energia/actualizarDispositivo') ?>" method="post" class="premium-form row g-3">
@@ -664,7 +712,7 @@ body {
 <!-- Formulario para comparar valor de kWh -->
 <div class="premium-card mb-4">
     <div class="premium-card-header">
-        <h6>💰 Calcular Costo de Energía</h6>
+        <h6><i class="fas fa-calculator me-2"></i>Calcular Costo de Energía</h6>
     </div>
     <div class="premium-card-body">
         <form id="formKwh" class="premium-form row g-3">
@@ -697,7 +745,7 @@ body {
     <!-- Tabla de Lecturas con Filtros -->
     <div class="premium-card mb-4">
         <div class="premium-card-header d-flex justify-content-between align-items-center">
-            <h6>📊 Historial de Lecturas</h6>
+            <h6><i class="fas fa-history me-2"></i>Historial de Lecturas</h6>
             <div class="d-flex align-items-center">
                 <button type="button" class="btn-premium-secondary" id="btnMostrarFiltros">
                     <i class="fas fa-filter me-1"></i> Filtros
@@ -732,15 +780,15 @@ body {
                         <option value="ASC">Más antiguos</option>
                     </select>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn-premium me-2">
+                <div class="col-md-2 d-flex align-items-end justify-content-center w-100">
+                    <button type="submit" class="btn-premium me-2 px-4 py-2">
                         <i class="fas fa-search"></i> Filtrar
                     </button>
-                    <button type="button" class="btn-premium-secondary" id="btnLimpiarFiltros">
+                    <button type="button" class="btn-premium-secondary px-4 py-2" id="btnLimpiarFiltros">
                         <i class="fas fa-times"></i> Limpiar
                     </button>
                 </div>
-            </form>y
+            </form>
         </div>
         
         <div class="premium-card-body">
@@ -981,15 +1029,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         : (Number(document.getElementById('limite_consumo')?.value) || 10);
 
                     if (nuevaLectura.voltaje < 1 && nuevaLectura.corriente < 0.1) {
-                        mostrarMensaje('error', '🚫 SIN ENERGÍA EN EL SISTEMA → Voltaje crítico, no hay consumo.');
+                        mostrarMensaje('error', '<i class="fas fa-ban me-2"></i>SIN ENERGÍA EN EL SISTEMA → Voltaje crítico, no hay consumo.');
                     } else if (nuevaLectura.potencia < 1) {
-                        mostrarMensaje('info', '❌ NO HAY CONSUMO EN EL SISTEMA (0V, 0A, 0W, 0kWh).');
+                        mostrarMensaje('info', '<i class="fas fa-times-circle me-2"></i>NO HAY CONSUMO EN EL SISTEMA (0V, 0A, 0W, 0kWh).');
                     } else if (nuevaLectura.voltaje < 200) {
-                        mostrarMensaje('alerta', '⚠️ Voltaje bajo detectado, verificar conexión eléctrica.');
+                        mostrarMensaje('alerta', '<i class="fas fa-exclamation-triangle me-2"></i>Voltaje bajo detectado, verificar conexión eléctrica.');
                     } else if (Number(nuevaLectura.kwh) > limiteConsumo) {
-                        mostrarMensaje('alerta', `⚠️ Límite de consumo superado (${Number(nuevaLectura.kwh).toFixed(2)} kWh > ${limiteConsumo} kWh). Línea NO esencial desconectada.`);
+                        mostrarMensaje('alerta', `<i class="fas fa-exclamation-triangle me-2"></i>Límite de consumo superado (${Number(nuevaLectura.kwh).toFixed(2)} kWh > ${limiteConsumo} kWh). Línea NO esencial desconectada.`);
                     } else {
-                        mostrarMensaje('ok', '✅ Consumo dentro del límite.');
+                        mostrarMensaje('ok', '<i class="fas fa-check-circle me-2"></i>Consumo dentro del límite.');
                     }
 
                 } else {
@@ -1001,7 +1049,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mostrar estado de error
                 estadoElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
                 estadoElement.className = 'status-badge status-error';
-                mostrarMensaje('error', '❌ Error al conectar con el servidor. Verificando conexión...');
+                mostrarMensaje('error', '<i class="fas fa-wifi me-2"></i>Error al conectar con el servidor. Verificando conexión...');
             });
     }
 
@@ -1010,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', function() {
     actualizarTabla();
     
     // Mostrar mensaje inicial
-    mostrarMensaje('info', '🔄 Sistema iniciado. Conectando con el dispositivo...');
+    mostrarMensaje('info', '<i class="fas fa-sync-alt fa-spin me-2"></i>Sistema iniciado. Conectando con el dispositivo...');
     
     // Configurar actualización automática
     console.log('Iniciando actualización automática cada 5 segundos...');
@@ -1165,17 +1213,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Determinar estado
         if (consumoActual > limiteConsumo) {
             alertaEstadoLimite.className = 'alert alert-danger';
-            textoEstadoLimite.innerHTML = `<strong>⚠️ LÍMITE SUPERADO</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh > Límite: ${limiteConsumo.toFixed(3)} kWh`;
+            textoEstadoLimite.innerHTML = `<strong><i class="fas fa-exclamation-triangle me-2"></i>LÍMITE SUPERADO</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh > Límite: ${limiteConsumo.toFixed(3)} kWh`;
             estadoLimite.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Límite Superado';
             estadoLimite.className = 'badge badge-danger mr-2';
         } else if (consumoActual > limiteConsumo * 0.8) {
             alertaEstadoLimite.className = 'alert alert-warning';
-            textoEstadoLimite.innerHTML = `<strong>⚠️ CERCANO AL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
+            textoEstadoLimite.innerHTML = `<strong><i class="fas fa-exclamation-circle me-2"></i>CERCANO AL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
             estadoLimite.innerHTML = '<i class="fas fa-exclamation-circle"></i> Cerca del Límite';
             estadoLimite.className = 'badge badge-warning mr-2';
         } else {
             alertaEstadoLimite.className = 'alert alert-success';
-            textoEstadoLimite.innerHTML = `<strong>✅ DENTRO DEL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
+            textoEstadoLimite.innerHTML = `<strong><i class="fas fa-check-circle me-2"></i>DENTRO DEL LÍMITE</strong><br>Consumo: ${consumoActual.toFixed(3)} kWh (${((consumoActual/limiteConsumo)*100).toFixed(1)}% del límite)`;
             estadoLimite.innerHTML = '<i class="fas fa-check-circle"></i> Dentro del Límite';
             estadoLimite.className = 'badge badge-success mr-2';
         }
@@ -1192,20 +1240,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     if (data.success) {
                         msg.innerHTML = `<div class="alert alert-success">
-                            <strong>✅ Endpoint funcionando correctamente</strong><br>
+                            <strong><i class="fas fa-check-circle me-2"></i>Endpoint funcionando correctamente</strong><br>
                             Límite actual: ${data.limite_consumo} kWh<br>
                             Timestamp: ${data.timestamp}
                         </div>`;
                     } else {
                         msg.innerHTML = `<div class="alert alert-warning">
-                            <strong>⚠️ Endpoint respondió con error</strong><br>
+                            <strong><i class="fas fa-exclamation-triangle me-2"></i>Endpoint respondió con error</strong><br>
                             Error: ${data.error || 'Desconocido'}
                         </div>`;
                     }
                 })
                 .catch(error => {
                     msg.innerHTML = `<div class="alert alert-danger">
-                        <strong>❌ Error al probar endpoint</strong><br>
+                        <strong><i class="fas fa-times-circle me-2"></i>Error al probar endpoint</strong><br>
                         Error: ${error.message}
                     </div>`;
                 })
@@ -1340,11 +1388,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('contadorLecturas').style.display = 'none';
             const existentes = contenidoLecturas.querySelectorAll('.alert');
             existentes.forEach(n => n.remove());
-            // Mostrar aviso inicial
-            const aviso = document.createElement('div');
-            aviso.className = 'alert-premium';
-            aviso.innerHTML = 'Usa los <strong>Filtros</strong> para consultar el historial de lecturas sin cargar toda la página.';
-            contenidoLecturas.prepend(aviso);
+            // No mostrar mensaje al limpiar - dejar vacío
         });
     }
 

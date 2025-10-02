@@ -92,7 +92,6 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gestionarUsuarios/admin', 'Admin::listarAdmins');
     $routes->get('usuario', 'Admin::gestionarUsuarios');
     $routes->post('aprobarDispositivo', 'Admin::aprobarDispositivo');
-    $routes->get('dispositivos', 'Admin\Dispositivos::index');
     $routes->get('dispositivos/registrar', 'Admin\Dispositivos::registrar');
     $routes->get('dispositivos/buscar', 'Admin\Dispositivos::buscar');
     $routes->post('dispositivos/guardar', 'Admin\Dispositivos::guardar');
@@ -102,8 +101,11 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('dispositivos/detalles/(:num)', 'Admin\Dispositivos::detalles/$1');
     $routes->post('dispositivos/actualizar', 'Admin\Dispositivos::actualizar');
     $routes->get('dispositivos/desactivar/(:num)', 'Dispositivos::desactivar/$1');
+    // Ruta para resetear notificaciones (solo desarrollo/admin)
+    $routes->get('energia/resetNotificaciones/(:num)', 'Energia::resetNotificaciones/$1'); 
+    $routes->get('energia/resetNotificaciones', 'Energia::resetNotificaciones');
 
-    
+  
 });
 
 // Rutas del supervisor
@@ -178,3 +180,6 @@ $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');
 $routes->post('telegram/webhook', 'TelegramSimple::webhook');
 // Rutas para generar factura
 $routes->get('facturas/generarPDF/(:num)', 'Facturas::generarPDF/$1');
+
+
+

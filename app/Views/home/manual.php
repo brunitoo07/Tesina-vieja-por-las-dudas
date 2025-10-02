@@ -184,7 +184,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('home/index'); ?>">Inicio</a>
+                        <?php 
+                        // Determinar la URL de inicio según el rol del usuario
+                        if (session()->get('logged_in')) {
+                            $rol = session()->get('rol');
+                            if ($rol === 'admin') {
+                                $inicioUrl = base_url('admin');
+                            } elseif ($rol === 'supervisor') {
+                                $inicioUrl = base_url('supervisor');
+                            } else {
+                                $inicioUrl = base_url('usuario');
+                            }
+                        } else {
+                            $inicioUrl = base_url('/');
+                        }
+                        ?>
+                        <a class="nav-link" href="<?= $inicioUrl ?>">Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -194,7 +209,36 @@
     <!-- Manual Content -->
     <div class="manual-section mt-5">
         <div class="container">
-            <h1 class="text-center mb-5">Manual de Usuario</h1>
+            <?php 
+            $rol = session()->get('rol') ?? 'guest';
+            $titulo = 'Manual de Usuario';
+            if ($rol === 'admin') {
+                $titulo = 'Manual de Administrador';
+            } elseif ($rol === 'supervisor') {
+                $titulo = 'Manual de Supervisor';
+            }
+            ?>
+            <h1 class="text-center mb-5"><?= $titulo ?></h1>
+            
+            <?php if ($rol === 'admin'): ?>
+            <!-- Información específica para Administradores -->
+            <div class="alert alert-info mb-4">
+                <h5><i class="fas fa-crown me-2"></i>Acceso de Administrador</h5>
+                <p class="mb-0">Como administrador, tienes acceso completo al sistema. Puedes gestionar usuarios, dispositivos y configuraciones globales.</p>
+            </div>
+            <?php elseif ($rol === 'supervisor'): ?>
+            <!-- Información específica para Supervisores -->
+            <div class="alert alert-warning mb-4">
+                <h5><i class="fas fa-user-tie me-2"></i>Acceso de Supervisor</h5>
+                <p class="mb-0">Como supervisor, puedes monitorear el sistema y gestionar usuarios bajo tu supervisión.</p>
+            </div>
+            <?php elseif ($rol === 'usuario'): ?>
+            <!-- Información específica para Usuarios -->
+            <div class="alert alert-success mb-4">
+                <h5><i class="fas fa-user me-2"></i>Acceso de Usuario</h5>
+                <p class="mb-0">Como usuario, puedes ver tus dispositivos y el consumo de energía. Los dispositivos compartidos por tu administrador también estarán disponibles.</p>
+            </div>
+            <?php endif; ?>
             
             <!-- Registro de Cuenta -->
             <div class="card step-card">
@@ -218,6 +262,31 @@
                 <div class="card-body">
                     <div class="step-number">2</div>
                     <h3>Configuración del Dispositivo</h3>
+                    <?php if ($rol === 'admin'): ?>
+                    <p>Como administrador, puedes agregar nuevos dispositivos:</p>
+                    <ol>
+                        <li>Ve a la sección "Dispositivos" en el menú principal</li>
+                        <li>Haz clic en "Agregar Nuevo Dispositivo"</li>
+                        <li>Ingresa el ID único del dispositivo</li>
+                        <li>Selecciona el tipo de medidor</li>
+                        <li>Configura los parámetros de medición</li>
+                        <li>Guarda la configuración</li>
+                    </ol>
+                    <?php elseif ($rol === 'usuario'): ?>
+                    <p>Como usuario, puedes ver tus dispositivos y los compartidos por tu administrador:</p>
+                    <ol>
+                        <li>Ve a tu Dashboard principal</li>
+                        <li>En la sección "Mis Dispositivos" verás:</li>
+                        <ul>
+                            <li><strong>Dispositivos Propios:</strong> Los que has registrado tú</li>
+                            <li><strong>Dispositivos Compartidos:</strong> Los que tu administrador ha compartido contigo</li>
+                        </ul>
+                        <li>Haz clic en "Ver Consumo" para ver el historial de cada dispositivo</li>
+                    </ol>
+                    <div class="alert alert-success">
+                        <i class="fas fa-share-alt"></i> Los dispositivos compartidos aparecen con un icono de compartir y muestran el nombre del propietario.
+                    </div>
+                    <?php else: ?>
                     <p>Para agregar un nuevo dispositivo:</p>
                     <ol>
                         <li>Ve a la sección "Dispositivos" en el menú principal</li>
@@ -227,6 +296,7 @@
                         <li>Configura los parámetros de medición</li>
                         <li>Guarda la configuración</li>
                     </ol>
+                    <?php endif; ?>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> El ID del dispositivo se encuentra en la etiqueta del medidor.
                     </div>

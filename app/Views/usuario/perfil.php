@@ -116,7 +116,12 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <h1 class="h3 mb-4 page-header"><i class="fas fa-user-circle"></i> Mi Perfil</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 page-header"><i class="fas fa-user-circle"></i> Mi Perfil</h1>
+                <a href="<?= base_url('usuario') ?>" class="btn-premium-gold">
+                    <i class="fas fa-arrow-left me-2"></i> Volver al Dashboard
+                </a>
+            </div>
 
             <div class="premium-card">
                 <div class="premium-card-header">

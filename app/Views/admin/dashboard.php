@@ -226,7 +226,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6 mb-3">
-                            <a href="http://192.168.2.178/Tesina/public/dispositivo/agregar" class="btn btn-gold w-100">
+                            <a href="<?= base_url('dispositivo/agregar') ?>" class="btn btn-gold w-100">
                                 <i class="fas fa-plus me-2"></i> Registrar dispositivo
                             </a>
                         </div>
@@ -290,7 +290,7 @@
                                             <div class="alert alert-dark mb-0 border-warning">
                                                 <i class="fas fa-info-circle me-2 text-warning"></i>
                                                 <?= lang('App.no_devices') ?>
-                                                <a href="<?= base_url('admin/dispositivos/registrar') ?>" class="alert-link text-warning">
+                                                <a href="<?= base_url('dispositivo/agregar') ?>" class="alert-link text-warning">
                                                     <?= lang('App.register_first_device') ?>
                                                 </a>
                                             </div>

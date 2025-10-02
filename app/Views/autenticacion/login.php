@@ -160,11 +160,30 @@
     .password-input { position: relative; }
     .password-toggle {
         position: absolute;
-        right: 10px;
+        right: 15px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(9px);
         cursor: pointer;
         color: var(--secondary-color);
+        font-size: 16px;
+        z-index: 10;
+        transition: color 0.3s ease;
+    }
+    .password-toggle:hover {
+        color: var(--primary-color);
+    }
+    
+    /* Campo de contraseña con fondo transparente */
+    .password-input .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        padding-right: 45px; /* Espacio para el icono */
+    }
+    .password-input .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
     }
 
     /* ===============================
@@ -210,6 +229,35 @@
     [data-theme="dark"] .btn-primary:hover {
         background: var(--primary-color) !important;
         color: #000 !important;
+    }
+    
+    /* Campo de contraseña en modo oscuro */
+    [data-theme="dark"] .password-input .form-control {
+        background: rgba(18, 18, 18, 0.8) !important;
+        border: 1px solid rgba(255, 215, 0, 0.3) !important;
+        color: #f1f1f1 !important;
+    }
+    [data-theme="dark"] .password-input .form-control:focus {
+        background: rgba(18, 18, 18, 0.9) !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important;
+    }
+    [data-theme="dark"] .password-toggle {
+        color: var(--primary-color) !important;
+    }
+    [data-theme="dark"] .password-toggle:hover {
+        color: #fff !important;
+    }
+    
+    /* Enlace "¿Te olvidaste la contraseña?" más visible en modo oscuro */
+    [data-theme="dark"] .text-muted {
+        color: var(--primary-color) !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    [data-theme="dark"] .text-muted:hover {
+        color: #fff !important;
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
 
     /* ===============================

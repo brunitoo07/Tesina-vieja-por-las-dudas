@@ -137,7 +137,8 @@ class Energia extends BaseController
                 'limite_superado' => 0
             ];
 
-            // ---------------------- NUEVO: VERIFICAR LÍMITE ----------------------
+            // ---------------------- VERIFICAR LÍMITE (SOLO AL INSERTAR NUEVAS LECTURAS) ----------------------
+            // Esta es la ÚNICA vez que se debe verificar el límite para evitar spam
             $this->verificarLimite($lectura, $dispositivo['id_dispositivo'], $dispositivo['id_usuario']);
             // ----------------------------------------------------------------------
 
@@ -320,8 +321,8 @@ class Energia extends BaseController
             return $this->response->setJSON(['error' => 'No hay lecturas disponibles'])->setStatusCode(404);
         }
 
-        // ---------------------- NUEVO: LÍMITE ----------------------
-        $this->verificarLimite($ultimaLectura, $dispositivo['id_dispositivo'], $dispositivo['id_usuario']);
+        // ---------------------- LÍMITE (SOLO VERIFICAR, NO NOTIFICAR EN CONSULTAS) ----------------------
+        // Removido: No verificar límites en consultas para evitar spam
         // ----------------------------------------------------------------------
 
         return $this->response->setJSON([
@@ -357,8 +358,8 @@ class Energia extends BaseController
             return $this->response->setJSON(['success' => false, 'error' => 'No hay lecturas disponibles']);
         }
 
-        // ---------------------- NUEVO: LÍMITE ----------------------
-        $this->verificarLimite($lectura, $id_dispositivo, $dispositivo['id_usuario']);
+        // ---------------------- LÍMITE (SOLO VERIFICAR, NO NOTIFICAR EN CONSULTAS) ----------------------
+        // Removido: No verificar límites en consultas para evitar spam
         // ----------------------------------------------------------------------
 
         $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
@@ -381,31 +382,34 @@ class Energia extends BaseController
             $this->energiaModel->update($lectura['id'], ['limite_superado' => 1]);
         }
 
-        // Enviar notificación por email (controlando frecuencia)
+        // Enviar notificaciones (email Y telegram) controlando frecuencia - SOLO UNA VEZ POR HORA
         if (!$limite['notificacion_enviada'] || (strtotime($limite['ultima_notificacion']) < strtotime('-1 hour'))) {
+            
+            // 📧 ENVIAR EMAIL
             $this->enviarNotificacionEmail($idUsuario, $lectura['kwh'], $limite['limite_consumo']);
+            
+            // 📱 ENVIAR TELEGRAM (en el mismo bloque para evitar spam)
+            $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+            $nombreDispositivo = $dispositivo ? $dispositivo['nombre'] : "Dispositivo ID $id_dispositivo";
+            
+            $mensaje = "🚨 *ALERTA DE CONSUMO EXCESIVO*\n\n";
+            $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
+            $mensaje .= "📏 *Límite configurado:* {$limite['limite_consumo']} kWh\n";
+            $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh'], 4) . " kWh\n";
+            $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
+            $mensaje .= "⚠️ *Acción requerida:*\n";
+            $mensaje .= "• Verificar dispositivos conectados\n";
+            $mensaje .= "• Revisar configuración de límites\n";
+            $mensaje .= "• Considerar desconectar equipos no esenciales\n\n";
+            $mensaje .= "🔗 *Panel de control:*\n";
+            $mensaje .= base_url('energia/dispositivo/' . $id_dispositivo) . "\n\n";
+            $mensaje .= "💡 *Usa /start para ver opciones del bot*";
+            
+            $this->alertaTelegram($mensaje);
+            
+            // ✅ ACTUALIZAR BD - Solo después de enviar AMBAS notificaciones
             $this->limiteModel->actualizarNotificacion($limite['id']);
         }
-
-        // ------------------ ALERTA TELEGRAM MEJORADA ------------------
-        $dispositivo = $this->dispositivoModel->find($id_dispositivo);
-        $nombreDispositivo = $dispositivo ? $dispositivo['nombre'] : "Dispositivo ID $id_dispositivo";
-        
-        $mensaje = "🚨 *ALERTA DE CONSUMO EXCESIVO*\n\n";
-        $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
-        $mensaje .= "📏 *Límite configurado:* {$limite['limite_consumo']} kWh\n";
-        $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh'], 4) . " kWh\n";
-        $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
-        $mensaje .= "⚠️ *Acción requerida:*\n";
-        $mensaje .= "• Verificar dispositivos conectados\n";
-        $mensaje .= "• Revisar configuración de límites\n";
-        $mensaje .= "• Considerar desconectar equipos no esenciales\n\n";
-        $mensaje .= "🔗 *Panel de control:*\n";
-        $mensaje .= base_url('energia/dispositivo/' . $id_dispositivo) . "\n\n";
-        $mensaje .= "💡 *Usa /start para ver opciones del bot*";
-        
-        $this->alertaTelegram($mensaje);
-        // ----------------------------------------------------------------
     }
 }
 

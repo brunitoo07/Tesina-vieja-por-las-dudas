@@ -35,7 +35,7 @@
         <div class="card">
             <div class="header">
                 <span class="logo">
-                    <img src="<?= esc(base_url('imagenes/rayito.png')) ?>" alt="EcoVolt" style="width:22px;height:22px;display:block;" />
+                    <img src="<?= esc(base_url('public/imagenes/logo.png')) ?>" alt="EcoVolt" style="width:22px;height:22px;display:block;" />
                 </span>
                 <h1>Alerta de consumo superado</h1>
             </div>

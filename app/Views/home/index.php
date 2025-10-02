@@ -748,7 +748,7 @@
                     <div class="card pricing-card">
                         <div class="card-body text-center">
                             <h3 class="mb-4"><?= lang('App.plan_premium') ?></h3>
-                            <p class="price mb-4">$99.99</p>
+                            <p class="price mb-4">$150,000</p>
                             <ul class="list-unstyled mb-4">
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.monitoreo_ilimitado') ?></li>
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.soporte_prioritario') ?></li>
