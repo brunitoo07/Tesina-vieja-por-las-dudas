@@ -245,15 +245,22 @@
                 <div class="card-body">
                     <div class="step-number">1</div>
                     <h3>Registro de Cuenta</h3>
-                    <p>Para comenzar a usar el sistema, sigue estos pasos:</p>
+                    <p>Para comenzar a usar el sistema EcoVolt, sigue estos pasos:</p>
                     <ol>
-                        <li>Ingresa a la página principal y haz clic en "iniciar sesion",si no tienes cuenta 
-                            registrate.
+                        <li><strong>Acceso al sistema:</strong> Ve a la página principal y haz clic en "Iniciar Sesión"</li>
+                        <li><strong>Registro:</strong> Si no tienes cuenta, haz clic en "Registrarse" y completa el formulario con:
+                            <ul>
+                                <li>Nombre y apellido</li>
+                                <li>Correo electrónico válido</li>
+                                <li>Contraseña segura (mínimo 6 caracteres, una mayúscula y un símbolo)</li>
+                            </ul>
                         </li>
-                        <li>Completa el formulario con tus datos personales</li>
-                        <li>Verifica tu correo electrónico</li>
-                        <li>Inicia sesión con tus credenciales</li>
+                        <li><strong>Verificación:</strong> El sistema enviará un correo de confirmación</li>
+                        <li><strong>Inicio de sesión:</strong> Usa tus credenciales para acceder al dashboard</li>
                     </ol>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> <strong>Tip:</strong> Puedes usar el ícono del ojo 👁️ junto al campo de contraseña para ver/ocultar lo que escribes.
+                    </div>
                 </div>
             </div>
 
@@ -261,44 +268,49 @@
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">2</div>
-                    <h3>Configuración del Dispositivo</h3>
+                    <h3>Configuración del Dispositivo ESP32</h3>
                     <?php if ($rol === 'admin'): ?>
-                    <p>Como administrador, puedes agregar nuevos dispositivos:</p>
+                    <p>Como administrador, puedes gestionar dispositivos ESP32 para monitoreo de energía:</p>
                     <ol>
-                        <li>Ve a la sección "Dispositivos" en el menú principal</li>
-                        <li>Haz clic en "Agregar Nuevo Dispositivo"</li>
-                        <li>Ingresa el ID único del dispositivo</li>
-                        <li>Selecciona el tipo de medidor</li>
-                        <li>Configura los parámetros de medición</li>
-                        <li>Guarda la configuración</li>
+                        <li><strong>Agregar dispositivo:</strong> Ve a "Dispositivos" → "Agregar Nuevo Dispositivo"</li>
+                        <li><strong>Datos requeridos:</strong>
+                            <ul>
+                                <li>Nombre del dispositivo (ej: "Medidor Principal")</li>
+                                <li>Dirección MAC del ESP32 (formato: AA:BB:CC:DD:EE:FF)</li>
+                                <li>Ubicación del dispositivo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Configuración ESP32:</strong> El dispositivo debe estar conectado a la misma red WiFi</li>
+                        <li><strong>Validación:</strong> El sistema validará la MAC antes de permitir lecturas</li>
                     </ol>
                     <?php elseif ($rol === 'usuario'): ?>
                     <p>Como usuario, puedes ver tus dispositivos y los compartidos por tu administrador:</p>
                     <ol>
-                        <li>Ve a tu Dashboard principal</li>
-                        <li>En la sección "Mis Dispositivos" verás:</li>
-                        <ul>
-                            <li><strong>Dispositivos Propios:</strong> Los que has registrado tú</li>
-                            <li><strong>Dispositivos Compartidos:</strong> Los que tu administrador ha compartido contigo</li>
-                        </ul>
-                        <li>Haz clic en "Ver Consumo" para ver el historial de cada dispositivo</li>
+                        <li><strong>Dashboard:</strong> Ve a tu panel principal</li>
+                        <li><strong>Dispositivos disponibles:</strong>
+                            <ul>
+                                <li><strong>Dispositivos Propios:</strong> Los que has registrado tú</li>
+                                <li><strong>Dispositivos Compartidos:</strong> Los que tu administrador ha compartido contigo</li>
+                            </ul>
+                        </li>
+                        <li><strong>Monitoreo:</strong> Haz clic en "Ver Consumo" para ver el historial de cada dispositivo</li>
                     </ol>
                     <div class="alert alert-success">
                         <i class="fas fa-share-alt"></i> Los dispositivos compartidos aparecen con un icono de compartir y muestran el nombre del propietario.
                     </div>
                     <?php else: ?>
-                    <p>Para agregar un nuevo dispositivo:</p>
+                    <p>Para agregar un nuevo dispositivo ESP32:</p>
                     <ol>
                         <li>Ve a la sección "Dispositivos" en el menú principal</li>
                         <li>Haz clic en "Agregar Nuevo Dispositivo"</li>
-                        <li>Ingresa el ID único del dispositivo</li>
-                        <li>Selecciona el tipo de medidor</li>
-                        <li>Configura los parámetros de medición</li>
+                        <li>Ingresa la dirección MAC del ESP32</li>
+                        <li>Asigna un nombre descriptivo al dispositivo</li>
+                        <li>Configura la ubicación del medidor</li>
                         <li>Guarda la configuración</li>
                     </ol>
                     <?php endif; ?>
                     <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i> El ID del dispositivo se encuentra en la etiqueta del medidor.
+                        <i class="fas fa-microchip"></i> <strong>Importante:</strong> La dirección MAC del ESP32 debe estar en formato válido (ej: AA:BB:CC:DD:EE:FF) y el dispositivo debe estar conectado a la red WiFi.
                     </div>
                 </div>
             </div>
@@ -326,29 +338,80 @@
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">4</div>
-                    <h3>Monitoreo de Consumo</h3>
-                    <p>Para visualizar el consumo de energía:</p>
+                    <h3>Monitoreo de Consumo en Tiempo Real</h3>
+                    <p>El sistema EcoVolt monitorea automáticamente el consumo de energía a través de dispositivos ESP32:</p>
                     <ol>
-                        <li>Accede a la sección "Consumo"</li>
-                        <li>Selecciona el período de tiempo deseado</li>
-                        <li>Visualiza los gráficos y estadísticas</li>
-                        <li>Exporta los datos si es necesario</li>
+                        <li><strong>Lecturas automáticas:</strong> Los ESP32 envían datos cada 5 segundos con:
+                            <ul>
+                                <li>Voltaje (V)</li>
+                                <li>Corriente (A)</li>
+                                <li>Potencia (W)</li>
+                                <li>Consumo acumulado (kWh)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Visualización:</strong> Accede a "Energía" para ver:
+                            <ul>
+                                <li>Gráficos en tiempo real</li>
+                                <li>Historial de consumo</li>
+                                <li>Estadísticas diarias/mensuales</li>
+                            </ul>
+                        </li>
+                        <li><strong>Límites de consumo:</strong> Configura alertas cuando se supere un umbral</li>
+                        <li><strong>Exportación:</strong> Genera reportes PDF con los datos históricos</li>
                     </ol>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Notificaciones:</strong> El sistema envía alertas por email y Telegram cuando se supera el límite de consumo configurado.
+                    </div>
                 </div>
             </div>
 
-            <!-- Configuración de Alertas -->
+            <!-- Configuración de Límites y Alertas -->
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">5</div>
-                    <h3>Configuración de Alertas</h3>
-                    <p>Para configurar notificaciones:</p>
+                    <h3>Configuración de Límites y Alertas</h3>
+                    <p>El sistema permite configurar límites de consumo y recibir notificaciones automáticas:</p>
                     <ol>
-                        <li>Ve a "Configuración" > "Alertas"</li>
-                        <li>Establece los umbrales de consumo</li>
-                        <li>Selecciona los métodos de notificación</li>
-                        <li>Guarda la configuración</li>
+                        <li><strong>Configurar límite:</strong> Ve a "Energía" → "Configurar Límite"</li>
+                        <li><strong>Establecer umbral:</strong> Define el consumo máximo en kWh (ej: 10 kWh)</li>
+                        <li><strong>Notificaciones automáticas:</strong> El sistema envía alertas cuando se supera el límite:
+                            <ul>
+                                <li>Email al usuario propietario del dispositivo</li>
+                                <li>Mensaje por Telegram (si está configurado)</li>
+                                <li>Indicador visual en el dashboard</li>
+                            </ul>
+                        </li>
+                        <li><strong>Control de frecuencia:</strong> Las notificaciones se envían máximo una vez por hora para evitar spam</li>
                     </ol>
+                    <div class="alert alert-info">
+                        <i class="fas fa-bell"></i> <strong>Endpoint ESP32:</strong> Los dispositivos pueden consultar el límite actualizado en: <code>http://tu-servidor/energia/getlimite</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asistente Virtual -->
+            <div class="card step-card">
+                <div class="card-body">
+                    <div class="step-number">6</div>
+                    <h3>Asistente Virtual Inteligente</h3>
+                    <p>EcoVolt incluye un asistente virtual disponible 24/7 para ayudarte:</p>
+                    <ol>
+                        <li><strong>Acceso:</strong> Haz clic en el botón flotante 💬 en la esquina inferior derecha</li>
+                        <li><strong>Funcionalidades disponibles:</strong>
+                            <ul>
+                                <li>Consultas sobre dispositivos y direcciones MAC</li>
+                                <li>Información del sistema en tiempo real</li>
+                                <li>Datos de consumo de energía</li>
+                                <li>Ayuda técnica y soporte</li>
+                                <li>Información del proyecto EcoVolt</li>
+                            </ul>
+                        </li>
+                        <li><strong>Botones de acción rápida:</strong> Usa los botones predefinidos para consultas comunes</li>
+                        <li><strong>Chat inteligente:</strong> El asistente responde en tiempo real con información actualizada</li>
+                    </ol>
+                    <div class="alert alert-success">
+                        <i class="fas fa-robot"></i> <strong>Disponible siempre:</strong> El asistente está disponible en todas las páginas del sistema y responde instantáneamente.
+                    </div>
                 </div>
             </div>
 
@@ -365,19 +428,61 @@
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Ve a "Perfil" > "Seguridad" y sigue las instrucciones para cambiar tu contraseña.
+                                    <strong>Opción 1:</strong> Ve a "Perfil" > "Seguridad" y sigue las instrucciones.<br>
+                                    <strong>Opción 2:</strong> En la página de login, haz clic en "¿Olvidaste tu contraseña?" y sigue el proceso de recuperación por email.
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    ¿Qué hacer si el dispositivo no se conecta?
+                                    ¿Qué hacer si el ESP32 no se conecta?
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Verifica la conexión a internet, el ID del dispositivo y contacta a soporte si el problema persiste.
+                                    <ol>
+                                        <li>Verifica que el ESP32 esté conectado a la misma red WiFi</li>
+                                        <li>Confirma que la dirección MAC esté registrada correctamente en el sistema</li>
+                                        <li>Revisa que el endpoint esté accesible: <code>/energia/recibir</code></li>
+                                        <li>Contacta al asistente virtual para soporte técnico</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    ¿Cómo configuro las notificaciones de Telegram?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Las notificaciones de Telegram se configuran automáticamente cuando se supera el límite de consumo. El sistema envía mensajes al chat configurado en el backend. Para configurar tu chat personal, contacta al administrador del sistema.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    ¿Puedo exportar mis datos de consumo?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sí, el sistema permite generar reportes PDF con tus datos de consumo. Ve a la sección "Energía" y busca la opción "Generar Reporte" para exportar los datos en formato PDF.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    ¿Cómo funciona el sistema de límites de consumo?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    El sistema monitorea continuamente el consumo de energía. Cuando se supera el límite configurado (ej: 10 kWh), se activan las alertas automáticas por email y Telegram. Los ESP32 también pueden consultar el límite actualizado a través del endpoint <code>/energia/getlimite</code>.
                                 </div>
                             </div>
                         </div>

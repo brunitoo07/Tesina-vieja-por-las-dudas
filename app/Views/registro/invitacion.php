@@ -41,14 +41,16 @@
                             <input type="text" class="form-control" id="apellido" name="apellido" value="<?= old('apellido') ?>" required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 password-input" style="position: relative;">
                             <label for="contrasena" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                            <input type="password" class="form-control" id="contrasena" name="contrasena" required style="padding-right: 45px;">
+                            <i class="fas fa-eye password-toggle" onclick="togglePassword('contrasena')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; font-size: 16px; z-index: 10; transition: color 0.3s ease;"></i>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 password-input" style="position: relative;">
                             <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
+                            <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required style="padding-right: 45px;">
+                            <i class="fas fa-eye password-toggle" onclick="togglePassword('confirmar_contrasena')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; font-size: 16px; z-index: 10; transition: color 0.3s ease;"></i>
                         </div>
 
                         <div class="d-grid gap-2">
@@ -60,4 +62,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Función para mostrar/ocultar contraseña
+    function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = input.nextElementSibling;
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+</script>
+
 <?= $this->endSection() ?> 

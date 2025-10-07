@@ -630,7 +630,7 @@ body {
     </div>
 
     <?php if (session()->get('rol') === 'admin' || session()->get('rol') === 'supervisor'): ?>
-    <div class="premium-card mb-4">
+    <div class="premium-card mb-4" id="configurar-limites">
     <div class="premium-card-header">
         <h6><i class="fas fa-cog me-2"></i>Configuración de Límite de Consumo</h6>
     </div>
@@ -1010,6 +1010,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         actualizarValoresActuales();
                         actualizarGrafico();
                         actualizarTabla();
+                        
+                        // VERIFICAR CORTE DE LÍNEA NO ESENCIAL
+                        verificarCorteLineaNoEsencial(nuevaLectura);
                         
                         // Mostrar estado exitoso
                         estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
@@ -1503,6 +1506,196 @@ function descargarPDF() {
 
 <!-- Se eliminó la suscripción a notificaciones push -->
 
+<!-- MODAL DE ALERTA DE CORTE DE LÍNEA ESENCIAL -->
+<div class="modal fade" id="modalCorteEsencial" tabindex="-1" aria-labelledby="modalCorteEsencialLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #dc3545; border-radius: 20px; box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4);">
+            <div class="modal-header" style="border-bottom: 2px solid #dc3545; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); border-radius: 18px 18px 0 0;">
+                <div class="d-flex align-items-center w-100">
+                    <div class="me-3" style="font-size: 3rem; animation: pulse 1.5s infinite;">
+                        ⚡🚨
+                    </div>
+                    <div>
+                        <h4 class="modal-title text-white fw-bold mb-0" id="modalCorteEsencialLabel" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                            ¡LÍNEA NO ESENCIAL CORTADA!
+                        </h4>
+                        <small class="text-white-50">Alerta de consumo excesivo</small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body text-center py-4" style="background: rgba(255, 255, 255, 0.05);">
+                <div class="alert alert-danger border-0 mb-4" style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(200, 35, 51, 0.2) 100%); border-radius: 15px; border-left: 5px solid #dc3545;">
+                    <div class="d-flex align-items-center justify-content-center mb-3">
+                        <i class="fas fa-exclamation-triangle text-danger me-3" style="font-size: 2.5rem; animation: shake 0.5s infinite alternate;"></i>
+                        <h5 class="text-danger mb-0 fw-bold">LÍMITE DE CONSUMO SUPERADO</h5>
+                    </div>
+                    <p class="text-white mb-0 fs-5">
+                        El sistema ha detectado que el consumo de energía ha superado el límite configurado y se ha cortado la línea NO esencial por seguridad. La línea esencial permanece activa.
+                    </p>
+                </div>
 
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="card border-warning" style="background: rgba(255, 193, 7, 0.1); border-radius: 15px;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-bolt text-warning mb-2" style="font-size: 2rem;"></i>
+                                <h6 class="text-warning fw-bold">Consumo Actual</h6>
+                                <h4 class="text-white mb-0" id="consumoActualModal">-- kWh</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-info" style="background: rgba(13, 202, 240, 0.1); border-radius: 15px;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-chart-line text-info mb-2" style="font-size: 2rem;"></i>
+                                <h6 class="text-info fw-bold">Límite Configurado</h6>
+                                <h4 class="text-white mb-0" id="limiteConfiguradoModal">-- kWh</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info border-0" style="background: linear-gradient(135deg, rgba(13, 202, 240, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%); border-radius: 15px; border-left: 5px solid #0dcaf0;">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-info-circle text-info me-3 mt-1" style="font-size: 1.5rem;"></i>
+                        <div class="text-start">
+                            <h6 class="text-info fw-bold mb-2">¿Cómo restablecer la línea NO esencial?</h6>
+                            <ol class="text-white mb-0" style="padding-left: 1.2rem;">
+                                <li class="mb-2">Ve a la sección <strong>"Configurar Límites"</strong> en el panel de control</li>
+                                <li class="mb-2">Establece un límite de consumo <strong>más alto</strong> que el consumo actual</li>
+                                <li class="mb-0">El sistema restablecerá automáticamente la línea NO esencial</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="button" class="btn btn-primary btn-lg me-3" onclick="irAConfigurarLimites()" style="background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600; box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);">
+                        <i class="fas fa-cog me-2"></i>Ir a Configurar Límites
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
+                        <i class="fas fa-times me-2"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+}
+
+.modal.show .modal-dialog {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-content {
+    animation: modalGlow 2s infinite alternate;
+}
+
+@keyframes modalGlow {
+    from {
+        box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4);
+    }
+    to {
+        box-shadow: 0 20px 60px rgba(220, 53, 69, 0.6);
+    }
+}
+</style>
+
+<script>
+// Función para mostrar el modal de corte de línea esencial
+function mostrarModalCorteEsencial(consumoActual, limiteConfigurado) {
+    // Actualizar los valores en el modal
+    document.getElementById('consumoActualModal').textContent = consumoActual + ' kWh';
+    document.getElementById('limiteConfiguradoModal').textContent = limiteConfigurado + ' kWh';
+    
+    // Mostrar el modal
+    const modal = new bootstrap.Modal(document.getElementById('modalCorteEsencial'));
+    modal.show();
+    
+    // Reproducir sonido de alerta (opcional)
+    try {
+        const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
+        audio.volume = 0.3;
+        audio.play().catch(() => {}); // Ignorar errores si no se puede reproducir
+    } catch (e) {
+        // Ignorar errores de audio
+    }
+}
+
+// Función para ir a configurar límites
+function irAConfigurarLimites() {
+    // Cerrar el modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial'));
+    modal.hide();
+    
+    // Redirigir a la sección de configuración de límites
+    window.location.href = '#configurar-limites';
+    
+    // Scroll suave a la sección
+    setTimeout(() => {
+        const seccion = document.querySelector('#configurar-limites');
+        if (seccion) {
+            seccion.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 300);
+}
+
+// Función para verificar si se debe mostrar el modal (se llamará desde el polling de datos)
+function verificarCorteLineaNoEsencial(ultimaLectura) {
+    if (ultimaLectura && ultimaLectura.limite_superado == 1) {
+        // Obtener el límite de consumo desde la respuesta del servidor
+        fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const limiteConsumo = data.limite_consumo || 10;
+                    const consumoActual = parseFloat(ultimaLectura.kwh);
+                    
+                    // Verificar si el consumo supera el límite (corte de línea NO esencial)
+                    if (consumoActual > limiteConsumo) {
+                        // Verificar si ya se mostró el modal para evitar spam
+                        const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
+                        const timestampActual = new Date().getTime();
+                        
+                        if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 300000) { // 5 minutos
+                            mostrarModalCorteEsencial(
+                                consumoActual.toFixed(2),
+                                parseFloat(limiteConsumo).toFixed(2)
+                            );
+                            
+                            // Marcar que se mostró el modal
+                            sessionStorage.setItem('modalCorteLineaNoEsencialMostrado', timestampActual.toString());
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error obteniendo límite de consumo:', error);
+            });
+    }
+}
+</script>
 
 <?= $this->endSection() ?>

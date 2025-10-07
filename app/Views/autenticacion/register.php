@@ -240,9 +240,10 @@
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group password-input" style="position: relative;">
                     <label for="contrasena"><?= lang('App.password') ?></label>
-                    <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required style="padding-right: 45px;">
+                    <i class="fas fa-eye password-toggle" onclick="togglePassword('contrasena')" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6c757d; font-size: 16px; z-index: 10; transition: color 0.3s ease;"></i>
                     <small class="text-muted"><?= lang('App.password_hint') ?></small>
                 </div>
 
@@ -258,5 +259,22 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para mostrar/ocultar contraseña
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling;
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 </html>
