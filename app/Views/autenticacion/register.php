@@ -219,7 +219,7 @@
             <?php endif; ?>
 
             <form action="<?= base_url('autenticacion/registrarse') ?>" method="post">
-                <?php if (isset($purchase) && $purchase)): ?>
+                <?php if (isset($purchase) && $purchase): ?>
                     <input type="hidden" name="purchase" value="true">
                 <?php endif; ?>
 

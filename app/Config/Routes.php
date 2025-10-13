@@ -46,8 +46,11 @@ $routes->get('compra/error', 'Compra::error');
 $routes->get('registro-compra', 'RegistroCompra::mostrarFormulario');
 $routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
 $routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
-$routes->get('registro-compra/activar/(:segment)', 'RegistroCompra::activar/$1');
 $routes->get('registro-compra/error', 'RegistroCompra::error');
+
+// Rutas para usuarios existentes que quieren comprar otro medidor
+$routes->get('comprar-medidor', 'RegistroCompra::compraUsuarioExistente');
+$routes->post('comprar-medidor/procesar', 'RegistroCompra::procesarCompraUsuarioExistente');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
@@ -184,4 +187,4 @@ $routes->get('facturas/generarPDF/(:num)', 'Facturas::generarPDF/$1');
 
 
 
-
+ 

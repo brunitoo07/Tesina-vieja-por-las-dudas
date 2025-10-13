@@ -66,56 +66,26 @@ class RegistroCompra extends BaseController
             return redirect()->back()->with('error', 'El dispositivo seleccionado no existe.');
         }
 
-        // Crear usuario (rol admin, estado pendiente)
-        $usuarioData = [
+        // NO CREAR USUARIO AÚN - Solo guardar datos en sesión para después del pago
+        $datosCompra = [
             'nombre' => $nombre,
             'apellido' => $apellido,
             'email' => $email,
             'contrasena' => $contrasena,
-            'id_rol' => 1, // admin
-            'estado' => 'pendiente',
-        ];
-
-        log_message('debug', 'Creando usuario con datos: ' . json_encode([
-            'email' => $email,
-            'rol' => 1,
-            'estado' => 'pendiente'
-        ]));
-
-        $this->usuarioModel->insert($usuarioData);
-        $idUsuario = $this->usuarioModel->getInsertID();
-
-        log_message('debug', 'Usuario creado con ID: ' . $idUsuario);
-
-        // Crear dirección y asociar al usuario
-        $direccionData = [
             'calle' => $calle,
             'numero' => $numero,
             'ciudad' => $ciudad,
             'codigo_postal' => $codigo_postal,
             'pais' => $pais,
-            'id_usuario' => $idUsuario
-        ];
-        $this->direccionModel->insert($direccionData);
-        $direccion_id = $this->direccionModel->getInsertID();
-
-        log_message('debug', 'Dirección creada con ID: ' . $direccion_id);
-
-        // Guardar datos en sesión para el proceso de pago
-        $datosCompra = [
-            'nombre' => $nombre,
-            'apellido' => $apellido,
-            'email' => $email,
             'direccion' => $calle . ' ' . $numero . ', ' . $ciudad . ', ' . $codigo_postal . ', ' . $pais
         ];
 
         session()->set('datos_compra', $datosCompra);
-        session()->set('id_usuario_registro', $idUsuario);
         session()->set('id_dispositivo', $id_dispositivo);
 
         log_message('debug', 'Datos guardados en sesión: ' . json_encode([
-            'id_usuario' => $idUsuario,
-            'id_dispositivo' => $id_dispositivo
+            'id_dispositivo' => $id_dispositivo,
+            'email' => $email
         ]));
 
         log_message('debug', '=== FIN PROCESO DE COMPRA ===');
@@ -125,55 +95,28 @@ class RegistroCompra extends BaseController
 
     public function pagoExitoso()
     {
-        $idUsuario = session()->get('id_usuario_registro');
+        if (!session()->get('compra_exitosa')) {
+            return redirect()->to('registro-compra')->with('error', 'Sesión expirada. Intenta de nuevo.');
+        }
+
+        // Obtener datos de la sesión antes de limpiarla
+        $datosCompra = session()->get('datos_compra');
         $idDispositivo = session()->get('id_dispositivo');
-
-        log_message('debug', 'Procesando pago exitoso para usuario: ' . $idUsuario);
-
-        if (!$idUsuario || !$idDispositivo) {
-            log_message('debug', 'Sesión expirada o datos faltantes');
-            return redirect()->to(base_url('registro-compra'))->with('error', 'Sesión expirada. Intenta de nuevo.');
-        }
-
-        $usuario = $this->usuarioModel->find($idUsuario);
+        
+        // Obtener información del dispositivo
         $dispositivo = $this->dispositivoModel->find($idDispositivo);
-
-        if (!$usuario || !$dispositivo) {
-            log_message('debug', 'Usuario o dispositivo no encontrado');
-            return redirect()->to(base_url('registro-compra'))->with('error', 'Error al procesar la compra. Por favor, intenta de nuevo.');
-        }
-
-        log_message('debug', 'Datos del usuario antes de activación: ' . json_encode([
-            'id' => $usuario['id_usuario'],
-            'email' => $usuario['email'],
-            'estado' => $usuario['estado'],
-            'rol' => $usuario['id_rol']
-        ]));
-
-        // Actualizar estado de la compra
-        $this->compraModel->where('id_usuario', $idUsuario)
-                         ->set(['estado' => 'completada'])
-                         ->update();
-
-        log_message('debug', 'Compra marcada como completada');
-
-        // Enviar email de confirmación de compra
-        $this->enviarEmailConfirmacionCompra($usuario['email'], $usuario['nombre'], $dispositivo);
-
+        
         // Preparar datos para la vista
         $data = [
-            'nombre' => $usuario['nombre'],
+            'nombre' => $datosCompra['nombre'] ?? 'Usuario',
             'dispositivo' => $dispositivo,
             'fecha' => date('d/m/Y'),
-            'direccion' => session()->get('datos_compra')['direccion']
+            'direccion' => $datosCompra['direccion'] ?? 'No especificada'
         ];
 
-        // Limpiar sesión
-        session()->remove(['id_usuario_registro', 'id_dispositivo', 'datos_compra']);
+        // Limpiar la sesión después de obtener los datos
+        session()->remove(['id_usuario_registro', 'id_dispositivo', 'datos_compra', 'compra_exitosa', 'payment_id']);
 
-        log_message('debug', 'Redirigiendo a página de pago exitoso');
-
-        // Mostrar página de pago exitoso
         return view('registro_compra/pago_exitoso', $data);
     }
 
@@ -203,4 +146,4 @@ class RegistroCompra extends BaseController
         $emailService->setMessage($mensaje);
         $emailService->send();
     }
-} 
+}

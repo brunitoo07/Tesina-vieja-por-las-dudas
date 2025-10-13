@@ -242,6 +242,13 @@
             color: var(--primary-color) !important;
         }
 
+        /* Animación para mensaje de éxito */
+        @keyframes successPulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(40, 167, 69, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
+        }
+
         /* Botón de tema */
         .theme-switch {
             position: fixed !important;
@@ -280,15 +287,28 @@
             </h2>
 
             <?php if (session()->get('exito')): ?>
-                <div class="alert alert-success alert-dismissible fade show">
-                    <i class="fas fa-envelope me-2"></i><?= session()->get('exito') ?>
+                <div class="alert alert-success alert-dismissible fade show" style="
+                    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(32, 201, 151, 0.2) 100%);
+                    border: 2px solid #28a745;
+                    color: #28a745;
+                    font-weight: 600;
+                    box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+                    animation: successPulse 2s ease-in-out;
+                ">
+                    <i class="fas fa-check-circle me-2"></i><?= session()->get('exito') ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
 
             <?php if (session()->get('error')): ?>
-                <div class="alert alert-danger alert-dismissible fade show">
-                    <?= session()->get('error') ?>
+                <div class="alert alert-danger alert-dismissible fade show" style="
+                    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(253, 126, 20, 0.2) 100%);
+                    border: 2px solid #dc3545;
+                    color: #dc3545;
+                    font-weight: 600;
+                    box-shadow: 0 0 20px rgba(220, 53, 69, 0.3);
+                ">
+                    <i class="fas fa-exclamation-triangle me-2"></i><?= session()->get('error') ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>

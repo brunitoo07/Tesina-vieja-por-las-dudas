@@ -127,9 +127,35 @@
     .input-group:focus-within .form-control, .input-group:focus-within .btn { border-color: var(--gold); box-shadow: 0 0 10px var(--glow-color); }
     .form-text { color: var(--text-secondary) !important; }
 
-    .premium-alert { border-radius: 12px; border-width: 1px; border-style: solid; padding: 1rem 1.5rem; }
-    .premium-alert.alert-success { background-color: rgba(40, 167, 69, 0.1); border-color: #28a745; }
-    .premium-alert.alert-danger { background-color: rgba(220, 53, 69, 0.1); border-color: #dc3545; }
+    .premium-alert { 
+        border-radius: 12px; 
+        border-width: 1px; 
+        border-style: solid; 
+        padding: 1rem 1.5rem; 
+        margin-bottom: 1rem;
+    }
+    .premium-alert.alert-success { 
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(32, 201, 151, 0.2) 100%);
+        border: 2px solid #28a745;
+        color: #28a745;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+        animation: successPulse 2s ease-in-out;
+    }
+    
+    @keyframes successPulse {
+        0% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
+        50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(40, 167, 69, 0.5); }
+        100% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
+    }
+    
+    .premium-alert.alert-danger { 
+        background: linear-gradient(135deg, rgba(220, 53, 69, 0.2) 0%, rgba(253, 126, 20, 0.2) 100%);
+        border: 2px solid #dc3545;
+        color: #dc3545;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba(220, 53, 69, 0.3);
+    }
 
     /* --- Botón --- */
     .btn-premium-gold {
@@ -154,6 +180,13 @@
                     <p class="mt-3">
                         <span class="role-badge"><?= ucfirst(esc($usuario['rol'])) ?></span>
                     </p>
+                    
+                    <!-- Botón para comprar medidor adicional -->
+                    <div class="mt-4">
+                        <a href="<?= base_url('comprar-medidor') ?>" class="btn btn-premium-gold w-100">
+                            <i class="fas fa-shopping-cart"></i> Comprar Medidor Adicional
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,10 +211,16 @@
                     <div class="tab-content" id="profileTabsContent">
                         <!-- Mensajes de alerta -->
                         <?php if (session()->has('success')): ?>
-                            <div class="premium-alert alert-success"><?= session('success') ?></div>
+                            <div class="premium-alert alert-success">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <?= session('success') ?>
+                            </div>
                         <?php endif; ?>
                         <?php if (session()->has('error')): ?>
-                            <div class="premium-alert alert-danger"><?= session('error') ?></div>
+                            <div class="premium-alert alert-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <?= session('error') ?>
+                            </div>
                         <?php endif; ?>
 
                         <!-- Pestaña: Datos Personales -->

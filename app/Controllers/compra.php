@@ -7,6 +7,7 @@ use App\Models\UsuarioModel;
 use App\Models\RolesModel;
 use App\Models\CompraModel;
 use App\Models\DispositivoModel;
+use App\Models\DireccionModel;
 
 class Compra extends BaseController
 {
@@ -14,6 +15,7 @@ class Compra extends BaseController
     protected $rolesModel;
     protected $compraModel;
     protected $dispositivoModel;
+    protected $direccionModel;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class Compra extends BaseController
         $this->rolesModel = new RolesModel();
         $this->compraModel = new CompraModel();
         $this->dispositivoModel = new DispositivoModel();
+        $this->direccionModel = new DireccionModel();
     }
 
     public function index()
@@ -59,10 +62,14 @@ class Compra extends BaseController
     public function procesarPago()
     {
         try {
+            log_message('debug', '=== INICIO PROCESAR PAGO ===');
+            
             // Obtener datos del pago de PayPal
             $paymentData = $this->request->getJSON();
+            log_message('debug', 'Payment data recibido: ' . json_encode($paymentData));
             
             if (!$paymentData) {
+                log_message('error', 'No se recibieron datos de pago');
                 return $this->response->setJSON([
                     'success' => false,
                     'message' => 'No se recibieron datos de pago'
@@ -70,11 +77,14 @@ class Compra extends BaseController
             }
 
             // Obtener datos de la sesión
-            $idUsuario = session()->get('id_usuario_registro');
             $idDispositivo = session()->get('id_dispositivo');
             $datosCompra = session()->get('datos_compra');
+            
+            log_message('debug', 'Datos de sesión - idDispositivo: ' . $idDispositivo);
+            log_message('debug', 'Datos de sesión - datosCompra: ' . json_encode($datosCompra));
 
-            if (!$idUsuario || !$idDispositivo || !$datosCompra) {
+            if (!$idDispositivo || !$datosCompra) {
+                log_message('error', 'Sesión expirada - idDispositivo: ' . $idDispositivo . ', datosCompra: ' . (empty($datosCompra) ? 'vacío' : 'presente'));
                 return $this->response->setJSON([
                     'success' => false,
                     'message' => 'Sesión expirada. Por favor, intenta de nuevo.'
@@ -90,6 +100,36 @@ class Compra extends BaseController
                 ]);
             }
 
+            // CREAR USUARIO DESPUÉS DEL PAGO EXITOSO
+            log_message('debug', 'Creando usuario con datos: ' . json_encode($datosCompra));
+            
+            $usuarioData = [
+                'nombre' => $datosCompra['nombre'],
+                'apellido' => $datosCompra['apellido'],
+                'email' => $datosCompra['email'],
+                'contrasena' => $datosCompra['contrasena'],
+                'id_rol' => 1, // admin
+                'estado' => 'activo', // Activo directamente después del pago
+            ];
+
+            log_message('debug', 'Datos de usuario a insertar: ' . json_encode($usuarioData));
+            
+            $this->usuarioModel->insert($usuarioData);
+            $idUsuario = $this->usuarioModel->getInsertID();
+            
+            log_message('debug', 'Usuario creado con ID: ' . $idUsuario);
+
+            // Crear dirección y asociar al usuario
+            $direccionData = [
+                'calle' => $datosCompra['calle'],
+                'numero' => $datosCompra['numero'],
+                'ciudad' => $datosCompra['ciudad'],
+                'codigo_postal' => $datosCompra['codigo_postal'],
+                'pais' => $datosCompra['pais'],
+                'id_usuario' => $idUsuario
+            ];
+            $this->direccionModel->insert($direccionData);
+
             // Crear la compra
             $compraData = [
                 'id_usuario' => $idUsuario,
@@ -100,12 +140,7 @@ class Compra extends BaseController
                 'payment_id' => $paymentData->id
             ];
 
-            if (!$this->compraModel->insert($compraData)) {
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Error al registrar la compra'
-                ]);
-            }
+            $this->compraModel->insert($compraData);
 
             // Actualizar el estado del dispositivo a activo
             $this->dispositivoModel->update($idDispositivo, [
@@ -113,16 +148,16 @@ class Compra extends BaseController
                 'stock' => $dispositivo['stock'] - 1
             ]);
 
-            // Guardar datos necesarios en sesión antes de limpiar
-            $email = $datosCompra['email'];
-            $nombre = $datosCompra['nombre'];
-
             // Enviar email de confirmación de compra
-            $this->enviarEmailConfirmacionCompra($email, $nombre, $dispositivo);
+            log_message('debug', 'Enviando email a: ' . $datosCompra['email']);
+            $this->enviarEmailConfirmacionCompra($datosCompra['email'], $datosCompra['nombre'], $dispositivo, $paymentData->id);
+            log_message('debug', 'Email enviado correctamente');
 
             // Marcar la compra como exitosa en la sesión
             session()->set('compra_exitosa', true);
             session()->set('payment_id', $paymentData->id);
+            
+            log_message('debug', 'Compra procesada exitosamente, redirigiendo...');
 
             return $this->response->setJSON([
                 'success' => true,
@@ -138,24 +173,8 @@ class Compra extends BaseController
         }
     }
 
-    protected function enviarEmailBienvenida($email, $nombre, $token)
-    {
-        $emailService = \Config\Services::email();
-        
-        $emailService->setTo($email);
-        $emailService->setFrom('noreply@ecovolt.com', 'EcoVolt');
-        $emailService->setSubject('¡Bienvenido a EcoVolt!');
-        
-        $mensaje = view('emails/bienvenida', [
-            'nombre' => $nombre,
-            'enlace_activacion' => base_url("registro-compra/activar/$token")
-        ]);
-        
-        $emailService->setMessage($mensaje);
-        $emailService->send();
-    }
 
-    private function enviarEmailConfirmacionCompra($emailDestino, $nombre, $dispositivo)
+    private function enviarEmailConfirmacionCompra($emailDestino, $nombre, $dispositivo, $paymentId)
     {
         $emailService = \Config\Services::email();
 
@@ -163,12 +182,17 @@ class Compra extends BaseController
         $emailService->setTo($emailDestino);
         $emailService->setSubject('Confirmación de Compra - EcoVolt Pro');
 
+        $datosCompra = session()->get('datos_compra');
+        
         $mensaje = view('emails/confirmacion_compra', [
             'nombre' => $nombre,
             'dispositivo' => $dispositivo,
-            'fecha' => date('d/m/Y'),
-            'direccion' => session()->get('datos_compra')['direccion'],
-            'precio' => number_format($dispositivo['precio'], 2)
+            'fecha' => date('d/m/Y H:i:s'),
+            'direccion' => $datosCompra['direccion'],
+            'precio' => number_format($dispositivo['precio'], 2),
+            'email' => $emailDestino,
+            'payment_id' => $paymentId,
+            'numero_pedido' => 'ECO-' . date('Ymd') . '-' . substr($paymentId, -6)
         ]);
 
         $emailService->setMessage($mensaje);
@@ -218,4 +242,4 @@ class Compra extends BaseController
 
         return view('registro_compra/pago_exitoso');
     }
-} 
+}

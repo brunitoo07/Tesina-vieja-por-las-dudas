@@ -85,7 +85,9 @@ class CNuevacontrasena extends Controller
         // Actualizar la contraseña del usuario
         if ($usuarioModel->update($usuario['id_usuario'], ['contrasena' => $hashedContraseña])) {
             // Eliminar el código usado
-            $codigoModel->delete($codigoData['id_codigo']);
+            if (isset($codigoData['id_codigo']) && $codigoData['id_codigo'] > 0) {
+                $codigoModel->delete($codigoData['id_codigo']);
+            }
             session()->set('exito', 'Contraseña actualizada correctamente.');
             session()->remove('emailValido'); // Limpiar el email de la sesión
             return redirect()->to('autenticacion/login');

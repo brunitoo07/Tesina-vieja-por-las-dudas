@@ -4,446 +4,500 @@
 
 <style>
 /* === PALETA DE COLORES PREMIUM === */
+/* Variables CSS personalizadas para mantener consistencia visual */
 :root {
-    --gold-primary: #D4AF37;
-    --gold-secondary: #B8860B;
-    --gold-light: #F7E98E;
-    --gold-dark: #8B7355;
-    --silver-primary: #C0C0C0;
-    --silver-secondary: #A8A8A8;
-    --silver-light: #E8E8E8;
-    --black-primary: #1a1a1a;
-    --black-secondary: #2d2d2d;
-    --black-light: #404040;
-    --white-primary: #ffffff;
-    --white-secondary: #f8f9fa;
-    --white-dark: #e9ecef;
-    --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-    --gradient-silver: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
-    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    --shadow-premium: 0 10px 30px rgba(212, 175, 55, 0.3);
-    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
-    --border-radius: 15px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --gold-primary: #D4AF37;                          /* Dorado principal */
+    --gold-secondary: #B8860B;                        /* Dorado secundario */
+    --gold-light: #F7E98E;                           /* Dorado claro */
+    --gold-dark: #8B7355;                            /* Dorado oscuro */
+    --silver-primary: #C0C0C0;                       /* Plata principal */
+    --silver-secondary: #A8A8A8;                     /* Plata secundaria */
+    --silver-light: #E8E8E8;                         /* Plata clara */
+    --black-primary: #1a1a1a;                        /* Negro principal */
+    --black-secondary: #2d2d2d;                      /* Negro secundario */
+    --black-light: #404040;                          /* Negro claro */
+    --white-primary: #ffffff;                        /* Blanco principal */
+    --white-secondary: #f8f9fa;                      /* Blanco secundario */
+    --white-dark: #e9ecef;                           /* Blanco oscuro */
+    --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); /* Gradiente dorado */
+    --gradient-silver: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%); /* Gradiente plateado */
+    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); /* Gradiente oscuro */
+    --shadow-premium: 0 10px 30px rgba(212, 175, 55, 0.3); /* Sombra premium */
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);  /* Sombra oscura */
+    --border-radius: 15px;                           /* Radio de bordes */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición suave */
 }
 
 /* === ESTILOS GLOBALES PREMIUM === */
+/* Estilos base del cuerpo de la página */
 body {
-    background: var(--gradient-dark);
-    color: var(--white-primary);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    background: var(--gradient-dark);                 /* Fondo con gradiente oscuro */
+    color: var(--white-primary);                     /* Texto blanco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    line-height: 1.6;                               /* Espaciado entre líneas */
 }
 
+/* Contenedor principal */
 .container-fluid {
-    background: transparent;
-    padding: 20px;
+    background: transparent;                         /* Fondo transparente */
+    padding: 20px;                                  /* Espaciado interno */
 }
 
 /* === HEADER PREMIUM === */
+/* Encabezado principal con efectos premium */
 .premium-header {
-    background: var(--gradient-gold);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: var(--shadow-premium);
-    position: relative;
-    overflow: hidden;
+    background: var(--gradient-gold);                 /* Fondo con gradiente dorado */
+    border-radius: var(--border-radius);              /* Bordes redondeados */
+    padding: 30px;                                   /* Espaciado interno */
+    margin-bottom: 30px;                             /* Margen inferior */
+    box-shadow: var(--shadow-premium);               /* Sombra premium */
+    position: relative;                              /* Posición relativa */
+    overflow: hidden;                                /* Ocultar desbordamiento */
 }
 
+/* Patrón de textura sutil en el header */
 .premium-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    content: '';                                     /* Contenido vacío */
+    position: absolute;                              /* Posición absoluta */
+    top: 0;                                         /* Desde arriba */
+    left: 0;                                        /* Desde la izquierda */
+    right: 0;                                       /* Hasta la derecha */
+    bottom: 0;                                      /* Hasta abajo */
+    /* Patrón SVG de puntos sutiles */
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
+    opacity: 0.3;                                   /* Semi-transparente */
 }
 
+/* Título del header */
 .premium-header h1 {
-    color: var(--black-primary);
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
+    color: var(--black-primary);                      /* Color negro */
+    font-weight: 700;                                /* Peso de fuente bold */
+    font-size: 2.5rem;                              /* Tamaño de fuente grande */
+    margin: 0;                                      /* Sin margen */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);      /* Sombra de texto */
+    position: relative;                              /* Posición relativa */
+    z-index: 1;                                     /* Capa superior */
 }
 
+/* Botones del header */
 .premium-header .btn {
-    background: var(--black-primary);
-    border: none;
-    color: var(--gold-primary);
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: var(--transition);
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: var(--black-primary);                 /* Fondo negro */
+    border: none;                                   /* Sin borde */
+    color: var(--gold-primary);                     /* Texto dorado */
+    padding: 12px 25px;                            /* Espaciado interno */
+    border-radius: 25px;                           /* Bordes muy redondeados */
+    font-weight: 600;                              /* Peso de fuente semi-bold */
+    transition: var(--transition);                 /* Transición suave */
+    position: relative;                            /* Posición relativa */
+    z-index: 1;                                   /* Capa superior */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);      /* Sombra */
 }
 
+/* Efecto hover del botón */
 .premium-header .btn:hover {
-    background: var(--gold-primary);
-    color: var(--black-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: var(--gold-primary);                 /* Fondo dorado */
+    color: var(--black-primary);                    /* Texto negro */
+    transform: translateY(-2px);                    /* Elevación */
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); /* Sombra dorada */
 }
 
 /* === CARDS PREMIUM === */
+/* Tarjetas con efectos de vidrio esmerilado */
 .premium-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-dark);
-    transition: var(--transition);
-    overflow: hidden;
-    position: relative;
+    background: rgba(255, 255, 255, 0.05);           /* Fondo blanco semi-transparente */
+    backdrop-filter: blur(20px);                     /* Efecto de desenfoque */
+    border: 1px solid rgba(212, 175, 55, 0.2);      /* Borde dorado sutil */
+    border-radius: var(--border-radius);             /* Bordes redondeados */
+    box-shadow: var(--shadow-dark);                  /* Sombra oscura */
+    transition: var(--transition);                   /* Transición suave */
+    overflow: hidden;                               /* Ocultar desbordamiento */
+    position: relative;                             /* Posición relativa */
 }
 
+/* Línea dorada en la parte superior de la tarjeta */
 .premium-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-gold);
+    content: '';                                    /* Contenido vacío */
+    position: absolute;                             /* Posición absoluta */
+    top: 0;                                        /* Desde arriba */
+    left: 0;                                       /* Desde la izquierda */
+    right: 0;                                      /* Hasta la derecha */
+    height: 3px;                                   /* Altura de 3px */
+    background: var(--gradient-gold);              /* Fondo con gradiente dorado */
 }
 
+/* Efecto hover de la tarjeta */
 .premium-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-    border-color: var(--gold-primary);
+    transform: translateY(-5px);                    /* Elevación */
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2); /* Sombra dorada */
+    border-color: var(--gold-primary);             /* Borde dorado */
 }
 
+/* Encabezado de la tarjeta */
 .premium-card-header {
-    background: rgba(212, 175, 55, 0.1);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 20px 25px;
-    position: relative;
+    background: rgba(212, 175, 55, 0.1);            /* Fondo dorado transparente */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Línea separadora dorada */
+    padding: 20px 25px;                            /* Espaciado interno */
+    position: relative;                             /* Posición relativa */
 }
 
+/* Título del encabezado */
 .premium-card-header h6 {
-    color: var(--gold-primary);
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--gold-primary);                     /* Color dorado */
+    font-weight: 700;                              /* Peso de fuente bold */
+    font-size: 1.1rem;                            /* Tamaño de fuente */
+    margin: 0;                                    /* Sin margen */
+    text-transform: uppercase;                     /* Texto en mayúsculas */
+    letter-spacing: 1px;                          /* Espaciado entre letras */
 }
 
+/* Cuerpo de la tarjeta */
 .premium-card-body {
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.02);
+    padding: 25px;                                /* Espaciado interno */
+    background: rgba(255, 255, 255, 0.02);        /* Fondo blanco muy sutil */
 }
 
 /* === MÉTRICAS PREMIUM === */
+/* Tarjetas para mostrar métricas de energía */
 .metric-card {
-    background: var(--gradient-dark);
-    border: 1px solid var(--gold-primary);
-    border-radius: var(--border-radius);
-    padding: 25px;
-    text-align: center;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
+    background: var(--gradient-dark);                /* Fondo con gradiente oscuro */
+    border: 1px solid var(--gold-primary);          /* Borde dorado */
+    border-radius: var(--border-radius);             /* Bordes redondeados */
+    padding: 25px;                                 /* Espaciado interno */
+    text-align: center;                            /* Texto centrado */
+    transition: var(--transition);                   /* Transición suave */
+    position: relative;                             /* Posición relativa */
+    overflow: hidden;                              /* Ocultar desbordamiento */
 }
 
+/* Línea dorada en la parte superior de la métrica */
 .metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-gold);
+    content: '';                                   /* Contenido vacío */
+    position: absolute;                            /* Posición absoluta */
+    top: 0;                                       /* Desde arriba */
+    left: 0;                                      /* Desde la izquierda */
+    right: 0;                                     /* Hasta la derecha */
+    height: 4px;                                  /* Altura de 4px */
+    background: var(--gradient-gold);             /* Fondo con gradiente dorado */
 }
 
+/* Efecto hover de la métrica */
 .metric-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-premium);
-    border-color: var(--gold-light);
+    transform: translateY(-3px);                    /* Elevación sutil */
+    box-shadow: var(--shadow-premium);             /* Sombra premium */
+    border-color: var(--gold-light);              /* Borde dorado claro */
 }
 
+/* Etiqueta de la métrica */
 .metric-card .metric-label {
-    color: var(--silver-primary);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+    color: var(--silver-primary);                    /* Color plateado */
+    font-size: 0.9rem;                             /* Tamaño de fuente */
+    font-weight: 600;                              /* Peso de fuente semi-bold */
+    text-transform: uppercase;                     /* Texto en mayúsculas */
+    letter-spacing: 1px;                          /* Espaciado entre letras */
+    margin-bottom: 10px;                          /* Margen inferior */
 }
 
+/* Valor de la métrica */
 .metric-card .metric-value {
-    color: var(--gold-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: var(--gold-primary);                     /* Color dorado */
+    font-size: 2rem;                              /* Tamaño de fuente grande */
+    font-weight: 700;                             /* Peso de fuente bold */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);   /* Sombra de texto */
 }
 
+/* Icono de la métrica */
 .metric-card .metric-icon {
-    color: var(--gold-primary);
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    opacity: 0.8;
+    color: var(--gold-primary);                     /* Color dorado */
+    font-size: 2.5rem;                            /* Tamaño de fuente muy grande */
+    margin-bottom: 15px;                          /* Margen inferior */
+    opacity: 0.8;                                /* Semi-transparente */
 }
 
 /* === FORMULARIOS PREMIUM === */
+/* Campos de formulario con estilo premium */
 .premium-form .form-control {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 10px;
-    color: var(--white-primary);
-    padding: 12px 15px;
-    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);           /* Fondo blanco semi-transparente */
+    border: 1px solid rgba(212, 175, 55, 0.3);      /* Borde dorado sutil */
+    border-radius: 10px;                           /* Bordes redondeados */
+    color: var(--white-primary);                   /* Texto blanco */
+    padding: 12px 15px;                           /* Espaciado interno */
+    transition: var(--transition);                  /* Transición suave */
 }
 
+/* Estado de foco del campo */
 .premium-form .form-control:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--gold-primary);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-    color: var(--white-primary);
+    background: rgba(255, 255, 255, 0.15);         /* Fondo más intenso */
+    border-color: var(--gold-primary);             /* Borde dorado */
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); /* Sombra dorada */
+    color: var(--white-primary);                   /* Mantener texto blanco */
 }
 
+/* Texto placeholder */
 .premium-form .form-control::placeholder {
-    color: var(--silver-secondary);
+    color: var(--silver-secondary);                 /* Color plateado secundario */
 }
 
+/* Etiquetas del formulario */
 .premium-form label {
-    color: var(--gold-primary);
-    font-weight: 600;
-    margin-bottom: 8px;
+    color: var(--gold-primary);                     /* Color dorado */
+    font-weight: 600;                              /* Peso de fuente semi-bold */
+    margin-bottom: 8px;                           /* Margen inferior */
 }
 
 /* === BOTONES PREMIUM === */
+/* Botón principal con efectos premium */
 .btn-premium {
-    background: var(--gradient-gold);
-    border: none;
-    color: var(--black-primary);
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    background: var(--gradient-gold);                /* Fondo con gradiente dorado */
+    border: none;                                  /* Sin borde */
+    color: var(--black-primary);                   /* Texto negro */
+    padding: 12px 30px;                           /* Espaciado interno */
+    border-radius: 25px;                          /* Bordes muy redondeados */
+    font-weight: 700;                             /* Peso de fuente bold */
+    text-transform: uppercase;                     /* Texto en mayúsculas */
+    letter-spacing: 1px;                          /* Espaciado entre letras */
+    transition: var(--transition);                  /* Transición suave */
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); /* Sombra dorada */
+    position: relative;                            /* Posición relativa */
+    overflow: hidden;                             /* Ocultar desbordamiento */
+    display: flex;                                /* Layout flexbox */
+    align-items: center;                          /* Centrar verticalmente */
+    justify-content: center;                      /* Centrar horizontalmente */
+    text-align: center;                           /* Texto centrado */
 }
 
+/* Efecto de brillo que se desliza */
 .btn-premium::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
+    content: '';                                  /* Contenido vacío */
+    position: absolute;                            /* Posición absoluta */
+    top: 0;                                      /* Desde arriba */
+    left: -100%;                                 /* Inicia fuera del botón */
+    width: 100%;                                 /* Ancho completo */
+    height: 100%;                                /* Alto completo */
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); /* Gradiente de brillo */
+    transition: left 0.5s;                       /* Transición de posición */
 }
 
+/* Efecto de brillo al hacer hover */
 .btn-premium:hover::before {
-    left: 100%;
+    left: 100%;                                  /* Termina fuera del botón */
 }
 
+/* Efecto hover del botón */
 .btn-premium:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-    color: var(--black-primary);
+    transform: translateY(-2px);                   /* Elevación */
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); /* Sombra más intensa */
+    color: var(--black-primary);                  /* Mantener texto negro */
 }
 
+/* Botón secundario con estilo plateado */
 .btn-premium-secondary {
-    background: var(--gradient-silver);
-    color: var(--black-primary);
-    border: none;
-    padding: 15px 25px;
-    border-radius: 20px;
-    font-weight: 600;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    background: var(--gradient-silver);              /* Fondo con gradiente plateado */
+    color: var(--black-primary);                   /* Texto negro */
+    border: none;                                  /* Sin borde */
+    padding: 15px 25px;                           /* Espaciado interno */
+    border-radius: 20px;                          /* Bordes redondeados */
+    font-weight: 600;                             /* Peso de fuente semi-bold */
+    transition: var(--transition);                  /* Transición suave */
+    display: flex;                                /* Layout flexbox */
+    align-items: center;                          /* Centrar verticalmente */
+    justify-content: center;                      /* Centrar horizontalmente */
+    text-align: center;                           /* Texto centrado */
 }
 
+/* Efecto hover del botón secundario */
 .btn-premium-secondary:hover {
-    background: var(--gold-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-    color: var(--black-primary);
+    background: var(--gold-primary);                /* Fondo dorado */
+    transform: translateY(-2px);                    /* Elevación */
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); /* Sombra dorada */
+    color: var(--black-primary);                   /* Mantener texto negro */
 }
 
 /* === MEJORAS EN SELECT Y OPTIONS === */
+/* Campos de formulario y selects con estilo premium */
 .form-control, .form-select {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--gold-primary);
-    color: var(--white-primary);
-    border-radius: 10px;
-    padding: 12px 15px;
-    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);           /* Fondo blanco semi-transparente */
+    border: 1px solid var(--gold-primary);          /* Borde dorado */
+    color: var(--white-primary);                   /* Texto blanco */
+    border-radius: 10px;                          /* Bordes redondeados */
+    padding: 12px 15px;                          /* Espaciado interno */
+    transition: var(--transition);                  /* Transición suave */
 }
 
+/* Estado de foco de campos y selects */
 .form-control:focus, .form-select:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--gold-light);
-    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
-    color: var(--white-primary);
+    background: rgba(255, 255, 255, 0.15);         /* Fondo más intenso */
+    border-color: var(--gold-light);               /* Borde dorado claro */
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25); /* Sombra dorada */
+    color: var(--white-primary);                   /* Mantener texto blanco */
 }
 
+/* Texto placeholder */
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6);              /* Color blanco semi-transparente */
 }
 
-/* Opciones del select con mejor contraste */
+/* === OPCIONES DEL SELECT CON MEJOR CONTRASTE === */
+/* Opciones del select con fondo oscuro */
 .form-select option {
-    background: var(--black-secondary);
-    color: var(--white-primary);
-    padding: 10px;
+    background: var(--black-secondary);             /* Fondo negro secundario */
+    color: var(--white-primary);                   /* Texto blanco */
+    padding: 10px;                                /* Espaciado interno */
 }
 
+/* Efecto hover en opciones */
 .form-select option:hover {
-    background: var(--gold-primary);
-    color: var(--black-primary);
+    background: var(--gold-primary);                /* Fondo dorado */
+    color: var(--black-primary);                   /* Texto negro */
 }
 
+/* Opción seleccionada */
 .form-select option:checked {
-    background: var(--gold-primary);
-    color: var(--black-primary);
-    font-weight: bold;
+    background: var(--gold-primary);                /* Fondo dorado */
+    color: var(--black-primary);                   /* Texto negro */
+    font-weight: bold;                            /* Texto en negrita */
 }
 
 /* === TABLAS PREMIUM === */
+/* Tabla con estilo premium */
 .premium-table {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-dark);
+    background: rgba(255, 255, 255, 0.05);           /* Fondo blanco semi-transparente */
+    border-radius: var(--border-radius);             /* Bordes redondeados */
+    overflow: hidden;                               /* Ocultar desbordamiento */
+    box-shadow: var(--shadow-dark);                  /* Sombra oscura */
 }
 
+/* Tabla interna */
 .premium-table table {
-    margin: 0;
-    background: transparent;
+    margin: 0;                                     /* Sin margen */
+    background: transparent;                        /* Fondo transparente */
 }
 
+/* Encabezados de la tabla */
 .premium-table thead th {
-    background: var(--gradient-gold);
-    color: var(--black-primary);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 20px 15px;
-    border: none;
-    font-size: 0.9rem;
+    background: var(--gradient-gold);                /* Fondo con gradiente dorado */
+    color: var(--black-primary);                   /* Texto negro */
+    font-weight: 700;                             /* Peso de fuente bold */
+    text-transform: uppercase;                     /* Texto en mayúsculas */
+    letter-spacing: 1px;                          /* Espaciado entre letras */
+    padding: 20px 15px;                          /* Espaciado interno */
+    border: none;                                 /* Sin bordes */
+    font-size: 0.9rem;                           /* Tamaño de fuente */
 }
 
+/* Celdas del cuerpo de la tabla */
 .premium-table tbody td {
-    background: rgba(255, 255, 255, 0.02);
-    color: var(--white-primary);
-    padding: 15px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.02);         /* Fondo blanco muy sutil */
+    color: var(--white-primary);                   /* Texto blanco */
+    padding: 15px;                                /* Espaciado interno */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1); /* Línea separadora dorada */
+    transition: var(--transition);                  /* Transición suave */
 }
 
+/* Efecto hover en filas */
 .premium-table tbody tr:hover td {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.1);           /* Fondo dorado transparente */
+    color: var(--gold-light);                      /* Texto dorado claro */
 }
 
 /* === ALERTAS PREMIUM === */
+/* Alerta base con estilo premium */
 .alert-premium {
-    background: rgba(212, 175, 55, 0.1);
-    border: 1px solid var(--gold-primary);
-    border-radius: var(--border-radius);
-    color: var(--gold-light);
-    padding: 20px;
-    margin: 20px 0;
-    backdrop-filter: blur(10px);
+    background: rgba(212, 175, 55, 0.1);            /* Fondo dorado transparente */
+    border: 1px solid var(--gold-primary);          /* Borde dorado */
+    border-radius: var(--border-radius);             /* Bordes redondeados */
+    color: var(--gold-light);                      /* Texto dorado claro */
+    padding: 20px;                                /* Espaciado interno */
+    margin: 20px 0;                              /* Margen vertical */
+    backdrop-filter: blur(10px);                   /* Efecto de desenfoque */
 }
 
+/* Alerta de éxito */
 .alert-premium-success {
-    background: rgba(40, 167, 69, 0.1);
-    border-color: #28a745;
-    color: #90EE90;
+    background: rgba(40, 167, 69, 0.1);            /* Fondo verde transparente */
+    border-color: #28a745;                         /* Borde verde */
+    color: #90EE90;                               /* Texto verde claro */
 }
 
+/* Alerta de peligro */
 .alert-premium-danger {
-    background: rgba(220, 53, 69, 0.1);
-    border-color: #dc3545;
-    color: #ff6b6b;
+    background: rgba(220, 53, 69, 0.1);            /* Fondo rojo transparente */
+    border-color: #dc3545;                         /* Borde rojo */
+    color: #ff6b6b;                               /* Texto rojo claro */
 }
 
+/* Alerta de advertencia */
 .alert-premium-warning {
-    background: rgba(255, 193, 7, 0.1);
-    border-color: #ffc107;
-    color: #ffd700;
+    background: rgba(255, 193, 7, 0.1);            /* Fondo amarillo transparente */
+    border-color: #ffc107;                         /* Borde amarillo */
+    color: #ffd700;                               /* Texto amarillo dorado */
 }
 
 /* === GRÁFICO PREMIUM === */
+/* Contenedor del gráfico con estilo premium */
 .premium-chart {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);           /* Fondo blanco semi-transparente */
+    border-radius: var(--border-radius);             /* Bordes redondeados */
+    padding: 20px;                                 /* Espaciado interno */
+    backdrop-filter: blur(10px);                    /* Efecto de desenfoque */
 }
 
 /* (Se eliminó sección mensual) */
 
 /* === ESTADO DE CONEXIÓN PREMIUM === */
+/* Badge base para estados */
 .status-badge {
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 8px 15px;                             /* Espaciado interno */
+    border-radius: 20px;                          /* Bordes muy redondeados */
+    font-weight: 600;                             /* Peso de fuente semi-bold */
+    font-size: 0.85rem;                          /* Tamaño de fuente */
+    text-transform: uppercase;                     /* Texto en mayúsculas */
+    letter-spacing: 1px;                         /* Espaciado entre letras */
 }
 
+/* Estado conectado */
 .status-connected {
-    background: var(--gradient-gold);
-    color: var(--black-primary);
-    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+    background: var(--gradient-gold);               /* Fondo con gradiente dorado */
+    color: var(--black-primary);                  /* Texto negro */
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3); /* Sombra dorada */
 }
 
+/* Estado de error */
 .status-error {
-    background: linear-gradient(135deg, #dc3545, #c82333);
-    color: var(--white-primary);
-    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+    background: linear-gradient(135deg, #dc3545, #c82333); /* Fondo con gradiente rojo */
+    color: var(--white-primary);                   /* Texto blanco */
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3); /* Sombra roja */
 }
 
+/* Estado actualizando */
 .status-updating {
-    background: var(--gradient-silver);
-    color: var(--black-primary);
-    box-shadow: 0 3px 10px rgba(192, 192, 192, 0.3);
+    background: var(--gradient-silver);             /* Fondo con gradiente plateado */
+    color: var(--black-primary);                  /* Texto negro */
+    box-shadow: 0 3px 10px rgba(192, 192, 192, 0.3); /* Sombra plateada */
 }
 
 /* === ANIMACIONES PREMIUM === */
+/* Animación de brillo que se desliza */
 @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% { transform: translateX(-100%); }            /* Inicia fuera del elemento */
+    100% { transform: translateX(100%); }           /* Termina fuera del elemento */
 }
 
+/* Elemento con efecto shimmer */
 .shimmer {
-    position: relative;
-    overflow: hidden;
+    position: relative;                             /* Posición relativa */
+    overflow: hidden;                              /* Ocultar desbordamiento */
 }
 
+/* Efecto de brillo que se desliza */
 .shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    animation: shimmer 2s infinite;
+    content: '';                                   /* Contenido vacío */
+    position: absolute;                            /* Posición absoluta */
+    top: 0;                                      /* Desde arriba */
+    left: 0;                                     /* Desde la izquierda */
+    width: 100%;                                 /* Ancho completo */
+    height: 100%;                                /* Alto completo */
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); /* Gradiente de brillo */
+    animation: shimmer 2s infinite;               /* Animación infinita */
 }
 
 /* === RESPONSIVE PREMIUM === */
@@ -1193,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-<!-- 🚀 SCRIPT PARA GUARDAR LÍMITE DE CONSUMO Y FUNCIONALIDADES EN TIEMPO REAL -->
+<!--  SCRIPT PARA GUARDAR LÍMITE DE CONSUMO Y FUNCIONALIDADES EN TIEMPO REAL -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('formLimite');

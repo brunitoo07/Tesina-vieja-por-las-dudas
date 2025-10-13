@@ -12,6 +12,11 @@
                 <a class="nav-link" href="<?= base_url('perfil/perfil'); ?>">Perfil</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('comprar-medidor'); ?>">
+                    <i class="fas fa-shopping-cart"></i> Comprar Medidor
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('autenticacion/configuracion'); ?>">Configuración</a>
             </li>
             <li class="nav-item">

@@ -521,7 +521,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">EcoVolt</a>
+            <a class="navbar-brand" href="#">EcoVolt S.R.L</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -538,9 +538,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#manual"><?= lang('App.manual') ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#asistente">🤖 Asistente</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#comprar"><?= lang('App.comprar') ?></a>
@@ -593,13 +590,60 @@
     <section id="quienes-somos" class="section">
         <div class="container">
             <h2 class="text-center section-title" data-aos="fade-up"><?= lang('App.quienes_somos') ?></h2>
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-5">
                 <div class="col-md-6" data-aos="fade-right">
                     <p class="lead">Somos un equipo apasionado por la tecnología y la sostenibilidad, comprometidos con el desarrollo de soluciones innovadoras para el monitoreo y control del consumo de energía.</p>
                     <p>Nuestra misión es proporcionar herramientas accesibles y eficientes para que cada hogar pueda contribuir a un futuro más sostenible.</p>
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
-                    <img src="https://media.istockphoto.com/id/2190044172/es/vector/perfil-de-la-cuenta-l%C3%ADnea-fina-e-icono-de-glifo-s%C3%B3lido-trazo-editable-y-p%C3%ADxel-perfecto.jpg?s=612x612&w=0&k=20&c=_GBUr_rXvNRGdqhvQt5luPXnCpXXUVHFUKtTYvf51I8=" alt="Nuestro Equipo" class="img-fluid rounded shadow">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <img src="<?= base_url('imagenes/enzo.png') ?>" alt="Enzo" class="img-fluid rounded-circle shadow mb-3" style="width: 200px; height: 200px; object-fit: cover;">
+                            <h5>Enzo Guerreiro</h5>
+                         
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="<?= base_url('imagenes/bruno.png') ?>" alt="Bruno" class="img-fluid rounded-circle shadow mb-3" style="width: 200px; height: 200px; object-fit: cover;">
+                            <h5>Bruno Cameille</h5>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nuestro Equipo Detallado -->
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card feature-card h-100">
+                        <div class="card-overlay"></div>
+                        <div class="card-body text-center">
+                            <img src="<?= base_url('imagenes/enzo.png') ?>" alt="Enzo" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                            <h4>Enzo Guerreiro</h4>
+                            <h6 class="text-muted mb-3">Co-Fundador</h6>
+                            <p>Especialista en desarrollo de hardware. Apasionado por la tecnología sostenible y la innovación en el campo de la energía.</p>
+                            <div class="mt-3">
+                                <i class="fas fa-code text-primary me-2"></i>
+                                <i class="fas fa-microchip text-primary me-2"></i>
+                                <i class="fas fa-leaf text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-overlay"></div>
+                        <div class="card-body text-center">
+                            <img src="<?= base_url('imagenes/bruno.png') ?>" alt="Bruno" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                            <h4>Bruno Cameille</h4>
+                            <h6 class="text-muted mb-3">Co-Fundador</h6>
+                            <p>Experto en software y sistemas web. Encargado del desarrollo de monitoreo y la integración software.</p>
+                            <div class="mt-3">
+                                <i class="fas fa-microchip text-primary me-2"></i>
+                                <i class="fas fa-bolt text-warning me-2"></i>
+                                <i class="fas fa-cogs text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -696,48 +740,12 @@
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
-                    <img src="https://resoluciondeproblema.files.wordpress.com/2013/03/autodisciplina-es-clave-lograr-el-exito-l-5ows2y.jpeg?w=300&h=225" alt="Manual Preview" class="img-fluid rounded shadow">
+                    <img src="<?= base_url('imagenes/manual de user.png') ?>" alt="Manual de Usuario EcoVolt" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Asistente Virtual -->
-    <section id="asistente" class="section bg-light">
-        <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">🤖 Asistente Virtual Inteligente</h2>
-            <div class="row align-items-center">
-                <div class="col-md-6" data-aos="fade-right">
-                    <div class="card feature-card h-100">
-                        <div class="card-overlay"></div>
-                        <div class="card-body">
-                            <h3 class="mb-4">💬 Chat Inteligente</h3>
-                            <p class="mb-4">Nuestro asistente virtual está disponible 24/7 para ayudarte con:</p>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Consultas sobre dispositivos y MAC</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Información del sistema en tiempo real</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Datos de consumo de energía</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Ayuda técnica y soporte</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Información del proyecto EcoVolt</li>
-                            </ul>
-                            <button onclick="toggleChat()" class="btn btn-primary btn-lg">
-                                <i class="fas fa-comments me-2"></i> Probar Asistente
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <div class="text-center">
-                        <div class="chat-preview">
-                            <div class="chat-bubble bot">👋 ¡Hola! Soy tu asistente virtual de EcoVolt</div>
-                            <div class="chat-bubble user">¿Puedes mostrarme el estado del sistema?</div>
-                            <div class="chat-bubble bot">📊 **Estado del Sistema EcoVolt**<br>✅ Sistema operativo<br>🔌 5 MACs validadas<br>⚡ 1,247 lecturas de energía</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Comprar -->
     <section id="comprar" class="section">

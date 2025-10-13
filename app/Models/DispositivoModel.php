@@ -2,49 +2,99 @@
 
 use CodeIgniter\Model;
 
+/**
+ * MODELO DE DISPOSITIVO - EcoVolt
+ * 
+ * Este modelo maneja todas las operaciones relacionadas con los dispositivos IoT (ESP32)
+ * que monitorean el consumo de energía eléctrica.
+ * 
+ * FUNCIONALIDADES PRINCIPALES:
+ * - Gestión de dispositivos ESP32
+ * - Validación de direcciones MAC únicas
+ * - Control de stock y precios
+ * - Estados de dispositivos (activo/inactivo)
+ * - Códigos de activación únicos
+ * - Relación con usuarios y lecturas de energía
+ * 
+ * TIPOS DE MAC:
+ * - mac_address: MAC simulada para identificación en el sistema
+ * - mac_real_esp32: MAC física real del dispositivo ESP32
+ * 
+ * ESTADOS:
+ * - activo: Dispositivo funcionando y enviando datos
+ * - inactivo: Dispositivo deshabilitado o sin conexión
+ */
 class DispositivoModel extends Model
 {
+    // ==================== CONFIGURACIÓN DE LA TABLA ====================
+    
+    /** @var string Nombre de la tabla en la base de datos */
     protected $table = 'dispositivos';
+    
+    /** @var string Clave primaria de la tabla */
     protected $primaryKey = 'id_dispositivo';
+    
+    /** @var bool Usar auto incremento para la clave primaria */
     protected $useAutoIncrement = true;
+    
+    /** @var string Tipo de datos que retorna (array, object, etc.) */
     protected $returnType = 'array';
+    
+    /** @var bool Usar soft deletes (eliminación lógica) */
     protected $useSoftDeletes = false;
+    
+    /** @var bool Proteger campos automáticamente */
     protected $protectFields = true;
+    
+    /** @var array Campos permitidos para inserción/actualización */
     protected $allowedFields = [
-        'id_usuario',
-        'nombre',
-        'mac_address',    // Dirección MAC real del ESP32
-        'mac_real_esp32', // (si no se usa, considerar eliminar en el futuro)
-        'codigo_activacion',
-        'stock',
-        'precio',
-        'descripcion',
-        'estado',
-        'created_at',
-        'updated_at',
-        'ultima_lectura'
+        'id_usuario',           // ID del usuario propietario
+        'nombre',               // Nombre descriptivo del dispositivo
+        'mac_address',          // Dirección MAC simulada para identificación
+        'mac_real_esp32',       // Dirección MAC física real del ESP32
+        'codigo_activacion',    // Código único para activar el dispositivo
+        'stock',                // Cantidad en stock
+        'precio',               // Precio del dispositivo
+        'descripcion',          // Descripción del dispositivo
+        'estado',               // Estado actual (activo/inactivo)
+        'created_at',           // Fecha de creación
+        'updated_at',           // Fecha de última actualización
+        'ultima_lectura'        // Timestamp de la última lectura de energía
     ];
 
-    // Dates
+    // ==================== CONFIGURACIÓN DE TIMESTAMPS ====================
+    
+    /** @var bool Usar timestamps automáticos (deshabilitado para control manual) */
     protected $useTimestamps = false;
+    
+    /** @var string Formato de fecha para timestamps */
     protected $dateFormat = 'datetime';
+    
+    /** @var string Nombre del campo de fecha de creación */
     protected $createdField = 'created_at';
+    
+    /** @var string Nombre del campo de fecha de actualización */
     protected $updatedField = 'updated_at';
+    
+    /** @var string Nombre del campo de fecha de eliminación (soft delete) */
     // protected $deletedField = 'deleted_at'; // Descomenta si usas soft deletes y tienes la columna
 
-    // Validation
+    // ==================== REGLAS DE VALIDACIÓN ====================
+    
+    /** @var array Reglas de validación para los campos del dispositivo */
     protected $validationRules = [
-        'id_usuario' => 'required|numeric',
-        'nombre' => 'required|min_length[3]|max_length[100]',
-        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]|valid_mac_address',
-        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]|valid_mac_address',
-        'codigo_activacion' => 'permit_empty|alpha_numeric|min_length[10]|max_length[32]|is_unique[dispositivos.codigo_activacion]',
-        'stock' => 'permit_empty|numeric|greater_than_equal_to[0]',
-        'precio' => 'permit_empty|numeric|greater_than_equal_to[0]',
-        'descripcion' => 'permit_empty|max_length[255]',
-        'estado' => 'required|in_list[activo,inactivo]'
+        'id_usuario' => 'required|numeric',                                                                           // Usuario propietario obligatorio
+        'nombre' => 'required|min_length[3]|max_length[100]',                                                         // Nombre 3-100 caracteres
+        'mac_address' => 'required|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_address]|valid_mac_address', // MAC simulada única y válida
+        'mac_real_esp32' => 'permit_empty|regex_match[/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/]|is_unique[dispositivos.mac_real_esp32]|valid_mac_address', // MAC real única y válida
+        'codigo_activacion' => 'permit_empty|alpha_numeric|min_length[10]|max_length[32]|is_unique[dispositivos.codigo_activacion]', // Código único 10-32 caracteres
+        'stock' => 'permit_empty|numeric|greater_than_equal_to[0]',                                                   // Stock numérico no negativo
+        'precio' => 'permit_empty|numeric|greater_than_equal_to[0]',                                                  // Precio numérico no negativo
+        'descripcion' => 'permit_empty|max_length[255]',                                                              // Descripción opcional, máximo 255 caracteres
+        'estado' => 'required|in_list[activo,inactivo]'                                                               // Estado obligatorio: activo o inactivo
     ];
 
+    /** @var array Mensajes personalizados para las validaciones */
     protected $validationMessages = [
         'id_usuario' => [
             'required' => 'El ID del usuario es requerido',
@@ -91,13 +141,27 @@ class DispositivoModel extends Model
         ]
     ];
 
+    /** @var bool Saltar validación automática */
     protected $skipValidation = false;
+    
+    /** @var bool Limpiar reglas de validación automáticamente */
     protected $cleanValidationRules = true;
 
+    // ==================== CONSTRUCTOR ====================
+    
+    /**
+     * Constructor del modelo
+     * 
+     * NOTA IMPORTANTE: Las columnas `created_at` y `updated_at` deben crearse 
+     * con una migración, no aquí. Si no tienes una migración que las cree, 
+     * deberías crear una.
+     */
     public function __construct()
     {
         parent::__construct();
-        // **IMPORTANTE**: Eliminar esta línea. Las columnas `created_at` y `updated_at` deben crearse con una migración, no aquí.
+        
+        // **IMPORTANTE**: Eliminar esta línea. Las columnas `created_at` y `updated_at` 
+        // deben crearse con una migración, no aquí.
         // Si no tienes una migración que las cree, deberías hacerla.
         // $this->db->query("
         //     ALTER TABLE dispositivos
@@ -106,25 +170,24 @@ class DispositivoModel extends Model
         // ");
     }
 
-    // --- Métodos Actualizados y Simplificados ---
-
-    // Este método ya no es necesario aquí, la MAC simulada se genera en el controlador Admin
-    // public function generarMacSimulada() { ... }
-
-    // Este método no es necesario, el estado 'configurando' no lo usaremos directamente.
-    // public function iniciarConfiguracion($idDispositivo) { ... }
-
-    // Este método tampoco es necesario, la activación la manejará el controlador API directamente.
-    // public function activarDispositivo($idDispositivo, $macReal, $ssid) { ... }
-
-
-    // Obtener dispositivos de un usuario específico (para cualquier rol, se filtra en el controlador)
+    // ==================== MÉTODOS PÚBLICOS PRINCIPALES ====================
+    
+    /**
+     * Obtiene todos los dispositivos de un usuario específico
+     * 
+     * @param int $userId ID del usuario
+     * @return array Lista de dispositivos del usuario
+     */
     public function getDispositivosPorUsuario($userId)
     {
         return $this->where('id_usuario', $userId)->findAll();
     }
 
-    // Obtener todos los dispositivos, con la información del usuario y su rol
+    /**
+     * Obtiene todos los dispositivos con información del usuario y su rol
+     * 
+     * @return array Lista de dispositivos con información de usuarios y roles
+     */
     public function getAllDispositivosConUsuario()
     {
         return $this->select('dispositivos.*, usuario.nombre as nombre_usuario, usuario.apellido as apellido_usuario, usuario.email as email_usuario, roles.nombre_rol as nombre_rol_usuario')
@@ -133,18 +196,28 @@ class DispositivoModel extends Model
                     ->findAll();
     }
 
-    // Obtener todos los dispositivos de un usuario específico
+    /**
+     * Obtiene dispositivos de un usuario considerando su rol y permisos
+     * 
+     * LÓGICA DE PERMISOS:
+     * - Usuario normal (rol 2): Ve sus dispositivos + dispositivos del admin que lo invitó
+     * - Admin/Supervisor (rol 1/3): Ve solo sus propios dispositivos
+     * 
+     * @param int $idUsuario ID del usuario
+     * @return array Lista de dispositivos con última lectura incluida
+     */
     public function obtenerDispositivosUsuario($idUsuario)
     {
-        // Obtener el rol del usuario y el admin que lo invitó
         $db = \Config\Database::connect();
+        
+        // Obtener información del usuario (rol y quién lo invitó)
         $builder = $db->table('usuario');
         $builder->select('id_rol, invitado_por');
         $builder->where('id_usuario', $idUsuario);
         $usuario = $builder->get()->getRowArray();
 
-        if ($usuario && $usuario['id_rol'] == 2) { // Si es usuario normal
-            // Obtener dispositivos del admin que lo invitó y los propios
+        if ($usuario && $usuario['id_rol'] == 2) { 
+            // Usuario normal: puede ver dispositivos del admin que lo invitó + los propios
             $builder = $db->table('dispositivos d');
             $builder->select('d.*, u.nombre as nombre_usuario, u.email as email_usuario');
             $builder->join('usuario u', 'u.id_usuario = d.id_usuario');
@@ -153,8 +226,8 @@ class DispositivoModel extends Model
                     ->orWhere('d.id_usuario', $idUsuario) // Dispositivos propios
                     ->groupEnd();
             $dispositivos = $builder->get()->getResultArray();
-        } else { // Si es admin o supervisor
-            // Obtener todos los dispositivos del admin
+        } else { 
+            // Admin o supervisor: solo ve sus propios dispositivos
             $builder = $db->table('dispositivos d');
             $builder->select('d.*, u.nombre as nombre_usuario, u.email as email_usuario');
             $builder->join('usuario u', 'u.id_usuario = d.id_usuario');
@@ -162,7 +235,7 @@ class DispositivoModel extends Model
             $dispositivos = $builder->get()->getResultArray();
         }
 
-        // Para cada dispositivo, obtener su última lectura
+        // Agregar la última lectura de energía para cada dispositivo
         foreach ($dispositivos as &$dispositivo) {
             $builder = $db->table('energia');
             $builder->select('*');
@@ -176,33 +249,60 @@ class DispositivoModel extends Model
         return $dispositivos;
     }
 
-    // Obtener un dispositivo por su dirección MAC
+    // ==================== MÉTODOS DE BÚSQUEDA ====================
+    
+    /**
+     * Busca un dispositivo por su dirección MAC simulada
+     * @param string $macAddress Dirección MAC a buscar
+     * @return array|null Datos del dispositivo encontrado
+     */
     public function obtenerPorMac($macAddress)
     {
         return $this->where('mac_address', $macAddress)->first();
     }
 
-    // Verificar si un dispositivo ya está registrado
+    /**
+     * Verifica si un dispositivo ya está registrado por su MAC
+     * @param string $macAddress Dirección MAC a verificar
+     * @return bool True si existe, false si no
+     */
     public function dispositivoExiste($macAddress)
     {
         return $this->where('mac_address', $macAddress)->countAllResults() > 0;
     }
 
-    // Actualizar el estado del dispositivo
+    /**
+     * Obtiene un dispositivo por su ID
+     * @param int $idDispositivo ID del dispositivo
+     * @return array|null Datos del dispositivo
+     */
+    public function obtenerDispositivo($idDispositivo)
+    {
+        return $this->find($idDispositivo);
+    }
+
+    // ==================== MÉTODOS DE ACTUALIZACIÓN ====================
+    
+    /**
+     * Actualiza el estado de un dispositivo
+     * @param int $idDispositivo ID del dispositivo
+     * @param string $estado Nuevo estado (activo/inactivo)
+     * @return bool True si se actualizó correctamente
+     */
     public function actualizarEstado($idDispositivo, $estado)
     {
         return $this->update($idDispositivo, ['estado' => $estado]);
     }
 
-    // Actualizar la última lectura del dispositivo
+    /**
+     * Actualiza la última lectura de un dispositivo
+     * @param int $idDispositivo ID del dispositivo
+     * @param string $lectura Timestamp de la última lectura
+     * @return bool True si se actualizó correctamente
+     */
     public function actualizarUltimaLectura($idDispositivo, $lectura)
     {
         return $this->update($idDispositivo, ['ultima_lectura' => $lectura]);
-    }
-
-    public function obtenerDispositivo($idDispositivo)
-    {
-        return $this->find($idDispositivo);
     }
 
     public function getDispositivoByMacSimulada($macAddress)

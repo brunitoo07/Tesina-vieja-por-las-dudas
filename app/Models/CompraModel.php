@@ -7,6 +7,6 @@ class CompraModel extends Model
 {
     protected $table = 'compra';
     protected $primaryKey = 'id_compra';
-    protected $allowedFields = ['id_usuario', 'direccion_envio', 'fecha_compra', 'estado', 'id_dispositivo'];
+    protected $allowedFields = ['id_usuario', 'direccion_envio', 'fecha_compra', 'estado', 'id_dispositivo', 'payment_id'];
     protected $useTimestamps = false;
 } 

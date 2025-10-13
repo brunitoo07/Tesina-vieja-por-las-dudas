@@ -65,8 +65,18 @@
         padding: 1rem 1.5rem;
     }
     .premium-alert.alert-success {
-        background-color: rgba(40, 167, 69, 0.1);
-        border-color: #28a745;
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(32, 201, 151, 0.2) 100%);
+        border: 2px solid #28a745;
+        color: #28a745;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+        animation: successPulse 2s ease-in-out;
+    }
+    
+    @keyframes successPulse {
+        0% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
+        50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(40, 167, 69, 0.5); }
+        100% { transform: scale(1); box-shadow: 0 0 20px rgba(40, 167, 69, 0.3); }
     }
     .premium-alert.alert-danger {
         background-color: rgba(220, 53, 69, 0.1);
@@ -130,12 +140,14 @@
                 <div class="premium-card-body">
                     <?php if (session()->getFlashdata('success')): ?>
                         <div class="premium-alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>
                             <?= session()->getFlashdata('success') ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (session()->getFlashdata('error')): ?>
                         <div class="premium-alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
                             <?= session()->getFlashdata('error') ?>
                         </div>
                     <?php endif; ?>

@@ -121,6 +121,6 @@ class Usuario extends BaseController
             'contrasena' => password_hash($new_password, PASSWORD_DEFAULT)
         ]);
 
-        return redirect()->to('/dashboard/perfil')->with('success', 'Contraseña actualizada correctamente');
+        return redirect()->to('/dashboard/perfil')->with('success', '¡Contraseña actualizada correctamente! Tu cuenta está segura.');
     }
 } 

@@ -10,14 +10,54 @@ use App\Models\UsuarioModel;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-
+/**
+ * CONTROLADOR DE ENERGÍA - EcoVolt
+ * 
+ * Este controlador maneja todas las operaciones relacionadas con el monitoreo
+ * y gestión de consumo de energía eléctrica de los dispositivos IoT.
+ * 
+ * FUNCIONALIDADES PRINCIPALES:
+ * - Visualización de datos de consumo en tiempo real
+ * - Recepción de datos de dispositivos ESP32
+ * - Gestión de límites de consumo
+ * - Notificaciones por email y Telegram
+ * - Generación de reportes PDF
+ * - Filtrado y paginación de lecturas
+ * - Cálculo de costos basado en tarifas
+ * 
+ * ENDPOINTS PRINCIPALES:
+ * - index(): Dashboard principal de energía
+ * - recibirNuevosDatos(): API para recibir datos de ESP32
+ * - getLatestData(): Obtener última lectura en tiempo real
+ * - actualizarLimite(): Configurar límites de consumo
+ * - generarPDF(): Generar reportes de consumo
+ * - getlimite(): API pública para ESP32 obtener límites
+ * 
+ * NOTIFICACIONES:
+ * - Email: Alertas cuando se supera el límite de consumo
+ * - Telegram: Notificaciones en tiempo real al bot
+ * - Control de frecuencia: Evita spam de notificaciones
+ */
 class Energia extends BaseController
 {
+    // ==================== PROPIEDADES DEL CONTROLADOR ====================
+    
+    /** @var EnergiaModel Modelo para operaciones de lecturas de energía */
     protected $energiaModel;
+    
+    /** @var DispositivoModel Modelo para operaciones de dispositivos */
     protected $dispositivoModel;
+    
+    /** @var LimiteConsumoModel Modelo para gestión de límites */
     protected $limiteModel;
+    
+    /** @var UsuarioModel Modelo para operaciones de usuarios */
     protected $userModel; 
 
+    /**
+     * Constructor del controlador
+     * Inicializa todos los modelos necesarios
+     */
     public function __construct()
     {
         $this->energiaModel = new EnergiaModel();
@@ -26,32 +66,50 @@ class Energia extends BaseController
         $this->userModel = new UsuarioModel();
     }
 
+    // ==================== MÉTODOS PRINCIPALES ====================
+    
+    /**
+     * Dashboard principal de energía
+     * 
+     * Muestra las últimas 50 lecturas del dispositivo más reciente del usuario.
+     * Si no tiene dispositivos, redirige a la página de dispositivos.
+     * 
+     * @return \CodeIgniter\HTTP\RedirectResponse|\CodeIgniter\View\View
+     */
     public function index()
     {
+        // Verificar autenticación
         if (!session()->get('logged_in')) {
             return redirect()->to('/login');
         }
 
         try {
             $idUsuario = session()->get('id_usuario');
+            
+            // Obtener dispositivos del usuario
             $dispositivos = $this->dispositivoModel->where('id_usuario', $idUsuario)->findAll();
             
             if (empty($dispositivos)) {
                 return redirect()->to('/dispositivos')->with('error', 'No tienes dispositivos registrados');
             }
 
+            // Usar el dispositivo más reciente
             $ultimoDispositivo = end($dispositivos);
+            
+            // Obtener las últimas 50 lecturas del dispositivo
             $lecturas = $this->energiaModel->where('id_dispositivo', $ultimoDispositivo['id_dispositivo'])
                                          ->orderBy('fecha', 'DESC')
                                          ->limit(50)
                                          ->findAll();
 
+            // Obtener límite de consumo configurado
             $limite = $this->limiteModel->getLimiteByDispositivo($ultimoDispositivo['id_dispositivo']);
-            $limite_consumo = $limite ? $limite['limite_consumo'] : 10;
+            $limite_consumo = $limite ? $limite['limite_consumo'] : 10; // Valor por defecto: 10 kWh
 
             log_message('info', 'Dispositivo ID: ' . $ultimoDispositivo['id_dispositivo']);
             log_message('info', 'Número de lecturas encontradas: ' . count($lecturas));
 
+            // Cargar la vista con los datos
             return view('energia/index', [
                 'lecturas' => $lecturas,
                 'dispositivo' => $ultimoDispositivo,
@@ -64,52 +122,80 @@ class Energia extends BaseController
         }
     }
 
+    /**
+     * Obtiene la última lectura de energía en tiempo real (AJAX)
+     * 
+     * Usado por el frontend para actualizar datos sin recargar la página.
+     * Retorna la última lectura del dispositivo más reciente del usuario.
+     * 
+     * @return \CodeIgniter\HTTP\ResponseInterface Respuesta JSON con los datos
+     */
     public function getLatestData()
-{
-    if (!session()->get('logged_in')) {
-        return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+    {
+        // Verificar autenticación
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON(['error' => 'No autorizado'])->setStatusCode(401);
+        }
+
+        $idUsuario = session()->get('id_usuario');
+        
+        // Obtener el dispositivo más reciente del usuario
+        $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
+                                             ->orderBy('id_dispositivo', 'DESC')
+                                             ->first();
+
+        if (!$dispositivo) {
+            return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
+        }
+
+        // Obtener la última lectura del dispositivo
+        $ultimaLectura = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
+                                           ->orderBy('fecha', 'DESC')
+                                           ->first();
+
+        if (!$ultimaLectura) {
+            return $this->response->setJSON(['error' => 'No hay lecturas disponibles'])->setStatusCode(404);
+        }
+
+        // Verificar si se superó el límite de consumo
+        $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
+        $limiteConsumo = $limite ? $limite['limite_consumo'] : 10;
+        $ultimaLectura['limite_superado'] = $ultimaLectura['kwh'] > $limiteConsumo;
+
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => $ultimaLectura,
+            'limite_consumo' => $limiteConsumo
+        ]);
     }
 
-    $idUsuario = session()->get('id_usuario');
-    $dispositivo = $this->dispositivoModel->where('id_usuario', $idUsuario)
-                                         ->orderBy('id_dispositivo', 'DESC')
-                                         ->first();
 
-    if (!$dispositivo) {
-        return $this->response->setJSON(['error' => 'No se encontró dispositivo'])->setStatusCode(404);
-    }
-
-    $ultimaLectura = $this->energiaModel->where('id_dispositivo', $dispositivo['id_dispositivo'])
-                                       ->orderBy('fecha', 'DESC')
-                                       ->first();
-
-    if (!$ultimaLectura) {
-        return $this->response->setJSON(['error' => 'No hay lecturas disponibles'])->setStatusCode(404);
-    }
-
-    // Verificar límite de consumo
-    $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
-    $limiteConsumo = $limite ? $limite['limite_consumo'] : 10;
-
-    $ultimaLectura['limite_superado'] = $ultimaLectura['kwh'] > $limiteConsumo;
-
-    return $this->response->setJSON([
-        'success' => true,
-        'data' => $ultimaLectura,
-        'limite_consumo' => $limiteConsumo
-    ]);
-}
-
-
+    /**
+     * Recibe datos de consumo de energía desde dispositivos ESP32
+     * 
+     * ENDPOINT API para que los dispositivos IoT envíen sus lecturas.
+     * Valida los datos, verifica límites y envía notificaciones si es necesario.
+     * 
+     * DATOS REQUERIDOS:
+     * - voltaje: Voltaje medido en voltios
+     * - corriente: Corriente medida en amperios  
+     * - potencia: Potencia calculada en watts
+     * - kwh: Consumo en kilovatios-hora
+     * - mac_address: Dirección MAC del dispositivo
+     * 
+     * @return \CodeIgniter\HTTP\ResponseInterface Respuesta JSON con el resultado
+     */
     public function recibirNuevosDatos()
     {
         try {
+            // Obtener datos JSON del request
             $data = $this->request->getJSON(true);
 
             if (!$data) {
                 return $this->response->setJSON(['error' => 'No se recibieron datos'])->setStatusCode(400);
             }
 
+            // Validar campos requeridos
             $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
             foreach ($requiredFields as $field) {
                 if (!isset($data[$field])) {
@@ -117,14 +203,17 @@ class Energia extends BaseController
                 }
             }
 
+            // Formatear MAC address (quitar separadores y agregar :)
             $mac_sin_formato = strtoupper($data['mac_address']);
             $mac_formateada = implode(':', str_split($mac_sin_formato, 2));
             
+            // Buscar el dispositivo por MAC
             $dispositivo = $this->dispositivoModel->where('mac_address', $mac_formateada)->first();
             if (!$dispositivo) {
                 return $this->response->setJSON(['error' => 'Dispositivo no encontrado'])->setStatusCode(404);
             }
 
+            // Preparar datos de la lectura
             $lectura = [
                 'id_dispositivo' => $dispositivo['id_dispositivo'],
                 'id_usuario' => $dispositivo['id_usuario'],
@@ -137,11 +226,11 @@ class Energia extends BaseController
                 'limite_superado' => 0
             ];
 
-            // ---------------------- VERIFICAR LÍMITE (SOLO AL INSERTAR NUEVAS LECTURAS) ----------------------
+            // Verificar límite de consumo y enviar notificaciones si es necesario
             // Esta es la ÚNICA vez que se debe verificar el límite para evitar spam
             $this->verificarLimite($lectura, $dispositivo['id_dispositivo'], $dispositivo['id_usuario']);
-            // ----------------------------------------------------------------------
 
+            // Insertar la lectura en la base de datos
             $this->energiaModel->insert($lectura);
 
             return $this->response->setJSON([

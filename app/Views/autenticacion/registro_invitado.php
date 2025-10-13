@@ -4,7 +4,7 @@
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
-        <h2 class="card-title text-center mb-4"><?= lang('App.complete_registration') ?></h2>
+        <h2 class="card-title text-center mb-4">Completa el registro</h2>
 
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>

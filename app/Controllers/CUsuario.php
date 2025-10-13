@@ -181,17 +181,17 @@ class CUsuario extends BaseController
 
         // Validar campos vacíos
         if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
-            return redirect()->to('/usuario/perfil')->with('error', 'Todos los campos son obligatorios');
+            return redirect()->to('/dashboard/perfil')->with('error', 'Todos los campos son obligatorios');
         }
 
         // Validar que la nueva contraseña cumpla con los requisitos
         if (strlen($new_password) < 6 || !preg_match('/[A-Z]/', $new_password) || !preg_match('/[!@#$%]/', $new_password)) {
-            return redirect()->to('/usuario/perfil')->with('error', 'La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)');
+            return redirect()->to('/dashboard/perfil')->with('error', 'La contraseña debe tener al menos 6 caracteres, una mayúscula y un símbolo (!@#$%)');
         }
 
         // Validar que las contraseñas coincidan
         if ($new_password !== $confirm_password) {
-            return redirect()->to('/usuario/perfil')->with('error', 'Las contraseñas no coinciden');
+            return redirect()->to('/dashboard/perfil')->with('error', 'Las contraseñas no coinciden');
         }
 
         // Obtener el usuario actual
@@ -200,7 +200,7 @@ class CUsuario extends BaseController
 
         // Verificar la contraseña actual
         if (!password_verify($current_password, $usuario['contrasena'])) {
-            return redirect()->to('/usuario/perfil')->with('error', 'La contraseña actual es incorrecta');
+            return redirect()->to('/dashboard/perfil')->with('error', 'La contraseña actual es incorrecta');
         }
 
         // Actualizar la contraseña
@@ -209,6 +209,6 @@ class CUsuario extends BaseController
         ]);
 
         log_message('debug', '=== FIN CAMBIO CONTRASEÑA ===');
-        return redirect()->to('/usuario/perfil')->with('success', 'Contraseña actualizada correctamente');
+        return redirect()->to('/dashboard/perfil')->with('success', '¡Contraseña actualizada correctamente! Tu cuenta está segura.');
     }
 }
