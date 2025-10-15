@@ -254,7 +254,7 @@
             <div class="success-message">
                 <h2><i class="fas fa-check-circle"></i> ¡Pago Confirmado!</h2>
                 <p>Tu pedido premium está siendo procesado</p>
-            </div>
+        </div>
 
             <!-- Detalles del Producto -->
             <div class="info-section">
@@ -278,7 +278,7 @@
             <!-- Dirección de Envío -->
             <div class="info-section">
                 <h3><i class="fas fa-map-marker-alt"></i>Dirección de Envío</h3>
-                <p><?= esc($direccion) ?></p>
+            <p><?= esc($direccion) ?></p>
             </div>
 
             <!-- Soporte Premium Incluido -->
@@ -332,4 +332,4 @@
         </div>
     </div>
 </body>
-</html>
+</html> 

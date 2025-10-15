@@ -983,3 +983,1589 @@ DEBUG - 2025-10-13 20:16:48 --> Enviando email a: candela@gmail.com
 DEBUG - 2025-10-13 20:16:52 --> Email enviado correctamente
 DEBUG - 2025-10-13 20:16:52 --> Compra procesada exitosamente, redirigiendo...
 INFO - 2025-10-13 20:16:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:24:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:24:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:25:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:26:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:38:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:38:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:38:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:13 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:38:13 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-13 20:38:13 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 20:38:13 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-13 20:38:13 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-13 20:38:13 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:38:13 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+INFO - 2025-10-13 20:38:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:13 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:38:13 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-13 20:38:13 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 20:38:13 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-13 20:38:13 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-13 20:38:13 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:38:13 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-10-13 20:38:13 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:38:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:13 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:38:22 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-13 20:38:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:22 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:38:22 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 20:38:22 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 20:38:42 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:38:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:42 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:38:56 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-13 20:38:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:38:56 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:38:56 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 20:38:56 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 20:39:04 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:39:04 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:39:05 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-13 20:39:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:39:05 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:39:05 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 20:39:05 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 20:39:11 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:39:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:39:11 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:42:28 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:42:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:42:28 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:42:30 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:42:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:42:30 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:42:31 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:42:31 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 20:42:32 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:42:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:42:32 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398681
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-13 20:42:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:42:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:43:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:43:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:46:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:46:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:46:26 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:46:26 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-13 20:46:26 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 20:46:26 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-13 20:46:26 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-13 20:46:26 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:46:26 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-10-13 20:46:27 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:46:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:46:27 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760398961
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-13 20:46:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:46:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:46:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:53:42 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:53:42 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-13 20:53:42 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 20:53:42 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-13 20:53:42 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-13 20:53:42 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 20:53:42 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-10-13 20:53:42 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 20:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 20:53:42 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760399603
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-13 20:53:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 20:53:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:02:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:02:17 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:02:17 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-13 21:02:18 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 21:02:18 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-13 21:02:18 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-13 21:02:18 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:02:18 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-10-13 21:02:18 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 21:02:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:02:18 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760400065
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-13 21:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:02:22 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-13 21:02:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:02:22 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760400140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+)
+
+INFO - 2025-10-13 21:02:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:02:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:18:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:18:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:19:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:19:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:19:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:19:45 --> Intento de login para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:19:45 --> Usuario encontrado para compra adicional: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 21:19:45 --> Contraseña incorrecta para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-10-13 21:19:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:20:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:20:00 --> Intento de login para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:20:00 --> Usuario encontrado para compra adicional: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 21:20:00 --> Login exitoso para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:20:00 --> Redirigiendo a compra adicional para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-10-13 21:20:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:20:00 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:20:00 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:20:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:20:19 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:20:19 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:20:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:20:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:20:23 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:20:23 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:20:30 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:20:30 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:35:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:35:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:35:59 --> Intento de login para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:35:59 --> Usuario encontrado para compra adicional: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 21:35:59 --> Contraseña incorrecta para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-10-13 21:35:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:36:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:36:10 --> Intento de login para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:36:10 --> Usuario encontrado para compra adicional: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-13 21:36:10 --> Login exitoso para compra adicional - Email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-13 21:36:10 --> Redirigiendo a compra adicional para usuario: brunocameille@alumnos.itr3.edu.ar
+INFO - 2025-10-13 21:36:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:36:10 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:36:10 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:36:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:36:16 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:36:16 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:36:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:36:47 --> === INICIO PROCESAR PAGO USUARIO EXISTENTE ===
+DEBUG - 2025-10-13 21:36:47 --> Payment data recibido: {"id":"7B058112C2199332X","intent":"CAPTURE","status":"COMPLETED","purchase_units":[{"reference_id":"default","amount":{"currency_code":"USD","value":"150.00","breakdown":{"item_total":{"currency_code":"USD","value":"150.00"},"shipping":{"currency_code":"USD","value":"0.00"},"handling":{"currency_code":"USD","value":"0.00"},"insurance":{"currency_code":"USD","value":"0.00"},"shipping_discount":{"currency_code":"USD","value":"0.00"}}},"payee":{"email_address":"sb-hgsm4739665145@business.example.com","merchant_id":"RLNSU5SN9HKR2"},"description":"EcoVolt Pro Premium - Dispositivo Adicional","soft_descriptor":"PAYPAL *TEST STORE","items":[{"name":"EcoVolt Pro Premium Adicional","unit_amount":{"currency_code":"USD","value":"150.00"},"tax":{"currency_code":"USD","value":"0.00"},"quantity":"1","description":"Dispositivo adicional para cuenta premium existente"}],"shipping":{"name":{"full_name":"Enzo Guerreiro"},"address":{"address_line_1":"Free Trade Zone","admin_area_2":"Buenos Aires","admin_area_1":"Buenos Aires","postal_code":"B1675","country_code":"AR"}},"payments":{"captures":[{"id":"4GJ00749HP875824C","status":"COMPLETED","amount":{"currency_code":"USD","value":"150.00"},"final_capture":true,"seller_protection":{"status":"ELIGIBLE","dispute_categories":["ITEM_NOT_RECEIVED","UNAUTHORIZED_TRANSACTION"]},"create_time":"2025-10-14T00:36:44Z","update_time":"2025-10-14T00:36:44Z"}]}}],"payer":{"name":{"given_name":"Enzo","surname":"Guerreiro"},"email_address":"enzoguerreiro@alumnos.itr3.edu.ar","payer_id":"5SYG3QNM343Y2","address":{"country_code":"AR"}},"create_time":"2025-10-14T00:36:23Z","update_time":"2025-10-14T00:36:44Z","links":[{"href":"https:\/\/api.sandbox.paypal.com\/v2\/checkout\/orders\/7B058112C2199332X","rel":"self","method":"GET"}]}
+DEBUG - 2025-10-13 21:36:47 --> Datos de sesión: {"id_usuario":"1","id_dispositivo":"1","tipo_compra":"usuario_existente"}
+DEBUG - 2025-10-13 21:36:47 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:36:47 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:36:47 --> Creando compra: {"id_usuario":"1","id_dispositivo":"1","direccion_envio":"Direcci\u00f3n del usuario existente","estado":"completada","fecha_compra":"2025-10-13 21:36:47","payment_id":"7B058112C2199332X"}
+DEBUG - 2025-10-13 21:36:51 --> Compra procesada exitosamente, redirigiendo...
+INFO - 2025-10-13 21:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:36:51 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:36:51 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Ruta actual: /Tesina/public/dashboard
+INFO - 2025-10-13 21:37:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:37:13 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/compra-existente/pago-exitoso
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Ruta actual: /Tesina/public/usuario
+INFO - 2025-10-13 21:37:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:37:13 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/compra-existente/pago-exitoso
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Usuario ID: 1
+DEBUG - 2025-10-13 21:37:13 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:37:13 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Datos del usuario: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Dispositivos encontrados: Array
+(
+    [0] => Array
+        (
+            [id_dispositivo] => 1
+            [nombre] => medidor de ecovolt
+            [id_usuario] => 1
+            [mac_address] => 00:1A:2B:3C:4D:5E
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-04-10 22:26:34
+            [stock] => 31
+            [precio] => 85
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-10-13 21:36:47
+            [updated_at] => 2025-06-12 15:06:14
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+    [1] => Array
+        (
+            [id_dispositivo] => 2
+            [nombre] => ECOVOLT HOYY 16
+            [id_usuario] => 1
+            [mac_address] => 08:D1:F9:A5:2A:14
+            [ip_address] => 192.168.0.232
+            [ultima_conexion] => 2025-10-01 18:47:51
+            [estado] => activo
+            [created_at] => 2025-04-11 10:03:27
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => esta es una prueba cambiaaa
+            [fecha_actualizacion] => 2025-10-01 18:53:37
+            [updated_at] => 2025-09-16 13:47:25
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => Array
+                (
+                    [id] => 33328
+                    [id_dispositivo] => 2
+                    [id_usuario] => 1
+                    [voltaje] => 220.8
+                    [corriente] => 2.1
+                    [potencia] => 463.68
+                    [kwh] => 8.2
+                    [kwh_acumulado] => 273.5
+                    [limite_superado] => 0
+                    [fecha] => 2025-10-31 08:00:00
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                )
+
+        )
+
+    [2] => Array
+        (
+            [id_dispositivo] => 29
+            [nombre] => sadasd
+            [id_usuario] => 1
+            [mac_address] => AA:C3:CC:D1:EE:2F
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-06-27 10:12:51
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-09-02 12:11:21
+            [updated_at] => 
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+)
+
+DEBUG - 2025-10-13 21:37:13 --> Consumo 24h: 335.20000171661377
+DEBUG - 2025-10-13 21:37:13 --> Consumo promedio: 14.183675568679
+DEBUG - 2025-10-13 21:37:13 --> Datos enviados a la vista: Array
+(
+    [usuario] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-10-13 19:57:07
+            [invitado_por] => 
+            [estado] => activo
+            [token_activacion] => 
+        )
+
+    [dispositivos] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_propios] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_compartidos] => Array
+        (
+        )
+
+    [consumo24h] => 335.20000171661377
+    [consumoPromedio] => 14.183675568679
+    [activosPropios] => 3
+)
+
+DEBUG - 2025-10-13 21:37:24 --> Ruta actual: /Tesina/public/energia
+INFO - 2025-10-13 21:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:37:24 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/usuario
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+INFO - 2025-10-13 21:37:24 --> Dispositivo ID: 29
+INFO - 2025-10-13 21:37:24 --> Número de lecturas encontradas: 0
+ERROR - 2025-10-13 21:37:24 --> Error en Energia::index: Invalid file: "energia/index.php"
+DEBUG - 2025-10-13 21:37:24 --> Ruta actual: /Tesina/public/dashboard
+INFO - 2025-10-13 21:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:37:24 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/usuario
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:37:25 --> Ruta actual: /Tesina/public/usuario
+INFO - 2025-10-13 21:37:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:37:25 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/usuario
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:37:25 --> Usuario ID: 1
+DEBUG - 2025-10-13 21:37:25 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:37:25 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:37:25 --> Datos del usuario: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:37:25 --> Dispositivos encontrados: Array
+(
+    [0] => Array
+        (
+            [id_dispositivo] => 1
+            [nombre] => medidor de ecovolt
+            [id_usuario] => 1
+            [mac_address] => 00:1A:2B:3C:4D:5E
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-04-10 22:26:34
+            [stock] => 31
+            [precio] => 85
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-10-13 21:36:47
+            [updated_at] => 2025-06-12 15:06:14
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+    [1] => Array
+        (
+            [id_dispositivo] => 2
+            [nombre] => ECOVOLT HOYY 16
+            [id_usuario] => 1
+            [mac_address] => 08:D1:F9:A5:2A:14
+            [ip_address] => 192.168.0.232
+            [ultima_conexion] => 2025-10-01 18:47:51
+            [estado] => activo
+            [created_at] => 2025-04-11 10:03:27
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => esta es una prueba cambiaaa
+            [fecha_actualizacion] => 2025-10-01 18:53:37
+            [updated_at] => 2025-09-16 13:47:25
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => Array
+                (
+                    [id] => 33328
+                    [id_dispositivo] => 2
+                    [id_usuario] => 1
+                    [voltaje] => 220.8
+                    [corriente] => 2.1
+                    [potencia] => 463.68
+                    [kwh] => 8.2
+                    [kwh_acumulado] => 273.5
+                    [limite_superado] => 0
+                    [fecha] => 2025-10-31 08:00:00
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                )
+
+        )
+
+    [2] => Array
+        (
+            [id_dispositivo] => 29
+            [nombre] => sadasd
+            [id_usuario] => 1
+            [mac_address] => AA:C3:CC:D1:EE:2F
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-06-27 10:12:51
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-09-02 12:11:21
+            [updated_at] => 
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+)
+
+DEBUG - 2025-10-13 21:37:25 --> Consumo 24h: 335.20000171661377
+DEBUG - 2025-10-13 21:37:25 --> Consumo promedio: 14.183675568679
+DEBUG - 2025-10-13 21:37:25 --> Datos enviados a la vista: Array
+(
+    [usuario] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-10-13 19:57:07
+            [invitado_por] => 
+            [estado] => activo
+            [token_activacion] => 
+        )
+
+    [dispositivos] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_propios] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_compartidos] => Array
+        (
+        )
+
+    [consumo24h] => 335.20000171661377
+    [consumoPromedio] => 14.183675568679
+    [activosPropios] => 3
+)
+
+DEBUG - 2025-10-13 21:38:46 --> Ruta actual: /Tesina/public/dashboard
+INFO - 2025-10-13 21:38:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:38:46 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/usuario
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:38:47 --> Ruta actual: /Tesina/public/usuario
+INFO - 2025-10-13 21:38:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:38:47 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760402140
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/usuario
+    [id_usuario] => 1
+    [nombre] => brunito
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [id_rol] => 1
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-13 21:38:47 --> Usuario ID: 1
+DEBUG - 2025-10-13 21:38:47 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:38:47 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:38:47 --> Datos del usuario: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-13 21:38:47 --> Dispositivos encontrados: Array
+(
+    [0] => Array
+        (
+            [id_dispositivo] => 1
+            [nombre] => medidor de ecovolt
+            [id_usuario] => 1
+            [mac_address] => 00:1A:2B:3C:4D:5E
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-04-10 22:26:34
+            [stock] => 31
+            [precio] => 85
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-10-13 21:36:47
+            [updated_at] => 2025-06-12 15:06:14
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+    [1] => Array
+        (
+            [id_dispositivo] => 2
+            [nombre] => ECOVOLT HOYY 16
+            [id_usuario] => 1
+            [mac_address] => 08:D1:F9:A5:2A:14
+            [ip_address] => 192.168.0.232
+            [ultima_conexion] => 2025-10-01 18:47:51
+            [estado] => activo
+            [created_at] => 2025-04-11 10:03:27
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => esta es una prueba cambiaaa
+            [fecha_actualizacion] => 2025-10-01 18:53:37
+            [updated_at] => 2025-09-16 13:47:25
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => Array
+                (
+                    [id] => 33328
+                    [id_dispositivo] => 2
+                    [id_usuario] => 1
+                    [voltaje] => 220.8
+                    [corriente] => 2.1
+                    [potencia] => 463.68
+                    [kwh] => 8.2
+                    [kwh_acumulado] => 273.5
+                    [limite_superado] => 0
+                    [fecha] => 2025-10-31 08:00:00
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                )
+
+        )
+
+    [2] => Array
+        (
+            [id_dispositivo] => 29
+            [nombre] => sadasd
+            [id_usuario] => 1
+            [mac_address] => AA:C3:CC:D1:EE:2F
+            [ip_address] => 
+            [ultima_conexion] => 
+            [estado] => activo
+            [created_at] => 2025-06-27 10:12:51
+            [stock] => 0
+            [precio] => 0
+            [descripcion] => 
+            [fecha_actualizacion] => 2025-09-02 12:11:21
+            [updated_at] => 
+            [codigo_activacion] => 
+            [fecha_activacion] => 
+            [nombre_usuario] => brunito
+            [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+            [ultima_lectura] => 
+        )
+
+)
+
+DEBUG - 2025-10-13 21:38:47 --> Consumo 24h: 335.20000171661377
+DEBUG - 2025-10-13 21:38:47 --> Consumo promedio: 14.183675568679
+DEBUG - 2025-10-13 21:38:47 --> Datos enviados a la vista: Array
+(
+    [usuario] => Array
+        (
+            [id_usuario] => 1
+            [nombre] => brunito
+            [apellido] => barber
+            [email] => brunocameille@alumnos.itr3.edu.ar
+            [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+            [direccion_id] => 0
+            [id_rol] => 1
+            [created_at] => 2025-04-07 13:37:30
+            [updated_at] => 2025-10-13 19:57:07
+            [invitado_por] => 
+            [estado] => activo
+            [token_activacion] => 
+        )
+
+    [dispositivos] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_propios] => Array
+        (
+            [0] => Array
+                (
+                    [id_dispositivo] => 1
+                    [nombre] => medidor de ecovolt
+                    [id_usuario] => 1
+                    [mac_address] => 00:1A:2B:3C:4D:5E
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-04-10 22:26:34
+                    [stock] => 31
+                    [precio] => 85
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-10-13 21:36:47
+                    [updated_at] => 2025-06-12 15:06:14
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+            [1] => Array
+                (
+                    [id_dispositivo] => 2
+                    [nombre] => ECOVOLT HOYY 16
+                    [id_usuario] => 1
+                    [mac_address] => 08:D1:F9:A5:2A:14
+                    [ip_address] => 192.168.0.232
+                    [ultima_conexion] => 2025-10-01 18:47:51
+                    [estado] => activo
+                    [created_at] => 2025-04-11 10:03:27
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => esta es una prueba cambiaaa
+                    [fecha_actualizacion] => 2025-10-01 18:53:37
+                    [updated_at] => 2025-09-16 13:47:25
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => Array
+                        (
+                            [id] => 33328
+                            [id_dispositivo] => 2
+                            [id_usuario] => 1
+                            [voltaje] => 220.8
+                            [corriente] => 2.1
+                            [potencia] => 463.68
+                            [kwh] => 8.2
+                            [kwh_acumulado] => 273.5
+                            [limite_superado] => 0
+                            [fecha] => 2025-10-31 08:00:00
+                            [mac_address] => 08:D1:F9:A5:2A:14
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id_dispositivo] => 29
+                    [nombre] => sadasd
+                    [id_usuario] => 1
+                    [mac_address] => AA:C3:CC:D1:EE:2F
+                    [ip_address] => 
+                    [ultima_conexion] => 
+                    [estado] => activo
+                    [created_at] => 2025-06-27 10:12:51
+                    [stock] => 0
+                    [precio] => 0
+                    [descripcion] => 
+                    [fecha_actualizacion] => 2025-09-02 12:11:21
+                    [updated_at] => 
+                    [codigo_activacion] => 
+                    [fecha_activacion] => 
+                    [nombre_usuario] => brunito
+                    [email_usuario] => brunocameille@alumnos.itr3.edu.ar
+                    [ultima_lectura] => 
+                )
+
+        )
+
+    [dispositivos_compartidos] => Array
+        (
+        )
+
+    [consumo24h] => 335.20000171661377
+    [consumoPromedio] => 14.183675568679
+    [activosPropios] => 3
+)
+
+INFO - 2025-10-13 21:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-13 21:41:38 --> Buscando usuario ID: 1
+DEBUG - 2025-10-13 21:41:38 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-13 21:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:41:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:43:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:47:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:48:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:54:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:55:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-13 21:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

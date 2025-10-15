@@ -183,7 +183,7 @@
                     
                     <!-- Botón para comprar medidor adicional -->
                     <div class="mt-4">
-                        <a href="<?= base_url('comprar-medidor') ?>" class="btn btn-premium-gold w-100">
+                        <a href="<?= base_url('compra-existente') ?>" class="btn btn-premium-gold w-100">
                             <i class="fas fa-shopping-cart"></i> Comprar Medidor Adicional
                         </a>
                     </div>

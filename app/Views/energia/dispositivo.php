@@ -569,7 +569,7 @@ body {
                 <div class="me-2 d-none d-md-block">
                     <select id="seleccionMetrica" class="form-select form-select-sm" style="background:rgba(255,255,255,0.1);color:#F7E98E;border:1px solid rgba(212,175,55,0.3);">
                         <option value="potencia" selected>Potencia (W)</option>
-                        <option value="kwh">Energía (kWh)</option>
+                        <option value="kwh_acumulado">Energía Acumulada (kWh)</option>
                     </select>
                 </div>
                 <div class="me-3 d-none d-md-block">
@@ -585,6 +585,13 @@ body {
                     <i class="fas fa-check-circle"></i> Conectado
                 </div>
                 <small class="text-muted ms-2">Actualización automática cada 5s</small>
+                <small id="infoActualizacion" class="text-info ms-2" style="font-size: 0.8rem;"></small>
+                <button type="button" class="btn btn-sm btn-outline-success ms-2" onclick="forzarActualizacion()" title="Forzar actualización">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-info ms-1" onclick="debugTiempoReal()" title="Debug tiempo real">
+                    <i class="fas fa-bug"></i>
+                </button>
             </div>
         </div>
         <div class="premium-card-body">
@@ -638,10 +645,6 @@ body {
             <div class="metric-card glow-effect">
                 <div class="metric-icon">
                     <i class="fas fa-battery-half"></i>
-                </div>
-                <div class="metric-label">Energía</div>
-                <div class="metric-value" id="valorKwh">0 kWh</div>
-            </div>
         </div>
     </div>
 
@@ -696,7 +699,7 @@ body {
                    id="limite_consumo" name="limite_consumo" 
                    value="<?= esc($limite_consumo) ?>" required>
             <small class="form-text text-muted">
-                Este límite se aplicará automáticamente al dispositivo ESP32.
+                Este límite se aplicará automáticamente al dispositivo ESP32 basado en el kWh acumulado.
             </small>
         </div>
         <div class="form-group mb-3">
@@ -784,7 +787,7 @@ body {
         <div id="resultadoCosto" class="mt-3" style="display:none;">
             <div class="alert-premium alert-premium-success">
             <h6 class="fw-bold">Resultado:</h6>
-                <p>Total de Energía consumida: <span id="totalKwh" class="text-warning fw-bold"></span> kWh</p>
+                <p>Total de Energía Acumulada: <span id="totalKwh" class="text-warning fw-bold"></span> kWh</p>
                 <p>Costo estimado: <span id="costoTotal" class="text-warning fw-bold"></span> $</p>
                 <button id="btnPdf" onclick="descargarPDF()" class="btn-premium mt-2">
                     <i class="fas fa-file-pdf me-2"></i>Descargar PDF
@@ -865,7 +868,7 @@ body {
                                 <th>Voltaje (V)</th>
                                 <th>Corriente (A)</th>
                                 <th>Potencia (W)</th>
-                                <th>Energía (kWh)</th>
+                                <th>Energía Acumulada (kWh)</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -921,7 +924,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const volt = ultimoValor('voltaje');
         const corr = ultimoValor('corriente');
         const pot = ultimoValor('potencia');
-        const kwh = ultimoValor('kwh');
+        const kwh = ultimoValor('kwh_acumulado');
 
         const sinEnergia = volt < 0.1 && corr < 0.1 && pot < 0.1 && kwh < 0.1;
 
@@ -938,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('valorVoltaje').textContent = Number(ultimoValor('voltaje')).toFixed(2) + ' V';
         document.getElementById('valorCorriente').textContent = Number(ultimoValor('corriente')).toFixed(2) + ' A';
         document.getElementById('valorPotencia').textContent = Number(ultimoValor('potencia')).toFixed(2) + ' W';
-        document.getElementById('valorKwh').textContent = Number(ultimoValor('kwh')).toFixed(2) + ' kWh';
+        document.getElementById('valorKwh').textContent = Number(ultimoValor('kwh_acumulado')).toFixed(2) + ' kWh';
         verificarEnergia();
     }
 
@@ -1016,13 +1019,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const rango = document.getElementById('seleccionRango')?.value || '24';
         const datos = filtrarPorRango(rango);
 
+        console.log('Actualizando gráfico:', {
+            metrica: metrica,
+            rango: rango,
+            totalLecturas: lecturas.length,
+            datosFiltrados: datos.length,
+            ultimaLectura: lecturas[0]
+        });
+
         const labels = datos.map(l => new Date(l.fecha).toLocaleString());
-        const valores = datos.map(l => metrica === 'kwh' ? l.kwh : l.potencia);
+        const valores = datos.map(l => metrica === 'kwh_acumulado' ? l.kwh_acumulado : l.potencia);
+
+        console.log('Datos del gráfico:', {
+            labels: labels.slice(0, 3), // Primeros 3 labels
+            valores: valores.slice(0, 3) // Primeros 3 valores
+        });
 
         graficoConsumo.data.labels = labels;
-        graficoConsumo.data.datasets[0].label = metrica === 'kwh' ? 'Energía (kWh)' : 'Potencia (W)';
+        graficoConsumo.data.datasets[0].label = metrica === 'kwh_acumulado' ? 'Energía Acumulada (kWh)' : 'Potencia (W)';
         graficoConsumo.data.datasets[0].data = valores;
-        graficoConsumo.options.scales.y.title.text = metrica === 'kwh' ? 'Energía (kWh)' : 'Potencia (W)';
+        graficoConsumo.options.scales.y.title.text = metrica === 'kwh_acumulado' ? 'Energía Acumulada (kWh)' : 'Potencia (W)';
         graficoConsumo.update();
     }
 
@@ -1030,10 +1046,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener datos en tiempo real
     function obtenerDatosTiempoReal() {
+        contadorActualizaciones++;
+        ultimaActualizacion = new Date();
+        
         // Mostrar estado de actualización
         const estadoElement = document.getElementById('estadoActualizacion');
         estadoElement.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Actualizando...';
         estadoElement.className = 'status-badge status-updating';
+        
+        console.log(`🔄 Actualización #${contadorActualizaciones} - ${ultimaActualizacion.toLocaleTimeString()}`);
         
         fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
             .then(response => {
@@ -1050,7 +1071,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Verificar si es una lectura nueva (comparar fecha)
                     const ultimaLecturaExistente = lecturas[0];
                     
-                    if (!ultimaLecturaExistente || new Date(nuevaLectura.fecha) > new Date(ultimaLecturaExistente.fecha)) {
+                    // Mejorar la comparación de fechas
+                    let esNuevaLectura = false;
+                    
+                    if (!ultimaLecturaExistente) {
+                        esNuevaLectura = true;
+                        console.log('Primera lectura detectada');
+                    } else {
+                        const fechaNueva = new Date(nuevaLectura.fecha);
+                        const fechaExistente = new Date(ultimaLecturaExistente.fecha);
+                        const diferenciaTiempo = fechaNueva.getTime() - fechaExistente.getTime();
+                        
+                        // Considerar nueva si la diferencia es mayor a 1 segundo
+                        esNuevaLectura = diferenciaTiempo > 1000;
+                        
+                        console.log('Comparando fechas:', {
+                            nuevaLectura: nuevaLectura.fecha,
+                            ultimaExistente: ultimaLecturaExistente.fecha,
+                            diferenciaSegundos: Math.round(diferenciaTiempo / 1000),
+                            esNueva: esNuevaLectura
+                        });
+                    }
+
+                    if (esNuevaLectura) {
+                        
+                        console.log('Agregando nueva lectura:', nuevaLectura);
                         
                         // Agregar nueva lectura al inicio
                         lecturas.unshift(nuevaLectura);
@@ -1059,6 +1104,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (lecturas.length > 50) {
                             lecturas = lecturas.slice(0, 50);
                         }
+                        
+                        console.log('Total de lecturas después de agregar:', lecturas.length);
                         
                         // Actualizar todo
                         actualizarValoresActuales();
@@ -1069,15 +1116,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         verificarCorteLineaNoEsencial(nuevaLectura);
                         
                         // Mostrar estado exitoso
-                        estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
+                        estadoElement.innerHTML = `<i class="fas fa-check-circle"></i> Conectado (${contadorActualizaciones})`;
                         estadoElement.className = 'status-badge status-connected';
                         
-                        console.log('Datos actualizados correctamente:', nuevaLectura);
+                        // Actualizar información de actualización
+                        const infoElement = document.getElementById('infoActualizacion');
+                        if (infoElement) {
+                            infoElement.textContent = `Última: ${ultimaActualizacion.toLocaleTimeString()}`;
+                        }
+                        
+                        console.log('✅ Datos actualizados correctamente:', nuevaLectura);
                     } else {
                         // Mostrar estado conectado (sin cambios)
-                        estadoElement.innerHTML = '<i class="fas fa-check-circle"></i> Conectado';
+                        estadoElement.innerHTML = `<i class="fas fa-check-circle"></i> Conectado (${contadorActualizaciones})`;
                         estadoElement.className = 'status-badge status-connected';
-                        console.log('No hay nuevas lecturas disponibles');
+                        console.log('ℹ️ No hay nuevas lecturas disponibles - fecha no es más reciente');
                     }
 
                     // Lógica para mensajes de estado
@@ -1091,12 +1144,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         mostrarMensaje('info', '<i class="fas fa-times-circle me-2"></i>NO HAY CONSUMO EN EL SISTEMA (0V, 0A, 0W, 0kWh).');
                     } else if (nuevaLectura.voltaje < 200) {
                         mostrarMensaje('alerta', '<i class="fas fa-exclamation-triangle me-2"></i>Voltaje bajo detectado, verificar conexión eléctrica.');
-                    } else if (Number(nuevaLectura.kwh) > limiteConsumo) {
-                        mostrarMensaje('alerta', `<i class="fas fa-exclamation-triangle me-2"></i>Límite de consumo superado (${Number(nuevaLectura.kwh).toFixed(2)} kWh > ${limiteConsumo} kWh). Línea NO esencial desconectada.`);
+                    } else if (Number(nuevaLectura.kwh_acumulado) > limiteConsumo) {
+                        mostrarMensaje('alerta', `<i class="fas fa-exclamation-triangle me-2"></i>Límite de consumo superado (${Number(nuevaLectura.kwh_acumulado).toFixed(2)} kWh > ${limiteConsumo} kWh). Línea NO esencial desconectada.`);
                     } else {
                         mostrarMensaje('ok', '<i class="fas fa-check-circle me-2"></i>Consumo dentro del límite.');
                     }
-
+ 
                 } else {
                     throw new Error('Respuesta del servidor no exitosa');
                 }
@@ -1110,6 +1163,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    // Variables para tracking de actualizaciones
+    let contadorActualizaciones = 0;
+    let ultimaActualizacion = new Date();
+    
     // Inicializar todo
     actualizarValoresActuales();
     actualizarTabla();
@@ -1119,10 +1176,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configurar actualización automática
     console.log('Iniciando actualización automática cada 5 segundos...');
-    const intervaloActualizacion = setInterval(obtenerDatosTiempoReal, 5000);
+    let intervaloActualizacion = setInterval(obtenerDatosTiempoReal, 5000);
     
     // Primera actualización después de 1 segundo
     setTimeout(obtenerDatosTiempoReal, 1000);
+    
+    // Función para reiniciar el intervalo si se detiene
+    function reiniciarActualizacion() {
+        if (intervaloActualizacion) {
+            clearInterval(intervaloActualizacion);
+        }
+        console.log('🔄 Reiniciando actualización automática...');
+        intervaloActualizacion = setInterval(obtenerDatosTiempoReal, 5000);
+    }
+    
+    // Verificar que el intervalo esté funcionando cada 30 segundos
+    setInterval(() => {
+        if (!intervaloActualizacion) {
+            console.log('⚠️ Intervalo de actualización perdido, reiniciando...');
+            reiniciarActualizacion();
+        }
+    }, 30000);
 
     // Listeners de controles del gráfico
     const selMetrica = document.getElementById('seleccionMetrica');
@@ -1211,12 +1285,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Calcular total de kWh consumidos
+            // Calcular total de kWh acumulados (última lectura)
             let totalKwh = 0;
             <?php if (!empty($lecturas)): ?>
-                <?php foreach ($lecturas as $lectura): ?>
-                    totalKwh += <?= $lectura['kwh'] ?>;
-                <?php endforeach; ?>
+                totalKwh = <?= end($lecturas)['kwh_acumulado'] ?? 0 ?>;
             <?php endif; ?>
 
             const costoTotal = (totalKwh * valorKwhUnitario).toFixed(2);
@@ -1530,7 +1602,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${lectura.voltaje}</td>
                 <td>${lectura.corriente}</td>
                 <td>${lectura.potencia}</td>
-                <td>${lectura.kwh}</td>
+                <td>${lectura.kwh_acumulado}</td>
             `;
             tbody.appendChild(row);
         });
@@ -1555,6 +1627,80 @@ function descargarPDF() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+// Función para forzar actualización manual
+function forzarActualizacion() {
+    console.log('🔄 Forzando actualización manual...');
+    
+    const estadoElement = document.getElementById('estadoActualizacion');
+    estadoElement.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Actualizando...';
+    estadoElement.className = 'status-badge status-updating';
+    
+    // Llamar directamente a la función de actualización
+    obtenerDatosTiempoReal();
+}
+
+// Función de debugging para tiempo real
+function debugTiempoReal() {
+    console.log('🔍 INICIANDO DEBUG DE TIEMPO REAL');
+    console.log('================================');
+    
+    console.log('📊 Estado actual:');
+    console.log('- Total de lecturas:', lecturas.length);
+    console.log('- Última lectura:', lecturas[0]);
+    console.log('- Gráfico definido:', typeof graficoConsumo !== 'undefined');
+    
+    console.log('🔄 Probando endpoint...');
+    fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
+        .then(response => {
+            console.log('📡 Respuesta HTTP:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('📦 Datos recibidos:', data);
+            
+            if (data.success && data.data) {
+                const nuevaLectura = data.data;
+                console.log('📈 Nueva lectura:', nuevaLectura);
+                
+                // Verificar si es realmente nueva
+                const ultimaExistente = lecturas[0];
+                const esNueva = !ultimaExistente || new Date(nuevaLectura.fecha) > new Date(ultimaExistente.fecha);
+                console.log('🆕 ¿Es nueva lectura?', esNueva);
+                
+                if (esNueva) {
+                    console.log('✅ Agregando nueva lectura al gráfico...');
+                    lecturas.unshift(nuevaLectura);
+                    if (lecturas.length > 50) {
+                        lecturas = lecturas.slice(0, 50);
+                    }
+                    
+                    actualizarValoresActuales();
+                    actualizarGrafico();
+                    
+                    console.log('📊 Gráfico actualizado. Total lecturas:', lecturas.length);
+                } else {
+                    console.log('ℹ️ No hay lecturas nuevas');
+                }
+            } else {
+                console.error('❌ Error en la respuesta:', data);
+            }
+        })
+        .catch(error => {
+            console.error('❌ Error en la petición:', error);
+        });
+    
+    // Mostrar información del gráfico
+    if (typeof graficoConsumo !== 'undefined') {
+        console.log('📊 Estado del gráfico:');
+        console.log('- Labels:', graficoConsumo.data.labels.length);
+        console.log('- Datos:', graficoConsumo.data.datasets[0].data.length);
+        console.log('- Últimos 3 labels:', graficoConsumo.data.labels.slice(-3));
+        console.log('- Últimos 3 valores:', graficoConsumo.data.datasets[0].data.slice(-3));
+    }
+    
+    alert('Debug completado. Revisa la consola (F12) para ver los detalles.');
 }
 </script>
 
@@ -1725,7 +1871,7 @@ function verificarCorteLineaNoEsencial(ultimaLectura) {
             .then(data => {
                 if (data.success) {
                     const limiteConsumo = data.limite_consumo || 10;
-                    const consumoActual = parseFloat(ultimaLectura.kwh);
+                    const consumoActual = parseFloat(ultimaLectura.kwh_acumulado);
                     
                     // Verificar si el consumo supera el límite (corte de línea NO esencial)
                     if (consumoActual > limiteConsumo) {

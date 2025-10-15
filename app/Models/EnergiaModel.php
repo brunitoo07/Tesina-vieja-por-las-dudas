@@ -11,7 +11,7 @@ class EnergiaModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh','limite_superado', 'fecha', 'mac_address'];
+    protected $allowedFields = ['id_dispositivo', 'id_usuario', 'voltaje', 'corriente', 'potencia', 'kwh', 'kwh_acumulado', 'limite_superado', 'fecha', 'mac_address'];
     protected $useTimestamps = false;
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';

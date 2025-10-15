@@ -160,7 +160,7 @@ class Energia extends BaseController
         // Verificar si se superó el límite de consumo
         $limite = $this->limiteModel->getLimiteByDispositivo($dispositivo['id_dispositivo']);
         $limiteConsumo = $limite ? $limite['limite_consumo'] : 10;
-        $ultimaLectura['limite_superado'] = $ultimaLectura['kwh'] > $limiteConsumo;
+        $ultimaLectura['limite_superado'] = $ultimaLectura['kwh_acumulado'] > $limiteConsumo;
 
         return $this->response->setJSON([
             'success' => true,
@@ -168,6 +168,7 @@ class Energia extends BaseController
             'limite_consumo' => $limiteConsumo
         ]);
     }
+
 
 
     /**
@@ -196,7 +197,7 @@ class Energia extends BaseController
             }
 
             // Validar campos requeridos
-            $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh', 'mac_address'];
+            $requiredFields = ['voltaje', 'corriente', 'potencia', 'kwh_acumulado', 'mac_address'];
             foreach ($requiredFields as $field) {
                 if (!isset($data[$field])) {
                     return $this->response->setJSON(['error' => "Campo requerido faltante: $field"])->setStatusCode(400);
@@ -220,7 +221,7 @@ class Energia extends BaseController
                 'voltaje' => $data['voltaje'],
                 'corriente' => $data['corriente'],
                 'potencia' => $data['potencia'],
-                'kwh' => $data['kwh'],
+               'kwh_acumulado' => $data['kwh_acumulado'], // Compatibilidad
                 'mac_address' => $mac_formateada,
                 'fecha' => date('Y-m-d H:i:s'),
                 'limite_superado' => 0
@@ -246,6 +247,78 @@ class Energia extends BaseController
             ])->setStatusCode(500);
         }
     }
+
+
+/**
+ * Obtiene el último kWh acumulado desde la base de datos
+ * Endpoint público para que el ESP32 continúe desde el último valor
+ * 
+ * @return \CodeIgniter\HTTP\ResponseInterface
+ */
+public function getUltimoKwh()
+{
+    try {
+        $db = \Config\Database::connect();
+        
+        // Obtener parámetros
+        $mac_address = $this->request->getGet('mac') ?? null;
+        $ip_address = $this->request->getIPAddress();
+        
+        // Buscar el último registro por MAC si se proporciona
+        if ($mac_address) {
+            $mac_formateada = implode(':', str_split(strtoupper($mac_address), 2));
+            
+            $query = $db->query("
+                SELECT kwh_acumulado 
+                FROM energia 
+                WHERE mac_address = ? 
+                ORDER BY fecha DESC, id DESC 
+                LIMIT 1
+            ", [$mac_formateada]);
+        } else {
+            // Si no hay MAC, obtener el último registro general
+            $query = $db->query("
+                SELECT kwh_acumulado 
+                FROM energia 
+                ORDER BY fecha DESC, id DESC 
+                LIMIT 1
+            ");
+        }
+        
+        $result = $query->getRow();
+        
+        if ($result && $result->kwh_acumulado > 0) {
+            $ultimo_kwh = (float)$result->kwh_acumulado;
+            log_message('info', "Último kWh obtenido: $ultimo_kwh para MAC: $mac_address");
+            
+            return $this->response->setJSON([
+                'success' => true,
+                'ultimo_kwh' => $ultimo_kwh,
+                'mac_address' => $mac_address,
+                'timestamp' => date('Y-m-d H:i:s'),
+                'ip_address' => $ip_address
+            ]);
+        } else {
+            // Si no hay registros, devolver 0
+            return $this->response->setJSON([
+                'success' => true,
+                'ultimo_kwh' => 0.0,
+                'message' => 'No se encontraron registros previos, empezando desde 0',
+                'timestamp' => date('Y-m-d H:i:s')
+            ]);
+        }
+        
+    } catch (\Exception $e) {
+        log_message('error', 'Error en getUltimoKwh: ' . $e->getMessage());
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'Error al obtener último kWh',
+            'ultimo_kwh' => 0.0,
+            'timestamp' => date('Y-m-d H:i:s')
+        ])->setStatusCode(500);
+    }
+}
+
 
     public function actualizarLimite()
 {
@@ -465,7 +538,7 @@ class Energia extends BaseController
     private function verificarLimite(&$lectura, $id_dispositivo, $idUsuario)
 {
     $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
-    if ($limite && $lectura['kwh'] > $limite['limite_consumo']) {
+    if ($limite && $lectura['kwh_acumulado'] > $limite['limite_consumo']) {
         $lectura['limite_superado'] = 1;
         if (isset($lectura['id'])) {
             $this->energiaModel->update($lectura['id'], ['limite_superado' => 1]);
@@ -475,7 +548,7 @@ class Energia extends BaseController
         if (!$limite['notificacion_enviada'] || (strtotime($limite['ultima_notificacion']) < strtotime('-1 hour'))) {
             
             // 📧 ENVIAR EMAIL
-            $this->enviarNotificacionEmail($idUsuario, $lectura['kwh'], $limite['limite_consumo']);
+            $this->enviarNotificacionEmail($idUsuario, $lectura['kwh_acumulado'], $limite['limite_consumo'], $id_dispositivo);
             
             // 📱 ENVIAR TELEGRAM (en el mismo bloque para evitar spam)
             $dispositivo = $this->dispositivoModel->find($id_dispositivo);
@@ -484,7 +557,7 @@ class Energia extends BaseController
             $mensaje = "🚨 *ALERTA DE CONSUMO EXCESIVO*\n\n";
             $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
             $mensaje .= "📏 *Límite configurado:* {$limite['limite_consumo']} kWh\n";
-            $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh'], 4) . " kWh\n";
+            $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh_acumulado'], 4) . " kWh\n";
             $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
             $mensaje .= "⚠️ *Acción requerida:*\n";
             $mensaje .= "• Verificar dispositivos conectados\n";
@@ -675,29 +748,45 @@ public function generarPDF($dispositivo_id)
 
 
 
-    private function enviarNotificacionEmail($idUsuario, $consumoActual, $limite)
+    private function enviarNotificacionEmail($idUsuario, $consumoActual, $limite, $idDispositivo = null)
     {
+        // Obtener el email de notificación del límite configurado
+        $limiteModel = new \App\Models\LimiteConsumoModel();
+        $limiteData = $limiteModel->getLimiteByDispositivo($idDispositivo);
+        
+        if (!$limiteData || !$limiteData['email_notificacion']) {
+            log_message('info', 'No hay email de notificación configurado para el dispositivo ' . $idDispositivo);
+            return;
+        }
+
         $email = \Config\Services::email();
         $user = $this->userModel->find($idUsuario);
 
         $email->setFrom('noreply@ecovolt.com', 'EcoVolt');
-        $email->setTo($user['email']);
+        $email->setTo($limiteData['email_notificacion']);
         $email->setSubject('⚠️ Alerta de Consumo de Energía');
 
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
+        
         $data = [
             'nombre' => $user['nombre'] ?? null,
             'consumoActual' => $consumoActual,
             'limiteConfigurado' => $limite,
-            'idDispositivo' => null,
-            'dispositivoNombre' => null,
+            'idDispositivo' => $idDispositivo,
+            'dispositivoNombre' => $dispositivo ? $dispositivo['nombre'] : null,
             'momento' => date('Y-m-d H:i:s'),
-            'urlPanel' => base_url('energia')
+            'urlPanel' => base_url('energia/dispositivo/' . $idDispositivo)
         ];
 
         $html = view('emails/alerta_consumo', $data);
         $email->setMessage($html);
         $email->setMailType('html');
-        $email->send();
+        
+        if ($email->send()) {
+            log_message('info', 'Alerta de consumo enviada correctamente a ' . $limiteData['email_notificacion']);
+        } else {
+            log_message('error', 'Error al enviar alerta de consumo a ' . $limiteData['email_notificacion']);
+        }
     }
 
     // Se eliminaron los métodos de notificaciones Push
@@ -970,6 +1059,54 @@ public function saveSubscription()
     ]);
 
     return $this->response->setJSON(['success' => true]);
+}
+
+/**
+ * Resetear notificaciones de límite (solo para desarrollo/admin)
+ * Útil para testing de alertas
+ */
+public function resetNotificaciones($id_dispositivo = null)
+{
+    // Solo admin o supervisor
+    $rol = session()->get('rol');
+    if ($rol !== 'admin' && $rol !== 'supervisor') {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'No autorizado'
+        ])->setStatusCode(403);
+    }
+
+    $limiteModel = new \App\Models\LimiteConsumoModel();
+    
+    if ($id_dispositivo) {
+        // Resetear para un dispositivo específico
+        $limite = $limiteModel->getLimiteByDispositivo($id_dispositivo);
+        if ($limite) {
+            $limiteModel->update($limite['id'], [
+                'notificacion_enviada' => 0,
+                'ultima_notificacion' => null
+            ]);
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Notificaciones reseteadas para el dispositivo ' . $id_dispositivo
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'success' => false,
+                'error' => 'No se encontró límite para el dispositivo ' . $id_dispositivo
+            ]);
+        }
+    } else {
+        // Resetear todas las notificaciones
+        $limiteModel->set('notificacion_enviada', 0)
+                   ->set('ultima_notificacion', null)
+                   ->update();
+        
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => 'Todas las notificaciones han sido reseteadas'
+        ]);
+    }
 }
 }
 

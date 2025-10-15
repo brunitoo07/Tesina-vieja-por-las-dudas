@@ -17,6 +17,12 @@ $routes->post('chat/process', 'Chat::process');
 
 $routes->get('autenticacion/login', 'CAutenticacion::login');
 $routes->get('autenticacion/register', 'CAutenticacion::register');
+$routes->get('seleccion', 'SeleccionPostLogin::index');
+$routes->get('tipo-compra', 'TipoCompra::index');
+
+// Rutas para login específico de compra adicional
+$routes->get('login-compra-adicional', 'LoginCompraAdicional::index');
+$routes->post('login-compra-adicional/autenticar', 'LoginCompraAdicional::autenticar');
 $routes->get('autenticacion/correo', 'CCorreo::index');
 $routes->post('correo', 'CCorreo::correo');
 $routes->get('autenticacion/nueva-contrasena', 'CNuevacontrasena::index');
@@ -48,9 +54,14 @@ $routes->post('registro-compra/procesar', 'RegistroCompra::procesarFormulario');
 $routes->get('registro-compra/pago-exitoso', 'RegistroCompra::pagoExitoso');
 $routes->get('registro-compra/error', 'RegistroCompra::error');
 
-// Rutas para usuarios existentes que quieren comprar otro medidor
-$routes->get('comprar-medidor', 'RegistroCompra::compraUsuarioExistente');
-$routes->post('comprar-medidor/procesar', 'RegistroCompra::procesarCompraUsuarioExistente');
+// Rutas para usuarios existentes que quieren comprar otro medidor (ELIMINADAS - usar compra-existente)
+
+// Rutas para compra de dispositivos adicionales (usuarios existentes)
+$routes->get('compra-existente', 'CompraExistente::index');
+$routes->post('compra-existente/procesar', 'CompraExistente::procesarCompra');
+$routes->get('compra-existente/pago', 'CompraExistente::pago');
+$routes->post('compra-existente/procesarPago', 'CompraExistente::procesarPago');
+$routes->get('compra-existente/pago-exitoso', 'CompraExistente::pagoExitoso');
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {
@@ -107,6 +118,8 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     // Ruta para resetear notificaciones (solo desarrollo/admin)
     $routes->get('energia/resetNotificaciones/(:num)', 'Energia::resetNotificaciones/$1'); 
     $routes->get('energia/resetNotificaciones', 'Energia::resetNotificaciones');
+    // Ruta para ver energía desde admin
+    $routes->get('energia', 'Energia::index');
 
   
 });
@@ -178,6 +191,7 @@ $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
 $routes->get('energia/filtrarLecturas/(:num)', 'Energia::filtrarLecturas/$1');
 $routes->post('energia/setTarifa', 'Energia::setTarifa');
+$routes->get('energia/getUltimoKwh', 'Energia::getUltimoKwh');
 
 $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');
 $routes->post('telegram/webhook', 'TelegramSimple::webhook');

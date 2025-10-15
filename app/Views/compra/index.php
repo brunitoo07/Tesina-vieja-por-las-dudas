@@ -275,7 +275,7 @@
                         <p><strong>Nombre:</strong> <?= esc($datos_compra['nombre']) ?> <?= esc($datos_compra['apellido']) ?></p>
                         <p><strong>Email:</strong> <?= esc($datos_compra['email']) ?></p>
                         <p><strong>Dirección:</strong> <?= esc($datos_compra['direccion']) ?></p>
-                    </div>
+                        </div>
 
                     <hr style="border-color: var(--gold-primary); margin: 2rem 0;">
 
@@ -290,20 +290,20 @@
                     <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--black-light);">
                         <span style="color: var(--silver-primary); font-size: 1.1rem;">Envío:</span>
                         <span style="color: var(--gold-primary); font-weight: 600; font-size: 1.1rem;">Gratis</span>
-                    </div>
+                        </div>
                     <div style="background: var(--gradient-gold); color: var(--black-primary); padding: 10px; border-radius: 8px; margin: 15px 0; text-align: center;">
                         <p style="margin: 0; font-weight: 600; font-size: 0.9rem;">
                             <i class="fas fa-percentage me-1"></i>Descuento ya aplicado
                         </p>
-                    </div>
+                        </div>
                     <hr style="border-color: var(--gold-primary); margin: 2rem 0;">
                     <div class="mb-4" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: var(--black-light); border-radius: 10px; padding: 1rem;">
                         <strong style="color: var(--gold-primary); font-size: 1.3rem;">Total:</strong>
                         <strong class="price-tag" style="font-size: 2rem; margin: 0;">$150 USD</strong>
-                    </div>
+                        </div>
 
-                    <div id="paypal-button-container"></div>
-                    <p id="status" class="mt-3"></p>
+                        <div id="paypal-button-container"></div>
+                        <p id="status" class="mt-3"></p>
                 </div>
 
                 <div class="security-badge">

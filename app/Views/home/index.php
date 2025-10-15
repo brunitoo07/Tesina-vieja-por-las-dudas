@@ -580,6 +580,21 @@
             <h1 class="display-4 fw-bold mb-4"><?= lang('App.monitoreo_inteligente') ?></h1>
             <p class="lead mb-5"><?= lang('App.controla_optimiza') ?></p>
             <a href="#comprar" class="btn btn-primary btn-lg"><?= lang('App.comprar_ahora') ?></a>
+            
+            <!-- SISTEMA DE COMPRA MEJORADO -->
+            <div class="mt-4 p-3" style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; border-radius: 10px; color: #FFD700;">
+                <h5 style="color: #FFD700; font-weight: bold;">
+                    <i class="fas fa-shopping-cart me-2"></i>¡COMPRA TU ECOVOLT PRO PREMIUM!
+                </h5>
+                <p class="mb-2" style="color: #FFD700;">Elige el tipo de compra que mejor se adapte a tu situación:</p>
+                <a href="<?= base_url('tipo-compra') ?>" class="btn btn-warning btn-lg" style="background: #FFD700; border: none; color: #000; font-weight: bold;">
+                    <i class="fas fa-shopping-cart me-2"></i>COMPRAR ECOVOLT PRO - $150 USD
+                </a>
+                <p class="mt-2 mb-0" style="font-size: 0.9rem; color: #FFD700;">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Disponible para nuevos usuarios y usuarios existentes
+                </p>
+            </div>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down fa-2x"></i>
@@ -773,6 +788,49 @@
         </div>
     </section>
 
+    <!-- CARTEL DE COMPRA MEJORADO -->
+    <section class="section" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 4rem 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="text-center" style="background: rgba(255, 215, 0, 0.1); border: 3px solid #FFD700; border-radius: 20px; padding: 3rem; box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);">
+                        <h2 style="color: #FFD700; font-weight: 800; font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+                            <i class="fas fa-shopping-cart me-3"></i>¡COMPRA TU ECOVOLT PRO PREMIUM!
+                        </h2>
+                        <p style="color: #FFD700; font-size: 1.3rem; font-weight: 600; margin-bottom: 2rem;">
+                            Elige el tipo de compra que mejor se adapte a tu situación:
+                        </p>
+                        <a href="<?= base_url('tipo-compra') ?>" class="btn btn-warning btn-lg" style="background: #FFD700; border: none; color: #000; font-weight: bold; padding: 1rem 2.5rem; font-size: 1.3rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); transition: all 0.3s ease;">
+                            <i class="fas fa-shopping-cart me-2"></i>COMPRAR ECOVOLT PRO - $150 USD
+                        </a>
+                        <p style="margin-top: 2rem; font-size: 1.1rem; color: #FFD700; font-weight: 600;">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Disponible para nuevos usuarios y usuarios existentes
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div style="background: rgba(0, 123, 255, 0.1); border: 2px solid #007bff; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                                    <h5 style="color: #007bff; font-weight: 700;">
+                                        <i class="fas fa-user-plus me-2"></i>Primera Compra
+                                    </h5>
+                                    <p style="color: #FFD700; margin: 0;">Registro automático + Cuenta premium</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="background: rgba(40, 167, 69, 0.1); border: 2px solid #28a745; border-radius: 10px; padding: 1.5rem; margin: 1rem 0;">
+                                    <h5 style="color: #28a745; font-weight: 700;">
+                                        <i class="fas fa-plus-circle me-2"></i>Dispositivo Adicional
+                                    </h5>
+                                    <p style="color: #FFD700; margin: 0;">Se agrega a tu cuenta existente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
@@ -905,4 +963,4 @@
         });
     </script>
 </body>
-</html> 
+</html>  
