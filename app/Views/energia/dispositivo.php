@@ -592,6 +592,9 @@ body {
                 <button type="button" class="btn btn-sm btn-outline-info ms-1" onclick="debugTiempoReal()" title="Debug tiempo real">
                     <i class="fas fa-bug"></i>
                 </button>
+                <button type="button" class="btn btn-sm btn-outline-danger ms-1" onclick="probarModalAlerta()" title="Probar modal de alerta">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </button>
             </div>
         </div>
         <div class="premium-card-body">
@@ -645,13 +648,46 @@ body {
             <div class="metric-card glow-effect">
                 <div class="metric-icon">
                     <i class="fas fa-battery-half"></i>
+                </div>
+                <div class="metric-label">Energía Acumulada</div>
+                <div class="metric-value" id="valorKwh">0 kWh</div>
+            </div>
         </div>
-    </div>
 
 
     <!-- Mensajes de estado en tiempo real -->
     <div id="logsEstado" class="mb-3"></div>
   
+
+    <!-- Widget de Cortes de Línea -->
+    <div class="premium-card mb-4">
+        <div class="premium-card-header d-flex justify-content-between align-items-center">
+            <h6><i class="fas fa-exclamation-triangle me-2"></i>Historial de Cortes</h6>
+            <div class="d-flex align-items-center">
+                <a href="<?= base_url('energia/cortes') ?>" class="btn btn-sm btn-outline-primary me-2" title="Ver historial completo">
+                    <i class="fas fa-history me-1"></i>Ver Todo
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-info" onclick="actualizarHistorialCortes()" title="Actualizar">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+        <div class="premium-card-body">
+            <div id="loadingHistorialCortes" class="text-center" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando historial...</p>
+            </div>
+            
+            <div id="contenidoHistorialCortes">
+                <div class="alert-premium">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Cargando historial de cortes para este dispositivo...
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Estado del Límite en Tiempo Real -->
     <div class="premium-card mb-4">
@@ -806,6 +842,9 @@ body {
             <div class="d-flex align-items-center">
                 <button type="button" class="btn-premium-secondary" id="btnMostrarFiltros">
                     <i class="fas fa-filter me-1"></i> Filtros
+                </button>
+                <button type="button" class="btn-premium-secondary ms-2" onclick="exportarLecturasExcel()">
+                    <i class="fas fa-file-excel me-1"></i> Exportar Excel
                 </button>
             </div>
         </div>
@@ -1171,6 +1210,12 @@ document.addEventListener('DOMContentLoaded', function() {
     actualizarValoresActuales();
     actualizarTabla();
     
+    // Verificar estado persistente de corte de línea
+    verificarEstadoCortePersistente();
+    
+    // Cargar historial de cortes
+    actualizarHistorialCortes();
+    
     // Mostrar mensaje inicial
     mostrarMensaje('info', '<i class="fas fa-sync-alt fa-spin me-2"></i>Sistema iniciado. Conectando con el dispositivo...');
     
@@ -1288,7 +1333,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Calcular total de kWh acumulados (última lectura)
             let totalKwh = 0;
             <?php if (!empty($lecturas)): ?>
-                totalKwh = <?= end($lecturas)['kwh_acumulado'] ?? 0 ?>;
+                totalKwh = <?= !empty($lecturas) ? end($lecturas)['kwh_acumulado'] : 0 ?>;
             <?php endif; ?>
 
             const costoTotal = (totalKwh * valorKwhUnitario).toFixed(2);
@@ -1338,6 +1383,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Actualizar límite actual
         limiteActual.textContent = limiteConsumo.toFixed(3);
+        
+        // CORRECCIÓN: Limpiar estado de modales cuando se cambie el límite
+        if (consumoActual <= limiteConsumo) {
+            console.log('🧹 Limpiando estado de modales - consumo dentro del límite');
+            sessionStorage.removeItem('modalCorteLineaNoEsencialMostrado');
+            sessionStorage.removeItem('modalCortePersistenteMostrado');
+            
+            // Cerrar modal si está abierto
+            const modal = document.getElementById('modalCorteEsencial');
+            if (modal) {
+                const modalInstance = bootstrap.Modal.getInstance(modal);
+                if (modalInstance) {
+                    modalInstance.hide();
+                    console.log('🚪 Cerrando modal de corte - límite actualizado');
+                }
+            }
+        }
         
         // Determinar estado
         if (consumoActual > limiteConsumo) {
@@ -1617,16 +1679,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Función para descargar PDF
 function descargarPDF() {
-    const url = '<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>';
+    console.log('📄 Iniciando descarga de PDF...');
     
-    // Crear un enlace temporal para forzar la descarga
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'Informe_EcoVolt_' + new Date().toISOString().slice(0,10) + '.pdf';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const url = '<?= base_url('energia/generarPDF/'.$dispositivo['id_dispositivo']) ?>';
+    console.log('🔗 URL del PDF:', url);
+    
+    // Mostrar indicador de carga
+    const btnPdf = document.getElementById('btnPdf');
+    const originalText = btnPdf.innerHTML;
+    btnPdf.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Generando PDF...';
+    btnPdf.disabled = true;
+    
+    // Abrir en nueva ventana para descarga
+    const newWindow = window.open(url, '_blank');
+    
+    // Restaurar botón después de un tiempo
+    setTimeout(() => {
+        btnPdf.innerHTML = originalText;
+        btnPdf.disabled = false;
+        
+        if (newWindow) {
+            newWindow.focus();
+        }
+    }, 2000);
+    
+    console.log('✅ PDF generado y descargado');
 }
 
 // Función para forzar actualización manual
@@ -1702,6 +1779,35 @@ function debugTiempoReal() {
     
     alert('Debug completado. Revisa la consola (F12) para ver los detalles.');
 }
+
+
+// Función para exportar lecturas a Excel
+function exportarLecturasExcel() {
+    window.location.href = '<?= base_url('energia/exportarLecturasExcel/' . $dispositivo['id_dispositivo']) ?>';
+}
+
+// Función para probar el modal de alerta (solo para testing)
+function probarModalAlerta() {
+    console.log('🧪 Probando modal de alerta...');
+    
+    // Simular datos de corte
+    const consumoActual = 12.5;
+    const limiteConfigurado = 10.0;
+    const idCorte = 999; // ID ficticio para testing
+    
+    console.log('📊 Datos de prueba:', {
+        consumoActual: consumoActual,
+        limiteConfigurado: limiteConfigurado,
+        idCorte: idCorte
+    });
+    
+    // Mostrar el modal con datos de prueba
+    mostrarModalCorteEsencial(
+        consumoActual.toFixed(2),
+        limiteConfigurado.toFixed(2),
+        idCorte
+    );
+}
 </script>
 
 <!-- Se eliminó la suscripción a notificaciones push -->
@@ -1773,7 +1879,7 @@ function debugTiempoReal() {
                     <button type="button" class="btn btn-primary btn-lg me-3" onclick="irAConfigurarLimites()" style="background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600; box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);">
                         <i class="fas fa-cog me-2"></i>Ir a Configurar Límites
                     </button>
-                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
+                    <button type="button" class="btn btn-secondary btn-lg" onclick="marcarCorteComoVisto(); bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial')).hide();" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
                         <i class="fas fa-times me-2"></i>Cerrar
                     </button>
                 </div>
@@ -1825,10 +1931,49 @@ function debugTiempoReal() {
 
 <script>
 // Función para mostrar el modal de corte de línea esencial
-function mostrarModalCorteEsencial(consumoActual, limiteConfigurado) {
-    // Actualizar los valores en el modal
-    document.getElementById('consumoActualModal').textContent = consumoActual + ' kWh';
-    document.getElementById('limiteConfiguradoModal').textContent = limiteConfigurado + ' kWh';
+function mostrarModalCorteEsencial(consumoActual, limiteConfigurado, idCorte = null) {
+    console.log('🚨 Mostrando modal de corte:', {
+        consumoActual: consumoActual,
+        limiteConfigurado: limiteConfigurado,
+        idCorte: idCorte
+    });
+    
+    // Asegurar que los valores sean números válidos
+    const consumo = parseFloat(consumoActual) || 0;
+    const limite = parseFloat(limiteConfigurado) || 10;
+    
+    // Actualizar los valores en el modal con formato correcto
+    const consumoElement = document.getElementById('consumoActualModal');
+    const limiteElement = document.getElementById('limiteConfiguradoModal');
+    
+    if (consumoElement) {
+        consumoElement.textContent = consumo.toFixed(2) + ' kWh';
+        console.log('✅ Consumo actual actualizado:', consumo.toFixed(2) + ' kWh');
+    } else {
+        console.error('❌ No se encontró el elemento consumoActualModal');
+    }
+    
+    if (limiteElement) {
+        limiteElement.textContent = limite.toFixed(2) + ' kWh';
+        console.log('✅ Límite configurado actualizado:', limite.toFixed(2) + ' kWh');
+    } else {
+        console.error('❌ No se encontró el elemento limiteConfiguradoModal');
+    }
+    
+    // Calcular y mostrar el exceso
+    const exceso = consumo - limite;
+    const porcentaje = limite > 0 ? ((consumo / limite) * 100) : 0;
+    
+    console.log('📊 Análisis del corte:', {
+        exceso: exceso.toFixed(2) + ' kWh',
+        porcentaje: porcentaje.toFixed(1) + '%'
+    });
+    
+    // Guardar el ID del corte para marcarlo como visto después
+    if (idCorte) {
+        document.getElementById('modalCorteEsencial').setAttribute('data-corte-id', idCorte);
+        console.log('✅ ID del corte guardado:', idCorte);
+    }
     
     // Mostrar el modal
     const modal = new bootstrap.Modal(document.getElementById('modalCorteEsencial'));
@@ -1846,6 +1991,9 @@ function mostrarModalCorteEsencial(consumoActual, limiteConfigurado) {
 
 // Función para ir a configurar límites
 function irAConfigurarLimites() {
+    // Marcar corte como visto antes de cerrar
+    marcarCorteComoVisto();
+    
     // Cerrar el modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial'));
     modal.hide();
@@ -1865,36 +2013,240 @@ function irAConfigurarLimites() {
 // Función para verificar si se debe mostrar el modal (se llamará desde el polling de datos)
 function verificarCorteLineaNoEsencial(ultimaLectura) {
     if (ultimaLectura && ultimaLectura.limite_superado == 1) {
-        // Obtener el límite de consumo desde la respuesta del servidor
-        fetch(`<?= base_url('energia/getLatestDataByDevice/' . $dispositivo['id_dispositivo']) ?>`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const limiteConsumo = data.limite_consumo || 10;
-                    const consumoActual = parseFloat(ultimaLectura.kwh_acumulado);
-                    
-                    // Verificar si el consumo supera el límite (corte de línea NO esencial)
-                    if (consumoActual > limiteConsumo) {
-                        // Verificar si ya se mostró el modal para evitar spam
-                        const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
-                        const timestampActual = new Date().getTime();
-                        
-                        if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 300000) { // 5 minutos
-                            mostrarModalCorteEsencial(
-                                consumoActual.toFixed(2),
-                                parseFloat(limiteConsumo).toFixed(2)
-                            );
-                            
-                            // Marcar que se mostró el modal
-                            sessionStorage.setItem('modalCorteLineaNoEsencialMostrado', timestampActual.toString());
-                        }
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error obteniendo límite de consumo:', error);
+        console.log('🔍 Verificando corte de línea no esencial:', ultimaLectura);
+        
+        // CORRECCIÓN: Usar el límite actual de la interfaz, no del servidor
+        const limiteConsumo = parseFloat(document.getElementById('limite_consumo')?.value) || 10;
+        const consumoActual = parseFloat(ultimaLectura.kwh_acumulado);
+        
+        console.log('📊 Datos del corte (usando límite actual):', {
+            consumoActual: consumoActual,
+            limiteConsumo: limiteConsumo,
+            superado: consumoActual > limiteConsumo
+        });
+        
+        // Verificar si el consumo supera el límite (corte de línea NO esencial)
+        if (consumoActual > limiteConsumo) {
+            // Verificar si ya se mostró el modal para evitar spam
+            const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
+            const timestampActual = new Date().getTime();
+            
+            console.log('⏰ Control de spam:', {
+                modalYaMostrado: modalYaMostrado,
+                timestampActual: timestampActual,
+                tiempoTranscurrido: modalYaMostrado ? (timestampActual - parseInt(modalYaMostrado)) : 'N/A'
             });
+            
+            if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 180000) { // 3 minutos
+                console.log('🚨 Mostrando modal de corte (datos en tiempo real)');
+                mostrarModalCorteEsencial(
+                    consumoActual.toFixed(2),
+                    parseFloat(limiteConsumo).toFixed(2)
+                );
+                
+                // Marcar que se mostró el modal
+                sessionStorage.setItem('modalCorteLineaNoEsencialMostrado', timestampActual.toString());
+            } else {
+                console.log('⏳ Modal ya mostrado recientemente, esperando...');
+            }
+        } else {
+            console.log('✅ Consumo actual (' + consumoActual + ' kWh) está por debajo del límite actual (' + limiteConsumo + ' kWh) - No mostrar modal');
+        }
     }
+}
+
+// Función para marcar corte como visto
+function marcarCorteComoVisto() {
+    const modal = document.getElementById('modalCorteEsencial');
+    const idCorte = modal.getAttribute('data-corte-id');
+    
+    if (idCorte) {
+        console.log('📝 Marcando corte como visto:', idCorte);
+        
+        fetch(`<?= base_url('energia/marcarCorteVisto') ?>/${idCorte}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('✅ Corte marcado como visto');
+            } else {
+                console.error('❌ Error al marcar corte como visto:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('❌ Error al marcar corte como visto:', error);
+        });
+    }
+}
+
+// Función para verificar estado persistente al cargar la página
+function verificarEstadoCortePersistente() {
+    console.log('🔍 Verificando cortes pendientes desde la base de datos...');
+    
+    fetch('<?= base_url('energia/getCortesPendientes') ?>')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.cortes && data.cortes.length > 0) {
+                console.log('🚨 Se encontraron cortes pendientes:', data.cortes);
+                
+                // Mostrar el primer corte pendiente (el más reciente)
+                const corte = data.cortes[0];
+                console.log('📋 Verificando corte:', corte);
+                
+                // CORRECCIÓN: Verificar si el consumo actual supera el límite ACTUAL
+                const consumoActual = parseFloat(document.getElementById('valorKwh')?.textContent) || 0;
+                const limiteActual = parseFloat(document.getElementById('limite_consumo')?.value) || 10;
+                
+                console.log('📊 Verificación de límite actual:', {
+                    consumoActual: consumoActual,
+                    limiteActual: limiteActual,
+                    superado: consumoActual > limiteActual
+                });
+                
+                // Solo mostrar el modal si el consumo actual supera el límite actual
+                if (consumoActual > limiteActual) {
+                    // Verificar control de spam para cortes persistentes
+                    const modalYaMostrado = sessionStorage.getItem('modalCortePersistenteMostrado');
+                    const timestampActual = new Date().getTime();
+                    
+                    if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 180000) { // 3 minutos
+                        console.log('🚨 Mostrando modal de corte (consumo actual supera límite actual)');
+                        mostrarModalCorteEsencial(
+                            consumoActual.toFixed(2),
+                            limiteActual.toFixed(2),
+                            corte.id // Pasar el ID para marcarlo como visto
+                        );
+                        
+                        // Marcar que se mostró el modal
+                        sessionStorage.setItem('modalCortePersistenteMostrado', timestampActual.toString());
+                    } else {
+                        console.log('⏳ Modal persistente ya mostrado recientemente, esperando...');
+                    }
+                } else {
+                    console.log('✅ Consumo actual (' + consumoActual + ' kWh) está por debajo del límite actual (' + limiteActual + ' kWh) - No mostrar modal');
+                }
+            } else {
+                console.log('✅ No hay cortes pendientes');
+            }
+        })
+        .catch(error => {
+            console.error('❌ Error al verificar cortes pendientes:', error);
+        });
+}
+
+// Función para actualizar historial de cortes
+function actualizarHistorialCortes() {
+    const loading = document.getElementById('loadingHistorialCortes');
+    const contenido = document.getElementById('contenidoHistorialCortes');
+    
+    loading.style.display = 'block';
+    contenido.style.display = 'none';
+    
+    fetch(`<?= base_url('energia/getHistorialCortes/' . $dispositivo['id_dispositivo']) ?>?limite=5`)
+        .then(response => response.json())
+        .then(data => {
+            loading.style.display = 'none';
+            contenido.style.display = 'block';
+            
+            if (data.success) {
+                mostrarHistorialCortes(data.historial);
+            } else {
+                mostrarErrorHistorial('Error al cargar historial: ' + (data.error || 'Error desconocido'));
+            }
+        })
+        .catch(error => {
+            loading.style.display = 'none';
+            contenido.style.display = 'block';
+            mostrarErrorHistorial('Error de conexión: ' + error.message);
+        });
+}
+
+// Mostrar historial de cortes
+function mostrarHistorialCortes(historial) {
+    const contenido = document.getElementById('contenidoHistorialCortes');
+    
+    if (historial.length === 0) {
+        contenido.innerHTML = `
+            <div class="alert-premium alert-premium-success text-center">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>¡Excelente!</strong> No se han registrado cortes de línea para este dispositivo.
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '<div class="row">';
+    
+    historial.forEach(corte => {
+        const fecha = new Date(corte.fecha_corte).toLocaleString();
+        const estado = corte.resuelto == 1 ? 
+            '<span class="badge bg-success">Resuelto</span>' : 
+            '<span class="badge bg-danger">Activo</span>';
+        
+        const visto = corte.vista_por_usuario == 1 ? 
+            '<span class="badge bg-info">Visto</span>' : 
+            '<span class="badge bg-secondary">No visto</span>';
+        
+        html += `
+            <div class="col-md-6 mb-3">
+                <div class="card border-warning" style="background: rgba(255, 193, 7, 0.1); border-radius: 10px;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="card-title text-warning mb-0">
+                                <i class="fas fa-bolt me-1"></i>Corte de Línea
+                            </h6>
+                            ${estado}
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <small class="text-muted">Consumo</small>
+                                <div class="fw-bold text-warning">${parseFloat(corte.consumo_actual).toFixed(2)} kWh</div>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Límite</small>
+                                <div class="fw-bold text-info">${parseFloat(corte.limite_configurado).toFixed(2)} kWh</div>
+                            </div>
+                        </div>
+                        <hr class="my-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">${fecha}</small>
+                            ${visto}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    
+    // Agregar enlace para ver más
+    if (historial.length >= 5) {
+        html += `
+            <div class="text-center mt-3">
+                <a href="<?= base_url('energia/cortes') ?>" class="btn btn-outline-primary">
+                    <i class="fas fa-history me-1"></i>Ver historial completo
+                </a>
+            </div>
+        `;
+    }
+    
+    contenido.innerHTML = html;
+}
+
+// Mostrar error en historial
+function mostrarErrorHistorial(mensaje) {
+    const contenido = document.getElementById('contenidoHistorialCortes');
+    contenido.innerHTML = `
+        <div class="alert-premium alert-premium-danger text-center">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            ${mensaje}
+        </div>
+    `;
 }
 </script>
 

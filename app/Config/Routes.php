@@ -186,12 +186,24 @@ $routes->group('admin/dispositivos', ['filter' => 'auth'], function($routes) {
 // Rutas para energía
 $routes->get('energia', 'Energia::index');
 $routes->get('energia/exportar', 'Energia::exportar');
+$routes->get('energia/cortes', 'Energia::cortes');
 $routes->post('energia/recibirNuevosDatos', 'Energia::recibirNuevosDatos');
 $routes->get('energia/dispositivo/(:num)', 'Energia::dispositivo/$1');
 $routes->get('energia/getLatestDataByDevice/(:num)', 'Energia::getLatestDataByDevice/$1');
 $routes->get('energia/filtrarLecturas/(:num)', 'Energia::filtrarLecturas/$1');
 $routes->post('energia/setTarifa', 'Energia::setTarifa');
 $routes->get('energia/getUltimoKwh', 'Energia::getUltimoKwh');
+
+// Rutas para sistema de cortes de línea
+$routes->get('energia/getCortesPendientes', 'Energia::getCortesPendientes');
+$routes->post('energia/marcarCorteVisto/(:num)', 'Energia::marcarCorteVisto/$1');
+$routes->get('energia/getEstadisticasCortes', 'Energia::getEstadisticasCortes');
+$routes->get('energia/getHistorialCortes/(:num)', 'Energia::getHistorialCortes/$1');
+$routes->get('energia/getDispositivosUsuario', 'Energia::getDispositivosUsuario');
+$routes->get('energia/getCortesFiltrados', 'Energia::getCortesFiltrados');
+$routes->get('energia/getDetalleCorte/(:num)', 'Energia::getDetalleCorte/$1');
+$routes->get('energia/exportarCortesExcel', 'Energia::exportarCortesExcel');
+$routes->get('energia/exportarLecturasExcel/(:num)', 'Energia::exportarLecturasExcel/$1');
 
 $routes->get('cambiar-idioma/(:segment)', 'Home::cambiar_idioma/$1');
 $routes->post('telegram/webhook', 'TelegramSimple::webhook');

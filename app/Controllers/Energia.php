@@ -378,14 +378,16 @@ public function getUltimoKwh()
 
     if ($email) {
         $emailObj = \Config\Services::email();
-
+        $configEmail = new \Config\Email();
+        $emailObj->setFrom($configEmail->fromEmail, $configEmail->fromName);
         $emailObj->setTo($email);
         $emailObj->setSubject('Confirmación de límite de consumo');
-        $emailObj->setMessage("
-            <p>Se ha configurado un límite de consumo de <b>$limite kWh</b> para su dispositivo.</p>
-        ");
+        $emailObj->setMailType('html');
+        $emailObj->setMessage("<p>Se ha configurado un límite de consumo de <b>$limite kWh</b> para su dispositivo.</p>");
 
-        $emailObj->send();
+        if (!$emailObj->send()) {
+            log_message('error', 'Fallo email Confirmación de límite: ' . print_r($emailObj->printDebugger(['headers','subject']), true));
+        }
     }
 
     // ------------------ ALERTA TELEGRAM MEJORADA ------------------
@@ -430,7 +432,8 @@ public function getUltimoKwh()
     if ($consumo_actual > $limite['limite_consumo'] && $limite['notificacion_enviada'] == 0) {
         $email = $limite['email_notificacion'];
         $emailObj = \Config\Services::email();
-
+        $configEmail = new \Config\Email();
+        $emailObj->setFrom($configEmail->fromEmail, $configEmail->fromName);
         $emailObj->setTo($email);
         $emailObj->setSubject('⚠️ Alerta de consumo superado');
         $dispositivo = $this->dispositivoModel->find($id_dispositivo);
@@ -452,7 +455,7 @@ public function getUltimoKwh()
                 'ultima_notificacion' => date('Y-m-d H:i:s')
             ]);
         } else {
-            log_message('error', 'No se pudo enviar la alerta de consumo a ' . $email);
+            log_message('error', 'No se pudo enviar la alerta de consumo a ' . $email . ' - ' . print_r($emailObj->printDebugger(['headers','subject']), true));
         }
     }
 }
@@ -536,49 +539,68 @@ public function getUltimoKwh()
 
     // ---------------------- FUNCIONES AUXILIARES NUEVAS ----------------------
     private function verificarLimite(&$lectura, $id_dispositivo, $idUsuario)
-{
-    $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
-    if ($limite && $lectura['kwh_acumulado'] > $limite['limite_consumo']) {
-        $lectura['limite_superado'] = 1;
-        if (isset($lectura['id'])) {
-            $this->energiaModel->update($lectura['id'], ['limite_superado' => 1]);
-        }
+    {
+        $limite = $this->limiteModel->getLimiteByDispositivo($id_dispositivo);
+        if ($limite && $lectura['kwh_acumulado'] > $limite['limite_consumo']) {
+            $lectura['limite_superado'] = 1;
+            if (isset($lectura['id'])) {
+                $this->energiaModel->update($lectura['id'], ['limite_superado' => 1]);
+            }
 
-        // Enviar notificaciones (email Y telegram) controlando frecuencia - SOLO UNA VEZ POR HORA
-        if (!$limite['notificacion_enviada'] || (strtotime($limite['ultima_notificacion']) < strtotime('-1 hour'))) {
-            
-            // 📧 ENVIAR EMAIL
-            $this->enviarNotificacionEmail($idUsuario, $lectura['kwh_acumulado'], $limite['limite_consumo'], $id_dispositivo);
-            
-            // 📱 ENVIAR TELEGRAM (en el mismo bloque para evitar spam)
-            $dispositivo = $this->dispositivoModel->find($id_dispositivo);
-            $nombreDispositivo = $dispositivo ? $dispositivo['nombre'] : "Dispositivo ID $id_dispositivo";
-            
-            $mensaje = "🚨 *ALERTA DE CONSUMO EXCESIVO*\n\n";
-            $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
-            $mensaje .= "📏 *Límite configurado:* {$limite['limite_consumo']} kWh\n";
-            $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh_acumulado'], 4) . " kWh\n";
-            $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
-            $mensaje .= "⚠️ *Acción requerida:*\n";
-            $mensaje .= "• Verificar dispositivos conectados\n";
-            $mensaje .= "• Revisar configuración de límites\n";
-            $mensaje .= "• Considerar desconectar equipos no esenciales\n\n";
-            $mensaje .= "🔗 *Panel de control:*\n";
-            $mensaje .= base_url('energia/dispositivo/' . $id_dispositivo) . "\n\n";
-            $mensaje .= "💡 *Usa /start para ver opciones del bot*";
-            
-            $this->alertaTelegram($mensaje);
-            
-            // ✅ ACTUALIZAR BD - Solo después de enviar AMBAS notificaciones
-            $this->limiteModel->actualizarNotificacion($limite['id']);
+            // Registrar corte de línea en la base de datos
+            $corteModel = new \App\Models\CorteLineaModel();
+            $corteModel->registrarCorte(
+                $id_dispositivo, 
+                $idUsuario, 
+                $lectura['kwh_acumulado'], 
+                $limite['limite_consumo']
+            );
+
+            // Enviar notificaciones (email Y telegram) controlando frecuencia - SOLO UNA VEZ POR HORA
+            if (!$limite['notificacion_enviada'] || (strtotime($limite['ultima_notificacion']) < strtotime('-1 hour'))) {
+                
+                // 📧 ENVIAR EMAIL
+                $this->enviarNotificacionEmail($idUsuario, $lectura['kwh_acumulado'], $limite['limite_consumo'], $id_dispositivo);
+                
+                // 📱 ENVIAR TELEGRAM (en el mismo bloque para evitar spam)
+                $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+                $nombreDispositivo = $dispositivo ? $dispositivo['nombre'] : "Dispositivo ID $id_dispositivo";
+                
+                $mensaje = "🚨 *ALERTA DE CONSUMO EXCESIVO*\n\n";
+                $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
+                $mensaje .= "📏 *Límite configurado:* {$limite['limite_consumo']} kWh\n";
+                $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh_acumulado'], 4) . " kWh\n";
+                $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
+                $mensaje .= "⚠️ *Acción requerida:*\n";
+                $mensaje .= "• Verificar dispositivos conectados\n";
+                $mensaje .= "• Revisar configuración de límites\n";
+                $mensaje .= "• Considerar desconectar equipos no esenciales\n\n";
+                $mensaje .= "🔗 *Panel de control:*\n";
+                $mensaje .= base_url('energia/dispositivo/' . $id_dispositivo) . "\n\n";
+                $mensaje .= "💡 *Usa /start para ver opciones del bot*";
+                
+                $this->alertaTelegram($mensaje);
+                
+                // ✅ ACTUALIZAR BD - Solo después de enviar AMBAS notificaciones
+                $this->limiteModel->actualizarNotificacion($limite['id']);
+            }
+        } else {
+            // Si el consumo está dentro del límite, marcar cortes como resueltos
+            $corteModel = new \App\Models\CorteLineaModel();
+            $corteModel->marcarComoResuelto($id_dispositivo);
         }
     }
-}
 
 
 
 public function generarPDF($dispositivo_id)
 {
+    // Verificar que el usuario esté logueado
+    if (!session()->get('logged_in')) {
+        return redirect()->to(base_url('login'))
+            ->with('error', 'Debes iniciar sesión para generar PDFs.');
+    }
+
     try {
         $db = \Config\Database::connect();
         
@@ -593,6 +615,12 @@ public function generarPDF($dispositivo_id)
         if (!$usuario) {
             return redirect()->to(base_url('energia/dispositivo/' . $dispositivo_id))
                 ->with('error', 'Dispositivo no encontrado.');
+        }
+
+        // Verificar que el dispositivo pertenezca al usuario logueado
+        if ($usuario['id_usuario'] != session()->get('id_usuario')) {
+            return redirect()->to(base_url('energia'))
+                ->with('error', 'No tienes permisos para generar PDFs de este dispositivo.');
         }
 
         // Obtener lecturas recientes (limitado)
@@ -610,6 +638,7 @@ public function generarPDF($dispositivo_id)
             'potencia' => 0
         ];
         
+        // CORRECCIÓN: kwh_acumulado ya es acumulado, no sumar todas las lecturas
         $total_kwh = 0;
         $consumoDiario = [];
         $picoPotencia = ['valor' => 0.0, 'fecha' => null];
@@ -618,18 +647,23 @@ public function generarPDF($dispositivo_id)
             $suma_corriente = 0;
             $suma_potencia = 0;
             
+            // El total_kwh debe ser el ÚLTIMO valor de kwh_acumulado, no la suma
+            $total_kwh = (float)$lecturas[0]['kwh_acumulado']; // Primera lectura (más reciente)
+            
             foreach ($lecturas as $l) {
                 $suma_voltaje += (float)$l['voltaje'];
                 $suma_corriente += (float)$l['corriente'];
                 $suma_potencia += (float)$l['potencia'];
-                $total_kwh += (float)$l['kwh'];
+                // NO sumar kwh_acumulado aquí, ya es acumulado
 
                 // Agrupar por día para consumo diario
                 $dia = date('Y-m-d', strtotime($l['fecha']));
                 if (!isset($consumoDiario[$dia])) {
                     $consumoDiario[$dia] = 0.0;
                 }
-                $consumoDiario[$dia] += (float)$l['kwh'];
+                // Para consumo diario, usar la diferencia entre lecturas consecutivas
+                // Por simplicidad, usaremos el valor de kwh_acumulado de cada día
+                $consumoDiario[$dia] = (float)$l['kwh_acumulado'];
 
                 // Detectar pico de potencia
                 if ((float)$l['potencia'] > $picoPotencia['valor']) {
@@ -651,9 +685,19 @@ public function generarPDF($dispositivo_id)
         $precioKwh = is_numeric($tarifaParam) ? (float)$tarifaParam : (is_numeric($tarifaSession) ? (float)$tarifaSession : 150.0);
         $precioTotal = $precioKwh * $total_kwh;
 
+        // Obtener información de cortes de línea
+        $corteModel = new \App\Models\CorteLineaModel();
+        $cortes = $corteModel->where('id_dispositivo', $dispositivo_id)
+                            ->orderBy('fecha_corte', 'DESC')
+                            ->limit(10)
+                            ->findAll();
+        
+        $estadisticasCortes = $corteModel->getEstadisticasCortes($usuario['id_usuario']);
+
         // Totales mensuales (para comparativo en PDF)
+        // CORRECCIÓN: Usar MAX(kwh_acumulado) en lugar de SUM() porque ya es acumulado
         $rowsMensuales = $db->table('energia')
-            ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, SUM(kwh) AS total_kwh", false)
+            ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, MAX(kwh_acumulado) AS total_kwh", false)
             ->where('id_dispositivo', $dispositivo_id)
             ->groupBy("DATE_FORMAT(fecha, '%Y-%m')", false)
             ->orderBy("DATE_FORMAT(fecha, '%Y-%m')", 'ASC', false)
@@ -680,10 +724,28 @@ public function generarPDF($dispositivo_id)
         // Generar texto del informe
         $informeTexto = "Informe de consumo energético para el dispositivo <b>{$usuario['nombre_dispositivo']}</b>. ";
         if (!empty($lecturas)) {
-            $informeTexto .= "Se registraron " . count($lecturas) . " lecturas con un consumo total de <b>" . number_format($total_kwh, 2) . " kWh</b>, ";
+            $informeTexto .= "Se registraron " . count($lecturas) . " lecturas con un consumo acumulado de <b>" . number_format($total_kwh, 2) . " kWh</b>, ";
             $informeTexto .= "equivalente a <b>$" . number_format($precioTotal, 2) . "</b> según la tarifa configurada.";
+        }
+
+        // Agregar información de cortes de línea
+        if (!empty($cortes)) {
+            $informeTexto .= "<br><br><b>📊 RESUMEN DE CORTES DE LÍNEA:</b><br>";
+            $informeTexto .= "• Total de cortes registrados: <b>" . $estadisticasCortes['total_cortes'] . "</b><br>";
+            $informeTexto .= "• Cortes activos: <b>" . $estadisticasCortes['cortes_activos'] . "</b><br>";
+            $informeTexto .= "• Cortes resueltos: <b>" . $estadisticasCortes['cortes_resueltos'] . "</b><br>";
+            
+            if (!empty($cortes)) {
+                $informeTexto .= "<br><b>🔍 ÚLTIMOS CORTES REGISTRADOS:</b><br>";
+                foreach (array_slice($cortes, 0, 5) as $corte) {
+                    $fecha = date('d/m/Y H:i', strtotime($corte['fecha_corte']));
+                    $estado = $corte['resuelto'] ? 'Resuelto' : 'Activo';
+                    $informeTexto .= "• $fecha - Consumo: " . number_format($corte['consumo_actual'], 2) . " kWh - Estado: $estado<br>";
+                }
+            }
         } else {
-            $informeTexto .= "No se encontraron lecturas para este dispositivo.";
+            $informeTexto .= "<br><br><b>📊 RESUMEN DE CORTES DE LÍNEA:</b><br>";
+            $informeTexto .= "• No se registraron cortes de línea para este dispositivo.";
         }
 
         // Recomendaciones básicas basadas en patrones
@@ -735,13 +797,25 @@ public function generarPDF($dispositivo_id)
         $dompdf->addInfo('Author', 'EcoVolt');
         $dompdf->addInfo('Subject', 'Consumo energético y estimación de factura');
         
-        $nombreArchivo = "Informe_" . date('Y_m_d') . ".pdf";
+        $nombreArchivo = "Informe_" . preg_replace('/[^a-zA-Z0-9_-]/', '_', $usuario['nombre_dispositivo']) . "_" . date('Y_m_d') . ".pdf";
         $dompdf->stream($nombreArchivo, ["Attachment" => true]);
         
     } catch (\Exception $e) {
         log_message('error', 'Error generando PDF: ' . $e->getMessage());
+        log_message('error', 'Stack trace: ' . $e->getTraceAsString());
+        
+        // Mostrar error más específico
+        $errorMessage = 'Error al generar el PDF. ';
+        if (strpos($e->getMessage(), 'Class \'Dompdf\\Dompdf\' not found') !== false) {
+            $errorMessage .= 'La librería DomPDF no está instalada. Ejecuta: composer require dompdf/dompdf';
+        } elseif (strpos($e->getMessage(), 'View not found') !== false) {
+            $errorMessage .= 'La vista PDF no se encontró. Verifica que existe app/Views/energia/pdf.php';
+        } else {
+            $errorMessage .= $e->getMessage();
+        }
+        
         return redirect()->to(base_url('energia/dispositivo/' . $dispositivo_id))
-            ->with('error', 'Error al generar el PDF: ' . $e->getMessage());
+            ->with('error', $errorMessage);
     }
 }
 
@@ -761,8 +835,9 @@ public function generarPDF($dispositivo_id)
 
         $email = \Config\Services::email();
         $user = $this->userModel->find($idUsuario);
+        $configEmail = new \Config\Email();
 
-        $email->setFrom('noreply@ecovolt.com', 'EcoVolt');
+        $email->setFrom($configEmail->fromEmail, $configEmail->fromName);
         $email->setTo($limiteData['email_notificacion']);
         $email->setSubject('⚠️ Alerta de Consumo de Energía');
 
@@ -785,7 +860,7 @@ public function generarPDF($dispositivo_id)
         if ($email->send()) {
             log_message('info', 'Alerta de consumo enviada correctamente a ' . $limiteData['email_notificacion']);
         } else {
-            log_message('error', 'Error al enviar alerta de consumo a ' . $limiteData['email_notificacion']);
+            log_message('error', 'Error al enviar alerta de consumo a ' . $limiteData['email_notificacion'] . ' - ' . print_r($email->printDebugger(['headers','subject']), true));
         }
     }
 
@@ -922,7 +997,7 @@ public function generarPDF($dispositivo_id)
                     'voltaje' => number_format($lectura['voltaje'], 2),
                     'corriente' => number_format($lectura['corriente'], 2),
                     'potencia' => number_format($lectura['potencia'], 2),
-                    'kwh' => number_format($lectura['kwh'], 2)
+                    'kwh_acumulado' => number_format($lectura['kwh_acumulado'], 2)
                 ];
             }, $lecturas);
 
@@ -964,7 +1039,7 @@ public function generarPDF($dispositivo_id)
             $db = \Config\Database::connect();
             // Agrupación por año-mes
             $rows = $db->table('energia')
-                ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, SUM(kwh) AS total_kwh", false)
+                ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, SUM(kwh_acumulado) AS total_kwh", false)
                 ->where('id_dispositivo', $id_dispositivo)
                 ->groupBy("DATE_FORMAT(fecha, '%Y-%m')", false)
                 ->orderBy("DATE_FORMAT(fecha, '%Y-%m')", 'ASC', false)
@@ -1107,6 +1182,361 @@ public function resetNotificaciones($id_dispositivo = null)
             'message' => 'Todas las notificaciones han sido reseteadas'
         ]);
     }
+}
+
+/**
+ * Obtener cortes pendientes para el usuario actual
+ */
+public function getCortesPendientes()
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $corteModel = new \App\Models\CorteLineaModel();
+    
+    $cortes = $corteModel->getCortesPendientes($id_usuario);
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'cortes' => $cortes
+    ]);
+}
+
+/**
+ * Marcar un corte como visto por el usuario
+ */
+public function marcarCorteVisto($id_corte)
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $corteModel = new \App\Models\CorteLineaModel();
+    
+    // Verificar que el corte pertenece al usuario actual
+    $corte = $corteModel->find($id_corte);
+    if (!$corte || $corte['id_usuario'] != session()->get('id_usuario')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'Corte no encontrado'])->setStatusCode(404);
+    }
+
+    $resultado = $corteModel->marcarComoVisto($id_corte);
+    
+    if ($resultado) {
+        return $this->response->setJSON([
+            'success' => true,
+            'message' => 'Corte marcado como visto'
+        ]);
+    } else {
+        return $this->response->setJSON([
+            'success' => false,
+            'error' => 'Error al marcar como visto'
+        ]);
+    }
+}
+
+/**
+ * Obtener estadísticas de cortes para el usuario actual
+ */
+public function getEstadisticasCortes()
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $fecha_desde = $this->request->getGet('fecha_desde');
+    $fecha_hasta = $this->request->getGet('fecha_hasta');
+    
+    $corteModel = new \App\Models\CorteLineaModel();
+    $estadisticas = $corteModel->getEstadisticasCortes($id_usuario, $fecha_desde, $fecha_hasta);
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'estadisticas' => $estadisticas
+    ]);
+}
+
+/**
+ * Obtener historial de cortes para un dispositivo específico
+ */
+public function getHistorialCortes($id_dispositivo)
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $limite = (int)($this->request->getGet('limite') ?? 10);
+    $corteModel = new \App\Models\CorteLineaModel();
+    $historial = $corteModel->getHistorialCortes($id_dispositivo, $limite);
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'historial' => $historial
+    ]);
+}
+
+/**
+ * Vista principal de cortes de línea
+ */
+public function cortes()
+{
+    if (!session()->get('logged_in')) {
+        return redirect()->to(base_url('login'));
+    }
+
+    // Obtener estadísticas de cortes
+    $id_usuario = session()->get('id_usuario');
+    $corteModel = new \App\Models\CorteLineaModel();
+    $estadisticas = $corteModel->getEstadisticasCortes($id_usuario);
+    
+    // Obtener dispositivos del usuario para el filtro
+    $dispositivos = $this->dispositivoModel->where('id_usuario', $id_usuario)->findAll();
+    
+    return view('energia/cortes', [
+        'estadisticas' => $estadisticas,
+        'dispositivos' => $dispositivos
+    ]);
+}
+
+/**
+ * Obtener dispositivos del usuario para filtros
+ */
+public function getDispositivosUsuario()
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $dispositivos = $this->dispositivoModel->where('id_usuario', $id_usuario)->findAll();
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'dispositivos' => $dispositivos
+    ]);
+}
+
+/**
+ * Obtener cortes con filtros aplicados
+ */
+public function getCortesFiltrados()
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $corteModel = new \App\Models\CorteLineaModel();
+    
+    // Obtener filtros
+    $filtros = [
+        'dispositivo' => $this->request->getGet('dispositivo'),
+        'estado' => $this->request->getGet('estado'),
+        'fecha_desde' => $this->request->getGet('fecha_desde'),
+        'fecha_hasta' => $this->request->getGet('fecha_hasta')
+    ];
+    
+    // Construir query con filtros
+    $query = $corteModel->select('cortes_linea.*, dispositivos.nombre as nombre_dispositivo')
+                       ->join('dispositivos', 'dispositivos.id_dispositivo = cortes_linea.id_dispositivo', 'left')
+                       ->where('cortes_linea.id_usuario', $id_usuario);
+    
+    // Aplicar filtros
+    if ($filtros['dispositivo']) {
+        $query->where('cortes_linea.id_dispositivo', $filtros['dispositivo']);
+    }
+    
+    if ($filtros['estado']) {
+        switch ($filtros['estado']) {
+            case 'activo':
+                $query->where('cortes_linea.resuelto', 0);
+                break;
+            case 'resuelto':
+                $query->where('cortes_linea.resuelto', 1);
+                break;
+            case 'visto':
+                $query->where('cortes_linea.vista_por_usuario', 1);
+                break;
+        }
+    }
+    
+    if ($filtros['fecha_desde']) {
+        $query->where('DATE(cortes_linea.fecha_corte) >=', $filtros['fecha_desde']);
+    }
+    
+    if ($filtros['fecha_hasta']) {
+        $query->where('DATE(cortes_linea.fecha_corte) <=', $filtros['fecha_hasta']);
+    }
+    
+    $cortes = $query->orderBy('cortes_linea.fecha_corte', 'DESC')->findAll();
+    
+    // Obtener estadísticas con los mismos filtros
+    $estadisticas = $corteModel->getEstadisticasCortes($id_usuario, $filtros['fecha_desde'], $filtros['fecha_hasta']);
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'cortes' => $cortes,
+        'estadisticas' => $estadisticas
+    ]);
+}
+
+/**
+ * Obtener detalle de un corte específico
+ */
+public function getDetalleCorte($id_corte)
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $corteModel = new \App\Models\CorteLineaModel();
+    
+    $corte = $corteModel->select('cortes_linea.*, dispositivos.nombre as nombre_dispositivo')
+                       ->join('dispositivos', 'dispositivos.id_dispositivo = cortes_linea.id_dispositivo', 'left')
+                       ->where('cortes_linea.id', $id_corte)
+                       ->where('cortes_linea.id_usuario', $id_usuario)
+                       ->first();
+    
+    if (!$corte) {
+        return $this->response->setJSON(['success' => false, 'error' => 'Corte no encontrado'])->setStatusCode(404);
+    }
+    
+    return $this->response->setJSON([
+        'success' => true,
+        'corte' => $corte
+    ]);
+}
+
+/**
+ * Exportar cortes a Excel
+ */
+public function exportarCortesExcel()
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    $id_usuario = session()->get('id_usuario');
+    $corteModel = new \App\Models\CorteLineaModel();
+    
+    // Obtener todos los cortes del usuario
+    $cortes = $corteModel->select('cortes_linea.*, dispositivos.nombre as nombre_dispositivo')
+                        ->join('dispositivos', 'dispositivos.id_dispositivo = cortes_linea.id_dispositivo', 'left')
+                        ->where('cortes_linea.id_usuario', $id_usuario)
+                        ->orderBy('cortes_linea.fecha_corte', 'DESC')
+                        ->findAll();
+    
+    // Generar CSV (formato compatible con Excel)
+    $filename = 'cortes_linea_' . date('Y-m-d_H-i-s') . '.csv';
+    
+    // Headers para descarga
+        $this->response->setHeader('Content-Type', 'text/csv; charset=utf-8');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"');
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+    
+    // Crear contenido CSV
+    $output = fopen('php://output', 'w');
+    
+    // BOM para UTF-8 (para que Excel reconozca correctamente los caracteres especiales)
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    
+    // Encabezados
+    fputcsv($output, [
+        'ID',
+        'Dispositivo',
+        'Consumo Actual (kWh)',
+        'Límite Configurado (kWh)',
+        'Fecha del Corte',
+        'Estado',
+        'Visto por Usuario',
+        'Fecha Vista',
+        'Fecha Resolución'
+    ]);
+    
+    // Datos
+    foreach ($cortes as $corte) {
+        fputcsv($output, [
+            $corte['id'],
+            $corte['nombre_dispositivo'] ?? 'Dispositivo ' . $corte['id_dispositivo'],
+            number_format($corte['consumo_actual'], 4),
+            number_format($corte['limite_configurado'], 4),
+            date('d/m/Y H:i:s', strtotime($corte['fecha_corte'])),
+            $corte['resuelto'] ? 'Resuelto' : 'Activo',
+            $corte['vista_por_usuario'] ? 'Sí' : 'No',
+            $corte['fecha_vista'] ? date('d/m/Y H:i:s', strtotime($corte['fecha_vista'])) : '',
+            $corte['fecha_resolucion'] ? date('d/m/Y H:i:s', strtotime($corte['fecha_resolucion'])) : ''
+        ]);
+    }
+    
+    fclose($output);
+    return $this->response;
+}
+
+/**
+ * Exportar lecturas de energía a Excel
+ */
+public function exportarLecturasExcel($dispositivo_id)
+{
+    if (!session()->get('logged_in')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'No autorizado'])->setStatusCode(401);
+    }
+
+    // Verificar que el dispositivo pertenece al usuario
+    $dispositivo = $this->dispositivoModel->find($dispositivo_id);
+    if (!$dispositivo || $dispositivo['id_usuario'] != session()->get('id_usuario')) {
+        return $this->response->setJSON(['success' => false, 'error' => 'Dispositivo no encontrado'])->setStatusCode(404);
+    }
+
+    // Obtener lecturas del dispositivo
+    $lecturas = $this->energiaModel->where('id_dispositivo', $dispositivo_id)
+                                  ->orderBy('fecha', 'DESC')
+                                  ->findAll();
+    
+    // Generar CSV
+    $filename = 'lecturas_energia_' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $dispositivo['nombre']) . '_' . date('Y-m-d_H-i-s') . '.csv';
+    
+    // Headers para descarga
+        $this->response->setHeader('Content-Type', 'text/csv; charset=utf-8');
+        $this->response->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"');
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+    
+    // Crear contenido CSV
+    $output = fopen('php://output', 'w');
+    
+    // BOM para UTF-8
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    
+    // Encabezados
+    fputcsv($output, [
+        'Fecha y Hora',
+        'Voltaje (V)',
+        'Corriente (A)',
+        'Potencia (W)',
+        'Energía Acumulada (kWh)',
+        'Límite Superado'
+    ]);
+    
+    // Datos
+    foreach ($lecturas as $lectura) {
+        fputcsv($output, [
+            date('d/m/Y H:i:s', strtotime($lectura['fecha'])),
+            number_format($lectura['voltaje'], 2),
+            number_format($lectura['corriente'], 2),
+            number_format($lectura['potencia'], 2),
+            number_format($lectura['kwh_acumulado'], 4),
+            $lectura['limite_superado'] ? 'Sí' : 'No'
+        ]);
+    }
+    
+    fclose($output);
+    return $this->response;
 }
 }
 

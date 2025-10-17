@@ -183,7 +183,7 @@
                     
                     <!-- Botón para comprar medidor adicional -->
                     <div class="mt-4">
-                        <a href="<?= base_url('compra-existente') ?>" class="btn btn-premium-gold w-100">
+                        <a href="<?= base_url('comprar-medidor') ?>" class="btn btn-premium-gold w-100">
                             <i class="fas fa-shopping-cart"></i> Comprar Medidor Adicional
                         </a>
                     </div>
@@ -204,6 +204,11 @@
                         <li class="nav-item">
                             <a class="nav-link" id="password-tab" data-bs-toggle="tab" href="#password" role="tab">
                                 <i class="fas fa-key"></i> Cambiar Contraseña
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="cortes-tab" data-bs-toggle="tab" href="#cortes" role="tab">
+                                <i class="fas fa-exclamation-triangle"></i> Cortes de Línea
                             </a>
                         </li>
                     </ul>
@@ -276,6 +281,78 @@
                                 </button>
                             </form>
                         </div>
+
+                        <!-- Pestaña: Cortes de Línea -->
+                        <div class="tab-pane fade" id="cortes" role="tabpanel">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                                            Resumen de Cortes de Línea
+                                        </h5>
+                                        <a href="<?= base_url('energia/cortes') ?>" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-history me-1"></i>Ver Historial Completo
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Estadísticas rápidas -->
+                                    <div class="row mb-4" id="estadisticasCortes">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="premium-card text-center">
+                                                <div class="premium-card-body">
+                                                    <i class="fas fa-exclamation-triangle text-danger mb-2" style="font-size: 2rem;"></i>
+                                                    <h4 class="text-danger mb-1" id="totalCortesDashboard">-</h4>
+                                                    <small class="text-muted">Total de Cortes</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="premium-card text-center">
+                                                <div class="premium-card-body">
+                                                    <i class="fas fa-bolt text-warning mb-2" style="font-size: 2rem;"></i>
+                                                    <h4 class="text-warning mb-1" id="cortesActivosDashboard">-</h4>
+                                                    <small class="text-muted">Cortes Activos</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="premium-card text-center">
+                                                <div class="premium-card-body">
+                                                    <i class="fas fa-check-circle text-success mb-2" style="font-size: 2rem;"></i>
+                                                    <h4 class="text-success mb-1" id="cortesResueltosDashboard">-</h4>
+                                                    <small class="text-muted">Cortes Resueltos</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="premium-card text-center">
+                                                <div class="premium-card-body">
+                                                    <i class="fas fa-eye text-info mb-2" style="font-size: 2rem;"></i>
+                                                    <h4 class="text-info mb-1" id="cortesVistosDashboard">-</h4>
+                                                    <small class="text-muted">Cortes Vistos</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Últimos cortes -->
+                                    <div class="premium-card">
+                                        <div class="premium-card-body">
+                                            <h6 class="mb-3">
+                                                <i class="fas fa-clock me-2"></i>Últimos Cortes
+                                            </h6>
+                                            <div id="ultimosCortesDashboard">
+                                                <div class="text-center text-muted">
+                                                    <i class="fas fa-spinner fa-spin me-2"></i>
+                                                    Cargando cortes...
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -285,6 +362,11 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Cargar datos de cortes cuando se active la pestaña
+    document.getElementById('cortes-tab').addEventListener('shown.bs.tab', function() {
+        cargarDatosCortesDashboard();
+    });
+
     // Función para mostrar/ocultar contraseña
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', function() {
@@ -304,6 +386,94 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Función para cargar datos de cortes en el dashboard
+function cargarDatosCortesDashboard() {
+    // Cargar estadísticas
+    fetch('<?= base_url('energia/getEstadisticasCortes') ?>')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const stats = data.estadisticas;
+                document.getElementById('totalCortesDashboard').textContent = stats.total_cortes;
+                document.getElementById('cortesActivosDashboard').textContent = stats.cortes_activos;
+                document.getElementById('cortesResueltosDashboard').textContent = stats.cortes_resueltos;
+                document.getElementById('cortesVistosDashboard').textContent = stats.cortes_vistos;
+            }
+        })
+        .catch(error => {
+            console.error('Error cargando estadísticas:', error);
+        });
+
+    // Cargar últimos cortes
+    fetch('<?= base_url('energia/getCortesPendientes') ?>')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarUltimosCortesDashboard(data.cortes.slice(0, 3)); // Solo los últimos 3
+            } else {
+                document.getElementById('ultimosCortesDashboard').innerHTML = `
+                    <div class="text-center text-muted">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No se encontraron cortes
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error cargando cortes:', error);
+            document.getElementById('ultimosCortesDashboard').innerHTML = `
+                <div class="text-center text-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Error al cargar cortes
+                </div>
+            `;
+        });
+}
+
+// Mostrar últimos cortes en el dashboard
+function mostrarUltimosCortesDashboard(cortes) {
+    const container = document.getElementById('ultimosCortesDashboard');
+    
+    if (cortes.length === 0) {
+        container.innerHTML = `
+            <div class="text-center text-success">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>¡Excelente!</strong> No tienes cortes de línea activos.
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    cortes.forEach(corte => {
+        const fecha = new Date(corte.fecha_corte).toLocaleString();
+        const estado = corte.resuelto == 1 ? 
+            '<span class="badge bg-success">Resuelto</span>' : 
+            '<span class="badge bg-danger">Activo</span>';
+        
+        html += `
+            <div class="d-flex justify-content-between align-items-center p-3 mb-2" style="background: rgba(255, 193, 7, 0.1); border-radius: 10px; border-left: 4px solid #ffc107;">
+                <div>
+                    <div class="fw-bold text-warning">
+                        <i class="fas fa-bolt me-1"></i>
+                        ${corte.nombre_dispositivo || 'Dispositivo ' + corte.id_dispositivo}
+                    </div>
+                    <small class="text-muted">
+                        ${parseFloat(corte.consumo_actual).toFixed(2)} kWh / ${parseFloat(corte.limite_configurado).toFixed(2)} kWh
+                    </small>
+                    <br>
+                    <small class="text-muted">${fecha}</small>
+                </div>
+                <div class="text-end">
+                    ${estado}
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
 </script>
 
 <?= $this->endSection() ?>

@@ -12,6 +12,16 @@
                 <a class="nav-link" href="<?= base_url('perfil/perfil'); ?>">Perfil</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('energia'); ?>">
+                    <i class="fas fa-chart-line"></i> Energía
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('energia/cortes'); ?>">
+                    <i class="fas fa-exclamation-triangle"></i> Cortes
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('compra-existente'); ?>">
                     <i class="fas fa-shopping-cart"></i> Comprar Medidor
                 </a>

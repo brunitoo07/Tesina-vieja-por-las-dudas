@@ -611,11 +611,11 @@
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             
-                                            <!-- Botón para controlar foco -->
-                                            <a href="<?= base_url('dispositivo/control/' . $dispositivo['id_dispositivo']) ?>" 
+                                            <!-- Botón para historial de cortes -->
+                                            <a href="<?= base_url('energia/cortes?dispositivo=' . $dispositivo['id_dispositivo']) ?>" 
                                                class="btn-action btn-control" 
-                                               title="Controlar Foco">
-                                                <i class="fas fa-lightbulb"></i>
+                                               title="Historial de Cortes">
+                                                <i class="fas fa-exclamation-triangle"></i>
                                             </a>
                                             
                                             <!-- === BOTONES DE ACTIVAR/DESACTIVAR === -->

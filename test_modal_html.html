@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal de Alerta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            color: white;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .console-output {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+            Test Modal de Alerta
+        </h1>
+        
+        <div class="info-card">
+            <h5><i class="fas fa-info-circle me-2"></i>Información del Test</h5>
+            <p>Este test simula el funcionamiento del modal de alerta de corte de línea. 
+            Haz clic en los botones para probar diferentes escenarios.</p>
+        </div>
+        
+        <div class="text-center">
+            <button class="btn test-button" onclick="probarModal(8.5, 10.0, 'Consumo Normal')">
+                <i class="fas fa-check-circle me-2"></i>Consumo Normal (8.5 kWh)
+            </button>
+            
+            <button class="btn test-button" onclick="probarModal(10.0, 10.0, 'Consumo Límite')">
+                <i class="fas fa-exclamation-circle me-2"></i>Consumo Límite (10.0 kWh)
+            </button>
+            
+            <button class="btn test-button" onclick="probarModal(12.5, 10.0, 'Consumo Excesivo')">
+                <i class="fas fa-exclamation-triangle me-2"></i>Consumo Excesivo (12.5 kWh)
+            </button>
+            
+            <button class="btn test-button" onclick="probarModal(15.8, 10.0, 'Consumo Muy Excesivo')">
+                <i class="fas fa-bolt me-2"></i>Consumo Muy Excesivo (15.8 kWh)
+            </button>
+        </div>
+        
+        <div class="info-card">
+            <h5><i class="fas fa-terminal me-2"></i>Console Output</h5>
+            <div id="consoleOutput" class="console-output">
+                <div>🚀 Test Modal iniciado...</div>
+                <div>💡 Haz clic en los botones para probar diferentes escenarios</div>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h5><i class="fas fa-cog me-2"></i>Configuración del Test</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Consumo Actual (kWh):</label>
+                    <input type="number" id="consumoInput" class="form-control" value="12.5" step="0.1">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Límite Configurado (kWh):</label>
+                    <input type="number" id="limiteInput" class="form-control" value="10.0" step="0.1">
+                </div>
+            </div>
+            <button class="btn test-button mt-3" onclick="probarModalPersonalizado()">
+                <i class="fas fa-play me-2"></i>Probar con Valores Personalizados
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Alerta (copiado del sistema real) -->
+    <div class="modal fade" id="modalCorteEsencial" tabindex="-1" aria-labelledby="modalCorteEsencialLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #dc3545; border-radius: 20px; box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4);">
+                <div class="modal-header" style="border-bottom: 2px solid #dc3545; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); border-radius: 18px 18px 0 0;">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3" style="font-size: 2.5rem; animation: pulse 1.5s infinite;">
+                            ⚡🚨
+                        </div>
+                        <div>
+                            <h4 class="modal-title text-white fw-bold mb-0" id="modalCorteEsencialLabel" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                ¡LÍNEA NO ESENCIAL CORTADA!
+                            </h4>
+                            <small class="text-white-50">Alerta de consumo excesivo</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-body text-white p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card border-warning" style="background: rgba(255, 193, 7, 0.1); border-radius: 15px;">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-bolt text-warning mb-2" style="font-size: 2rem;"></i>
+                                    <h6 class="text-warning fw-bold">Consumo Actual</h6>
+                                    <h4 class="text-white mb-0" id="consumoActualModal">-- kWh</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-info" style="background: rgba(13, 202, 240, 0.1); border-radius: 15px;">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-chart-line text-info mb-2" style="font-size: 2rem;"></i>
+                                    <h6 class="text-info fw-bold">Límite Configurado</h6>
+                                    <h4 class="text-white mb-0" id="limiteConfiguradoModal">-- kWh</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-4" style="background: rgba(255, 193, 7, 0.1); border: 1px solid #ffc107; border-radius: 15px;">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-triangle text-warning me-3" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="text-warning fw-bold mb-1">⚠️ Acción Requerida</h6>
+                                <p class="mb-0 text-white">El consumo de energía ha superado el límite configurado. 
+                                Se recomienda desconectar equipos no esenciales para evitar cortes adicionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer" style="border-top: 2px solid #dc3545; background: rgba(0,0,0,0.2); border-radius: 0 0 18px 18px;">
+                    <button type="button" class="btn btn-primary btn-lg me-3" onclick="irAConfigurarLimites()" style="background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600; box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);">
+                        <i class="fas fa-cog me-2"></i>Ir a Configurar Límites
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-lg" onclick="cerrarModal()" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
+                        <i class="fas fa-times me-2"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para mostrar el modal de corte de línea esencial (copiada del sistema real)
+        function mostrarModalCorteEsencial(consumoActual, limiteConfigurado, idCorte = null) {
+            logToConsole('🚨 Mostrando modal de corte:', {
+                consumoActual: consumoActual,
+                limiteConfigurado: limiteConfigurado,
+                idCorte: idCorte
+            });
+            
+            // Asegurar que los valores sean números válidos
+            const consumo = parseFloat(consumoActual) || 0;
+            const limite = parseFloat(limiteConfigurado) || 10;
+            
+            // Actualizar los valores en el modal con formato correcto
+            const consumoElement = document.getElementById('consumoActualModal');
+            const limiteElement = document.getElementById('limiteConfiguradoModal');
+            
+            if (consumoElement) {
+                consumoElement.textContent = consumo.toFixed(2) + ' kWh';
+                logToConsole('✅ Consumo actual actualizado:', consumo.toFixed(2) + ' kWh');
+            } else {
+                logToConsole('❌ No se encontró el elemento consumoActualModal');
+            }
+            
+            if (limiteElement) {
+                limiteElement.textContent = limite.toFixed(2) + ' kWh';
+                logToConsole('✅ Límite configurado actualizado:', limite.toFixed(2) + ' kWh');
+            } else {
+                logToConsole('❌ No se encontró el elemento limiteConfiguradoModal');
+            }
+            
+            // Calcular y mostrar el exceso
+            const exceso = consumo - limite;
+            const porcentaje = limite > 0 ? ((consumo / limite) * 100) : 0;
+            
+            logToConsole('📊 Análisis del corte:', {
+                exceso: exceso.toFixed(2) + ' kWh',
+                porcentaje: porcentaje.toFixed(1) + '%'
+            });
+            
+            // Guardar el ID del corte para marcarlo como visto después
+            if (idCorte) {
+                document.getElementById('modalCorteEsencial').setAttribute('data-corte-id', idCorte);
+                logToConsole('✅ ID del corte guardado:', idCorte);
+            }
+            
+            // Mostrar el modal
+            const modal = new bootstrap.Modal(document.getElementById('modalCorteEsencial'));
+            modal.show();
+            
+            logToConsole('🎯 Modal mostrado correctamente');
+        }
+        
+        // Función para probar el modal con datos específicos
+        function probarModal(consumo, limite, nombre) {
+            logToConsole(`🧪 Probando modal: ${nombre}`);
+            logToConsole(`📊 Datos: Consumo=${consumo} kWh, Límite=${limite} kWh`);
+            
+            mostrarModalCorteEsencial(
+                consumo.toFixed(2),
+                limite.toFixed(2),
+                Math.floor(Math.random() * 1000) // ID ficticio
+            );
+        }
+        
+        // Función para probar con valores personalizados
+        function probarModalPersonalizado() {
+            const consumo = parseFloat(document.getElementById('consumoInput').value);
+            const limite = parseFloat(document.getElementById('limiteInput').value);
+            
+            if (isNaN(consumo) || isNaN(limite)) {
+                logToConsole('❌ Error: Valores inválidos');
+                return;
+            }
+            
+            probarModal(consumo, limite, 'Valores Personalizados');
+        }
+        
+        // Función para cerrar el modal
+        function cerrarModal() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial'));
+            modal.hide();
+            logToConsole('✅ Modal cerrado');
+        }
+        
+        // Función para ir a configurar límites (simulada)
+        function irAConfigurarLimites() {
+            logToConsole('🔧 Redirigiendo a configuración de límites...');
+            alert('En el sistema real, esto te llevaría a la página de configuración de límites.');
+        }
+        
+        // Función para loggear en la consola del test
+        function logToConsole(message, data = null) {
+            const consoleOutput = document.getElementById('consoleOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            
+            if (data) {
+                logEntry.innerHTML = `[${timestamp}] ${message} ${JSON.stringify(data, null, 2)}`;
+            } else {
+                logEntry.innerHTML = `[${timestamp}] ${message}`;
+            }
+            
+            consoleOutput.appendChild(logEntry);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            
+            // También loggear en la consola del navegador
+            console.log(`[${timestamp}] ${message}`, data || '');
+        }
+        
+        // Inicializar el test
+        logToConsole('🚀 Test Modal de Alerta iniciado');
+        logToConsole('💡 Haz clic en los botones para probar diferentes escenarios');
+    </script>
+</body>
+</html>
