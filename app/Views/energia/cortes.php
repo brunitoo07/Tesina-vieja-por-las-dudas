@@ -289,7 +289,7 @@ body {
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 Historial de Cortes de Línea
             </h1>
-            <a href="<?= base_url('energia') ?>" class="btn" style="background: var(--black-primary); color: var(--gold-primary); border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600;">
+            <a href="http://192.168.2.173/Tesina/public/energia/dispositivo/2" class="btn" style="background: var(--black-primary); color: var(--gold-primary); border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600;">
                 <i class="fas fa-arrow-left me-2"></i>Volver
             </a>
         </div>

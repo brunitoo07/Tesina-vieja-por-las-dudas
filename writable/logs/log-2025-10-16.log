@@ -21570,3 +21570,164 @@ INFO - 2025-10-16 23:13:04 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2025-10-16 23:13:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-10-16 23:13:11 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
 INFO - 2025-10-16 23:13:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:19 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:13:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:28 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:13:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:37 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:13:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:45 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:13:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:13:53 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:13:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:01 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:08 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:15 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:22 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:29 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:36 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:43 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:14:55 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:14:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:02 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:12 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:23 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:29 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:36 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:45 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:15:52 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:15:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:00 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:09 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:18 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:28 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:39 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:46 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:16:53 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:16:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:00 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:17:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:07 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:17:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:14 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:17:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-16 23:17:19 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-16 23:17:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-16 23:17:19 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1760667430
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/energia/dispositivo/2
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+    [tarifa_kwh] => 163
+)
+
+DEBUG - 2025-10-16 23:17:19 --> Buscando usuario ID: 1
+DEBUG - 2025-10-16 23:17:19 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-16 23:17:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:21 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+INFO - 2025-10-16 23:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:28 --> Límite obtenido (general): 1.5490 kWh, IP: 192.168.0.232
+ERROR - 2025-10-16 23:17:28 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-10-16 23:17:28 --> 220 smtp.gmail.com ESMTP d9443c01a7336-29099313b28sm45912905ad.3 - gsmtp
+
+hello: 250-smtp.gmail.com at your service, [190.247.32.212]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-29099313b28sm45912905ad.3 - gsmtp
+
+INFO - 2025-10-16 23:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-10-16 23:17:28 --> Error al enviar el correo de restablecimiento de contraseña.
+INFO - 2025-10-16 23:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-16 23:17:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

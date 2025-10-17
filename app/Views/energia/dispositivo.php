@@ -1879,7 +1879,7 @@ function probarModalAlerta() {
                     <button type="button" class="btn btn-primary btn-lg me-3" onclick="irAConfigurarLimites()" style="background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600; box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);">
                         <i class="fas fa-cog me-2"></i>Ir a Configurar Límites
                     </button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="marcarCorteComoVisto(); bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial')).hide();" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
+                    <button type="button" class="btn btn-secondary btn-lg" onclick="marcarCorteComoVisto(); descartarAlertaLocal(); bootstrap.Modal.getInstance(document.getElementById('modalCorteEsencial')).hide();" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); border: none; border-radius: 25px; padding: 12px 30px; font-weight: 600;">
                         <i class="fas fa-times me-2"></i>Cerrar
                     </button>
                 </div>
@@ -1975,6 +1975,18 @@ function mostrarModalCorteEsencial(consumoActual, limiteConfigurado, idCorte = n
         console.log('✅ ID del corte guardado:', idCorte);
     }
     
+    // Guardar en localStorage que el usuario descartó la alerta para este dispositivo
+    try {
+        const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+        if (dispositivoId) {
+            const key = `corteDescartado_${dispositivoId}`;
+            // Solo marcamos como descartado al abrir si viene de persistente con idCorte
+            if (idCorte) {
+                localStorage.setItem(key, '1');
+            }
+        }
+    } catch (e) {}
+
     // Mostrar el modal
     const modal = new bootstrap.Modal(document.getElementById('modalCorteEsencial'));
     modal.show();
@@ -2027,6 +2039,15 @@ function verificarCorteLineaNoEsencial(ultimaLectura) {
         
         // Verificar si el consumo supera el límite (corte de línea NO esencial)
         if (consumoActual > limiteConsumo) {
+            // No mostrar si el usuario descartó para este dispositivo mientras siga activo
+            try {
+                const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+                const key = `corteDescartado_${dispositivoId}`;
+                if (localStorage.getItem(key) === '1') {
+                    console.log('🛑 Alerta descartada por el usuario para este dispositivo. No mostrar modal hasta que baje del límite.');
+                    return;
+                }
+            } catch (e) {}
             // Verificar si ya se mostró el modal para evitar spam
             const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
             const timestampActual = new Date().getTime();
@@ -2051,6 +2072,12 @@ function verificarCorteLineaNoEsencial(ultimaLectura) {
             }
         } else {
             console.log('✅ Consumo actual (' + consumoActual + ' kWh) está por debajo del límite actual (' + limiteConsumo + ' kWh) - No mostrar modal');
+            // Si volvió a estar por debajo, limpiamos el flag de descarte
+            try {
+                const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+                const key = `corteDescartado_${dispositivoId}`;
+                localStorage.removeItem(key);
+            } catch (e) {}
         }
     }
 }
@@ -2073,6 +2100,8 @@ function marcarCorteComoVisto() {
         .then(data => {
             if (data.success) {
                 console.log('✅ Corte marcado como visto');
+                // Además, persistimos descarte por dispositivo
+                descartarAlertaLocal();
             } else {
                 console.error('❌ Error al marcar corte como visto:', data.error);
             }
@@ -2080,7 +2109,21 @@ function marcarCorteComoVisto() {
         .catch(error => {
             console.error('❌ Error al marcar corte como visto:', error);
         });
+    } else {
+        // No hay id de corte (camino en tiempo real). Silenciar localmente de todas formas
+        descartarAlertaLocal();
     }
+}
+
+// Silencia la alerta localmente hasta que baje del límite
+function descartarAlertaLocal() {
+    try {
+        const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+        if (dispositivoId) {
+            localStorage.setItem(`corteDescartado_${dispositivoId}`, '1');
+            console.log('🔕 Alerta descartada localmente para dispositivo', dispositivoId);
+        }
+    } catch (e) {}
 }
 
 // Función para verificar estado persistente al cargar la página
@@ -2109,6 +2152,15 @@ function verificarEstadoCortePersistente() {
                 
                 // Solo mostrar el modal si el consumo actual supera el límite actual
                 if (consumoActual > limiteActual) {
+                    // No mostrar si el usuario descartó para este dispositivo mientras siga activo
+                    try {
+                        const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+                        const key = `corteDescartado_${dispositivoId}`;
+                        if (localStorage.getItem(key) === '1') {
+                            console.log('🛑 Alerta persistente descartada por el usuario. No mostrar.');
+                            return;
+                        }
+                    } catch (e) {}
                     // Verificar control de spam para cortes persistentes
                     const modalYaMostrado = sessionStorage.getItem('modalCortePersistenteMostrado');
                     const timestampActual = new Date().getTime();

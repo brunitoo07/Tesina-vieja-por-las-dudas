@@ -13,6 +13,7 @@ class CorteLineaModel extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
+        'tipo',
         'id_dispositivo',
         'id_usuario', 
         'consumo_actual',
@@ -61,6 +62,7 @@ class CorteLineaModel extends Model
     {
         // Verificar si ya existe un corte activo para este dispositivo
         $corteActivo = $this->where('id_dispositivo', $id_dispositivo)
+                           ->where('tipo', 'corte')
                            ->where('resuelto', 0)
                            ->first();
 
@@ -75,6 +77,7 @@ class CorteLineaModel extends Model
         } else {
             // Crear nuevo corte
             return $this->insert([
+                'tipo' => 'corte',
                 'id_dispositivo' => $id_dispositivo,
                 'id_usuario' => $id_usuario,
                 'consumo_actual' => $consumo_actual,
@@ -108,6 +111,9 @@ class CorteLineaModel extends Model
         return $this->select('cortes_linea.*, dispositivos.nombre as nombre_dispositivo')
                    ->join('dispositivos', 'dispositivos.id_dispositivo = cortes_linea.id_dispositivo', 'left')
                    ->where('cortes_linea.id_usuario', $id_usuario)
+                   ->where('cortes_linea.tipo', 'corte')
+                   ->where('cortes_linea.resuelto', 0)
+                   ->where('cortes_linea.vista_por_usuario', 0)
                    ->orderBy('cortes_linea.fecha_corte', 'DESC')
                    ->findAll();
     }
@@ -177,5 +183,59 @@ class CorteLineaModel extends Model
                    ->orderBy('fecha_corte', 'DESC')
                    ->limit((int)$limite)
                    ->findAll();
+    }
+
+    /**
+     * Registrar o actualizar una prealerta (consumo cercano al límite)
+     */
+    public function registrarPrealerta($id_dispositivo, $id_usuario, $consumo_actual, $limite_configurado)
+    {
+        $prealerta = $this->where('id_dispositivo', $id_dispositivo)
+                          ->where('tipo', 'prealerta')
+                          ->where('resuelto', 0)
+                          ->first();
+        if ($prealerta) {
+            return $this->update($prealerta['id'], [
+                'consumo_actual' => $consumo_actual,
+                'limite_configurado' => $limite_configurado,
+                'fecha_corte' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        return $this->insert([
+            'tipo' => 'prealerta',
+            'id_dispositivo' => $id_dispositivo,
+            'id_usuario' => $id_usuario,
+            'consumo_actual' => $consumo_actual,
+            'limite_configurado' => $limite_configurado,
+            'fecha_corte' => date('Y-m-d H:i:s'),
+            'vista_por_usuario' => 0,
+            'resuelto' => 0
+        ]);
+    }
+
+    /**
+     * Marcar prealertas como resueltas (cuando baja el consumo)
+     */
+    public function marcarPrealertaResuelta($id_dispositivo)
+    {
+        return $this->where('id_dispositivo', $id_dispositivo)
+                   ->where('tipo', 'prealerta')
+                   ->where('resuelto', 0)
+                   ->set([
+                       'resuelto' => 1,
+                       'fecha_resolucion' => date('Y-m-d H:i:s')
+                   ])->update();
+    }
+
+    /**
+     * Obtener última prealerta para un dispositivo
+     */
+    public function getUltimaPrealerta($id_dispositivo)
+    {
+        return $this->where('id_dispositivo', $id_dispositivo)
+                    ->where('tipo', 'prealerta')
+                    ->orderBy('fecha_corte', 'DESC')
+                    ->first();
     }
 }

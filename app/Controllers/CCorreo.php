@@ -42,8 +42,11 @@ class CCorreo extends Controller
             'expiracion' => $fechaExpiracion
         ]);
 
-        // Enviar el código por correo
-        $this->enviarCodigoPorCorreo($email, $codigo);
+        // Enviar el código por correo y cortar el flujo si falla
+        $enviado = $this->enviarCodigoPorCorreo($email, $codigo);
+        if (!$enviado) {
+            return redirect()->back();
+        }
 
         // Guardar el email en la sesión
         session()->set('emailValido', $email);

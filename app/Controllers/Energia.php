@@ -584,11 +584,82 @@ public function getUltimoKwh()
                 // ✅ ACTUALIZAR BD - Solo después de enviar AMBAS notificaciones
                 $this->limiteModel->actualizarNotificacion($limite['id']);
             }
-        } else {
-            // Si el consumo está dentro del límite, marcar cortes como resueltos
+        } else if ($limite) {
+            // Prealerta: si supera el 90% del límite pero aún no lo pasó
+            $umbralPrealerta = 0.9 * (float)$limite['limite_consumo'];
             $corteModel = new \App\Models\CorteLineaModel();
+
+            if ($lectura['kwh_acumulado'] >= $umbralPrealerta && $lectura['kwh_acumulado'] < (float)$limite['limite_consumo']) {
+                log_message('info', '[PREALERTA] Evaluando prealerta. consumo=' . $lectura['kwh_acumulado'] . ' umbral90=' . $umbralPrealerta . ' limite=' . $limite['limite_consumo'] . ' dispositivo=' . $id_dispositivo);
+                // Anti-spam: solo una vez cada 24 horas por dispositivo
+                $ultimaPrealerta = $corteModel->getUltimaPrealerta($id_dispositivo);
+                $hace24hs = strtotime('-24 hours');
+                $ultimaFecha = $ultimaPrealerta ? strtotime($ultimaPrealerta['fecha_corte']) : 0;
+                log_message('info', '[PREALERTA] Última prealerta datetime=' . ($ultimaPrealerta['fecha_corte'] ?? 'NULL') . ' ts=' . $ultimaFecha . ' vs hace24=' . $hace24hs);
+
+                if ($ultimaFecha < $hace24hs) {
+                    log_message('info', '[PREALERTA] Enviando prealerta y registrando en BD...');
+                    // Registrar/actualizar prealerta
+                    $corteModel->registrarPrealerta($id_dispositivo, $idUsuario, $lectura['kwh_acumulado'], $limite['limite_consumo']);
+
+                    // Enviar correo de prealerta
+                    $this->enviarEmailPrealerta($idUsuario, $id_dispositivo, $lectura['kwh_acumulado'], $limite['limite_consumo']);
+
+                    // Telegram opcional (no invasivo)
+                    $dispositivo = $this->dispositivoModel->find($id_dispositivo);
+                    $nombreDispositivo = $dispositivo ? $dispositivo['nombre'] : "Dispositivo ID $id_dispositivo";
+                    $mensaje = "⚠️ *PREALERTA DE CONSUMO*\n\n";
+                    $mensaje .= "🔌 *Dispositivo:* {$nombreDispositivo}\n";
+                    $mensaje .= "📏 *Límite:* {$limite['limite_consumo']} kWh\n";
+                    $mensaje .= "⚡ *Consumo actual:* " . number_format($lectura['kwh_acumulado'], 4) . " kWh\n";
+                    $mensaje .= "⛽ *Umbral prealerta (90%):* " . number_format($umbralPrealerta, 4) . " kWh\n";
+                    $mensaje .= "📅 *Fecha:* " . date('d/m/Y H:i:s') . "\n\n";
+                    $mensaje .= "🔗 *Panel:*\n" . base_url('energia/dispositivo/' . $id_dispositivo);
+                    $this->alertaTelegram($mensaje);
+                }
+                else {
+                    log_message('info', '[PREALERTA] Omitida por anti-spam (enviada hace menos de 24h).');
+                }
+            } else {
+                log_message('info', '[PREALERTA] No aplica: consumo por debajo del 90% o ya en límite/superado. consumo=' . $lectura['kwh_acumulado'] . ' umbral90=' . $umbralPrealerta . ' limite=' . $limite['limite_consumo']);
+                // Si está por debajo del 90%, marcar prealertas como resueltas
+                $corteModel->marcarPrealertaResuelta($id_dispositivo);
+            }
+
+            // Si el consumo está dentro del límite, marcar cortes como resueltos
             $corteModel->marcarComoResuelto($id_dispositivo);
         }
+    }
+
+    private function enviarEmailPrealerta($idUsuario, $idDispositivo, $consumoActual, $limite)
+    {
+        $limiteModel = new \App\Models\LimiteConsumoModel();
+        $limiteData = $limiteModel->getLimiteByDispositivo($idDispositivo);
+        if (!$limiteData || !$limiteData['email_notificacion']) {
+            return;
+        }
+
+        $email = \Config\Services::email();
+        $user = $this->userModel->find($idUsuario);
+        $configEmail = new \Config\Email();
+        $dispositivo = $this->dispositivoModel->find($idDispositivo);
+
+        $email->setFrom($configEmail->fromEmail, $configEmail->fromName);
+        $email->setTo($limiteData['email_notificacion']);
+        $email->setSubject('⚠️ Prealerta: consumo acercándose al límite');
+
+        $html = view('emails/alerta_prealerta', [
+            'nombre' => $user['nombre'] ?? null,
+            'consumoActual' => $consumoActual,
+            'limiteConfigurado' => $limite,
+            'idDispositivo' => $idDispositivo,
+            'dispositivoNombre' => $dispositivo['nombre'] ?? null,
+            'momento' => date('Y-m-d H:i:s'),
+            'urlPanel' => base_url('energia/dispositivo/' . $idDispositivo)
+        ]);
+        $email->setMessage($html);
+        $email->setMailType('html');
+        $email->send();
     }
 
 
@@ -694,10 +765,9 @@ public function generarPDF($dispositivo_id)
         
         $estadisticasCortes = $corteModel->getEstadisticasCortes($usuario['id_usuario']);
 
-        // Totales mensuales (para comparativo en PDF)
-        // CORRECCIÓN: Usar MAX(kwh_acumulado) en lugar de SUM() porque ya es acumulado
-        $rowsMensuales = $db->table('energia')
-            ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, MAX(kwh_acumulado) AS total_kwh", false)
+        // Totales mensuales (para comparativo en PDF) - usar tabla de resumen
+        $rowsMensuales = $db->table('energia_resumen_diario')
+            ->select("DATE_FORMAT(fecha, '%Y-%m') AS ym, MAX(kwh_fin_dia) AS total_kwh", false)
             ->where('id_dispositivo', $dispositivo_id)
             ->groupBy("DATE_FORMAT(fecha, '%Y-%m')", false)
             ->orderBy("DATE_FORMAT(fecha, '%Y-%m')", 'ASC', false)
@@ -724,7 +794,7 @@ public function generarPDF($dispositivo_id)
         // Generar texto del informe
         $informeTexto = "Informe de consumo energético para el dispositivo <b>{$usuario['nombre_dispositivo']}</b>. ";
         if (!empty($lecturas)) {
-            $informeTexto .= "Se registraron " . count($lecturas) . " lecturas con un consumo acumulado de <b>" . number_format($total_kwh, 2) . " kWh</b>, ";
+            $informeTexto .= "Basado en las últimas " . count($lecturas) . " lecturas, el consumo acumulado actual es de <b>" . number_format($total_kwh, 2) . " kWh</b>, ";
             $informeTexto .= "equivalente a <b>$" . number_format($precioTotal, 2) . "</b> según la tarifa configurada.";
         }
 
