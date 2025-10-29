@@ -45,62 +45,107 @@ class TelegramSimple extends BaseController
         $texto = strtolower(trim($text));
         
         if (strpos($texto, '/start') === 0) {
-            return "🤖 *Bot de Alertas EcoVolt*\n\n";
-            return "Este bot está configurado para enviar solo alertas y notificaciones.\n\n";
-            return "🔗 **Para consultas completas:**\n";
-            return "• Panel web: http://192.168.2.182/Tesina/public/\n";
-            return "• Asistente virtual: http://192.168.2.182/Tesina/chat\n\n";
-            return "📱 **Recibirás notificaciones automáticas cuando:**\n";
-            return "• Se superen los límites de consumo\n";
-            return "• Haya problemas en el sistema\n";
-            return "• Se requiera atención inmediata";
+            return "🤖 *Bot de Alertas EcoVolt*\n\n" .
+                   "Este bot está configurado para enviar solo alertas y notificaciones.\n\n" .
+                   "🔗 **Para consultas completas:**\n" .
+                   "• Panel web: http://192.168.2.182/Tesina/public/\n" .
+                   "• Asistente virtual: http://192.168.2.182/Tesina/chat\n\n" .
+                   "📱 **Recibirás notificaciones automáticas cuando:**\n" .
+                   "• Se superen los límites de consumo\n" .
+                   "• Haya problemas en el sistema\n" .
+                   "• Se requiera atención inmediata";
         }
         
         if (strpos($texto, '/ayuda') === 0 || strpos($texto, 'ayuda') !== false) {
-            return "❓ *Ayuda - Bot de Alertas*\n\n";
-            return "Este bot solo envía alertas automáticas.\n\n";
-            return "🔗 **Para consultas completas:**\n";
-            return "• Panel web: http://192.168.2.182/Tesina/public/\n";
-            return "• Asistente virtual: http://192.168.2.182/Tesina/chat\n\n";
-            return "📱 **Recibirás alertas cuando:**\n";
-            return "• Consumo excesivo\n";
-            return "• Problemas del sistema\n";
-            return "• Atención requerida";
+            return "❓ *Ayuda - Bot de Alertas*\n\n" .
+                   "Este bot solo envía alertas automáticas.\n\n" .
+                   "🔗 **Para consultas completas:**\n" .
+                   "• Panel web: http://192.168.2.182/Tesina/public/\n" .
+                   "• Asistente virtual: http://192.168.2.182/Tesina/chat\n\n" .
+                   "📱 **Recibirás alertas cuando:**\n" .
+                   "• Consumo excesivo\n" .
+                   "• Problemas del sistema\n" .
+                   "• Atención requerida";
         }
         
         // Para cualquier otro mensaje
-        return "🤖 *Bot de Alertas EcoVolt*\n\n";
-        return "Este bot está configurado para alertas automáticas.\n\n";
-        return "🔗 **Para consultas completas:**\n";
-        return "• Panel web: http://192.168.2.182/Tesina/public/\n";
-        return "• Asistente virtual: http://192.168.2.182/Tesina/chat";
+        return "🤖 *Bot de Alertas EcoVolt*\n\n" .
+               "Este bot está configurado para alertas automáticas.\n\n" .
+               "🔗 **Para consultas completas:**\n" .
+               "• Panel web: http://192.168.2.182/Tesina/public/\n" .
+               "• Asistente virtual: http://192.168.2.182/Tesina/chat";
     }
 
-    private function enviarMensaje($texto, $chatId = null)
+    /**
+     * Enviar mensaje genérico (método auxiliar)
+     */
+    private function enviarMensaje($mensaje, $chatId = null)
     {
         $chatId = $chatId ?: $this->chatId;
+        $botToken = $this->token;
         
-        $api = "https://api.telegram.org/bot{$this->token}/sendMessage";
-        $payload = [
+        if (!$botToken) {
+            log_message('error', 'Token de bot Telegram no configurado');
+            return false;
+        }
+        
+        $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
+        
+        $data = [
             'chat_id' => $chatId,
-            'text' => $texto,
-            'parse_mode' => 'Markdown',
-            'disable_web_page_preview' => true,
+            'text' => $mensaje,
+            'parse_mode' => 'Markdown'
         ];
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        
+        if ($httpCode === 200) {
+            log_message('info', "Mensaje Telegram enviado a $chatId");
+            return true;
+        } else {
+            log_message('error', "Error Telegram HTTP $httpCode: " . $response);
+            return false;
+        }
+    }
 
-        $options = [
-            'http' => [
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($payload)
-            ]
-        ];
-        $context = stream_context_create($options);
-        @file_get_contents($api, false, $context);
+    /**
+     * Enviar notificación a un usuario específico por su ID
+     */
+    public function enviarNotificacionUsuario($idUsuario, $mensaje)
+    {
+        try {
+            // Buscar el chat_id del usuario en la base de datos
+            $telegramUserModel = new \App\Models\TelegramUserModel();
+            $usuarioTelegram = $telegramUserModel->where('id_usuario', $idUsuario)
+                                               ->where('is_active', 1)
+                                               ->where('notificaciones_activas', 1)
+                                               ->first();
+            
+            if (!$usuarioTelegram || empty($usuarioTelegram['chat_id'])) {
+                log_message('warning', "Usuario $idUsuario no tiene chat_id de Telegram configurado");
+                return false;
+            }
+            
+            // Enviar mensaje al chat_id específico
+            return $this->enviarMensaje($mensaje, $usuarioTelegram['chat_id']);
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Error en enviarNotificacionUsuario: ' . $e->getMessage());
+            return false;
+        }
     }
 
     public function enviarAlerta($mensaje)
     {
-        $this->enviarMensaje($mensaje);
+        return $this->enviarMensaje($mensaje);
     }
 }

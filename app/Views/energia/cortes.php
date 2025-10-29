@@ -261,6 +261,33 @@ body {
     color: var(--black-primary);
 }
 
+/* Estilos para botones de navegación */
+.nav-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-btn:hover::before {
+    left: 100%;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
     .premium-header h1 {
@@ -283,14 +310,16 @@ body {
 
 <div class="container-fluid">
     <!-- Header -->
+    <div class="container-fluid">
+    <!-- Header -->
     <div class="premium-header">
         <div class="d-flex justify-content-between align-items-center">
             <h1>
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 Historial de Cortes de Línea
             </h1>
-            <a href="http://192.168.2.173/Tesina/public/energia/dispositivo/2" class="btn" style="background: var(--black-primary); color: var(--gold-primary); border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600;">
-                <i class="fas fa-arrow-left me-2"></i>Volver
+            <a href="http://localhost/Tesina/public/energia/dispositivo/2" class="btn" style="background: var(--black-primary); color: var(--gold-primary); border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600;">
+                <i class="fas fa-arrow-left me-2"></i>Volver AL DASHBOARD
             </a>
         </div>
     </div>
@@ -393,7 +422,7 @@ body {
                             <th>Estado</th>
                             <th>Visto</th>
                             <th>Fecha Vista</th>
-                            <th>Acciones</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTablaCortes">
@@ -414,11 +443,30 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarEstadisticas();
     cargarDispositivos();
     cargarCortes();
+    
+    // Verificar si hay filtro de dispositivo en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const dispositivoId = urlParams.get('dispositivo');
+    
+    if (dispositivoId) {
+        // Aplicar filtro de dispositivo automáticamente
+        document.getElementById('filtroDispositivo').value = dispositivoId;
+        aplicarFiltros();
+    }
 });
 
 // Cargar estadísticas
 function cargarEstadisticas() {
-    fetch('<?= base_url('energia/getEstadisticasCortes') ?>')
+    // Verificar si hay filtro de dispositivo en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const dispositivoId = urlParams.get('dispositivo');
+    
+    let url = '<?= base_url('energia/getEstadisticasCortes') ?>';
+    if (dispositivoId) {
+        url += '?dispositivo=' + dispositivoId;
+    }
+    
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -483,7 +531,8 @@ function cargarCortes() {
         });
 }
 
-// Mostrar cortes en la tabla
+// Mostrar cortes en la tabla - SIN BOTONES MANUALES
+// Mostrar cortes en la tabla - SISTEMA AUTOMÁTICO (SIN BOTONES MANUALES)
 function mostrarCortes(cortes) {
     const tbody = document.getElementById('cuerpoTablaCortes');
     tbody.innerHTML = '';
@@ -539,16 +588,9 @@ function mostrarCortes(cortes) {
             <td>${vistoBadge}</td>
             <td>${fechaVista}</td>
             <td>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="verDetalleCorte(${corte.id})" title="Ver detalle">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    ${corte.vista_por_usuario == 0 ? `
-                        <button type="button" class="btn btn-sm btn-outline-success" onclick="marcarComoVisto(${corte.id})" title="Marcar como visto">
-                            <i class="fas fa-check"></i>
-                        </button>
-                    ` : ''}
-                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="verDetalleCorte(${corte.id})" title="Ver detalle (se marcará automáticamente como visto)">
+                    <i class="fas fa-eye"></i> Ver
+                </button>
             </td>
         `;
         
@@ -598,8 +640,10 @@ function aplicarFiltros() {
         });
 }
 
-// Marcar corte como visto
+// Marcar corte como visto automáticamente
 function marcarComoVisto(idCorte) {
+    console.log('📝 Marcado automático como visto:', idCorte);
+    
     fetch(`<?= base_url('energia/marcarCorteVisto') ?>/${idCorte}`, {
         method: 'POST',
         headers: {
@@ -609,37 +653,34 @@ function marcarComoVisto(idCorte) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('✅ Corte marcado como visto');
+            console.log('✅ Corte marcado automáticamente como visto');
+            // Actualizar la interfaz
             cargarCortes();
             cargarEstadisticas();
         } else {
-            alert('❌ Error: ' + data.error);
+            console.error('❌ Error al marcar corte:', data.error);
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Error al marcar como visto');
+        console.error('❌ Error de conexión:', error);
     });
 }
 
-// Ver detalle del corte
+// Ver detalle del corte - CON CIERRE AUTOMÁTICO
 function verDetalleCorte(idCorte) {
     fetch(`<?= base_url('energia/getDetalleCorte') ?>/${idCorte}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 mostrarModalDetalle(data.corte);
-            } else {
-                alert('Error al cargar detalles: ' + data.error);
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error al cargar detalles del corte');
+            console.error('Error al cargar detalles:', error);
         });
 }
 
-// Mostrar modal de detalle
+// Mostrar modal de detalle con cierre automático
 function mostrarModalDetalle(corte) {
     const modal = document.createElement('div');
     modal.className = 'modal fade';
@@ -724,7 +765,7 @@ function mostrarModalDetalle(corte) {
                             <div class="card border-info" style="background: rgba(23, 162, 184, 0.1);">
                                 <div class="card-body">
                                     <h6 class="text-info fw-bold">
-                                        <i class="fas fa-eye me-2"></i>Fecha Vista
+                                        <i class="fas fa-eye me-2"></i>Visto Automáticamente
                                     </h6>
                                     <p class="mb-0">${new Date(corte.fecha_vista).toLocaleString()}</p>
                                 </div>
@@ -749,11 +790,6 @@ function mostrarModalDetalle(corte) {
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         <i class="fas fa-times me-2"></i>Cerrar
                     </button>
-                    ${corte.vista_por_usuario == 0 ? `
-                        <button type="button" class="btn btn-success" onclick="marcarComoVisto(${corte.id}); bootstrap.Modal.getInstance(document.getElementById('modalDetalleCorte')).hide();">
-                            <i class="fas fa-check me-2"></i>Marcar como Visto
-                        </button>
-                    ` : ''}
                 </div>
             </div>
         </div>
@@ -763,8 +799,14 @@ function mostrarModalDetalle(corte) {
     const bsModal = new bootstrap.Modal(modal);
     bsModal.show();
     
-    // Limpiar modal cuando se cierre
+    // 🔥 MARCAR AUTOMÁTICAMENTE AL CERRAR EL MODAL
     modal.addEventListener('hidden.bs.modal', function() {
+        console.log('🎯 Modal cerrado - Marcando automáticamente como visto:', corte.id);
+        
+        // Marcar automáticamente como visto
+        marcarComoVisto(corte.id);
+        
+        // Limpiar modal
         document.body.removeChild(modal);
     });
 }

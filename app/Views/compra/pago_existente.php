@@ -212,6 +212,7 @@
     </style>
 </head>
 <body>
+
     <!-- Header Premium -->
     <div class="premium-header">
         <div class="container">
@@ -219,6 +220,12 @@
             <p>Agrega un segundo medidor a tu cuenta premium</p>
             <div class="price-tag" style="font-size: 1.5rem; margin: 1rem 0 0 0;">$150 USD</div>
         </div>
+    </div>
+    
+    <div class="container mb-4">
+        <a href="<?= base_url('compra-existente') ?>" class="btn btn-outline-light">
+            <i class="fas fa-arrow-left me-2"></i>Volver a compra existente
+        </a>
     </div>
 
     <div class="container">

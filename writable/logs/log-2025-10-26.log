@@ -1,0 +1,125 @@
+INFO - 2025-10-26 02:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:54:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:54:48 --> === INICIO PROCESO DE COMPRA ===
+DEBUG - 2025-10-26 02:54:48 --> Datos recibidos: {"nombre":"tony","email":"toni@gmail.com","id_dispositivo":"1"}
+DEBUG - 2025-10-26 02:54:48 --> Dispositivo encontrado: {"id_dispositivo":"1","nombre":"medidor de ecovolt","id_usuario":"1","mac_address":"00:1A:2B:3C:4D:5E","ip_address":null,"ultima_conexion":null,"estado":"activo","created_at":"2025-04-10 22:26:34","stock":"27","precio":"85","descripcion":"","fecha_actualizacion":"2025-10-17 10:31:47","updated_at":"2025-06-12 15:06:14","codigo_activacion":null,"fecha_activacion":null}
+DEBUG - 2025-10-26 02:54:48 --> Datos guardados en sesión: {"id_dispositivo":"1","email":"toni@gmail.com"}
+DEBUG - 2025-10-26 02:54:48 --> === FIN PROCESO DE COMPRA ===
+INFO - 2025-10-26 02:54:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:55:23 --> === INICIO PROCESAR PAGO ===
+DEBUG - 2025-10-26 02:55:23 --> Payment data recibido: {"id":"5W462265FC7267353","intent":"CAPTURE","status":"COMPLETED","purchase_units":[{"reference_id":"default","amount":{"currency_code":"USD","value":"150.00","breakdown":{"item_total":{"currency_code":"USD","value":"150.00"},"shipping":{"currency_code":"USD","value":"0.00"},"handling":{"currency_code":"USD","value":"0.00"},"insurance":{"currency_code":"USD","value":"0.00"},"shipping_discount":{"currency_code":"USD","value":"0.00"}}},"payee":{"email_address":"sb-hgsm4739665145@business.example.com","merchant_id":"RLNSU5SN9HKR2"},"description":"EcoVolt Pro Premium - Dispositivo + Soporte Mensual","soft_descriptor":"PAYPAL *TEST STORE","items":[{"name":"EcoVolt Pro Premium","unit_amount":{"currency_code":"USD","value":"150.00"},"tax":{"currency_code":"USD","value":"0.00"},"quantity":"1","description":"Dispositivo de monitoreo + Soporte Premium Mensual"}],"shipping":{"name":{"full_name":"Enzo Guerreiro"},"address":{"address_line_1":"Free Trade Zone","admin_area_2":"Buenos Aires","admin_area_1":"Buenos Aires","postal_code":"B1675","country_code":"AR"}},"payments":{"captures":[{"id":"93G64032NE695694N","status":"COMPLETED","amount":{"currency_code":"USD","value":"150.00"},"final_capture":true,"seller_protection":{"status":"ELIGIBLE","dispute_categories":["ITEM_NOT_RECEIVED","UNAUTHORIZED_TRANSACTION"]},"create_time":"2025-10-26T05:55:22Z","update_time":"2025-10-26T05:55:22Z"}]}}],"payer":{"name":{"given_name":"Enzo","surname":"Guerreiro"},"email_address":"enzoguerreiro@alumnos.itr3.edu.ar","payer_id":"5SYG3QNM343Y2","address":{"country_code":"AR"}},"create_time":"2025-10-26T05:55:02Z","update_time":"2025-10-26T05:55:22Z","links":[{"href":"https:\/\/api.sandbox.paypal.com\/v2\/checkout\/orders\/5W462265FC7267353","rel":"self","method":"GET"}]}
+DEBUG - 2025-10-26 02:55:23 --> Datos de sesión - idDispositivo: 1
+DEBUG - 2025-10-26 02:55:23 --> Datos de sesión - datosCompra: {"nombre":"tony","apellido":"kaka","email":"toni@gmail.com","contrasena":"Toni_07$","calle":"Felix de la Pe\u00f1a","numero":"1267","ciudad":"Rio Tercero","codigo_postal":"5850","pais":"Argentina","direccion":"Felix de la Pe\u00f1a 1267, Rio Tercero, 5850, Argentina"}
+DEBUG - 2025-10-26 02:55:23 --> Creando usuario con datos: {"nombre":"tony","apellido":"kaka","email":"toni@gmail.com","contrasena":"Toni_07$","calle":"Felix de la Pe\u00f1a","numero":"1267","ciudad":"Rio Tercero","codigo_postal":"5850","pais":"Argentina","direccion":"Felix de la Pe\u00f1a 1267, Rio Tercero, 5850, Argentina"}
+DEBUG - 2025-10-26 02:55:23 --> Datos de usuario a insertar: {"nombre":"tony","apellido":"kaka","email":"toni@gmail.com","contrasena":"Toni_07$","id_rol":1,"estado":"activo"}
+DEBUG - 2025-10-26 02:55:23 --> Iniciando hashPassword con datos: {"data":{"nombre":"tony","apellido":"kaka","email":"toni@gmail.com","contrasena":"Toni_07$","id_rol":1,"estado":"activo","created_at":"2025-10-26 02:55:23","updated_at":"2025-10-26 02:55:23"}}
+DEBUG - 2025-10-26 02:55:23 --> Contraseña original: Toni_07$
+DEBUG - 2025-10-26 02:55:23 --> Longitud de la contraseña original: 8
+DEBUG - 2025-10-26 02:55:23 --> Hash generado: $2y$10$GOwlUv7a3JA08SMYKWv3euRQ3bFv6xxntBKfePoCjG.TzFIufskfu
+DEBUG - 2025-10-26 02:55:23 --> Usuario creado con ID: 95
+DEBUG - 2025-10-26 02:55:23 --> Enviando email a: toni@gmail.com
+DEBUG - 2025-10-26 02:55:27 --> Email enviado correctamente
+DEBUG - 2025-10-26 02:55:27 --> Compra procesada exitosamente, redirigiendo...
+INFO - 2025-10-26 02:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:56:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:56:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:56:35 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-26 02:56:35 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-26 02:56:35 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-26 02:56:36 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-26 02:56:36 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-26 02:56:36 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-26 02:56:36 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+INFO - 2025-10-26 02:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:56:36 --> Intento de inicio de sesión para email: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-26 02:56:36 --> Longitud de la contraseña ingresada: 17
+DEBUG - 2025-10-26 02:56:36 --> Usuario encontrado: {"id":"1","email":"brunocameille@alumnos.itr3.edu.ar","estado":"activo","rol":"1"}
+DEBUG - 2025-10-26 02:56:36 --> Resultado de verificación de contraseña: true
+DEBUG - 2025-10-26 02:56:36 --> Hash almacenado en la base de datos: $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+DEBUG - 2025-10-26 02:56:36 --> Inicio de sesión exitoso para usuario: brunocameille@alumnos.itr3.edu.ar
+DEBUG - 2025-10-26 02:56:36 --> Datos de sesión guardados: {"id_usuario":"1","nombre":"brunito","apellido":"barber","email":"brunocameille@alumnos.itr3.edu.ar","rol":"admin","logged_in":true}
+DEBUG - 2025-10-26 02:56:36 --> Ruta actual: /Tesina/public/admin
+INFO - 2025-10-26 02:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:56:36 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761458050
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/autenticacion/login
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-26 02:56:54 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-26 02:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:56:54 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761458050
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-26 02:56:54 --> Buscando usuario ID: 1
+DEBUG - 2025-10-26 02:56:54 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-26 02:57:15 --> Ruta actual: /Tesina/public/energia/dispositivo/2
+INFO - 2025-10-26 02:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-26 02:57:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761458050
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-26 02:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:57:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 02:59:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 03:00:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 03:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-26 03:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -146,12 +146,19 @@
     </style>
 </head>
 <body>
+    
     <!-- Header Premium -->
     <div class="premium-header">
+        
         <div class="container">
             <h1><i class="fas fa-plus-circle me-3"></i>Dispositivo Adicional</h1>
             <p>Agrega un segundo medidor a tu cuenta premium</p>
         </div>
+    </div>
+    <div class="container mb-4">
+        <a href="<?= base_url('tipo-compra') ?>" class="btn btn-outline-light">
+            <i class="fas fa-arrow-left me-2"></i>Volver a la vista principal
+        </a>
     </div>
 
     <div class="container">

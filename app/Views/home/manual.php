@@ -209,55 +209,41 @@
     <!-- Manual Content -->
     <div class="manual-section mt-5">
         <div class="container">
-            <?php 
-            $rol = session()->get('rol') ?? 'guest';
-            $titulo = 'Manual de Usuario';
-            if ($rol === 'admin') {
-                $titulo = 'Manual de Administrador';
-            } elseif ($rol === 'supervisor') {
-                $titulo = 'Manual de Supervisor';
-            }
-            ?>
-            <h1 class="text-center mb-5"><?= $titulo ?></h1>
+            <h1 class="text-center mb-5">Manual del Sistema EcoVolt</h1>
             
-            <?php if ($rol === 'admin'): ?>
-            <!-- Información específica para Administradores -->
+            <!-- Información general del sistema -->
             <div class="alert alert-info mb-4">
-                <h5><i class="fas fa-crown me-2"></i>Acceso de Administrador</h5>
-                <p class="mb-0">Como administrador, tienes acceso completo al sistema. Puedes gestionar usuarios, dispositivos y configuraciones globales.</p>
+                <h5><i class="fas fa-info-circle me-2"></i>Acerca del Sistema EcoVolt</h5>
+                <p class="mb-0">EcoVolt es un sistema de monitoreo inteligente de energía que permite gestionar dispositivos ESP32, supervisar consumo en tiempo real y recibir alertas automáticas. El sistema está diseñado para administradores, supervisores y usuarios finales.</p>
             </div>
-            <?php elseif ($rol === 'supervisor'): ?>
-            <!-- Información específica para Supervisores -->
-            <div class="alert alert-warning mb-4">
-                <h5><i class="fas fa-user-tie me-2"></i>Acceso de Supervisor</h5>
-                <p class="mb-0">Como supervisor, puedes monitorear el sistema y gestionar usuarios bajo tu supervisión.</p>
-            </div>
-            <?php elseif ($rol === 'usuario'): ?>
-            <!-- Información específica para Usuarios -->
-            <div class="alert alert-success mb-4">
-                <h5><i class="fas fa-user me-2"></i>Acceso de Usuario</h5>
-                <p class="mb-0">Como usuario, puedes ver tus dispositivos y el consumo de energía. Los dispositivos compartidos por tu administrador también estarán disponibles.</p>
-            </div>
-            <?php endif; ?>
             
             <!-- Registro de Cuenta -->
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">1</div>
-                    <h3>Registro de Cuenta</h3>
+                    <h3>Registro y Activación de Cuenta</h3>
                     <p>Para comenzar a usar el sistema EcoVolt, sigue estos pasos:</p>
+                    
+
+                    <h5><i class="fas fa-shopping-cart me-2"></i>Registro por Compra (EcoVolt Pro)</h5>
                     <ol>
-                        <li><strong>Acceso al sistema:</strong> Ve a la página principal y haz clic en "Iniciar Sesión"</li>
-                        <li><strong>Registro:</strong> Si no tienes cuenta, haz clic en "Registrarse" y completa el formulario con:
-                            <ul>
-                                <li>Nombre y apellido</li>
-                                <li>Correo electrónico válido</li>
-                                <li>Contraseña segura (mínimo 6 caracteres, una mayúscula y un símbolo)</li>
-                            </ul>
-                        </li>
-                        <li><strong>Verificación:</strong> El sistema enviará un correo de confirmación</li>
-                        <li><strong>Inicio de sesión:</strong> Usa tus credenciales para acceder al dashboard</li>
+                        <li><strong>Compra del producto:</strong> Completa el proceso de compra del dispositivo EcoVolt Pro</li>
+                        <li><strong>Registro automático:</strong> El sistema crea tu cuenta automáticamente durante la compra</li>
+                        <li><strong>Activación inmediata:</strong> Tu cuenta queda activa al confirmar el pago</li>
+                        <li><strong>Email de confirmación:</strong> Recibirás un email con los detalles de tu compra y soporte premium</li>
                     </ol>
+
+                    <h5><i class="fas fa-envelope me-2"></i>Registro por Invitación</h5>
+                    <ol>
+                        <li><strong>Recibir invitación:</strong> Un administrador te enviará un email de invitación</li>
+                        <li><strong>Completar registro:</strong> Haz clic en el enlace del email y completa tus datos</li>
+                        <li><strong>Activación inmediata:</strong> Tu cuenta se activa al completar el registro con el token</li>
+                    </ol>
+
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> <strong>Importante:</strong> Todas las cuentas se activan automáticamente. No necesitas verificar por email para acceder al sistema.
+                    </div>
+                    
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> <strong>Tip:</strong> Puedes usar el ícono del ojo 👁️ junto al campo de contraseña para ver/ocultar lo que escribes.
                     </div>
@@ -268,9 +254,10 @@
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">2</div>
-                    <h3>Configuración del Dispositivo ESP32</h3>
-                    <?php if ($rol === 'admin'): ?>
-                    <p>Como administrador, puedes gestionar dispositivos ESP32 para monitoreo de energía:</p>
+                    <h3>Gestión de Dispositivos ESP32</h3>
+                    <p>El sistema permite gestionar dispositivos ESP32 para monitoreo de energía según tu rol:</p>
+                    
+                    <h5><i class="fas fa-crown me-2"></i>Para Administradores</h5>
                     <ol>
                         <li><strong>Agregar dispositivo:</strong> Ve a "Dispositivos" → "Agregar Nuevo Dispositivo"</li>
                         <li><strong>Datos requeridos:</strong>
@@ -280,56 +267,83 @@
                                 <li>Ubicación del dispositivo</li>
                             </ul>
                         </li>
-                        <li><strong>Configuración ESP32:</strong> El dispositivo debe estar conectado a la misma red WiFi</li>
-                        <li><strong>Validación:</strong> El sistema validará la MAC antes de permitir lecturas</li>
+                        <li><strong>Gestión de usuarios:</strong> Puedes invitar usuarios y asignarles dispositivos</li>
+                        <li><strong>Configuración global:</strong> Establece límites y alertas para todo el sistema</li>
                     </ol>
-                    <?php elseif ($rol === 'usuario'): ?>
-                    <p>Como usuario, puedes ver tus dispositivos y los compartidos por tu administrador:</p>
+
+                    <h5><i class="fas fa-user me-2"></i>Para Usuarios</h5>
                     <ol>
-                        <li><strong>Dashboard:</strong> Ve a tu panel principal</li>
+                        <li><strong>Dashboard personal:</strong> Ve a tu panel principal para ver tus dispositivos</li>
                         <li><strong>Dispositivos disponibles:</strong>
                             <ul>
-                                <li><strong>Dispositivos Propios:</strong> Los que has registrado tú</li>
+
                                 <li><strong>Dispositivos Compartidos:</strong> Los que tu administrador ha compartido contigo</li>
                             </ul>
                         </li>
                         <li><strong>Monitoreo:</strong> Haz clic en "Ver Consumo" para ver el historial de cada dispositivo</li>
+                        <li><strong>Configuración personal:</strong> Establece tus propios límites de consumo</li>
                     </ol>
+
+                    <h5><i class="fas fa-user-tie me-2"></i>Para Supervisores</h5>
+                    <ol>
+                        <li><strong>Monitoreo general:</strong> Supervisa el sistema y los usuarios bajo tu responsabilidad</li>
+                        <li><strong>Gestión de alertas:</strong> Recibe notificaciones cuando se superen los límites</li>
+                        <li><strong>Reportes:</strong> Genera reportes de consumo y estadísticas</li>
+                    </ol>
+
                     <div class="alert alert-success">
                         <i class="fas fa-share-alt"></i> Los dispositivos compartidos aparecen con un icono de compartir y muestran el nombre del propietario.
                     </div>
-                    <?php else: ?>
-                    <p>Para agregar un nuevo dispositivo ESP32:</p>
-                    <ol>
-                        <li>Ve a la sección "Dispositivos" en el menú principal</li>
-                        <li>Haz clic en "Agregar Nuevo Dispositivo"</li>
-                        <li>Ingresa la dirección MAC del ESP32</li>
-                        <li>Asigna un nombre descriptivo al dispositivo</li>
-                        <li>Configura la ubicación del medidor</li>
-                        <li>Guarda la configuración</li>
-                    </ol>
-                    <?php endif; ?>
+                    
                     <div class="alert alert-info">
                         <i class="fas fa-microchip"></i> <strong>Importante:</strong> La dirección MAC del ESP32 debe estar en formato válido (ej: AA:BB:CC:DD:EE:FF) y el dispositivo debe estar conectado a la red WiFi.
                     </div>
                 </div>
             </div>
 
-            <!-- Asignación de Roles -->
+            <!-- Gestión de Usuarios y Roles -->
             <div class="card step-card">
                 <div class="card-body">
                     <div class="step-number">3</div>
-                    <h3>Asignación de Roles</h3>
-                    <p>Para gestionar usuarios y roles:</p>
+                    <h3>Gestión de Usuarios y Roles</h3>
+                    <p>El sistema EcoVolt maneja tres tipos de roles con diferentes permisos:</p>
+                    
+                    <h5><i class="fas fa-crown me-2"></i>Administrador</h5>
+                    <ul>
+                        <li><strong>Acceso completo:</strong> Gestiona usuarios, dispositivos y configuraciones globales</li>
+                        <li><strong>Invitar usuarios:</strong> Envía invitaciones por email para registrar nuevos usuarios</li>
+                        <li><strong>Asignar roles:</strong> Puede crear administradores, supervisores y usuarios</li>
+                        <li><strong>Gestión de dispositivos:</strong> Agrega, modifica y elimina dispositivos del sistema</li>
+                        <li><strong>Configuración global:</strong> Establece límites y alertas para todo el sistema</li>
+                    </ul>
+
+                    <h5><i class="fas fa-user-tie me-2"></i>Supervisor</h5>
+                    <ul>
+                        <li><strong>Monitoreo:</strong> Supervisa el sistema y usuarios bajo su responsabilidad</li>
+                        <li><strong>Gestión de alertas:</strong> Recibe y gestiona notificaciones del sistema</li>
+                        <li><strong>Reportes:</strong> Genera reportes de consumo y estadísticas</li>
+                        <li><strong>Dispositivos:</strong> Puede ver y gestionar dispositivos asignados</li>
+                    </ul>
+
+                    <h5><i class="fas fa-user me-2"></i>Usuario</h5>
+                    <ul>
+                        <li><strong>Dashboard personal:</strong> Accede a su panel personal con sus dispositivos</li>
+                        <li><strong>Monitoreo:</strong> Ve el consumo de sus dispositivos en tiempo real</li>
+                        <li><strong>Configuración personal:</strong> Establece límites de consumo para sus dispositivos</li>
+                        <li><strong>Dispositivos compartidos:</strong> Accede a dispositivos compartidos por su administrador</li>
+                    </ul>
+
+                    <h5><i class="fas fa-envelope me-2"></i>Proceso de Invitación</h5>
                     <ol>
-                        <li>Como administrador, ve a la sección "Usuarios"</li>
-                        <li>Haz clic en "Invitar Usuario"</li>
-                        <li>Ingresa el correo electrónico del nuevo usuario</li>
-                        <li>Selecciona el rol (Admin o Usuario)</li>
-                        <li>Envía la invitación</li>
+                        <li><strong>Enviar invitación:</strong> El administrador va a "Usuarios" → "Invitar Usuario"</li>
+                        <li><strong>Datos requeridos:</strong> Email del nuevo usuario y rol asignado</li>
+                        <li><strong>Email automático:</strong> El sistema envía un email con enlace de registro</li>
+                        <li><strong>Registro del usuario:</strong> El usuario hace clic en el enlace y completa sus datos</li>
+                        <li><strong>Activación inmediata:</strong> La cuenta se activa automáticamente al completar el registro</li>
                     </ol>
+
                     <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i> Solo los administradores pueden asignar roles.
+                        <i class="fas fa-exclamation-triangle"></i> Solo los administradores pueden asignar roles y enviar invitaciones.
                     </div>
                 </div>
             </div>
@@ -383,9 +397,7 @@
                         </li>
                         <li><strong>Control de frecuencia:</strong> Las notificaciones se envían máximo una vez por hora para evitar spam</li>
                     </ol>
-                    <div class="alert alert-info">
-                        <i class="fas fa-bell"></i> <strong>Endpoint ESP32:</strong> Los dispositivos pueden consultar el límite actualizado en: <code>http://tu-servidor/energia/getlimite</code>
-                    </div>
+                   
                 </div>
             </div>
 
@@ -399,9 +411,6 @@
                         <li><strong>Acceso:</strong> Haz clic en el botón flotante 💬 en la esquina inferior derecha</li>
                         <li><strong>Funcionalidades disponibles:</strong>
                             <ul>
-                                <li>Consultas sobre dispositivos y direcciones MAC</li>
-                                <li>Información del sistema en tiempo real</li>
-                                <li>Datos de consumo de energía</li>
                                 <li>Ayuda técnica y soporte</li>
                                 <li>Información del proyecto EcoVolt</li>
                             </ul>
@@ -409,8 +418,43 @@
                         <li><strong>Botones de acción rápida:</strong> Usa los botones predefinidos para consultas comunes</li>
                         <li><strong>Chat inteligente:</strong> El asistente responde en tiempo real con información actualizada</li>
                     </ol>
-                    <div class="alert alert-success">
-                        <i class="fas fa-robot"></i> <strong>Disponible siempre:</strong> El asistente está disponible en todas las páginas del sistema y responde instantáneamente.
+                   
+                </div>
+            </div>
+
+            <!-- Configuración de Telegram -->
+            <div class="card step-card">
+                <div class="card-body">
+                    <div class="step-number">6</div>
+                    <h3>Configuración de Notificaciones por Telegram</h3>
+                    <p>EcoVolt permite recibir notificaciones personalizadas directamente en tu Telegram:</p>
+                    
+                    <h5><i class="fab fa-telegram me-2"></i>Configuración Paso a Paso</h5>
+                    <ol>
+                        <li><strong>Buscar el Bot:</strong> En Telegram, busca <strong>@EcoVoltBot</strong> o usa el enlace directo</li>
+                        <li><strong>Iniciar Bot:</strong> Envía <code>/start</code> al bot para comenzar el proceso</li>
+                        <li><strong>Registrar Cuenta:</strong> Envía <code>/registrar</code> para obtener tu código único</li>
+                        <li><strong>Vincular en EcoVolt:</strong> Ve a "Configuración de Telegram" en tu panel y pega el código</li>
+                        <li><strong>¡Listo!</strong> Recibirás notificaciones personalizadas de tus dispositivos</li>
+                    </ol>
+
+                    <h5><i class="fas fa-bell me-2"></i>Tipos de Notificaciones</h5>
+                    <ul>
+                        <li><strong>Alertas de Consumo:</strong> Cuando se supere el límite configurado</li>
+                        <li><strong>Prealertas:</strong> Al llegar al 90% del límite establecido</li>
+                        <li><strong>Cortes de Línea:</strong> Notificaciones de problemas del sistema</li>
+                        <li><strong>Configuraciones:</strong> Confirmación de cambios en límites y dispositivos</li>
+                    </ul>
+
+                    <h5><i class="fas fa-cog me-2"></i>Gestión de Notificaciones</h5>
+                    <ul>
+                        <li><strong>Activar/Desactivar:</strong> Controla las notificaciones desde tu panel</li>
+                        <li><strong>Probar Notificación:</strong> Envía una notificación de prueba para verificar la configuración</li>
+                        <li><strong>Desvincular:</strong> Puedes desvincular tu cuenta de Telegram en cualquier momento</li>
+                    </ul>
+
+                    <div class="alert alert-info">
+                        <i class="fab fa-telegram"></i> <strong>Personalizado:</strong> Cada usuario recibe solo las notificaciones de sus propios dispositivos y configuraciones.
                     </div>
                 </div>
             </div>
@@ -423,10 +467,23 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    ¿Cómo cambio mi contraseña?
+                                    ¿Cómo funciona el registro y activación de cuentas?
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <strong>Registro por Compra:</strong> Al comprar EcoVolt Pro, tu cuenta se crea y activa automáticamente.<br>
+                                    <strong>Registro por Invitación:</strong> Recibes un email, haces clic en el enlace, te registras y tu cuenta se activa inmediatamente.<br>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    ¿Cómo cambio mi contraseña?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <strong>Opción 1:</strong> Ve a "Perfil" > "Seguridad" y sigue las instrucciones.<br>
                                     <strong>Opción 2:</strong> En la página de login, haz clic en "¿Olvidaste tu contraseña?" y sigue el proceso de recuperación por email.
@@ -435,54 +492,30 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
                                     ¿Qué hacer si el ESP32 no se conecta?
                                 </button>
                             </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <ol>
                                         <li>Verifica que el ESP32 esté conectado a la misma red WiFi</li>
                                         <li>Confirma que la dirección MAC esté registrada correctamente en el sistema</li>
-                                        <li>Revisa que el endpoint esté accesible: <code>/energia/recibir</code></li>
                                         <li>Contacta al asistente virtual para soporte técnico</li>
                                     </ol>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    ¿Cómo configuro las notificaciones de Telegram?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Las notificaciones de Telegram se configuran automáticamente cuando se supera el límite de consumo. El sistema envía mensajes al chat configurado en el backend. Para configurar tu chat personal, contacta al administrador del sistema.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    ¿Puedo exportar mis datos de consumo?
-                                </button>
-                            </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Sí, el sistema permite generar reportes PDF con tus datos de consumo. Ve a la sección "Energía" y busca la opción "Generar Reporte" para exportar los datos en formato PDF.
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                                    ¿Cómo funciona el sistema de límites de consumo?
+                                    ¿Puedo exportar mis datos de consumo?
                                 </button>
                             </h2>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    El sistema monitorea continuamente el consumo de energía. Cuando se supera el límite configurado (ej: 10 kWh), se activan las alertas automáticas por email y Telegram. Los ESP32 también pueden consultar el límite actualizado a través del endpoint <code>/energia/getlimite</code>.
+                                    Sí, el sistema permite generar reportes PDF con tus datos de consumo. Ve a la sección "Energía" y busca la opción "Generar Reporte" para exportar los datos en formato PDF.
                                 </div>
                             </div>
                         </div>

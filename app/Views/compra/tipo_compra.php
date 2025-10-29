@@ -294,6 +294,11 @@
             <p>Elige el tipo de compra que mejor se adapte a tu situación</p>
         </div>
     </div>
+    <div class="container mb-4">
+        <a href="<?= base_url('/') ?>" class="btn btn-outline-light">
+            <i class="fas fa-arrow-left me-2"></i>Volver a la vista principal
+        </a>
+    </div>
 
     <div class="container">
         <div class="row">

@@ -589,9 +589,7 @@ body {
                 <button type="button" class="btn btn-sm btn-outline-success ms-2" onclick="forzarActualizacion()" title="Forzar actualización">
                     <i class="fas fa-sync-alt"></i>
                 </button>
-                <button type="button" class="btn btn-sm btn-outline-info ms-1" onclick="debugTiempoReal()" title="Debug tiempo real">
-                    <i class="fas fa-bug"></i>
-                </button>
+                
                 <button type="button" class="btn btn-sm btn-outline-danger ms-1" onclick="probarModalAlerta()" title="Probar modal de alerta">
                     <i class="fas fa-exclamation-triangle"></i>
                 </button>

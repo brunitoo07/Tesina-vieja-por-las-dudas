@@ -1350,23 +1350,33 @@ public function getHistorialCortes($id_dispositivo)
 /**
  * Vista principal de cortes de línea
  */
+/**
+ * Vista principal de cortes de línea
+ */
 public function cortes()
 {
     if (!session()->get('logged_in')) {
         return redirect()->to(base_url('login'));
     }
 
-    // Obtener estadísticas de cortes
     $id_usuario = session()->get('id_usuario');
     $corteModel = new \App\Models\CorteLineaModel();
     $estadisticas = $corteModel->getEstadisticasCortes($id_usuario);
     
-    // Obtener dispositivos del usuario para el filtro
     $dispositivos = $this->dispositivoModel->where('id_usuario', $id_usuario)->findAll();
     
+    // Obtener dispositivo_id desde la URL o usar null
+    $dispositivo_id = $this->request->getGet('dispositivo') ?: null;
+    
+    // Si no hay dispositivo_id en la URL, usar el primer dispositivo del usuario
+    if (!$dispositivo_id && !empty($dispositivos)) {
+        $dispositivo_id = $dispositivos[0]['id_dispositivo'];
+    }
+
     return view('energia/cortes', [
         'estadisticas' => $estadisticas,
-        'dispositivos' => $dispositivos
+        'dispositivos' => $dispositivos,
+        'dispositivo_id' => $dispositivo_id // ← AQUÍ SE PASA LA VARIABLE
     ]);
 }
 
@@ -1609,8 +1619,3 @@ public function exportarLecturasExcel($dispositivo_id)
     return $this->response;
 }
 }
-
-
-
-
-

@@ -215,73 +215,7 @@
         </div>
     </div>
 
-    <!-- Tarjetas de resumen -->
-    <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card theme stat-card h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4><?= number_format($consumo24h ?? 0, 2) ?> kWh</h4>
-                            <p class="mb-0">Consumo 24h</p>
-                        </div>
-                        <div class="icon-container">
-                            <i class="fas fa-bolt fa-lg"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card theme stat-card h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4><?= number_format($consumoPromedio ?? 0, 2) ?> kWh</h4>
-                            <p class="mb-0">Consumo Promedio Diario</p>
-                        </div>
-                        <div class="icon-container">
-                            <i class="fas fa-chart-line fa-lg"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card theme stat-card h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4><?= (int)($activosPropios ?? 0) ?></h4>
-                            <p class="mb-0">Dispositivos Activos</p>
-                        </div>
-                        <div class="icon-container">
-                            <i class="fas fa-plug fa-lg"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card theme stat-card h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4><?= count($dispositivos_propios ?? []) ?></h4>
-                            <p class="mb-0">Total Dispositivos</p>
-                        </div>
-                        <div class="icon-container">
-                            <i class="fas fa-microchip fa-lg"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
     <!-- Acciones rápidas -->
     <div class="row mb-4">
         <div class="col-12">
@@ -298,7 +232,7 @@
                             </a>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <a href="<?= base_url('usuario/cambiarContrasena') ?>" class="btn btn-outline-gold w-100">
+                            <a href="<?= base_url('perfil/perfil') ?>" class="btn btn-outline-gold w-100">
                                 <i class="fas fa-key me-2"></i> Cambiar Contraseña
                             </a>
                         </div>
@@ -341,7 +275,6 @@
                                         <th>Nombre</th>
                                         <th>Propietario</th>
                                         <th>Estado</th>
-                                        <th>Consumo Actual</th>
                                         <th class="text-end">Acciones</th>
                                     </tr>
                                 </thead>
@@ -372,7 +305,7 @@
                                                 <?= ucfirst(esc($dispositivo['estado'])) ?>
                                             </span>
                                         </td>
-                                        <td><?= number_format($consumoActual, 2) ?> kWh</td>
+                                    
                                         <td class="text-end">
                                             <a href="<?= base_url('energia/dispositivo/' . $dispositivo['id_dispositivo']) ?>" 
                                                class="btn btn-sm btn-outline-gold">
