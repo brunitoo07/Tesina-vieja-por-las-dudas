@@ -98,18 +98,7 @@
     <div class="theme-switch" id="themeSwitch" title="Modo claro/oscuro" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
         <i class="fas fa-moon"></i>
     </div>
-    <!-- Selector de idioma solo si no está autenticado -->
-    <?php if (!session()->get('logged_in')): ?>
-    <div style="position: fixed; top: 20px; right: 60px; z-index: 1000;">
-        <?php $idioma = service('request')->getLocale(); ?>
-        <a href="<?= base_url('cambiar-idioma/es') ?>" title="Español">
-            <img src="<?= base_url('imagenes/' . ($idioma === 'es' ? 'es' : 'es') . '.png') ?>" alt="Español" style="width:24px;<?= $idioma === 'es' ? 'border:2px solid #333;border-radius:50%;' : '' ?>">
-        </a>
-        <a href="<?= base_url('cambiar-idioma/en') ?>" title="English">
-            <img src="<?= base_url('imagenes/' . ($idioma === 'en' ? 'en' : 'en') . '.png') ?>" alt="English" style="width:24px;<?= $idioma === 'en' ? 'border:2px solid #333;border-radius:50%;' : '' ?>">
-        </a>
-    </div>
-    <?php endif; ?>
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="<?= base_url() ?>">Medidor Inteligente</a>

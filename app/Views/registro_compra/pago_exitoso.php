@@ -240,9 +240,8 @@
                     <div class="order-info">
                         <h5><i class="fas fa-box me-2"></i>Producto</h5>
                         <p><strong>EcoVolt Pro Premium</strong></p>
-                        <p><strong>Precio:</strong> $110.000 ARS</p>
+                        <p><strong>Precio:</strong> $150 USD</p>
                         <p><strong>Soporte Premium:</strong> Mensual Incluido</p>
-                        <p><strong>Descuento:</strong> Ya aplicado</p>
                         <p><strong>Garantía:</strong> 2 años premium</p>
                     </div>
 

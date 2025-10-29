@@ -263,9 +263,6 @@
                         <div class="alert alert-dark mb-0 border-warning m-4">
                             <i class="fas fa-info-circle me-2 text-warning"></i>
                             No tienes dispositivos registrados.
-                            <a href="<?= base_url('dispositivo/buscar') ?>" class="alert-link text-warning">
-                                Buscar dispositivos disponibles
-                            </a>
                         </div>
                     <?php else: ?>
                         <div class="table-responsive">

@@ -579,7 +579,7 @@
         <div class="container text-center hero-content" data-aos="fade-up">
             <h1 class="display-4 fw-bold mb-4"><?= lang('App.monitoreo_inteligente') ?></h1>
             <p class="lead mb-5"><?= lang('App.controla_optimiza') ?></p>
-            <a href="#comprar" class="btn btn-primary btn-lg"><?= lang('App.comprar_ahora') ?></a>
+            
             
             <!-- SISTEMA DE COMPRA MEJORADO -->
             <div class="mt-4 p-3" style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; border-radius: 10px; color: #FFD700;">
@@ -771,14 +771,14 @@
                     <div class="card pricing-card">
                         <div class="card-body text-center">
                             <h3 class="mb-4"><?= lang('App.plan_premium') ?></h3>
-                            <p class="price mb-4">$150,000</p>
+                            <p class="price mb-4">$150 USD</p>
                             <ul class="list-unstyled mb-4">
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.monitoreo_ilimitado') ?></li>
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.soporte_prioritario') ?></li>
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.actualizaciones_gratis') ?></li>
                                 <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><?= lang('App.acceso_admin') ?></li>
                             </ul>
-                            <a href="<?= base_url('registro-compra') ?>" class="btn btn-primary btn-lg">
+                            <a href="<?= base_url('tipo-compra') ?>" class="btn btn-primary btn-lg">
                                 <i class="fas fa-credit-card me-2"></i> <?= lang('App.comprar_ahora_btn') ?>
                             </a>
                         </div>

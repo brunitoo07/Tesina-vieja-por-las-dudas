@@ -28,31 +28,31 @@
             <div class="mb-3">
                 <label for="email" class="form-label"><?= lang('App.email') ?></label>
                 <input type="email" class="form-control" id="email" value="<?= esc($email) ?>" readonly disabled>
-                <small class="form-text text-muted"><?= lang('App.invitation_email_hint') ?></small>
+                <small class="form-text text-muted">Email de la invitacion</small>
             </div>
 
             <div class="mb-3">
-                <label for="nombre" class="form-label"><?= lang('App.name') ?></label>
+                <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="<?= old('nombre') ?>" required>
             </div>
 
             <div class="mb-3">
-                <label for="apellido" class="form-label"><?= lang('App.lastname') ?></label>
+                <label for="apellido" class="form-label">Apellido</label>
                 <input type="text" class="form-control" id="apellido" name="apellido" value="<?= old('apellido') ?>" required>
             </div>
 
             <div class="mb-3">
-                <label for="contrasena" class="form-label"><?= lang('App.password') ?></label>
+                <label for="contrasena" class="form-label">Contraseña</label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="bi bi-eye"></i> </button>
                 </div>
-                <small class="form-text text-muted"><?= lang('App.password_hint') ?></small>
+                <small class="form-text text-muted">Sugerencia de contraseña</small>
             </div>
 
             <div class="mb-3">
-                <label for="confirmar_contrasena" class="form-label"><?= lang('App.confirm_password') ?></label>
+                <label for="confirmar_contrasena" class="form-label">Confirmar contraseña</label>
                 <div class="input-group">
                     <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
                     <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
@@ -60,7 +60,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100"><?= lang('App.register_btn') ?></button>
+            <button type="submit" class="btn btn-primary w-100">Registrar</button>
         </form>
     </div>
 </div>

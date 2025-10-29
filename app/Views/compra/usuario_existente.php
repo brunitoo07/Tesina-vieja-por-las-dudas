@@ -156,9 +156,9 @@
         </div>
     </div>
     <div class="container mb-4">
-        <a href="<?= base_url('tipo-compra') ?>" class="btn btn-outline-light">
-            <i class="fas fa-arrow-left me-2"></i>Volver a la vista principal
-        </a>
+    <a class="nav-link text-danger" href="<?= base_url('cerrarSesion') ?>">
+     <i class="fas fa-sign-out-alt"></i> Volver al login principal
+    </a>
     </div>
 
     <div class="container">
