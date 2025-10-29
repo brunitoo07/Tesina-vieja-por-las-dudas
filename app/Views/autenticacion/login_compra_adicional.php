@@ -267,7 +267,7 @@
 
             <div class="form-group">
                 <label for="contrasena" class="form-label">
-                    <i class="fas fa-lock me-2"></i>Contraseña
+                    <i class="fas fa-lock me-2"></i> Contraseña
                 </label>
                 <input type="password" 
                        class="form-control" 

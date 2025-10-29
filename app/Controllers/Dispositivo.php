@@ -68,7 +68,7 @@ class Dispositivo extends BaseController
             'created_at' => date('Y-m-d H:i:s')
         ];
     
-        log_message('info', 'Datos preparados para insertar: ' . json_encode($data));
+        log_message('info', 'Datos preparados para insertar : ' . json_encode($data));
     
         try {
             // Verificar si la MAC ya existe
