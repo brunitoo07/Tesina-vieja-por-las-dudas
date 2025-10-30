@@ -1131,38 +1131,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     if (esNuevaLectura) {
-                        
-                        console.log('Agregando nueva lectura:', nuevaLectura);
-                        
-                        // Agregar nueva lectura al inicio
-                        lecturas.unshift(nuevaLectura);
-                        
-                        // Mantener solo las últimas 50 lecturas
-                        if (lecturas.length > 50) {
-                            lecturas = lecturas.slice(0, 50);
-                        }
-                        
-                        console.log('Total de lecturas después de agregar:', lecturas.length);
-                        
-                        // Actualizar todo
-                        actualizarValoresActuales();
-                        actualizarGrafico();
-                        actualizarTabla();
-                        
-                        // VERIFICAR CORTE DE LÍNEA NO ESENCIAL
-                        verificarCorteLineaNoEsencial(nuevaLectura);
-                        
-                        // Mostrar estado exitoso
-                        estadoElement.innerHTML = `<i class="fas fa-check-circle"></i> Conectado (${contadorActualizaciones})`;
-                        estadoElement.className = 'status-badge status-connected';
-                        
-                        // Actualizar información de actualización
-                        const infoElement = document.getElementById('infoActualizacion');
-                        if (infoElement) {
-                            infoElement.textContent = `Última: ${ultimaActualizacion.toLocaleTimeString()}`;
-                        }
-                        
-                        console.log('✅ Datos actualizados correctamente:', nuevaLectura);
+    console.log('Agregando nueva lectura:', nuevaLectura);
+    
+    // Agregar nueva lectura al inicio
+    lecturas.unshift(nuevaLectura);
+    
+    // Mantener solo las últimas 50 lecturas
+    if (lecturas.length > 50) {
+        lecturas = lecturas.slice(0, 50);
+    }
+    
+    console.log('Total de lecturas después de agregar:', lecturas.length);
+    
+    // Actualizar todo
+    actualizarValoresActuales();
+    actualizarGrafico();
+    actualizarTabla();
+    
+    // VERIFICAR CORTE DE LÍNEA - ¡ESENCIAL!
+    verificarCorteLineaNoEsencial(nuevaLectura);
+    
+    // Mostrar estado exitoso
+    estadoElement.innerHTML = `<i class="fas fa-check-circle"></i> Conectado (${contadorActualizaciones})`;
+    estadoElement.className = 'status-badge status-connected';
+    
+    // Actualizar información de actualización
+    const infoElement = document.getElementById('infoActualizacion');
+    if (infoElement) {
+        infoElement.textContent = `Última: ${ultimaActualizacion.toLocaleTimeString()}`;
+    }
+    
+    console.log('✅ Datos actualizados correctamente:', nuevaLectura);
+
                     } else {
                         // Mostrar estado conectado (sin cambios)
                         estadoElement.innerHTML = `<i class="fas fa-check-circle"></i> Conectado (${contadorActualizaciones})`;
@@ -2022,62 +2022,80 @@ function irAConfigurarLimites() {
 
 // Función para verificar si se debe mostrar el modal (se llamará desde el polling de datos)
 function verificarCorteLineaNoEsencial(ultimaLectura) {
-    if (ultimaLectura && ultimaLectura.limite_superado == 1) {
-        console.log('🔍 Verificando corte de línea no esencial:', ultimaLectura);
+    if (!ultimaLectura) return;
+    
+    console.log('🔍 Verificando corte de línea no esencial:', ultimaLectura);
+    
+    // Usar el límite actual de la interfaz
+    const limiteConsumo = parseFloat(document.getElementById('limite_consumo')?.value) || 10;
+    const consumoActual = parseFloat(ultimaLectura.kwh_acumulado);
+    
+    console.log('📊 Datos del corte (usando límite actual):', {
+        consumoActual: consumoActual,
+        limiteConsumo: limiteConsumo,
+        superado: consumoActual > limiteConsumo
+    });
+    
+    // Verificar si el consumo supera el límite (corte de línea NO esencial)
+    if (consumoActual > limiteConsumo) {
+        console.log('🚨 CONSUMO SUPERÓ EL LÍMITE - Verificando si mostrar modal...');
         
-        // CORRECCIÓN: Usar el límite actual de la interfaz, no del servidor
-        const limiteConsumo = parseFloat(document.getElementById('limite_consumo')?.value) || 10;
-        const consumoActual = parseFloat(ultimaLectura.kwh_acumulado);
+        // No mostrar si el usuario descartó para este dispositivo mientras siga activo
+        try {
+            const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+            const key = `corteDescartado_${dispositivoId}`;
+            if (localStorage.getItem(key) === '1') {
+                console.log('🛑 Alerta descartada por el usuario para este dispositivo. No mostrar modal hasta que baje del límite.');
+                return;
+            }
+        } catch (e) {}
         
-        console.log('📊 Datos del corte (usando límite actual):', {
-            consumoActual: consumoActual,
-            limiteConsumo: limiteConsumo,
-            superado: consumoActual > limiteConsumo
+        // Verificar si ya se mostró el modal para evitar spam
+        const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
+        const timestampActual = new Date().getTime();
+        
+        console.log('⏰ Control de spam:', {
+            modalYaMostrado: modalYaMostrado,
+            timestampActual: timestampActual,
+            tiempoTranscurrido: modalYaMostrado ? (timestampActual - parseInt(modalYaMostrado)) : 'N/A'
         });
         
-        // Verificar si el consumo supera el límite (corte de línea NO esencial)
-        if (consumoActual > limiteConsumo) {
-            // No mostrar si el usuario descartó para este dispositivo mientras siga activo
-            try {
-                const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
-                const key = `corteDescartado_${dispositivoId}`;
-                if (localStorage.getItem(key) === '1') {
-                    console.log('🛑 Alerta descartada por el usuario para este dispositivo. No mostrar modal hasta que baje del límite.');
-                    return;
-                }
-            } catch (e) {}
-            // Verificar si ya se mostró el modal para evitar spam
-            const modalYaMostrado = sessionStorage.getItem('modalCorteLineaNoEsencialMostrado');
-            const timestampActual = new Date().getTime();
+        if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 60000) { // Reducido a 1 minuto para testing
+            console.log('🚨 Mostrando modal de corte (datos en tiempo real)');
+            mostrarModalCorteEsencial(
+                consumoActual.toFixed(2),
+                parseFloat(limiteConsumo).toFixed(2)
+            );
             
-            console.log('⏰ Control de spam:', {
-                modalYaMostrado: modalYaMostrado,
-                timestampActual: timestampActual,
-                tiempoTranscurrido: modalYaMostrado ? (timestampActual - parseInt(modalYaMostrado)) : 'N/A'
-            });
-            
-            if (!modalYaMostrado || (timestampActual - parseInt(modalYaMostrado)) > 180000) { // 3 minutos
-                console.log('🚨 Mostrando modal de corte (datos en tiempo real)');
-                mostrarModalCorteEsencial(
-                    consumoActual.toFixed(2),
-                    parseFloat(limiteConsumo).toFixed(2)
-                );
-                
-                // Marcar que se mostró el modal
-                sessionStorage.setItem('modalCorteLineaNoEsencialMostrado', timestampActual.toString());
-            } else {
-                console.log('⏳ Modal ya mostrado recientemente, esperando...');
-            }
+            // Marcar que se mostró el modal
+            sessionStorage.setItem('modalCorteLineaNoEsencialMostrado', timestampActual.toString());
         } else {
-            console.log('✅ Consumo actual (' + consumoActual + ' kWh) está por debajo del límite actual (' + limiteConsumo + ' kWh) - No mostrar modal');
-            // Si volvió a estar por debajo, limpiamos el flag de descarte
-            try {
-                const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
-                const key = `corteDescartado_${dispositivoId}`;
-                localStorage.removeItem(key);
-            } catch (e) {}
+            console.log('⏳ Modal ya mostrado recientemente, esperando...');
         }
+    } else {
+        console.log('✅ Consumo actual (' + consumoActual + ' kWh) está por debajo del límite actual (' + limiteConsumo + ' kWh) - No mostrar modal');
+        // Si volvió a estar por debajo, limpiamos el flag de descarte
+        try {
+            const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+            const key = `corteDescartado_${dispositivoId}`;
+            localStorage.removeItem(key);
+        } catch (e) {}
     }
+}
+
+// Función para limpiar el estado de spam (útil para testing)
+function limpiarEstadoSpam() {
+    sessionStorage.removeItem('modalCorteLineaNoEsencialMostrado');
+    sessionStorage.removeItem('modalCortePersistenteMostrado');
+    
+    try {
+        const dispositivoId = '<?= (int)($dispositivo['id_dispositivo'] ?? 0) ?>';
+        const key = `corteDescartado_${dispositivoId}`;
+        localStorage.removeItem(key);
+    } catch (e) {}
+    
+    console.log('🧹 Estado de spam limpiado');
+    alert('Estado de spam limpiado. El modal debería aparecer en la próxima verificación.');
 }
 
 // Función para marcar corte como visto

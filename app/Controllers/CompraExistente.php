@@ -6,18 +6,21 @@ use App\Controllers\BaseController;
 use App\Models\UsuarioModel;
 use App\Models\CompraModel;
 use App\Models\DispositivoModel;
+use App\Models\DireccionModel;
 
 class CompraExistente extends BaseController
 {
     protected $usuarioModel;
     protected $compraModel;
     protected $dispositivoModel;
+    protected $direccionModel;
 
     public function __construct()
     {
         $this->usuarioModel = new UsuarioModel();
         $this->compraModel = new CompraModel();
         $this->dispositivoModel = new DispositivoModel();
+        $this->direccionModel = new DireccionModel();
     }
 
     public function index()
@@ -35,15 +38,86 @@ class CompraExistente extends BaseController
             return redirect()->to('autenticacion/login')->with('error', 'Usuario no encontrado.');
         }
 
+        // Obtener dirección del usuario
+        $direccion = $this->direccionModel->where('id_usuario', $idUsuario)->first();
+
         // Contar dispositivos del usuario
         $dispositivos_count = $this->dispositivoModel->where('id_usuario', $idUsuario)->countAllResults();
 
         $data = [
             'usuario' => $usuario,
+            'direccion' => $direccion,
             'dispositivos_count' => $dispositivos_count
         ];
 
         return view('compra/usuario_existente', $data);
+    }
+
+    public function guardarDireccion()
+    {
+        // Verificar que el usuario esté logueado
+        if (!session()->get('logged_in')) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Debes iniciar sesión para actualizar tu dirección.'
+            ]);
+        }
+
+        $idUsuario = session()->get('id_usuario');
+
+        // Validar los datos del formulario
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'calle' => 'required|min_length[3]|max_length[100]',
+            'numero' => 'required|max_length[10]',
+            'ciudad' => 'required|min_length[3]|max_length[50]',
+            'codigo_postal' => 'required|max_length[10]',
+            'pais' => 'required|min_length[3]|max_length[50]'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return $this->response->setJSON([
+                'success' => false,
+                'errors' => $validation->getErrors()
+            ]);
+        }
+
+        // Preparar datos de la dirección
+        $direccionData = [
+            'calle' => $this->request->getPost('calle'),
+            'numero' => $this->request->getPost('numero'),
+            'ciudad' => $this->request->getPost('ciudad'),
+            'codigo_postal' => $this->request->getPost('codigo_postal'),
+            'pais' => $this->request->getPost('pais'),
+            'id_usuario' => $idUsuario
+        ];
+
+        // Verificar si ya existe una dirección para actualizar o crear nueva
+        $direccionExistente = $this->direccionModel->where('id_usuario', $idUsuario)->first();
+        
+        try {
+            if ($direccionExistente) {
+                // Actualizar dirección existente
+                $this->direccionModel->update($direccionExistente['direccion_id'], $direccionData);
+                $message = 'Dirección actualizada correctamente.';
+            } else {
+                // Crear nueva dirección
+                $this->direccionModel->insert($direccionData);
+                $message = 'Dirección guardada correctamente.';
+            }
+
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => $message
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error al guardar dirección: ' . $e->getMessage());
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Error al guardar la dirección. Por favor, intenta nuevamente.'
+            ]);
+        }
     }
 
     public function procesarCompra()
@@ -55,6 +129,7 @@ class CompraExistente extends BaseController
 
         $idUsuario = session()->get('id_usuario');
         $idDispositivo = $this->request->getPost('id_dispositivo');
+        $confirmarDireccion = $this->request->getPost('confirmar_direccion');
 
         // Validar que se seleccionó un dispositivo
         if (!$idDispositivo) {
@@ -67,10 +142,22 @@ class CompraExistente extends BaseController
             return redirect()->back()->with('error', 'El dispositivo seleccionado no existe.');
         }
 
+        // Si no confirma la dirección, mostrar error
+        if ($confirmarDireccion !== 'si') {
+            return redirect()->back()->with('error', 'Debes confirmar que la dirección de envío es correcta.');
+        }
+
+        // Obtener la dirección actual del usuario
+        $direccion = $this->direccionModel->where('id_usuario', $idUsuario)->first();
+        if (!$direccion) {
+            return redirect()->back()->with('error', 'No se encontró una dirección de envío. Por favor, actualiza tu dirección.');
+        }
+
         // Guardar datos en sesión para el proceso de pago
         $datosCompra = [
             'id_usuario' => $idUsuario,
             'id_dispositivo' => $idDispositivo,
+            'direccion_envio' => $this->formatearDireccion($direccion),
             'tipo_compra' => 'usuario_existente'
         ];
 
@@ -170,11 +257,15 @@ class CompraExistente extends BaseController
                 ]);
             }
 
+            // Obtener la dirección actual del usuario para la compra
+            $direccion = $this->direccionModel->where('id_usuario', $idUsuario)->first();
+            $direccionEnvio = $direccion ? $this->formatearDireccion($direccion) : 'Dirección del usuario existente';
+
             // Crear la compra
             $compraData = [
                 'id_usuario' => $idUsuario,
                 'id_dispositivo' => $idDispositivo,
-                'direccion_envio' => 'Dirección del usuario existente', // Puedes obtener la dirección del usuario
+                'direccion_envio' => $direccionEnvio,
                 'estado' => 'completada',
                 'fecha_compra' => date('Y-m-d H:i:s'),
                 'payment_id' => $paymentData->id
@@ -191,7 +282,7 @@ class CompraExistente extends BaseController
             ]);
 
             // Enviar email de confirmación de compra
-            $this->enviarEmailConfirmacionCompra($usuario['email'], $usuario['nombre'], $dispositivo, $paymentData->id);
+            $this->enviarEmailConfirmacionCompra($usuario['email'], $usuario['nombre'], $dispositivo, $paymentData->id, $direccionEnvio);
 
             // Marcar la compra como exitosa en la sesión
             session()->set('compra_exitosa_existente', true);
@@ -218,7 +309,7 @@ class CompraExistente extends BaseController
         if (!session()->get('compra_exitosa_existente')) {
             return redirect()->to('compra-existente')->with('error', 'Sesión expirada. Intenta de nuevo.');
         }
-
+    
         // Obtener datos de la sesión antes de limpiarla
         $datosCompra = session()->get('datos_compra_existente');
         
@@ -226,21 +317,38 @@ class CompraExistente extends BaseController
         $dispositivo = $this->dispositivoModel->find($datosCompra['id_dispositivo']);
         $usuario = $this->usuarioModel->find($datosCompra['id_usuario']);
         
+        // Obtener la dirección del usuario
+        $direccion = $this->direccionModel->where('id_usuario', $datosCompra['id_usuario'])->first();
+        
+        // Formatear la dirección para mostrar
+        $direccionFormateada = 'Dirección no especificada';
+        if ($direccion) {
+            $direccionFormateada = $this->formatearDireccion($direccion);
+        }
+    
         // Preparar datos para la vista
         $data = [
             'nombre' => $usuario['nombre'],
             'dispositivo' => $dispositivo,
             'fecha' => date('d/m/Y'),
-            'direccion' => 'Dirección del usuario existente'
+            'direccion' => $direccionFormateada,
+            'direccionCompleta' => $direccion // Por si quieres mostrar los campos individualmente
         ];
-
+    
         // Limpiar la sesión después de obtener los datos
         session()->remove(['datos_compra_existente', 'compra_exitosa_existente', 'payment_id_existente']);
-
+    
         return view('compra/pago_exitoso_existente', $data);
     }
 
-    private function enviarEmailConfirmacionCompra($emailDestino, $nombre, $dispositivo, $paymentId)
+    private function formatearDireccion($direccion)
+    {
+        return $direccion['calle'] . ' ' . $direccion['numero'] . ', ' . 
+               $direccion['ciudad'] . ', ' . $direccion['codigo_postal'] . ', ' . 
+               $direccion['pais'];
+    }
+    
+    private function enviarEmailConfirmacionCompra($emailDestino, $nombre, $dispositivo, $paymentId, $direccionEnvio)
     {
         $emailService = \Config\Services::email();
 
@@ -252,7 +360,7 @@ class CompraExistente extends BaseController
             'nombre' => $nombre,
             'dispositivo' => $dispositivo,
             'fecha' => date('d/m/Y H:i:s'),
-            'direccion' => 'Dirección del usuario existente',
+            'direccion' => $direccionEnvio,
             'precio' => '150.00',
             'email' => $emailDestino,
             'payment_id' => $paymentId,

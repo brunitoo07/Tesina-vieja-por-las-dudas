@@ -1,3 +1,4 @@
+<!-- PARA PAGAR LA COMPRA POR PRIMERA VEZZZZ  -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -219,6 +220,11 @@
             <p>único plan premium disponible - Dispositivo + Soporte Premium Mensual</p>
             <div class="price-tag" style="font-size: 1.5rem; margin: 1rem 0 0 0;">$150 USD</div>
         </div>
+    </div>
+    <div class="container my-4">
+        <a href="registro-compra" class="btn btn-outline-warning" style="font-weight:600;">
+            <i class="fas fa-arrow-left me-2"></i>Volver al registro
+        </a>
     </div>
 
     <div class="container">

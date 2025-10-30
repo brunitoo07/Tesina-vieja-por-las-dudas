@@ -1,3 +1,4 @@
+<!-- PARA PAGAR EL DISPOSITIVO ADICIONAL,PAGINA DONDE ESTA EL PAYPAL -->
 <!DOCTYPE html>
 <html lang="es">
 <head>

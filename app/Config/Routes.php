@@ -59,9 +59,11 @@ $routes->get('registro-compra/error', 'RegistroCompra::error');
 // Rutas para compra de dispositivos adicionales (usuarios existentes)
 $routes->get('compra-existente', 'CompraExistente::index');
 $routes->post('compra-existente/procesar', 'CompraExistente::procesarCompra');
+$routes->post('compra-existente/guardar-direccion', 'CompraExistente::guardarDireccion');
 $routes->get('compra-existente/pago', 'CompraExistente::pago');
 $routes->post('compra-existente/procesarPago', 'CompraExistente::procesarPago');
 $routes->get('compra-existente/pago-exitoso', 'CompraExistente::pagoExitoso');
+
 
 // Rutas protegidas (requieren autenticación)
 $routes->group('', ['filter' => 'auth'], function($routes) {

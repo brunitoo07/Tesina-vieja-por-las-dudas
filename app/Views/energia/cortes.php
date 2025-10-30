@@ -201,12 +201,6 @@ body {
     box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
 }
 
-.status-visto {
-    background: linear-gradient(135deg, #17a2b8, #138496);
-    color: var(--white-primary);
-    box-shadow: 0 3px 10px rgba(23, 162, 184, 0.3);
-}
-
 /* === FILTROS === */
 .filters-card {
     background: rgba(255, 255, 255, 0.05);
@@ -310,8 +304,6 @@ body {
 
 <div class="container-fluid">
     <!-- Header -->
-    <div class="container-fluid">
-    <!-- Header -->
     <div class="premium-header">
         <div class="d-flex justify-content-between align-items-center">
             <h1>
@@ -347,19 +339,12 @@ body {
             <div class="stat-label">Cortes Resueltos</div>
             <div class="stat-value" id="cortesResueltos">-</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fas fa-eye"></i>
-            </div>
-            <div class="stat-label">Cortes Vistos</div>
-            <div class="stat-value" id="cortesVistos">-</div>
-        </div>
     </div>
 
     <!-- Filtros -->
     <div class="filters-card">
         <div class="row g-3">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label for="filtroDispositivo" class="form-label">Dispositivo</label>
                 <select class="form-select" id="filtroDispositivo">
                     <option value="">Todos los dispositivos</option>
@@ -371,7 +356,6 @@ body {
                     <option value="">Todos los estados</option>
                     <option value="activo">Activos</option>
                     <option value="resuelto">Resueltos</option>
-                    <option value="visto">Vistos</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -382,7 +366,7 @@ body {
                 <label for="filtroFechaHasta" class="form-label">Hasta</label>
                 <input type="date" class="form-control" id="filtroFechaHasta">
             </div>
-            <div class="col-md-2 d-flex align-items-end">
+            <div class="col-md-1 d-flex align-items-end">
                 <button type="button" class="btn-premium w-100" onclick="aplicarFiltros()">
                     <i class="fas fa-search me-1"></i>Filtrar
                 </button>
@@ -420,9 +404,6 @@ body {
                             <th>Límite (kWh)</th>
                             <th>Fecha del Corte</th>
                             <th>Estado</th>
-                            <th>Visto</th>
-                            <th>Fecha Vista</th>
-                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTablaCortes">
@@ -474,7 +455,6 @@ function cargarEstadisticas() {
                 document.getElementById('totalCortes').textContent = stats.total_cortes;
                 document.getElementById('cortesActivos').textContent = stats.cortes_activos;
                 document.getElementById('cortesResueltos').textContent = stats.cortes_resueltos;
-                document.getElementById('cortesVistos').textContent = stats.cortes_vistos;
             }
         })
         .catch(error => {
@@ -531,8 +511,7 @@ function cargarCortes() {
         });
 }
 
-// Mostrar cortes en la tabla - SIN BOTONES MANUALES
-// Mostrar cortes en la tabla - SISTEMA AUTOMÁTICO (SIN BOTONES MANUALES)
+// Mostrar cortes en la tabla - SOLO COLUMNAS SOLICITADAS
 function mostrarCortes(cortes) {
     const tbody = document.getElementById('cuerpoTablaCortes');
     tbody.innerHTML = '';
@@ -540,7 +519,7 @@ function mostrarCortes(cortes) {
     if (cortes.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="8" class="text-center text-muted">
+                <td colspan="5" class="text-center text-muted">
                     <i class="fas fa-info-circle me-2"></i>
                     No se encontraron cortes con los filtros aplicados
                 </td>
@@ -560,19 +539,6 @@ function mostrarCortes(cortes) {
             estadoBadge = '<span class="status-badge status-activo">Activo</span>';
         }
         
-        // Determinar si fue visto
-        let vistoBadge = '';
-        if (corte.vista_por_usuario == 1) {
-            vistoBadge = '<span class="status-badge status-visto">Visto</span>';
-        } else {
-            vistoBadge = '<span class="text-muted">No visto</span>';
-        }
-        
-        // Fecha vista
-        const fechaVista = corte.fecha_vista ? 
-            new Date(corte.fecha_vista).toLocaleString() : 
-            '<span class="text-muted">-</span>';
-        
         row.innerHTML = `
             <td>
                 <strong>${corte.nombre_dispositivo || 'Dispositivo ' + corte.id_dispositivo}</strong>
@@ -585,13 +551,6 @@ function mostrarCortes(cortes) {
             </td>
             <td>${new Date(corte.fecha_corte).toLocaleString()}</td>
             <td>${estadoBadge}</td>
-            <td>${vistoBadge}</td>
-            <td>${fechaVista}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="verDetalleCorte(${corte.id})" title="Ver detalle (se marcará automáticamente como visto)">
-                    <i class="fas fa-eye"></i> Ver
-                </button>
-            </td>
         `;
         
         tbody.appendChild(row);
@@ -640,177 +599,6 @@ function aplicarFiltros() {
         });
 }
 
-// Marcar corte como visto automáticamente
-function marcarComoVisto(idCorte) {
-    console.log('📝 Marcado automático como visto:', idCorte);
-    
-    fetch(`<?= base_url('energia/marcarCorteVisto') ?>/${idCorte}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('✅ Corte marcado automáticamente como visto');
-            // Actualizar la interfaz
-            cargarCortes();
-            cargarEstadisticas();
-        } else {
-            console.error('❌ Error al marcar corte:', data.error);
-        }
-    })
-    .catch(error => {
-        console.error('❌ Error de conexión:', error);
-    });
-}
-
-// Ver detalle del corte - CON CIERRE AUTOMÁTICO
-function verDetalleCorte(idCorte) {
-    fetch(`<?= base_url('energia/getDetalleCorte') ?>/${idCorte}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                mostrarModalDetalle(data.corte);
-            }
-        })
-        .catch(error => {
-            console.error('Error al cargar detalles:', error);
-        });
-}
-
-// Mostrar modal de detalle con cierre automático
-function mostrarModalDetalle(corte) {
-    const modal = document.createElement('div');
-    modal.className = 'modal fade';
-    modal.id = 'modalDetalleCorte';
-    modal.innerHTML = `
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #D4AF37; border-radius: 20px;">
-                <div class="modal-header" style="border-bottom: 2px solid #D4AF37; background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); border-radius: 18px 18px 0 0;">
-                    <h5 class="modal-title text-dark fw-bold">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        Detalle del Corte de Línea
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-white">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="card border-warning" style="background: rgba(255, 193, 7, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-warning fw-bold">
-                                        <i class="fas fa-microchip me-2"></i>Dispositivo
-                                    </h6>
-                                    <p class="mb-0">${corte.nombre_dispositivo || 'Dispositivo ' + corte.id_dispositivo}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card border-info" style="background: rgba(13, 202, 240, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-info fw-bold">
-                                        <i class="fas fa-calendar me-2"></i>Fecha del Corte
-                                    </h6>
-                                    <p class="mb-0">${new Date(corte.fecha_corte).toLocaleString()}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card border-danger" style="background: rgba(220, 53, 69, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-danger fw-bold">
-                                        <i class="fas fa-bolt me-2"></i>Consumo Actual
-                                    </h6>
-                                    <p class="mb-0 fs-4">${parseFloat(corte.consumo_actual).toFixed(2)} kWh</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card border-success" style="background: rgba(40, 167, 69, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-success fw-bold">
-                                        <i class="fas fa-chart-line me-2"></i>Límite Configurado
-                                    </h6>
-                                    <p class="mb-0 fs-4">${parseFloat(corte.limite_configurado).toFixed(2)} kWh</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card border-primary" style="background: rgba(13, 110, 253, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-primary fw-bold">
-                                        <i class="fas fa-calculator me-2"></i>Análisis del Corte
-                                    </h6>
-                                    <div class="row text-center">
-                                        <div class="col-4">
-                                            <div class="fw-bold text-warning">${((parseFloat(corte.consumo_actual) / parseFloat(corte.limite_configurado)) * 100).toFixed(1)}%</div>
-                                            <small class="text-muted">Porcentaje del Límite</small>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="fw-bold text-danger">${(parseFloat(corte.consumo_actual) - parseFloat(corte.limite_configurado)).toFixed(2)} kWh</div>
-                                            <small class="text-muted">Exceso de Consumo</small>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="fw-bold text-info">${corte.resuelto == 1 ? 'Resuelto' : 'Activo'}</div>
-                                            <small class="text-muted">Estado Actual</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        ${corte.fecha_vista ? `
-                        <div class="col-md-6">
-                            <div class="card border-info" style="background: rgba(23, 162, 184, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-info fw-bold">
-                                        <i class="fas fa-eye me-2"></i>Visto Automáticamente
-                                    </h6>
-                                    <p class="mb-0">${new Date(corte.fecha_vista).toLocaleString()}</p>
-                                </div>
-                            </div>
-                        </div>
-                        ` : ''}
-                        ${corte.fecha_resolucion ? `
-                        <div class="col-md-6">
-                            <div class="card border-success" style="background: rgba(40, 167, 69, 0.1);">
-                                <div class="card-body">
-                                    <h6 class="text-success fw-bold">
-                                        <i class="fas fa-check-circle me-2"></i>Fecha Resolución
-                                    </h6>
-                                    <p class="mb-0">${new Date(corte.fecha_resolucion).toLocaleString()}</p>
-                                </div>
-                            </div>
-                        </div>
-                        ` : ''}
-                    </div>
-                </div>
-                <div class="modal-footer" style="border-top: 2px solid #D4AF37;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    const bsModal = new bootstrap.Modal(modal);
-    bsModal.show();
-    
-    // 🔥 MARCAR AUTOMÁTICAMENTE AL CERRAR EL MODAL
-    modal.addEventListener('hidden.bs.modal', function() {
-        console.log('🎯 Modal cerrado - Marcando automáticamente como visto:', corte.id);
-        
-        // Marcar automáticamente como visto
-        marcarComoVisto(corte.id);
-        
-        // Limpiar modal
-        document.body.removeChild(modal);
-    });
-}
-
 // Exportar cortes
 function exportarCortes() {
     window.location.href = '<?= base_url('energia/exportarCortesExcel') ?>';
@@ -828,7 +616,6 @@ function actualizarEstadisticas(estadisticas) {
         document.getElementById('totalCortes').textContent = estadisticas.total_cortes;
         document.getElementById('cortesActivos').textContent = estadisticas.cortes_activos;
         document.getElementById('cortesResueltos').textContent = estadisticas.cortes_resueltos;
-        document.getElementById('cortesVistos').textContent = estadisticas.cortes_vistos;
     }
 }
 
@@ -837,7 +624,7 @@ function mostrarError(mensaje) {
     const tbody = document.getElementById('cuerpoTablaCortes');
     tbody.innerHTML = `
         <tr>
-            <td colspan="8" class="text-center text-danger">
+            <td colspan="5" class="text-center text-danger">
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 ${mensaje}
             </td>

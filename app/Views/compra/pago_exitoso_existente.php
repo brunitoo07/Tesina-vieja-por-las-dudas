@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -248,8 +249,25 @@
 
                     <div class="order-info">
                         <h5><i class="fas fa-map-marker-alt me-2"></i>Dirección de Envío</h5>
-                        <p><?= esc($direccion) ?></p>
+                        <?php if (isset($direccionCompleta) && $direccionCompleta): ?>
+                            <div style="background: rgba(212, 175, 55, 0.1); padding: 1rem; border-radius: 10px; margin: 0.5rem 0;">
+                                <p style="margin: 0.3rem 0;"><strong>Calle:</strong> <?= esc($direccionCompleta['calle']) ?> <?= esc($direccionCompleta['numero']) ?></p>
+                                <p style="margin: 0.3rem 0;"><strong>Ciudad:</strong> <?= esc($direccionCompleta['ciudad']) ?></p>
+                                <p style="margin: 0.3rem 0;"><strong>Código Postal:</strong> <?= esc($direccionCompleta['codigo_postal']) ?></p>
+                                <p style="margin: 0.3rem 0;"><strong>País:</strong> <?= esc($direccionCompleta['pais']) ?></p>
+                            </div>
+                            <p style="margin-top: 1rem; font-style: italic; color: var(--silver-primary);">
+                                <i class="fas fa-shipping-fast me-1"></i>
+                                Tu dispositivo será enviado a esta dirección
+                            </p>
+                        <?php else: ?>
+                            <p style="color: var(--silver-primary); font-style: italic;">
+                                <i class="fas fa-exclamation-triangle me-1"></i>
+                                Dirección no especificada
+                            </p>
+                        <?php endif; ?>
                     </div>
+
 
                     <div class="order-info">
                         <h5><i class="fas fa-calendar me-2"></i>Fecha de Compra</h5>

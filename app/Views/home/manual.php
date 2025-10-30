@@ -281,14 +281,7 @@
                             </ul>
                         </li>
                         <li><strong>Monitoreo:</strong> Haz clic en "Ver Consumo" para ver el historial de cada dispositivo</li>
-                        <li><strong>Configuración personal:</strong> Establece tus propios límites de consumo</li>
-                    </ol>
-
-                    <h5><i class="fas fa-user-tie me-2"></i>Para Supervisores</h5>
-                    <ol>
-                        <li><strong>Monitoreo general:</strong> Supervisa el sistema y los usuarios bajo tu responsabilidad</li>
-                        <li><strong>Gestión de alertas:</strong> Recibe notificaciones cuando se superen los límites</li>
-                        <li><strong>Reportes:</strong> Genera reportes de consumo y estadísticas</li>
+                        
                     </ol>
 
                     <div class="alert alert-success">
@@ -320,9 +313,8 @@
                     <h5><i class="fas fa-user-tie me-2"></i>Supervisor</h5>
                     <ul>
                         <li><strong>Monitoreo:</strong> Supervisa el sistema y usuarios bajo su responsabilidad</li>
-                        <li><strong>Gestión de alertas:</strong> Recibe y gestiona notificaciones del sistema</li>
-                        <li><strong>Reportes:</strong> Genera reportes de consumo y estadísticas</li>
                         <li><strong>Dispositivos:</strong> Puede ver y gestionar dispositivos asignados</li>
+                        <li><strong>¡ACLARACION!:</strong> Solo los fundadores pueden adquirir rol de supervisor.</li>
                     </ul>
 
                     <h5><i class="fas fa-user me-2"></i>Usuario</h5>
@@ -441,8 +433,6 @@
                     <h5><i class="fas fa-bell me-2"></i>Tipos de Notificaciones</h5>
                     <ul>
                         <li><strong>Alertas de Consumo:</strong> Cuando se supere el límite configurado</li>
-                        <li><strong>Prealertas:</strong> Al llegar al 90% del límite establecido</li>
-                        <li><strong>Cortes de Línea:</strong> Notificaciones de problemas del sistema</li>
                         <li><strong>Configuraciones:</strong> Confirmación de cambios en límites y dispositivos</li>
                     </ul>
 
@@ -453,9 +443,6 @@
                         <li><strong>Desvincular:</strong> Puedes desvincular tu cuenta de Telegram en cualquier momento</li>
                     </ul>
 
-                    <div class="alert alert-info">
-                        <i class="fab fa-telegram"></i> <strong>Personalizado:</strong> Cada usuario recibe solo las notificaciones de sus propios dispositivos y configuraciones.
-                    </div>
                 </div>
             </div>
 

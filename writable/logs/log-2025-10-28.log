@@ -31744,3 +31744,278 @@ INFO - 2025-10-28 23:45:14 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2025-10-28 23:45:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-10-28 23:45:20 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
 INFO - 2025-10-28 23:45:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:28 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:45:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:35 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:42 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:43 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-28 23:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:43 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-28 23:45:43 --> Buscando usuario ID: 1
+DEBUG - 2025-10-28 23:45:43 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-28 23:45:44 --> Ruta actual: /Tesina/public/admin/dispositivos/buscar
+INFO - 2025-10-28 23:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:44 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-28 23:45:44 --> Buscando usuario ID: 1
+DEBUG - 2025-10-28 23:45:44 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+DEBUG - 2025-10-28 23:45:46 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-10-28 23:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:46 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/admin/dispositivos/buscar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:45:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:48 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:51 --> Ruta actual: /Tesina/public/dispositivo/guardar
+INFO - 2025-10-28 23:45:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:51 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:45:51 --> Iniciando guardado de dispositivo
+INFO - 2025-10-28 23:45:51 --> Datos recibidos: {"csrf_test_name":"b3f5c172a51ffff6016b4a9aea0bf046","nombre":"dadass","mac_address":"da:da:da:da:da:da","descripcion":"adada"}
+INFO - 2025-10-28 23:45:51 --> Datos preparados para insertar : {"nombre":"dadass","mac_address":"da:da:da:da:da:da","id_usuario":"1","estado":"activo","created_at":"2025-10-28 23:45:51"}
+INFO - 2025-10-28 23:45:51 --> Intentando insertar dispositivo en la base de datos
+ERROR - 2025-10-28 23:45:51 --> Error al insertar dispositivo. Errores del modelo: {"mac_address":"La direcci\u00f3n MAC no est\u00e1 registrada en la base de datos de MACs v\u00e1lidas."}
+DEBUG - 2025-10-28 23:45:51 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-10-28 23:45:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:51 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:45:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:45:55 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:58 --> Ruta actual: /Tesina/public/dispositivo/guardar
+INFO - 2025-10-28 23:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:58 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:45:58 --> Iniciando guardado de dispositivo
+INFO - 2025-10-28 23:45:58 --> Datos recibidos: {"csrf_test_name":"b3f5c172a51ffff6016b4a9aea0bf046","nombre":"dadassadsd","mac_address":"da:da:dd:ad:ad:da","descripcion":"adada"}
+INFO - 2025-10-28 23:45:58 --> Datos preparados para insertar : {"nombre":"dadassadsd","mac_address":"da:da:dd:ad:ad:da","id_usuario":"1","estado":"activo","created_at":"2025-10-28 23:45:58"}
+INFO - 2025-10-28 23:45:58 --> Intentando insertar dispositivo en la base de datos
+ERROR - 2025-10-28 23:45:58 --> Error al insertar dispositivo. Errores del modelo: {"mac_address":"La direcci\u00f3n MAC no est\u00e1 registrada en la base de datos de MACs v\u00e1lidas."}
+DEBUG - 2025-10-28 23:45:58 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-10-28 23:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:45:58 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:02 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:46:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:09 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:46:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:14 --> Ruta actual: /Tesina/public/dispositivo/guardar
+INFO - 2025-10-28 23:46:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:14 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:46:14 --> Iniciando guardado de dispositivo
+INFO - 2025-10-28 23:46:14 --> Datos recibidos: {"csrf_test_name":"b3f5c172a51ffff6016b4a9aea0bf046","nombre":"dadassadsd","mac_address":"2","descripcion":"adada"}
+INFO - 2025-10-28 23:46:14 --> Datos preparados para insertar : {"nombre":"dadassadsd","mac_address":"2","id_usuario":"1","estado":"activo","created_at":"2025-10-28 23:46:14"}
+INFO - 2025-10-28 23:46:14 --> Intentando insertar dispositivo en la base de datos
+ERROR - 2025-10-28 23:46:14 --> Error al insertar dispositivo. Errores del modelo: {"mac_address":"La direcci\u00f3n MAC simulada debe tener el formato XX:XX:XX:XX:XX:XX"}
+DEBUG - 2025-10-28 23:46:15 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-10-28 23:46:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:15 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:46:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:16 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:46:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:23 --> Ruta actual: /Tesina/public/dispositivo/guardar
+INFO - 2025-10-28 23:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:23 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:46:23 --> Iniciando guardado de dispositivo
+INFO - 2025-10-28 23:46:23 --> Datos recibidos: {"csrf_test_name":"b3f5c172a51ffff6016b4a9aea0bf046","nombre":"dadassadsd","mac_address":"54:53:56:34:54:56","descripcion":"adada"}
+INFO - 2025-10-28 23:46:23 --> Datos preparados para insertar : {"nombre":"dadassadsd","mac_address":"54:53:56:34:54:56","id_usuario":"1","estado":"activo","created_at":"2025-10-28 23:46:23"}
+INFO - 2025-10-28 23:46:23 --> Intentando insertar dispositivo en la base de datos
+ERROR - 2025-10-28 23:46:23 --> Error al insertar dispositivo. Errores del modelo: {"mac_address":"La direcci\u00f3n MAC no est\u00e1 registrada en la base de datos de MACs v\u00e1lidas."}
+DEBUG - 2025-10-28 23:46:23 --> Ruta actual: /Tesina/public/dispositivo/agregar
+INFO - 2025-10-28 23:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:23 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+INFO - 2025-10-28 23:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:23 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:26 --> Ruta actual: /Tesina/public/admin/dispositivos
+INFO - 2025-10-28 23:46:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-10-28 23:46:26 --> Datos en sesión: Array
+(
+    [__ci_last_regenerate] => 1761705943
+    [_ci_previous_url] => http://192.168.0.138/Tesina/public/dispositivo/agregar
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [rol] => admin
+    [logged_in] => 1
+)
+
+DEBUG - 2025-10-28 23:46:26 --> Buscando usuario ID: 1
+DEBUG - 2025-10-28 23:46:26 --> Resultado de la búsqueda: Array
+(
+    [id_usuario] => 1
+    [nombre] => brunito
+    [apellido] => barber
+    [email] => brunocameille@alumnos.itr3.edu.ar
+    [contrasena] => $2y$10$DfVf5j75GUow.8KQIROrQ.HgppT0Rq0gHjnl3td.ZZBDLZAYggz.u
+    [direccion_id] => 0
+    [id_rol] => 1
+    [created_at] => 2025-04-07 13:37:30
+    [updated_at] => 2025-10-13 19:57:07
+    [invitado_por] => 
+    [estado] => activo
+    [token_activacion] => 
+)
+
+INFO - 2025-10-28 23:46:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:30 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232
+INFO - 2025-10-28 23:46:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:54 --> Último kWh obtenido: 7.60948 para MAC: 08D1F9A52A14
+INFO - 2025-10-28 23:46:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-10-28 23:46:55 --> Límite obtenido (general): 4.1000 kWh, IP: 192.168.0.232

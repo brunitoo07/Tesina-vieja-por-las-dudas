@@ -1,3 +1,4 @@
+<!-- PAGO EXITOSO DE LA PRIMER COMPRA -->
 <!DOCTYPE html>
 <html lang="es">
 <head>

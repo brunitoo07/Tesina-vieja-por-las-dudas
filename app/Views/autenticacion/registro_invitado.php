@@ -48,7 +48,7 @@
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="bi bi-eye"></i> </button>
                 </div>
-                <small class="form-text text-muted">Sugerencia de contraseña</small>
+                <small class="form-text text-muted">Introducí una contraseña que sea segura </small>
             </div>
 
             <div class="mb-3">

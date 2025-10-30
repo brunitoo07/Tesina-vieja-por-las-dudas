@@ -1,3 +1,7 @@
+
+
+<!-- FORMULARIO DE REGISTRO COMPRA PRIMERA VEZ ACAAAAAAAAAAAAA  -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -499,6 +503,12 @@
     </style>
 </head>
 <body>
+    <div class="container mb-4">
+        <a href="<?= base_url('/') ?>" class="btn btn-outline-light">
+            <i class="fas fa-arrow-left me-2"></i>Volver a la página principal
+        </a>
+        
+    </div>
     <div class="bg-aurora"></div>
     <div class="bg-sparkles" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span><span></span>
@@ -516,6 +526,7 @@
                     <?= session('error') ?>
                 </div>
             <?php endif; ?>
+
 
             <div class="content">
                 <form action="<?= base_url('registro-compra/procesar') ?>" method="POST">
